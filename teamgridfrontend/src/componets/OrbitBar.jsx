@@ -38,11 +38,11 @@ const OrbitBar = () => {
   return (
     <Box
       sx={{
-        position: "fixed",
+        position: "absolute",
         minHeight: "calc(100vh - 64px)", // Subtract navbar height
         width: "100vw", // Full viewport width
         maxWidth: "100%", // Prevent horizontal scrollbar
-        background: "radial-gradient(circle at center, #0a1a3b 0%, #08152d 100%)",
+        background: "radial-gradient(circle at center,#072449,#072449 100%)",
         color: "white",
         overflow: "hidden",
         top: "40px",
@@ -138,16 +138,16 @@ const OrbitBar = () => {
         <Box
           sx={{
             position: "absolute",
-            width: { xs: 300, sm: 400, md: 500 },
-            height: { xs: 300, sm: 400, md: 500 },
+            width: { xs: 300, sm: 400, md: 510 },
+            height: { xs: 300, sm: 400, md: 510 },
             top: "50%",
             right: "5%",
             transform: "translateY(-50%)",
-            borderRadius: "50%",
+            borderRadius: "55%",
           }}
         >
           {/* Original Blue Concentric Circles */}
-          {[0.7, 0.50].map((scale, i) => (
+          {[0.7, 0.5].map((scale, i) => (
             <Box
               key={`circle-${i}`}
               sx={{
@@ -158,7 +158,9 @@ const OrbitBar = () => {
                 left: "50%",
                 transform: "translate(-50%, -50%)",
                 borderRadius: "50%",
-                backgroundColor: `rgba(0, 50, 100, ${0.1 + i * 0.05})`,
+                backgroundColor: i === 0
+                  ? "rgba(11, 49, 97, 0.3)" // Outer circle: #0B3161 with 0.3 opacity
+                  : "#0B3161", // Inner circle: faded version
                 zIndex: 1,
               }}
             />
@@ -174,7 +176,7 @@ const OrbitBar = () => {
               width: { xs: 100, sm: 120, md: 150 },
               height: { xs: 100, sm: 120, md: 150 },
               borderRadius: "50%",
-              backgroundColor: "#0f3d7a",
+              backgroundColor: "#0F4285",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -233,80 +235,104 @@ const OrbitBar = () => {
           ))}
 
           {/* Rotating Icons on White Orbits */}
-          {orbitLayers.map((icons, orbitIndex) => {
-            const scale = orbitScales[orbitIndex];
-            return (
-              <Box
-                key={`orbit-${orbitIndex}`}
-                sx={{
-                  position: "absolute",
-                  width: `${scale * 100}%`,
-                  height: `${scale * 100}%`,
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%) rotate(10deg)",
-                  borderRadius: "50%",
-                  animation: `spin ${30 + orbitIndex * 10}s linear infinite ${orbitIndex % 2 ? "reverse" : ""}`,
-                  zIndex: 3,
-                }}
-              >
-                {icons.map((icon, iconIndex) => {
-                  const angle = (iconIndex / icons.length) * 2 * Math.PI;
-                  const radius = (scale * 0.5) * 500;
-                  const x = radius * Math.cos(angle);
-                  const y = radius * Math.sin(angle);
-                  return (
-                    <Box
-                      key={`icon-${orbitIndex}-${iconIndex}`}
-                      sx={{
-                        position: "absolute",
-                        top: `calc(50% + ${y}px - 25px)`,
-                        left: `calc(50% + ${x}px - 25px)`,
-                        width: 50,
-                        height: 50,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        animation: `counter-spin ${30 + orbitIndex * 10}s linear infinite ${orbitIndex % 2 ? "" : "reverse"}`,
-                      }}
-                    >
-                      <Box
-                        component="img"
-                        src={icon}
-                        alt={`icon-${orbitIndex}-${iconIndex}`}
-                        sx={{
-                          width: 40,
-                          height: 40,
-                          objectFit: "contain",
-                          filter: "brightness(1.2)",
-                        }}
-                      />
-                    </Box>
-                  );
-                })}
-              </Box>
-            );
-          })}
+         {orbitLayers.map((icons, orbitIndex) => {
+  const scale = orbitScales[orbitIndex];
+  const baseSize = 510; // matching the outer container width
+  const orbitSize = scale * baseSize;
+  const radius = orbitSize / 2;
+  const orbitAnimationName = `spin-${orbitIndex}`;
+
+  return (
+    <Box
+      key={`orbit-${orbitIndex}`}
+      sx={{
+        position: "absolute",
+        width: `${scale * 100}%`,
+        height: `${scale * 100}%`,
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        borderRadius: "50%",
+        animation: `${orbitAnimationName} ${30 + orbitIndex * 10}s linear infinite ${orbitIndex % 2 ? 'reverse' : ''}`,
+        zIndex: 2,
+      }}
+    >
+      <Box
+        sx={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          borderRadius: "50%",
+          border: "1px solid rgba(255, 255, 255, 0.1)",
+        }}
+      />
+
+      {icons.map((icon, iconIndex) => {
+        const angle = (iconIndex / icons.length) * 2 * Math.PI;
+        const x = radius * Math.cos(angle);
+        const y = radius * Math.sin(angle);
+
+        return (
+          <Box
+            key={`icon-${orbitIndex}-${iconIndex}`}
+            sx={{
+              position: "absolute",
+              top: `calc(50% + ${y}px - 22px)`,
+              left: `calc(50% + ${x}px - 22px)`,
+              width: 44,
+              height: 44,
+              borderRadius: "50%",
+              border: "1px solid white",
+              backgroundColor: "transparent",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              boxShadow: "0 0 4px rgba(255, 255, 255, 0.2)",
+              zIndex: 3,
+            }}
+          >
+            <Box
+              component="img"
+              src={icon}
+              alt={`icon-${orbitIndex}-${iconIndex}`}
+              sx={{
+                width: 24,
+                height: 24,
+                objectFit: "contain",
+              }}
+            />
+          </Box>
+        );
+      })}
+    </Box>
+  );
+})}
 
         </Box>
       </Box>
 
       {/* Orbit Animation Keyframes */}
-      <style>{`
-        @keyframes spin {
-          from { transform: translate(-50%, -50%) rotate(0deg); }
-          to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-        @keyframes counter-spin {
-          from { transform: rotate(360deg); }
-          to { transform: rotate(0deg); }
-        }
-        @keyframes pulse {
-          0% { transform: scale(1); opacity: 0.8; }
-          50% { transform: scale(1.1); opacity: 0.4; }
-          100% { transform: scale(1); opacity: 0.8; }
-        }
-      `}</style>
+     <style>{`
+  @keyframes spin-0 {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+  @keyframes spin-1 {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+  @keyframes spin-2 {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+  @keyframes spin-3 {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+`}</style>
+
     </Box>
   );
 };
