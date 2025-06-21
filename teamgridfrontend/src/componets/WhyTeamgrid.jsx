@@ -28,7 +28,7 @@ const points = [
 
 const WhyTeamgrid = () => {
   return (
-    <Box sx={{ py: 4, px: { xs: 2, md: 2}, bgcolor: "white" }}>
+    <Box sx={{ py: 4, px: { xs: 2, md: 3}, bgcolor: "white" }}>
       <Grid container spacing={4}>
         {/* Left: Heading + Image */}
         <Grid item xs={12} md={6}>
@@ -46,7 +46,8 @@ const WhyTeamgrid = () => {
               width: "90%",
               borderRadius: 3,
               boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
-              ml: 1,
+              mx: 7,
+              mr: 4,
             }}
           />
         </Grid>
@@ -69,6 +70,7 @@ const WhyTeamgrid = () => {
                 borderRadius: "999px",
                 textTransform: "none",
                 fontWeight: 500,
+                mb: 6,
               }}
             >
               Explore Services
@@ -76,7 +78,7 @@ const WhyTeamgrid = () => {
           </Box>
 
           {points.map((item, idx) => (
-            <Box key={idx} sx={{ display: "flex", alignItems: "flex-start", mb: 3 ,mt:6}}>
+            <Box key={idx} sx={{ display: "flex", alignItems: "flex-start", mb: 2 ,mt:6, ml: 4 }}>
               <CheckCircleIcon sx={{ color: "#28C76F", mt: "3px", mr: 2 }} />
               <Box>
                 <Typography fontWeight="bold" color="#05408E" fontSize="16px">

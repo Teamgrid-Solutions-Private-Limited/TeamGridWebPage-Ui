@@ -2,25 +2,26 @@ import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 
 // Orbit icons
-import reactIcon from "../assets/react-2.png";
+import orangeIcon from "../assets/Frame 157.png";
 import nodeIcon from "../assets/Frame 153.png";
 import figmaIcon from "../assets/Frame 155.png";
 import shopifyIcon from "../assets/Frame 160.png";
 import wordpressIcon from "../assets/Frame 156.png";
 import bootstrapIcon from "../assets/Frame 154.png";
-import materialUiIcon from "../assets/material-ui-1 1.png";
-import orangeIcon from "../assets/Frame 157.png";
+import materialUiIcon from "../assets/Frame 159.png";
+import reactIcon from "../assets/Frame 152.png";
+import postqgIcon from "../assets/Frame 158.png";
 import middleTopIcon from "../assets/Group 8.png";
 
 const orbitLayers = [
   // First orbit (innermost) - React and Node
-  [reactIcon, nodeIcon],
+  [shopifyIcon, materialUiIcon],
   // Second orbit
-  [figmaIcon, shopifyIcon],
+  [orangeIcon, wordpressIcon],
   // Third orbit
-  [wordpressIcon, bootstrapIcon],
+  [figmaIcon, bootstrapIcon],
   // Fourth orbit (outermost)
-  [materialUiIcon, orangeIcon]
+  [reactIcon, nodeIcon, postqgIcon]
 ];
 
 // Define scales for white orbit circles and use them for icon placement
@@ -165,6 +166,21 @@ const OrbitBar = () => {
               }}
             />
           ))}
+          {/* Ripple effect outside the center icon */}
+          <Box
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              width: { xs: 100, sm: 120, md: 150 },
+              height: { xs: 100, sm: 120, md: 150 },
+              borderRadius: "50%",
+              border: "2px solid rgba(0, 181, 255, 0.4)",
+              animation: "ripple 2.5s infinite ease-out",
+              zIndex: 1,
+            }}
+          />
+
 
           {/* Static Center Logo */}
           <Box
@@ -172,7 +188,6 @@ const OrbitBar = () => {
               position: "absolute",
               top: "50%",
               left: "50%",
-              transform: "translate(-50%, -50%)",
               width: { xs: 100, sm: 120, md: 150 },
               height: { xs: 100, sm: 120, md: 150 },
               borderRadius: "50%",
@@ -181,8 +196,11 @@ const OrbitBar = () => {
               alignItems: "center",
               justifyContent: "center",
               zIndex: 2,
+              transform: "translate(-50%, -50%)",
+              animation: "heartbeat 2s infinite ease-in-out",
             }}
           >
+
             <img
               src={middleTopIcon}
               alt="Center Icon"
@@ -219,15 +237,7 @@ const OrbitBar = () => {
                 return (
                   <Box
                     key={`dot-${i}-${dotIndex}`}
-                    sx={{
-                      position: "absolute",
-                      top: `calc(50% + ${y}px - 2px)`,
-                      left: `calc(50% + ${x}px - 2px)`,
-                      width: "4px",
-                      height: "4px",
-                      backgroundColor: "rgba(255, 255, 255, 0.3)",
-                      borderRadius: "50%",
-                    }}
+
                   />
                 );
               })}
@@ -235,86 +245,121 @@ const OrbitBar = () => {
           ))}
 
           {/* Rotating Icons on White Orbits */}
-         {orbitLayers.map((icons, orbitIndex) => {
-  const scale = orbitScales[orbitIndex];
-  const baseSize = 510; // matching the outer container width
-  const orbitSize = scale * baseSize;
-  const radius = orbitSize / 2;
-  const orbitAnimationName = `spin-${orbitIndex}`;
+          {orbitLayers.map((icons, orbitIndex) => {
+            const scale = orbitScales[orbitIndex];
+            const baseSize = 510;
+            const orbitSize = scale * baseSize;
+            const radius = orbitSize / 2;
+            const orbitAnimationName = `spin-${orbitIndex}`;
 
+            return (
+              <Box
+                key={`orbit-${orbitIndex}`}
+                sx={{
+                  position: "absolute",
+                  width: `${scale * 100}%`,
+                  height: `${scale * 100}%`,
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  borderRadius: "50%",
+                  animation: `${orbitAnimationName} ${30 + orbitIndex * 10}s linear infinite ${orbitIndex % 2 ? 'reverse' : ''}`,
+                  zIndex: 2,
+                }}
+              >
+                {/* Orbit border */}
+                <Box
+                  sx={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    borderRadius: "50%",
+                    border: "1px solid rgba(255, 255, 255, 0.1)",
+                  }}
+                />
+
+                {/* Dots that rotate with the icons */}
+               {/* Dots that rotate with the icons */}
+{createDots(icons.length).map((dot, dotIndex) => {
+  const angle = ((dotIndex + 0.5) / icons.length) * 2 * Math.PI; // offset by half step
+  const x = radius * Math.cos(angle);
+  const y = radius * Math.sin(angle);
   return (
     <Box
-      key={`orbit-${orbitIndex}`}
+      key={`rotating-dot-${orbitIndex}-${dotIndex}`}
       sx={{
         position: "absolute",
-        width: `${scale * 100}%`,
-        height: `${scale * 100}%`,
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
+        top: `calc(50% + ${y}px - 2px)`,
+        left: `calc(50% + ${x}px - 2px)`,
+        width: "4px",
+        height: "4px",
+        backgroundColor: "rgba(255, 255, 255, 0.4)",
         borderRadius: "50%",
-        animation: `${orbitAnimationName} ${30 + orbitIndex * 10}s linear infinite ${orbitIndex % 2 ? 'reverse' : ''}`,
-        zIndex: 2,
       }}
-    >
-      <Box
-        sx={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          borderRadius: "50%",
-          border: "1px solid rgba(255, 255, 255, 0.1)",
-        }}
-      />
-
-      {icons.map((icon, iconIndex) => {
-        const angle = (iconIndex / icons.length) * 2 * Math.PI;
-        const x = radius * Math.cos(angle);
-        const y = radius * Math.sin(angle);
-
-        return (
-          <Box
-            key={`icon-${orbitIndex}-${iconIndex}`}
-            sx={{
-              position: "absolute",
-              top: `calc(50% + ${y}px - 22px)`,
-              left: `calc(50% + ${x}px - 22px)`,
-              width: 44,
-              height: 44,
-              borderRadius: "50%",
-              border: "1px solid white",
-              backgroundColor: "transparent",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              boxShadow: "0 0 4px rgba(255, 255, 255, 0.2)",
-              zIndex: 3,
-            }}
-          >
-            <Box
-              component="img"
-              src={icon}
-              alt={`icon-${orbitIndex}-${iconIndex}`}
-              sx={{
-                width: 24,
-                height: 24,
-                objectFit: "contain",
-              }}
-            />
-          </Box>
-        );
-      })}
-    </Box>
+    />
   );
 })}
+
+
+                {/* Orbiting Icons */}
+                {icons.map((icon, iconIndex) => {
+                  const totalIcons = icons.length;
+
+                  const angle = icons.length > 1
+                    ? (-Math.PI / 2) + (iconIndex / (icons.length - 1)) * Math.PI
+                    : 0;
+                  const angleDegrees = (iconIndex / totalIcons) * 2 * Math.PI; // full circle spacing
+
+                  const x = radius * Math.cos(angleDegrees);
+                  const y = radius * Math.sin(angleDegrees);
+
+
+                  return (
+                    <Box
+                      key={`icon-${orbitIndex}-${iconIndex}`}
+                      sx={{
+                        position: "absolute",
+                        top: `calc(50% + ${y}px - 32px)`,
+                        left: `calc(50% + ${x}px - 32px)`,
+                        width: 64,
+                        height: 64,
+                        borderRadius: "50%",
+                        border: "1px solid white",
+                        backgroundColor: "transparent",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        boxShadow: "0 0 4px rgba(255, 255, 255, 0.2)",
+                        zIndex: 3,
+                      }}
+                    >
+                      <Box
+                        component="img"
+                        src={icon}
+                        alt={`icon-${orbitIndex}-${iconIndex}`}
+                        sx={{
+                          width: 64,
+                          height: 64,
+                          objectFit: "contain",
+                          transform: `rotate(${angle * (270 / Math.PI)}deg)`,
+
+                        }}
+                      />
+                    </Box>
+                  );
+                })}
+              </Box>
+            );
+          })}
+
 
         </Box>
       </Box>
 
       {/* Orbit Animation Keyframes */}
-     <style>{`
+      <style>{`
   @keyframes spin-0 {
     from { transform: translate(-50%, -50%) rotate(0deg); }
     to { transform: translate(-50%, -50%) rotate(360deg); }
@@ -331,6 +376,30 @@ const OrbitBar = () => {
     from { transform: translate(-50%, -50%) rotate(0deg); }
     to { transform: translate(-50%, -50%) rotate(360deg); }
   }
+    @keyframes heartbeat {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+}
+  @keyframes ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.6;
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(1.8);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.2);
+    opacity: 0;
+  }
+}
+
+
 `}</style>
 
     </Box>

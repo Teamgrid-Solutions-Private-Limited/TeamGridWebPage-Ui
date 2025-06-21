@@ -37,7 +37,7 @@ const WhatWeDoSection = () => {
 
     return (
         <Box sx={{ width: "100%", py: { xs: 6, md: 4 } }}>
-            <Box sx={{ maxWidth: "1440px", mx: "auto", px: { xs: 2, md: 6 } }}>
+            <Box sx={{ maxWidth: "1440px", mx: "auto", px: { xs: 2, md: 3 } }}>
                 {/* Header Text */}
                 <Typography variant="h4" fontWeight="bold" gutterBottom
                     sx={{ textAlign: "left", mb: 2 }}>
@@ -64,7 +64,7 @@ const WhatWeDoSection = () => {
                     pt: { xs: 5, md: 8 },
                     pb: { xs: 12, md: 14 }, // Extra bottom padding to give space for tabs
                     mt: 4,
-                    mx:7,
+                    mx:9,
                     overflow: "hidden",
                 }}
             >
@@ -170,8 +170,9 @@ const WhatWeDoSection = () => {
                         display: "flex",
                         flexWrap: "nowrap",
                         overflowX: "auto",
-                        px: 1.,
+                        // px: 1.,
                         py: 1,
+                        pl: 1,
                         zIndex: 2,
                         scrollbarWidth: "none", // Firefox
                         "&::-webkit-scrollbar": {
@@ -192,7 +193,7 @@ const WhatWeDoSection = () => {
                                     px: 1,
                                     py: 2.5,
                                     textAlign: "left",
-                                    minWidth: 171,
+                                    minWidth: 221,
                                     borderRight:
                                         index !== tabItems.length - 1 ? "1px solid #E0E0E0" : "none",
                                     bgcolor: isActive ? "#002C6D" : "transparent",

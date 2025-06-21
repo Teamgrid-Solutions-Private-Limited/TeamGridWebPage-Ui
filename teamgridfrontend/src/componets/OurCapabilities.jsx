@@ -68,7 +68,7 @@ const OurCapabilities = () => {
     return (
         // Outer full-width section
         <Box sx={{
-            width: "99.1vw", bgcolor: "#0B3C7B", color: "white", py: 8, px: 0, m: 0, left: -122, position: "relative", overflow: "hidden", zIndex: 1
+            width: "99.1vw", bgcolor: "#0B3C7B", color: "white", py: 8, px: 1, m: 0, left: 0, position: "relative", overflow: "hidden", zIndex: 1
         }}>
 
             {/* No maxWidth — full bleed content */}
@@ -82,7 +82,7 @@ const OurCapabilities = () => {
                         flexWrap: "wrap",
                         mb: 4,
                         width: "92%",
-                        pl: { xs: 2, sm: 4, md: 6, lg: 8 }
+                        pl: { xs: 2, sm: 4, md: 5, lg: 8 }
                     }}
                 >
                     <Box>
@@ -100,7 +100,7 @@ const OurCapabilities = () => {
                             bgcolor: "#1E90FF",
                             borderRadius: "999px",
                             px: 4,
-                            py: 1.5,
+                            py: 1,
                             textTransform: "none",
                             fontWeight: "bold",
                             mt: { xs: 2, md: 0 },
@@ -110,7 +110,7 @@ const OurCapabilities = () => {
                     </Button>
                 </Box>
 
-                <Grid container spacing={3} sx={{ width: "100%", ml: 4 }} >
+                <Grid container spacing={3} sx={{ width: "100%", ml: 10 }} >
                     {capabilities.map((cap, index) => (
                         <Grid
                             item
@@ -130,11 +130,12 @@ const OurCapabilities = () => {
                                     height: 90,
                                     bgcolor: "#0D3B66",
                                     borderRadius: "24px",
-                                    padding: "20px",
+                                    paddingX: "18px",
                                     display: "flex",
                                     alignItems: "flex-start",
                                     justifyContent: "space-between",
-                                    gap: "10px",
+                                    pt: "14px",
+                                    gap: "19px",
                                     border: "1px solid rgba(255,255,255,0.08)",
                                 }}
                             >
@@ -144,9 +145,9 @@ const OurCapabilities = () => {
                                     src={cap.icon}
                                     alt={cap.title}
                                     sx={{
-                                        width: 64,
-                                        height: 64,
-                                        borderRadius: "16px",
+                                        width: 55,
+                                        height: 60,
+                                        borderRadius: "12px",
                                         objectFit: "contain",
                                         flexShrink: 0,
                                     }}
@@ -163,7 +164,7 @@ const OurCapabilities = () => {
                                             lineHeight: 1.2,
                                             wordBreak: "break-word",
                                             mb: 0.5,
-                                            mt: 0.3,
+                                            // mt: 0.3,
                                         }}
                                     >
                                         {cap.title}

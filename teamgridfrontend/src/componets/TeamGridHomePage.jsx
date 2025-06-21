@@ -11,6 +11,9 @@ import manWorking from '../assets/Rectangle 46.png';
 import WhatWeDoSection from "./WhatWeDoSection";
 import WhyTeamgrid from "./WhyTeamgrid";
 import OurCapabilities from "./OurCapabilities";
+import LetsBuildTogether from "./LetsBuildTogether";
+import Footer from "./Footer";
+import ClientTestimonials from "./ClientTestimonials";
 function TeamGridHomePage() {
   const imageData = [
     { src: womanLaptop, alt: "Woman with laptop", bg: "#FEE2E2" },
@@ -115,6 +118,9 @@ function TeamGridHomePage() {
       <WhatWeDoSection />
       <WhyTeamgrid />
       <OurCapabilities />
+      <ClientTestimonials/>
+      <LetsBuildTogether/>
+      <Footer/>
     </Box>
   );
 }
