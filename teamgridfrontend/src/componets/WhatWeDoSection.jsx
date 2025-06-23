@@ -64,7 +64,7 @@ const WhatWeDoSection = () => {
                     pt: { xs: 5, md: 8 },
                     pb: { xs: 12, md: 14 }, // Extra bottom padding to give space for tabs
                     mt: 4,
-                    mx:9,
+                    mx: 9,
                     overflow: "hidden",
                 }}
             >
@@ -187,7 +187,7 @@ const WhatWeDoSection = () => {
                         return (
                             <Box
                                 key={item.title}
-                                onClick={() => setActiveTab(index)} // <-- Set active on click
+                                onMouseEnter={() => setActiveTab(index)} //  Set active on hover
                                 sx={{
                                     cursor: "pointer", // <-- Indicate clickability
                                     px: 1,
@@ -199,7 +199,7 @@ const WhatWeDoSection = () => {
                                     bgcolor: isActive ? "#002C6D" : "transparent",
                                     color: isActive ? "white" : "#002C6D",
                                     borderRadius: isActive ? "8px" : "0",
-                                    transition: "all 0.3s ease-in-out",
+                                    transition: "all 0.5s ease-in-out",
                                 }}
                             >
                                 <Typography fontWeight="bold" fontSize="14px">

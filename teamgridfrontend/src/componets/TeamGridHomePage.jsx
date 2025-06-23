@@ -26,7 +26,7 @@ function TeamGridHomePage() {
     <Box>
       <TopNavBar />
       <OrbitBar />
-      <Box sx={{ height: { xs: '100vh', md: '90vh' } }} />
+      <Box sx={{ height: { xs: '100vh', md: '95vh' } }} />
       {/* <Box sx={{ position: 'relative', zIndex: 100 }}></Box> */}
 
       <Box

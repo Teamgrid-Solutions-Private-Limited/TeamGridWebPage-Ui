@@ -123,22 +123,28 @@ const OurCapabilities = () => {
                                 justifyContent: "center",
                             }}
                         >
-                            <Paper
-                                elevation={0}
-                                sx={{
-                                    width: 384,
-                                    height: 90,
-                                    bgcolor: "#0D3B66",
-                                    borderRadius: "24px",
-                                    paddingX: "18px",
-                                    display: "flex",
-                                    alignItems: "flex-start",
-                                    justifyContent: "space-between",
-                                    pt: "14px",
-                                    gap: "19px",
-                                    border: "1px solid rgba(255,255,255,0.08)",
-                                }}
-                            >
+                           <Paper
+    elevation={0}
+    sx={{
+        width: 384,
+        height: 90,
+        bgcolor: "#0E4B99",
+        borderRadius: "24px",
+        paddingX: "18px",
+        display: "flex",
+        alignItems: "flex-start",
+        justifyContent: "space-between",
+        pt: "14px",
+        gap: "19px",
+        border: "1px solid rgba(255,255,255,0.08)",
+        transition: "background-color 0.3s ease, transform 0.3s ease",
+        "&:hover": {
+            bgcolor: "#003272",
+            transform: "scale(1.03)", // Slightly enlarge
+        },
+    }}
+>
+
                                 {/* Left: Icon */}
                                 <Box
                                     component="img"

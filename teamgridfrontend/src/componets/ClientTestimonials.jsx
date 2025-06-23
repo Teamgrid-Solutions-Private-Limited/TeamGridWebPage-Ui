@@ -105,9 +105,16 @@ const TestimonialRow = ({ testimonials, direction = "left", delay = 0 }) => (
                         p: 3,
                         borderRadius: 3,
                         backgroundColor: "#F3F3F6",
-                        boxShadow: "0 4px 10px rgba(0,0,0,0.05)"
+                        boxShadow: "0 4px 10px rgba(0,0,0,0.05)",
+                        transition: "all 0.3s ease-in-out",
+                        "&:hover": {
+                            backgroundColor: "#e6ebf5", // or try "#EDF0F5" for a cooler tone
+                            transform: "scale(1.04)",
+                            boxShadow: "0 6px 20px rgba(0, 0, 0, 0.1)",
+                        },
                     }}
                 >
+
                     <FormatQuoteIcon sx={{ color: "#0b63e5", fontSize: 28, mb: 2 }} />
                     <Typography sx={{ mb: 3 }}>{item.text}</Typography>
                     <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>

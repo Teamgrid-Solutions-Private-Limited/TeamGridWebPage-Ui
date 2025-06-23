@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography, Button } from "@mui/material";
-
+import { useState } from "react";
 // Orbit icons
 import orangeIcon from "../assets/Frame 157.png";
 import nodeIcon from "../assets/Frame 153.png";
@@ -28,19 +28,33 @@ const orbitLayers = [
 const orbitScales = [2.9, 2.3, 1.5, 0.9];
 
 // Create dots along the orbit paths
-const createDots = (count) => {
-  return Array.from({ length: count }, (_, i) => {
-    const angle = (i / count) * 2 * Math.PI;
+// const createDots = (count) => {
+//   return Array.from({ length: count }, (_, i) => {
+//     const angle = (i / count) * 2 * Math.PI;
+//     return { angle };
+//   });
+// };
+const createDots = (radius) => {
+  const circumference = 2 * Math.PI * radius;
+  const spacing = 240; // adjust to control density
+  const dotCount = Math.floor(circumference / spacing);
+
+  return Array.from({ length: dotCount }, (_, i) => {
+    const angle = (i / dotCount) * 2 * Math.PI;
     return { angle };
   });
 };
 
+
 const OrbitBar = () => {
+  // Add state to track whether hover is active on the center icon
+  const [isPaused, setIsPaused] = useState(false);
+
   return (
     <Box
       sx={{
         position: "absolute",
-        minHeight: "calc(100vh - 64px)", // Subtract navbar height
+        minHeight: "calc(100vh - 50px)", // Subtract navbar height
         width: "100vw", // Full viewport width
         maxWidth: "100%", // Prevent horizontal scrollbar
         background: "radial-gradient(circle at center,#072449,#072449 100%)",
@@ -53,6 +67,7 @@ const OrbitBar = () => {
         justifyContent: "center",
         margin: 0,
         padding: 0,
+        pb: { xs: 4, md: 0}, // Add padding at the bottom for smaller screens
       }}
     >
       {/* Content Container */}
@@ -177,6 +192,7 @@ const OrbitBar = () => {
               borderRadius: "50%",
               border: "2px solid rgba(0, 181, 255, 0.4)",
               animation: "ripple 2.5s infinite ease-out",
+              animationPlayState: isPaused ? 'paused' : 'running',
               zIndex: 1,
             }}
           />
@@ -196,9 +212,14 @@ const OrbitBar = () => {
               alignItems: "center",
               justifyContent: "center",
               zIndex: 2,
+              pointerEvents: "auto",
               transform: "translate(-50%, -50%)",
               animation: "heartbeat 2s infinite ease-in-out",
+              animationPlayState: isPaused ? 'paused' : 'running',
             }}
+            // Pause rotations on hover
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
           >
 
             <img
@@ -229,7 +250,7 @@ const OrbitBar = () => {
               }}
             >
               {/* Dots on the orbit - reduced to 3 */}
-              {createDots(3).map((dot, dotIndex) => {
+              {/* {createDots(3).map((dot, dotIndex) => {
                 const angle = dot.angle;
                 const radius = (scale * 0.5) * (500);
                 const x = radius * Math.cos(angle);
@@ -240,7 +261,7 @@ const OrbitBar = () => {
 
                   />
                 );
-              })}
+              })} */}
             </Box>
           ))}
 
@@ -263,8 +284,11 @@ const OrbitBar = () => {
                   left: "50%",
                   transform: "translate(-50%, -50%)",
                   borderRadius: "50%",
-                  animation: `${orbitAnimationName} ${30 + orbitIndex * 10}s linear infinite ${orbitIndex % 2 ? 'reverse' : ''}`,
+                  animation: `${orbitAnimationName} ${60 + orbitIndex * 20}s linear infinite ${orbitIndex % 2 ? 'reverse' : ''}`,
+                  // Apply play state based on hover
+                  animationPlayState: isPaused ? 'paused' : 'running',
                   zIndex: 2,
+                  pointerEvents: "none",
                 }}
               >
                 {/* Orbit border */}
@@ -281,26 +305,26 @@ const OrbitBar = () => {
                 />
 
                 {/* Dots that rotate with the icons */}
-               {/* Dots that rotate with the icons */}
-{createDots(icons.length).map((dot, dotIndex) => {
-  const angle = ((dotIndex + 0.5) / icons.length) * 2 * Math.PI; // offset by half step
-  const x = radius * Math.cos(angle);
-  const y = radius * Math.sin(angle);
-  return (
-    <Box
-      key={`rotating-dot-${orbitIndex}-${dotIndex}`}
-      sx={{
-        position: "absolute",
-        top: `calc(50% + ${y}px - 2px)`,
-        left: `calc(50% + ${x}px - 2px)`,
-        width: "4px",
-        height: "4px",
-        backgroundColor: "rgba(255, 255, 255, 0.4)",
-        borderRadius: "50%",
-      }}
-    />
-  );
-})}
+                {/* Dots that rotate with the icons */}
+                {createDots(radius).map((dot, dotIndex) => {
+                  const angle = dot.angle;
+                  const x = radius * Math.cos(angle);
+                  const y = radius * Math.sin(angle);
+                  return (
+                    <Box
+                      key={`rotating-dot-${orbitIndex}-${dotIndex}`}
+                      sx={{
+                        position: "absolute",
+                        top: `calc(50% + ${y}px - 2px)`,
+                        left: `calc(50% + ${x}px - 2px)`,
+                        width: "4.9px",
+                        height: "4.9px",
+                        backgroundColor: "rgba(255, 255, 255, 0.93)",
+                        borderRadius: "50%",
+                      }}
+                    />
+                  );
+                })}
 
 
                 {/* Orbiting Icons */}
