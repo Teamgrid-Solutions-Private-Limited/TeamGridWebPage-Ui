@@ -63,144 +63,169 @@ const capabilities = [
         // replace with actual paths
     },
 ];
-
 const OurCapabilities = () => {
-    return (
-        // Outer full-width section
-        <Box sx={{
-            width: "99.1vw", bgcolor: "#0B3C7B", color: "white", py: 8, px: 1, m: 0, left: 0, position: "relative", overflow: "hidden", zIndex: 1
-        }}>
+  return (
+    <Box sx={{
+      width: "100%",
+      bgcolor: "#0B3C7B", 
+      color: "white", 
+      py: { xs: 6, md: 8 },
+      position: "relative", 
+      overflow: "hidden", 
+      zIndex: 1
+    }}>
+      {/* Container with same padding as navbar */}
+      <Box sx={{ 
+        maxWidth: "xl",
+        mx: "auto",
+        px: { xs: 2, sm: 4, md: 3, lg: 11 } // Match navbar padding
+      }}>
+        {/* Top Heading Row */}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            justifyContent: "space-between",
+            alignItems: { xs: "flex-start", md: "center" },
+            mb: { xs: 4, md: 6 },
+            gap: { xs: 2, md: 0 }
+          }}
+        >
+          <Box>
+            <Typography 
+              variant="h4" 
+              fontWeight="bold" 
+              gutterBottom
+              sx={{
+                fontFamily: 'PayPal Open',
+                fontSize: { xs: '28px', md: '40px' },
+                lineHeight: '100%'
+              }}
+            >
+              Our Capabilities
+            </Typography>
+            <Typography 
+              variant="subtitle1" 
+              sx={{ 
+                opacity: 0.85,
+                fontFamily: 'PayPal Open',
+                fontSize: { xs: '16px', md: '18px' }
+              }}
+            >
+              Modern Technologies & Collaborative Tools
+            </Typography>
+          </Box>
 
-            {/* No maxWidth — full bleed content */}
-            <Box sx={{ px: { xs: 2, sm: 4, md: 6, lg: 8 } }}>
-                {/* Top Heading Row */}
-                <Box
-                    sx={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        flexWrap: "wrap",
-                        mb: 4,
-                        width: "92%",
-                        pl: { xs: 2, sm: 4, md: 5, lg: 8 }
-                    }}
-                >
-                    <Box>
-                        <Typography variant="h4" fontWeight="bold" gutterBottom>
-                            Our Capabilities
-                        </Typography>
-                        <Typography variant="subtitle1" sx={{ opacity: 0.85 }}>
-                            Modern Technologies & Collaborative Tools
-                        </Typography>
-                    </Box>
-
-                    <Button
-                        variant="contained"
-                        sx={{
-                            bgcolor: "#1E90FF",
-                            borderRadius: "999px",
-                            px: 4,
-                            py: 1,
-                            textTransform: "none",
-                            fontWeight: "bold",
-                            mt: { xs: 2, md: 0 },
-                        }}
-                    >
-                        Get a Quote →
-                    </Button>
-                </Box>
-
-                <Grid container spacing={3} sx={{ width: "100%", ml: 10 }} >
-                    {capabilities.map((cap, index) => (
-                        <Grid
-                            item
-                            xs={12}
-                            sm={6}
-                            md={4}
-                            key={index}
-                            sx={{
-                                display: "flex",
-                                justifyContent: "center",
-                            }}
-                        >
-                           <Paper
-    elevation={0}
-    sx={{
-        width: 384,
-        height: 90,
-        bgcolor: "#0E4B99",
-        borderRadius: "24px",
-        paddingX: "18px",
-        display: "flex",
-        alignItems: "flex-start",
-        justifyContent: "space-between",
-        pt: "14px",
-        gap: "19px",
-        border: "1px solid rgba(255,255,255,0.08)",
-        transition: "background-color 0.3s ease, transform 0.3s ease",
-        "&:hover": {
-            bgcolor: "#003272",
-            transform: "scale(1.03)", // Slightly enlarge
-        },
-    }}
->
-
-                                {/* Left: Icon */}
-                                <Box
-                                    component="img"
-                                    src={cap.icon}
-                                    alt={cap.title}
-                                    sx={{
-                                        width: 55,
-                                        height: 60,
-                                        borderRadius: "12px",
-                                        objectFit: "contain",
-                                        flexShrink: 0,
-                                    }}
-                                />
-
-                                {/* Right: Title + Description */}
-                                <Box sx={{ flex: 1 }}>
-                                    <Typography
-                                        variant="subtitle1"
-                                        fontWeight="bold"
-                                        color="white"
-                                        textAlign="left"
-                                        sx={{
-                                            lineHeight: 1.2,
-                                            wordBreak: "break-word",
-                                            mb: 0.5,
-                                            // mt: 0.3,
-                                        }}
-                                    >
-                                        {cap.title}
-                                    </Typography>
-                                    <Typography
-                                        variant="body2"
-                                        sx={{
-                                            fontFamily: "PayPal Open",
-                                            fontWeight: 400,
-                                            fontSize: "14px",
-                                            lineHeight: "21px",
-                                            letterSpacing: "0%",
-                                            color: "rgba(255,255,255,0.8)",
-                                            wordBreak: "break-word",
-                                            whiteSpace: "normal",
-                                        }}
-                                    >
-                                        {cap.description}
-                                    </Typography>
-                                </Box>
-                            </Paper>
-                        </Grid>
-                    ))}
-                </Grid>
-
-
-            </Box>
+          <Button
+            variant="contained"
+            sx={{
+              bgcolor: "#1E90FF",
+              borderRadius: "999px",
+              px: 4,
+              py: 1.5,
+              textTransform: "none",
+              fontWeight: "bold",
+              fontFamily: 'PayPal Open',
+              fontSize: '16px',
+              '&:hover': {
+                bgcolor: '#0077CC'
+              }
+            }}
+          >
+            Get a Quote →
+          </Button>
         </Box>
-    );
-};
 
+        <Grid 
+          container 
+          spacing={{ xs: 2, md: 3 }} 
+          sx={{ 
+            width: "100%",
+            justifyContent: "center"
+          }}
+        >
+          {capabilities.map((cap, index) => (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              key={index}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <Paper
+                elevation={0}
+                sx={{
+                  width: { xs: '100%', sm: '384px' },
+                  height: { xs: 'auto', sm: '90px' },
+                  minHeight: '90px',
+                  fontFamily: "PayPal Open",
+                  bgcolor: "#0B3C7B",
+                  borderRadius: "24px",
+                  p: 2,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "19px",
+                  border: "1px solid #0E4B99",
+                  transition: "all 0.3s ease",
+                  "&:hover": {
+                    bgcolor: "#003272",
+                    transform: "scale(1.03)",
+                  },
+                }}
+              >
+                {/* Left: Icon */}
+                <Box
+                  component="img"
+                  src={cap.icon}
+                  alt={cap.title}
+                  sx={{
+                    width: 55,
+                    height: 55,
+                    borderRadius: "12px",
+                    objectFit: "contain",
+                    flexShrink: 0,
+                  }}
+                />
+
+                {/* Right: Title + Description */}
+                <Box sx={{ flex: 1 }}>
+                  <Typography
+                    variant="subtitle1"
+                    fontWeight="bold"
+                    color="white"
+                    textAlign="left"
+                    sx={{
+                      fontSize: { xs: '16px', sm: '18px' },
+                      lineHeight: 1.2,
+                      mb: 0.5,
+                    }}
+                  >
+                    {cap.title}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      fontFamily: "PayPal Open",
+                      fontWeight: 400,
+                      fontSize: { xs: '13px', sm: '14px' },
+                      lineHeight: "21px",
+                      color: "rgba(255,255,255,0.8)",
+                    }}
+                  >
+                    {cap.description}
+                  </Typography>
+                </Box>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+    </Box>
+  );
+};
 
 export default OurCapabilities;
