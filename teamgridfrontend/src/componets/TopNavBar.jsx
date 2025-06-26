@@ -77,7 +77,7 @@ const TopNavBar = () => {
                 }}
             >
                 <Toolbar disableGutters>
-                    <Box sx={{ width: "100%", fontFamily: `"PayPal Open", Arial, sans-serif` }}>
+                    <Box sx={{ width: "100%", fontFamily: `"PayPal Open"` }}>
                         <Container
                             maxWidth="xl"
                             sx={{
@@ -87,9 +87,11 @@ const TopNavBar = () => {
                             }}
                         >
                             {/* Logo */}
-                            <Box sx={{ display: "flex", alignItems: "flex-end" ,p: 1}}>
-                                <img src={logo} alt="logo" style={{ height: "50px", width: "150px" }} />
-                            </Box>
+  <Grid item xs={6} md={2}>
+                                <Box sx={{ display: "flex", alignItems: "center", p: 1 }}>
+                                    <img src={logo} alt="logo" style={{ height: "40px", width: "auto", maxWidth: "150px" }} />
+                                </Box>
+                            </Grid>
 
                             {/* Hamburger Menu - Mobile */}
                             <IconButton
@@ -131,7 +133,7 @@ const TopNavBar = () => {
                                             sx={{
                                                 position: "absolute",
                                                 top: 58,
-                                                left: "62%",
+                                                left: "65%",
                                                 transform: "translateX(-42.5%)",
                                                 p: 3,
                                                 backgroundColor: "white",
@@ -148,7 +150,7 @@ const TopNavBar = () => {
                                                 <Grid item xs={3}>
                                                     <Typography
                                                         sx={{
-                                                            fontFamily: `"PayPal Open", Arial, sans-serif`,
+                                                            fontFamily: `"PayPal Open"`,
                                                             fontWeight: 400,
                                                             fontSize: "12px",
                                                             textTransform: "uppercase",
@@ -168,7 +170,7 @@ const TopNavBar = () => {
                                                 {/* Mobile Dev */}
                                                 <Grid item xs={3}>
                                                     <Typography variant="subtitle2" gutterBottom sx={{
-                                                        mb: 3, fontFamily: `"PayPal Open", Arial, sans-serif`,
+                                                        mb: 3, fontFamily: `"PayPal Open"`,
                                                         fontWeight: 400,
                                                         fontSize: "12px",
                                                         textTransform: "uppercase",
@@ -182,7 +184,7 @@ const TopNavBar = () => {
                                                 {/* UI/UX */}
                                                 <Grid item xs={3}>
                                                     <Typography variant="subtitle2" gutterBottom sx={{
-                                                        mb: 3, fontFamily: `"PayPal Open", Arial, sans-serif`,
+                                                        mb: 3, fontFamily: `"PayPal Open"`,
                                                         fontWeight: 400,
                                                         fontSize: "12px",
                                                         textTransform: "uppercase",
@@ -196,7 +198,7 @@ const TopNavBar = () => {
                                                 {/* E-Commerce */}
                                                 <Grid item xs={3}>
                                                     <Typography variant="subtitle2" gutterBottom sx={{
-                                                        mb: 3, fontFamily: `"PayPal Open", Arial, sans-serif`,
+                                                        mb: 3, fontFamily: `"PayPal Open"`,
                                                         fontWeight: 400,
                                                         fontSize: "12px",
                                                         textTransform: "uppercase",
@@ -221,7 +223,7 @@ const TopNavBar = () => {
                                 variant="contained"
                                 sx={{
                                     backgroundColor: "#05408E",
-                                    fontFamily: `"PayPal Open", Arial, sans-serif`,
+                                    fontFamily: `"PayPal Open"`,
                                     fontWeight: 400,
                                     fontSize: "16px",
                                     lineHeight: "150%",
@@ -275,7 +277,7 @@ const TopNavBar = () => {
                         variant="contained"
                         sx={{
                             backgroundColor: "#05408E",
-                            fontFamily: `"PayPal Open", Arial, sans-serif`,
+                            fontFamily: `"PayPal Open"`,
                             fontWeight: 400,
                             fontSize: "16px",
                             lineHeight: "150%",
@@ -331,7 +333,7 @@ const feature = (icon, title, desc) => (
         <Box>
             <Typography
                 sx={{
-                    fontFamily: `"PayPal Open", Arial, sans-serif`,
+                    fontFamily: `"PayPal Open"`,
                     fontWeight: 500,
                     fontSize: "14px",
                     lineHeight: "150%",
@@ -342,7 +344,7 @@ const feature = (icon, title, desc) => (
             </Typography>
             <Typography
                 sx={{
-                    fontFamily: `"PayPal Open", Arial, sans-serif`,
+                    fontFamily: `"PayPal Open"`,
                     fontWeight: 400,
                     fontSize: "14px",
                     lineHeight: "150%",
@@ -359,10 +361,10 @@ const feature = (icon, title, desc) => (
 // Button styling
 const navBtnStyle = () => ({
     // backgroundColor: "#f5f7fa",
-    fontFamily: `"PayPal Open", Arial, sans-serif`,
+    fontFamily: `"PayPal Open"`,
         // fontFamily: `PayPal Open`,
 
-    fontWeight: 500,
+    fontWeight: 400,
     fontSize: "16px",
     // lineHeight: "150%",
     // letterSpacing: "0%",

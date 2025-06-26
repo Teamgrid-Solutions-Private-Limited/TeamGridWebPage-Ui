@@ -70,9 +70,9 @@ button:focus-visible {
 } */
 * {
   box-sizing: border-box;
+  font-family: "PayPal Open";
 }
 body {
-  /* margin: 0; */
+  margin: 0;
   /* overflow-x: hidden; */
-  
 }

@@ -28,7 +28,7 @@ const points = [
 
 const WhyTeamgrid = () => {
   return (
-    <Box sx={{ maxWidth: "1440px", mx: "auto", px: { xs: 2, sm: 4, md: 10 }, mb: 4 }}>
+    <Box sx={{ maxWidth: "1440px", mx: "auto", px: { xs: 2, sm: 4, md: 9.5 }, mb: 4 }}>
       {/* Header Row - Title and Button */}
       <Box sx={{
         display: "flex",
@@ -95,13 +95,14 @@ const WhyTeamgrid = () => {
           color: '#000000',
           textAlign: { xs: 'center', md: 'left' },
           mb: { xs: 3, md: 4 },
-          mt: { md: 0 } // Ensure no top margin on desktop
+          mt: { md: 0 }, // Ensure no top margin on desktop
+          ml:{md:1}
         }}
       >
         Flexible Talent. Reliable Delivery. Scalable Results.
       </Typography>
 
-      <Grid container spacing={{ xs: 6, md: 16 }} alignItems="center">
+      <Grid container spacing={{ xs: 6, md: 16 }} alignItems="center" ml={1}>
         {/* Left: Image */}
         <Grid item xs={12} md={6}>
           <Box

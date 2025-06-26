@@ -38,14 +38,13 @@ const WhatWeDoSection = () => {
         <Box sx={{
             width: "100%",
             py: { xs: 6, md: 4 },
-            px: { xs: 2, sm: 4, md: 3, lg: 9 }, // Match navbar padding
+            px: { xs: 2, sm: 4, md: 3, lg: 10.5}, // Match navbar padding
             maxWidth: "xl",
-            mx: "auto"
+            // mx: "auto"
         }}>
             {/* Header Text */}
             <Box sx={{
                 maxWidth: "1440px",
-                mx: 1,
                 mb: { xs: 4, md: 6 }
             }}>
                 <Typography
@@ -71,7 +70,8 @@ const WhatWeDoSection = () => {
                         color: '#140E13',
                         textAlign: 'left',
                         width: { xs: '100%', md: '80%', lg: '100%' },
-                        mb: 4
+                        mb: 4,
+                        m:1,
                     }}
                 >
                     We build AI-powered web and mobile apps with innovative design and scalable development.
@@ -92,7 +92,9 @@ const WhatWeDoSection = () => {
                     px: { xs: 3, md: 6 },
                     pt: { xs: 5, md: 8 },
                     pb: { xs: 12, md: 14 },
+                    // m:1,
                     overflow: "hidden",
+                    ml:.5,
                     width: "100%"
                 }}
             >
@@ -302,7 +304,7 @@ const WhatWeDoSection = () => {
                                         px: { xs: 1.5, md: 2 },
                                         py: 2,
                                         textAlign: "left",
-                                        minWidth: { xs: 160, sm: 180, md: 205 },
+                                        minWidth: { xs: 160, sm: 180, md: 203 },
                                         flexShrink: 0, // Prevent items from shrinking
                                         borderRight: index !== tabItems.length - 1 ? "1px solid #E0E0E0" : "none",
                                         bgcolor: isActive ? "#072449" : "#ffffff",

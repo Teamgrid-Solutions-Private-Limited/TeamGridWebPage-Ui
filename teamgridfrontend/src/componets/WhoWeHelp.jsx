@@ -21,8 +21,8 @@ const WhoWeHelp = () => {
                 flexDirection: { xs: "column", md: "row" },
                 alignItems: "flex-start",
                 justifyContent: "space-between",
-                px: { xs: 2, sm: 4, md: 3, lg: 9 },
-                py: { xs: 6, md: 15 },
+                px: { xs: 2, sm: 4, md: 3, lg: 10 },
+                py: { xs: 6, md: 8 },
                 bgcolor: "#fff",
                 maxWidth: "xl",
                 margin: "0 auto"
@@ -36,7 +36,7 @@ const WhoWeHelp = () => {
                         xs: '100%',
                         md: '486px'
                     },
-                    pr: { md: 8, lg: 14 },
+                    pr: { md: 8, lg: 15 },
                     mb: { xs: 6, md: 0 },
                     mt: { xs: 0, md: 8, lg: 27 },
                     display: 'flex',

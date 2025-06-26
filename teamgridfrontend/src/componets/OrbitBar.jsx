@@ -49,7 +49,19 @@ const createDots = (radius) => {
 const OrbitBar = () => {
   // Add state to track whether hover is active on the center icon
   const [isPaused, setIsPaused] = useState(false);
-
+  const [selectedIcon, setSelectedIcon] = useState(null); // Holds clicked icon
+  const zoomedImages = {
+    [bootstrapIcon]: bootstrapIcon,
+    [figmaIcon]: figmaIcon,
+    [materialUiIcon]: figmaIcon,
+    [shopifyIcon]: figmaIcon,
+    [wordpressIcon]: figmaIcon,
+    [reactIcon]: figmaIcon,
+    [nodeIcon]: figmaIcon,
+    [postqgIcon]: figmaIcon,
+    [orangeIcon]: figmaIcon,
+  };
+  
   // Determine current screen size to sync the JS radius with the CSS orbit size
   const theme = useTheme();
   const isXs = useMediaQuery(theme.breakpoints.only("xs"));   // <600px
@@ -88,7 +100,7 @@ const OrbitBar = () => {
           maxWidth: "1440px",
           margin: "0 auto",
           position: "relative",
-          px: { xs: 2, sm: 4, md: 6 },
+          px: { xs: 2, sm: 4, md: 5.5 },
         }}
       >
         {/* Text Content */}
@@ -97,16 +109,19 @@ const OrbitBar = () => {
             position: "relative",
             maxWidth: { xs: '100%', md: 848 },
             minHeight: { xs: 'auto', md: 329 },
-            zIndex: 10,
+            zIndex: 1,  // Lower z-index than orbiting icons
             width: "100%",
             py: { xs: 4, md: 20 },
-
             my: { xs: 4, md: 0 },
             mx: 1,
             transform: {
-              xs: 'translate(0px, 0px)',      // No shift on mobile
-              sm: 'translate(12px, 8px)',     // Slight shift on tablet
-              md: 'translate(28px, 55px)',    // More shift on desktop
+              xs: 'translate(0px, 0px)',
+              sm: 'translate(12px, 8px)',
+              md: 'translate(28px, 55px)',
+            },
+            pointerEvents: 'none',  // Make text container ignore pointer events
+            '& > *': {  // But allow pointer events on child elements
+              pointerEvents: 'auto'
             },
           }}
         >
@@ -117,7 +132,7 @@ const OrbitBar = () => {
                 sm: '0.9rem',  // Overrides min-width: 600px
                 md: '18px',  // Optional: override further
               },
-              fontFamily: '"PayPal Open", Arial, sans-serif',
+              fontFamily: '"PayPal Open"',
               fontWeight: 500,
               lineHeight: "150%",
             }}
@@ -127,7 +142,7 @@ const OrbitBar = () => {
 
           <Typography
             sx={{
-              fontFamily: `"PayPal Open", Arial, sans-serif`,
+              fontFamily: `"PayPal Open"`,
               fontWeight: 700,
               fontSize: {
                 xs: '2rem',     // 32px on mobile
@@ -148,13 +163,13 @@ const OrbitBar = () => {
           >
             Extend Your Team,<br />Accelerate Your Growth
           </Typography>
-          <Box sx={{ py: { xs: 2, md: 8 } }}>
+          <Box sx={{ py: { xs: 2, md: 5 } }}>
             <Typography
               sx={{
                 mt: 2,
                 mb: 4,
                 color: "#E1E0E0",
-                fontFamily: `"PayPal Open", Arial, sans-serif`,
+                fontFamily: `"PayPal Open"`,
                 fontWeight: 300,
                 fontSize: {
                   xs: "1rem",     // ~16px on small screens
@@ -171,7 +186,7 @@ const OrbitBar = () => {
                 // },
               }}
             >
-              We help agencies and startups scale smarter — with dedicated professionals, high-quality
+              We help agencies and startups scale smarter — with dedicated professionals, high-quality <br></br>
               solutions, and flexible engagement models that fit your workflow and goals.
             </Typography>
           </Box>
@@ -187,7 +202,7 @@ const OrbitBar = () => {
                 boxShadow: "none",
                 width: "204px",
                 height: "59px",
-                fontFamily: `"PayPal Open", Arial, sans-serif`,
+                fontFamily: `"PayPal Open"`,
                 fontWeight: 500,
                 fontSize: "16px",
                 textTransform: "none",
@@ -206,7 +221,7 @@ const OrbitBar = () => {
                 borderColor: "#444",
                 borderRadius: "40px",
                 padding: "16px 32px",
-                fontFamily: `"PayPal Open", Arial, sans-serif`,
+                fontFamily: `"PayPal Open"`,
                 fontWeight: 500,
                 fontSize: "16px",
                 bgcolor: "#072449",
@@ -229,8 +244,8 @@ const OrbitBar = () => {
             position: "absolute",
             width: { xs: 300, sm: 400, md: 550 },
             height: { xs: 300, sm: 400, md: 550 },
-            top: "45%",
-            left: { sm: "72%", md: "72%" },
+            top: "47%",
+            left: { sm: "72%", md: "70.6%" },
             transform: "translateY(-50%)",
             borderRadius: "55%",
           }}
@@ -252,6 +267,30 @@ const OrbitBar = () => {
                 animationPlayState: isPaused ? 'paused' : 'running',
                 opacity: 0,
                 zIndex: 1,
+                pointerEvents: 'none',
+              }}
+            />
+          ))}
+          {/* Enhanced Blue Ripple Effect */}
+          {[0.3, 0.6, 0.9].map((scale, i) => (
+            <Box
+              key={`ripple-${i}`}
+              sx={{
+                position: "absolute",
+                width: "0%",
+                height: "0%",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                borderRadius: "50%",
+                border: `1px solid rgba(0, 112, 255, ${0.7 - (i * 0.2)})`,
+                boxShadow: `0 0 15px rgba(0, 112, 255, ${0.5 - (i * 0.15)})`,
+                animation: `rippleEffect 3s ${i * 0.4}s ease-out infinite`,
+                animationPlayState: isPaused ? 'paused' : 'running',
+                opacity: 0,
+                zIndex: 1,
+                backgroundColor: "transparent",
+                pointerEvents: 'none',
               }}
             />
           ))}
@@ -276,39 +315,170 @@ const OrbitBar = () => {
 
 
 
+          {/* Backdrop when zoomed */}
+          {selectedIcon && (
+            <Box
+              sx={{
+                position: "fixed",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: "rgba(0, 0, 0, 0.5)",
+                zIndex: 99,
+                backdropFilter: "blur(4px)",
+              }}
+              onClick={() => setSelectedIcon(null)}
+            />
+          )}
+
           {/* Static Center Logo */}
           <Box
             sx={{
               position: "absolute",
               top: "50%",
               left: "50%",
-              width: { xs: 100, sm: 120, md: "245px" },
-              height: { xs: 100, sm: 120, md: "245px" },
-              borderRadius: "50%",
-              backgroundColor: "#0F4285",
+              width: selectedIcon ? { xs: 280, sm: 350, md: 420 } : { xs: 100, sm: 120, md: "245px" },
+              height: selectedIcon ? { xs: 280, sm: 350, md: 420 } : { xs: 100, sm: 120, md: "245px" },
+              borderRadius: selectedIcon ? "24px" : "50%",
+              backgroundColor: selectedIcon ? "#fff" : "#0F4285",
+              transform: selectedIcon 
+                ? "translate(-50%, -50%) scale(1)"
+                : "translate(-50%, -50%) scale(1)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              zIndex: 2,
-              pointerEvents: "auto",
-              transform: "translate(-50%, -50%)",
-              // animation: "heartbeat 2s infinite ease-in-out",
-              animationPlayState: isPaused ? 'paused' : 'running',
+              zIndex: selectedIcon ? 100 : 2,
+              transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+              overflow: "hidden",
+              boxShadow: selectedIcon 
+                ? "0 12px 40px rgba(0, 0, 0, 0.25)" 
+                : "none",
+              cursor: selectedIcon ? "default" : "pointer",
+              '&:hover': !selectedIcon ? {
+                transform: "translate(-50%, -50%) scale(1.05)",
+              } : {},
             }}
-            // Pause rotations on hover
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
           >
+            {selectedIcon ? (
+              <>
+                {/* Back Button */}
+                <Box
+                  onClick={() => setSelectedIcon(null)}
+                  sx={{
+                    position: "absolute",
+                    top: 16,
+                    left: 16,
+                    width: 40,
+                    height: 40,
+                    borderRadius: "50%",
+                    backgroundColor: "#072449",
+                    color: "white",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    cursor: "pointer",
+                    zIndex: 101,
+                    transition: "transform 0.2s ease",
+                    '&:hover': {
+                      transform: 'scale(1.1)',
+                    }
+                  }}
+                >
+                  ←
+                </Box>
 
-            <img
-              src={middleTopIcon}
-              alt="Center Icon"
-              style={{
-                width: "60%",
-                height: "60%",
-                objectFit: "contain"
-              }}
-            />
+                {/* Main Content */}
+                <Box
+                  sx={{
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    padding: "24px",
+                    color: "#072449",
+                  }}
+                >
+                  {/* Icon Title */}
+                  <Typography
+                    variant="h4"
+                    sx={{
+                      fontFamily: '"PayPal Open"',
+                      fontWeight: 600,
+                      mt: 4,
+                      mb: 2
+                    }}
+                  >
+                    {selectedIcon === bootstrapIcon ? "Bootstrap" :
+                     selectedIcon === figmaIcon ? "Figma" :
+                     selectedIcon === materialUiIcon ? "Material UI" :
+                     selectedIcon === shopifyIcon ? "Shopify" :
+                     selectedIcon === wordpressIcon ? "WordPress" :
+                     selectedIcon === reactIcon ? "React" :
+                     selectedIcon === nodeIcon ? "Node.js" :
+                     selectedIcon === postqgIcon ? "PostgreSQL" :
+                     selectedIcon === orangeIcon ? "Orange" : "Technology"}
+                  </Typography>
+
+                  {/* Description */}
+                  <Typography
+                    sx={{
+                      fontFamily: '"PayPal Open"',
+                      fontSize: "1rem",
+                      lineHeight: 1.6,
+                      color: "#555"
+                    }}
+                  >
+                    We build responsive, mobile-first websites using {selectedIcon === bootstrapIcon ? "Bootstrap's" :
+                     selectedIcon === figmaIcon ? "Figma's" :
+                     selectedIcon === materialUiIcon ? "Material UI's" :
+                     selectedIcon === shopifyIcon ? "Shopify's" :
+                     selectedIcon === wordpressIcon ? "WordPress's" :
+                     selectedIcon === reactIcon ? "React's" :
+                     selectedIcon === nodeIcon ? "Node.js's" :
+                     selectedIcon === postqgIcon ? "PostgreSQL's" :
+                     selectedIcon === orangeIcon ? "Orange's" : ""} powerful framework, delivering clean layouts, fast performance, and consistent design across all devices.
+                  </Typography>
+
+                  {/* Selected Icon Display */}
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      bottom: 24,
+                      right: 24,
+                      width: 64,
+                      height: 64,
+                      borderRadius: "12px",
+                      backgroundColor: "#f5f5f5",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      padding: "12px",
+                    }}
+                  >
+                    <img
+                      src={selectedIcon}
+                      alt="Selected Technology"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain"
+                      }}
+                    />
+                  </Box>
+                </Box>
+              </>
+            ) : (
+              <img
+                src={middleTopIcon}
+                alt="Center Icon"
+                style={{
+                  width: "60%",
+                  height: "60%",
+                  objectFit: "contain"
+                }}
+              />
+            )}
           </Box>
 
           {/* Outer White Orbit Circles */}
@@ -324,6 +494,7 @@ const OrbitBar = () => {
                 transform: "translate(-50%, -50%) rotate(10deg)",
                 borderRadius: "50%",
                 border: "1px solid rgba(255, 255, 255, 0.1)",
+                pointerEvents: 'none',
                 zIndex: 1,
               }}
             >
@@ -353,6 +524,8 @@ const OrbitBar = () => {
             return (
               <Box
                 key={`orbit-${orbitIndex}`}
+                // onMouseEnter={() => setIsPaused(true)}
+                //     onMouseLeave={() => setIsPaused(false)}
                 sx={{
                   position: "absolute",
                   width: `${scale * 100}%`,
@@ -362,10 +535,9 @@ const OrbitBar = () => {
                   transform: "translate(-50%, -50%)",
                   borderRadius: "50%",
                   animation: `${orbitAnimationName} ${60 + orbitIndex * 20}s linear infinite ${orbitIndex % 2 ? 'reverse' : ''}`,
-                  // Apply play state based on hover
                   animationPlayState: isPaused ? 'paused' : 'running',
                   zIndex: 2,
-                  pointerEvents: "none",
+                  pointerEvents: 'none',
                 }}
               >
                 {/* Orbit border */}
@@ -378,6 +550,7 @@ const OrbitBar = () => {
                     height: "100%",
                     borderRadius: "50%",
                     border: "1px solid rgba(255, 255, 255, 0.1)",
+                    pointerEvents: 'none',
                   }}
                 />
 
@@ -398,6 +571,7 @@ const OrbitBar = () => {
                         height: "4.9px",
                         backgroundColor: "rgba(255, 255, 255, 0.93)",
                         borderRadius: "50%",
+                        pointerEvents: 'none',
                       }}
                     />
                   );
@@ -405,7 +579,60 @@ const OrbitBar = () => {
 
 
                 {/* Orbiting Icons */}
+                {/* Orbiting Icons - Updated with pause on hover */}
                 {icons.map((icon, iconIndex) => {
+                  const totalIcons = icons.length;
+                  const angleDegrees = (iconIndex / totalIcons) * 2 * Math.PI;
+                  const x = radius * Math.cos(angleDegrees);
+                  const y = radius * Math.sin(angleDegrees);
+                  const angle = icons.length > 1
+                    ? (-Math.PI / 2) + (iconIndex / (icons.length - 1)) * Math.PI
+                    : 0;
+                  return (
+                    <Box
+                      key={`icon-${orbitIndex}-${iconIndex}`}
+                      onClick={() => setSelectedIcon(icon)}
+                      sx={{
+                        position: "absolute",
+                        top: `calc(50% + ${y}px - 32px)`,
+                        left: `calc(50% + ${x}px - 32px)`,
+                        width: 64,
+                        height: 64,
+                        borderRadius: "50%",
+                        border: "1px solid white",
+                        backgroundColor: "transparent",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        boxShadow: "0 0 4px rgba(255, 255, 255, 0.2)",
+                        zIndex: 50, // Highest z-index to ensure icons are always clickable
+                        pointerEvents: "auto",
+                        cursor: "pointer",
+                        transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                        '&:hover': {
+                          transform: 'scale(1.1)',
+                          boxShadow: "0 0 12px rgba(255, 255, 255, 0.4)",
+                          zIndex: 55,
+                        },
+                      }}
+                      onMouseEnter={() => setIsPaused(true)}
+                      onMouseLeave={() => setIsPaused(false)}
+                    >
+                      <Box
+                        component="img"
+                        src={icon}
+                        alt={`icon-${orbitIndex}-${iconIndex}`}
+                        sx={{
+                          width: 64,
+                          height: 64,
+                          objectFit: "contain",
+                          transform: `rotate(${angle * (270 / Math.PI)}deg)`,
+                        }}
+                      />
+                    </Box>
+                  );
+                })}
+                {/* {icons.map((icon, iconIndex) => {
                   const totalIcons = icons.length;
 
                   const angle = icons.length > 1
@@ -420,6 +647,9 @@ const OrbitBar = () => {
                   return (
                     <Box
                       key={`icon-${orbitIndex}-${iconIndex}`}
+
+                      onClick={() => setSelectedIcon(icon)}
+
                       sx={{
                         position: "absolute",
                         top: `calc(50% + ${y}px - 32px)`,
@@ -434,6 +664,8 @@ const OrbitBar = () => {
                         justifyContent: "center",
                         boxShadow: "0 0 4px rgba(255, 255, 255, 0.2)",
                         zIndex: 3,
+                        pointerEvents: "auto",
+
                       }}
                     >
                       <Box
@@ -445,12 +677,16 @@ const OrbitBar = () => {
                           height: 64,
                           objectFit: "contain",
                           transform: `rotate(${angle * (270 / Math.PI)}deg)`,
+                          animationPlayState: isPaused ? 'paused' : 'running',
+
 
                         }}
+                        onMouseEnter={() => setIsPaused(true)}
+                        onMouseLeave={() => setIsPaused(false)}
                       />
                     </Box>
                   );
-                })}
+                })} */}
               </Box>
             );
           })}
@@ -529,7 +765,22 @@ const OrbitBar = () => {
     opacity: 0;
   }
 }
-
+@keyframes rippleEffect {
+  0% {
+    width: "10%";
+    height: "10%";
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  100% {
+    width: "100%";
+    height: "100%";
+    opacity: 0;
+    border-width: 1px;
+  }
+}
 
 
 `}</style>

@@ -11,137 +11,151 @@ import figma from "../assets/Group 23.png";
 import shopify from "../assets/Group 19.png";
 
 const capabilities = [
-    {
-        title: "ReactJS",
-        description: "Build fast, interactive UIs with component-based architecture.",
-        icon: reactImg // replace with actual paths
-    },
-    {
-        title: "WordPress",
-        description: "Flexible CMS for custom websites and content-rich platforms.",
-        icon: wordpress
-    },
-    {
-        title: "WooCommerce",
-        description: "Power your online store with WordPress integration.",
-        icon: wocom
-    },
-    {
-        title: "Shopify",
-        description: "Launch beautiful, high-converting e-commerce stores with ease.",
-        icon: shopify
-        , // replace with actual paths
-    },
-    {
-        title: "Node.js",
-        description: "Build fast, scalable servers with non-blocking architecture.",
-        icon: node
-        , // replace with actual paths
-    },
-    {
-        title: "PostgreSQL",
-        description: "Reliable, powerful open-source relational database.",
-        icon: PostgreSQL
-        // replace with actual paths
-    },
-    {
-        title: "MongoDB",
-        description: "Flexible NoSQL database for modern applications.",
-        icon: mongodb
-        , // replace with actual paths
-    },
-    {
-        title: "Figma",
-        description: "Collaborative UI/UX design and prototyping platform.",
-        icon: figma
-        // replace with actual paths
-    },
-    {
-        title: "Postman",
-        description: "Simplify API development, testing, and collaboration.",
-        icon: postman
-        // replace with actual paths
-    },
+  {
+    title: "ReactJS",
+    description: "Build fast, interactive UIs with component-based architecture.",
+    icon: reactImg // replace with actual paths
+  },
+  {
+    title: "WordPress",
+    description: "Flexible CMS for custom websites and content-rich platforms.",
+    icon: wordpress
+  },
+  {
+    title: "WooCommerce",
+    description: "Power your online store with WordPress integration.",
+    icon: wocom
+  },
+  {
+    title: "Shopify",
+    description: "Launch beautiful, high-converting e-commerce stores with ease.",
+    icon: shopify
+    , // replace with actual paths
+  },
+  {
+    title: "Node.js",
+    description: "Build fast, scalable servers with non-blocking architecture.",
+    icon: node
+    , // replace with actual paths
+  },
+  {
+    title: "PostgreSQL",
+    description: "Reliable, powerful open-source relational database.",
+    icon: PostgreSQL
+    // replace with actual paths
+  },
+  {
+    title: "MongoDB",
+    description: "Flexible NoSQL database for modern applications.",
+    icon: mongodb
+    , // replace with actual paths
+  },
+  {
+    title: "Figma",
+    description: "Collaborative UI/UX design and prototyping platform.",
+    icon: figma
+    // replace with actual paths
+  },
+  {
+    title: "Postman",
+    description: "Simplify API development, testing, and collaboration.",
+    icon: postman
+    // replace with actual paths
+  },
 ];
 const OurCapabilities = () => {
   return (
     <Box sx={{
-      width: "100%",
-      bgcolor: "#0B3C7B", 
-      color: "white", 
+      width: "100vw", // Full viewport width
+      maxWidth: "100%", // Prevent horizontal scrollbar
+      bgcolor: "#0B3C7B",
+      color: "white",
       py: { xs: 6, md: 8 },
-      position: "relative", 
-      overflow: "hidden", 
+      position: "relative",
+      overflow: "hidden",
       zIndex: 1
     }}>
       {/* Container with same padding as navbar */}
-      <Box sx={{ 
-        maxWidth: "xl",
+      <Box sx={{
+        maxWidth: "100%",
         mx: "auto",
-        px: { xs: 2, sm: 4, md: 3, lg: 11 } // Match navbar padding
+        px: { xs: 2, sm: 4, md: 3, lg: 14.5 } // Match navbar padding
       }}>
         {/* Top Heading Row */}
         <Box
+  sx={{
+    display: "flex",
+    flexDirection: { xs: "column", md: "row" },
+    justifyContent: "space-between",
+    alignItems: { xs: "flex-start", md: "center" },
+    mb: { xs: 4, md: 6 },
+    gap: 3, // Add some spacing between text and button
+  }}
+>
+  <Box sx={{ flex: 1 }}>
+    <Typography
+      sx={{
+        fontFamily: 'PayPal Open',
+        fontWeight: 500,
+        fontSize: { xs: '32px', sm: '44px', md: '56px' },
+        lineHeight: '110%',
+        color: '#FAFAFA',
+        mb: {md:1},
+        ml:{md:1}
+      }}
+    >
+      Our Capabilities
+    </Typography>
+
+    <Typography
+      sx={{
+        fontFamily: 'PayPal Open',
+        fontWeight: 400,
+        fontSize: { xs: '16px', sm: '17px', md: '18px' },
+        lineHeight: '150%',
+        opacity: 0.85,
+        color: '#FAFAFA',
+        maxWidth: '100%',
+        ml:{md:1}
+      }}
+    >
+      Modern Technologies & Collaborative Tools
+    </Typography>
+  </Box>
+
+  <Button
+    variant="contained"
+    sx={{
+      minWidth: '180px',
+      height: '56px',
+      bgcolor: "#1E90FF",
+      color: '#FFFFFF',
+      borderRadius: "999px",
+      fontFamily: 'PayPal Open',
+      fontWeight: 400,
+      fontSize: '16px',
+      lineHeight: '150%',
+      textTransform: "none",
+      alignSelf: { xs: "flex-start", md: "center" },
+      mt: { xs: 3, md: 0 },
+      "&:hover": {
+        bgcolor: '#0077CC'
+      }
+    }}
+  >
+    Get a Quote →
+  </Button>
+</Box>
+
+
+        <Grid
+          container
+          rowSpacing={{ xs: 3, sm: 3 }}
+          columnSpacing={{ xs: 2, sm: 4, md: 8 }}
+          pl={{md:1}}
           sx={{
-            display: "flex",
-            flexDirection: { xs: "column", md: "row" },
-            justifyContent: "space-between",
-            alignItems: { xs: "flex-start", md: "center" },
-            mb: { xs: 4, md: 6 },
-            gap: { xs: 2, md: 0 }
-          }}
-        >
-          <Box>
-            <Typography 
-              variant="h4" 
-              fontWeight="bold" 
-              gutterBottom
-              sx={{
-                fontFamily: 'PayPal Open',
-                fontSize: { xs: '28px', md: '40px' },
-                lineHeight: '100%'
-              }}
-            >
-              Our Capabilities
-            </Typography>
-            <Typography 
-              variant="subtitle1" 
-              sx={{ 
-                opacity: 0.85,
-                fontFamily: 'PayPal Open',
-                fontSize: { xs: '16px', md: '18px' }
-              }}
-            >
-              Modern Technologies & Collaborative Tools
-            </Typography>
-          </Box>
-
-          <Button
-            variant="contained"
-            sx={{
-              bgcolor: "#1E90FF",
-              borderRadius: "999px",
-              px: 4,
-              py: 1.5,
-              textTransform: "none",
-              fontWeight: "bold",
-              fontFamily: 'PayPal Open',
-              fontSize: '16px',
-              '&:hover': {
-                bgcolor: '#0077CC'
-              }
-            }}
-          >
-            Get a Quote →
-          </Button>
-        </Box>
-
-        <Grid 
-          container 
-          spacing={{ xs: 2, md: 3 }} 
-          sx={{ 
             width: "100%",
-            justifyContent: "center"
+            justifyContent: "flex-start"
           }}
         >
           {capabilities.map((cap, index) => (
@@ -160,15 +174,15 @@ const OurCapabilities = () => {
                 elevation={0}
                 sx={{
                   width: { xs: '100%', sm: '384px' },
-                  height: { xs: 'auto', sm: '90px' },
+                  height: { xs: 'auto', sm: '124px' },
                   minHeight: '90px',
                   fontFamily: "PayPal Open",
                   bgcolor: "#0B3C7B",
                   borderRadius: "24px",
-                  p: 2,
+                  p: "24px",
                   display: "flex",
                   alignItems: "center",
-                  gap: "19px",
+                  gap: "10px",
                   border: "1px solid #0E4B99",
                   transition: "all 0.3s ease",
                   "&:hover": {
@@ -183,9 +197,9 @@ const OurCapabilities = () => {
                   src={cap.icon}
                   alt={cap.title}
                   sx={{
-                    width: 55,
-                    height: 55,
-                    borderRadius: "12px",
+                    width: "64px",
+                    height: "64px",
+                    borderRadius: "1px",
                     objectFit: "contain",
                     flexShrink: 0,
                   }}
@@ -195,29 +209,34 @@ const OurCapabilities = () => {
                 <Box sx={{ flex: 1 }}>
                   <Typography
                     variant="subtitle1"
-                    fontWeight="bold"
-                    color="white"
-                    textAlign="left"
                     sx={{
-                      fontSize: { xs: '16px', sm: '18px' },
-                      lineHeight: 1.2,
+                      fontFamily: 'PayPal Open',
+                      fontWeight: 500,
+                      fontSize: '20px',
+                      lineHeight: '100%',
+                      letterSpacing: '0%',
+                      color: '#E3EFFF',
+                      textAlign: 'left',
                       mb: 0.5,
                     }}
                   >
                     {cap.title}
                   </Typography>
+
                   <Typography
                     variant="body2"
                     sx={{
-                      fontFamily: "PayPal Open",
+                      fontFamily: 'PayPal Open',
                       fontWeight: 400,
-                      fontSize: { xs: '13px', sm: '14px' },
-                      lineHeight: "21px",
-                      color: "rgba(255,255,255,0.8)",
+                      fontSize: '14px',
+                      lineHeight: '21px',
+                      letterSpacing: '0%',
+                      color: '#E3EFFF',
                     }}
                   >
                     {cap.description}
                   </Typography>
+
                 </Box>
               </Paper>
             </Grid>
