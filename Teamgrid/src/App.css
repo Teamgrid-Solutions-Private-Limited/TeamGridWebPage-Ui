@@ -1,0 +1,20 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: "PayPal Open";
+  src: url("fonts/PayPalOpen-Regular.woff2") format("woff2"),
+       url("fonts/PayPalOpen-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PayPal Open";
+  src: url("fonts/PayPalOpen-Bold.woff2") format("woff2"),
+       url("fonts/PayPalOpen-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
