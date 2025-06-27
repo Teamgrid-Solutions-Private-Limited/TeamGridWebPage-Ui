@@ -73,7 +73,7 @@ const TopNavBar = () => {
                     boxShadow: "none",
                     width: "100%",
                     zIndex: 1100,
-                    px: { xs: 2, sm: 4, md: 3, lg: 11},
+                    px: { xs: 2, sm: 4, md: 3, lg: 11 },
                 }}
             >
                 <Toolbar disableGutters>
@@ -87,7 +87,7 @@ const TopNavBar = () => {
                             }}
                         >
                             {/* Logo */}
-  <Grid item xs={6} md={2}>
+                            <Grid item xs={6} md={2}>
                                 <Box sx={{ display: "flex", alignItems: "center", p: 1 }}>
                                     <img src={logo} alt="logo" style={{ height: "40px", width: "auto", maxWidth: "150px" }} />
                                 </Box>
@@ -362,7 +362,7 @@ const feature = (icon, title, desc) => (
 const navBtnStyle = () => ({
     // backgroundColor: "#f5f7fa",
     fontFamily: `"PayPal Open"`,
-        // fontFamily: `PayPal Open`,
+    // fontFamily: `PayPal Open`,
 
     fontWeight: 400,
     fontSize: "16px",

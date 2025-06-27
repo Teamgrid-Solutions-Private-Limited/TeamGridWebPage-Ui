@@ -304,7 +304,7 @@ const WhatWeDoSection = () => {
                                         px: { xs: 1.5, md: 2 },
                                         py: 2,
                                         textAlign: "left",
-                                        minWidth: { xs: 160, sm: 180, md: 203 },
+                                        minWidth: { xs: 160, sm: 180, md: 201 },
                                         flexShrink: 0, // Prevent items from shrinking
                                         borderRight: index !== tabItems.length - 1 ? "1px solid #E0E0E0" : "none",
                                         bgcolor: isActive ? "#072449" : "#ffffff",

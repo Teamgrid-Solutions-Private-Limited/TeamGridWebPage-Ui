@@ -1,7 +1,8 @@
 import React from 'react';
-import { Box, Typography, TextField, IconButton } from '@mui/material';
+import { Box, Typography, TextField, IconButton, Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
- 
+import sendIcon from "../assets/send.png";
+import mailIcon from "../assets/mail.png"
 const Footer = () => {
   const headingStyles = {
     fontFamily: 'PayPal Open',
@@ -37,7 +38,7 @@ const Footer = () => {
           flexWrap: 'wrap',
           justifyContent: 'space-between',
           mb: 4,
-          ml: {md:2}
+          ml: { md: 2 }
         }}
       >
         {/* Blogs */}
@@ -49,7 +50,7 @@ const Footer = () => {
             </Typography>
           ))}
         </Box>
- 
+
         {/* Quick Links */}
         <Box sx={{ minWidth: 120, mb: 2 }}>
           <Typography variant="h6" sx={headingStyles}>Quick Links</Typography>
@@ -59,7 +60,7 @@ const Footer = () => {
             </Typography>
           ))}
         </Box>
- 
+
         {/* Services */}
         <Box sx={{ minWidth: 150, mb: 2 }}>
           <Typography variant="h6" sx={headingStyles}>Services</Typography>
@@ -69,7 +70,7 @@ const Footer = () => {
             </Typography>
           ))}
         </Box>
- 
+
         {/* Policies */}
         <Box sx={{ minWidth: 150, mb: 2 }}>
           <Typography variant="h6" sx={headingStyles}>Policies</Typography>
@@ -80,7 +81,7 @@ const Footer = () => {
           ))}
         </Box>
       </Box>
- 
+
       {/* Middle Row: Contact + Newsletter */}
       <Box
         sx={{
@@ -145,50 +146,97 @@ const Footer = () => {
           >
             Stay updated with expert insights, smart development tips, and exclusive Teamgrid news—delivered straight to your inbox.
           </Typography>
-          <Box
-            sx={{
-              display: 'flex',
-              bgcolor: '#2E4B7D',
-              borderRadius: '30px',
-              alignItems: 'center',
-              px: 2,
-              width: '100%',
-            }}
-          >
-            <TextField
-              variant="standard"
-              placeholder="Your email ID"
-              InputProps={{
-                disableUnderline: true,
-                style: { 
-                  color: '#fff', 
-                  fontSize: 16,
-                  width: '100%', // Ensure the input takes available space
-                },
+          <Box display="flex" alignItems="center" width="100%">
+            {/* Mail Box */}
+            <Box
+              sx={{
+                display: 'flex',
+                bgcolor: '#2E4B7D',
+                borderRadius: '30px',
+                alignItems: 'center',
+                px: 2,
+                py: 1,
+                flex: 1, // Take available width
               }}
-              sx={{ 
-                flex: 1,
-                minWidth: 0, // Allows the field to shrink properly
+            >
+              <Box display="flex" alignItems="center" pr={1}>
+                <img src={mailIcon} alt="mailIcon" width={24} height={24} />
+              </Box>
+
+              <TextField
+                variant="standard"
+                placeholder="Your email ID"
+                InputProps={{
+                  disableUnderline: true,
+                  style: {
+                    color: '#fff',
+                    fontSize: 16,
+                  },
+                }}
+                sx={{
+                  flex: 1,
+                  minWidth: 0,
+                }}
+              />
+
+
+            </Box>
+
+            {/* Send Button */}
+            <Button
+              // variant="contained"
+              sx={{
+                ml: 0, // space between box and button
+                // borderRadius: '30px',
+                px: 0,
+                py: 1.5,
+                // backgroundColor: '#2E4B7D',
+                textTransform: 'none',
               }}
-            />
-            <IconButton sx={{ color: '#fff', flexShrink: 0 }}>
-              <SendIcon />
-            </IconButton>
+            >
+              <img src={sendIcon} alt="sendIcon" width={24} height={24} />
+
+            </Button>
           </Box>
+
         </Box>
       </Box>
- 
+
       {/* Bottom Row: Disclaimer */}
-      <Box sx={{ borderTop: '1px solid #2E4B7D', pt: 2, pl: { md: 2 } }}>
-        <Typography sx={{ fontSize: 12, color: '#B0C4DE', mb: 1, display: "flex", textAlign: "center" }}>
-          <strong>Disclaimer :</strong> Content and services on this site are for general information only and may change. Teamgrid is not liable for outcomes influenced by third-party tools or evolving technologies.
-        </Typography>
-        <Typography sx={{ fontSize: 12, color: '#B0C4DE' }}>
-          © 2025 Teamgrid. All rights reserved.
-        </Typography>
-      </Box>
+    <Box
+  sx={{
+    borderTop: '1px solid #2E4B7D',
+    pt: 2,
+    pl: { xs: 1, sm: 2, md: 2 }, // Responsive left padding
+    pr: { xs: 1, sm: 2 },        // Optional right padding for small screens
+  }}
+>
+  <Typography
+    sx={{
+      fontSize: 12,
+      color: '#B0C4DE',
+      mb: 1,
+      display: "flex",
+      textAlign: { xs: "left", sm: "center", md: "center" }, // md kept unchanged
+      flexWrap: "wrap", // Ensures proper text wrapping
+    }}
+  >
+    <strong>Disclaimer :</strong>&nbsp;Content and services on this site are for general information only and may change. Teamgrid is not liable for outcomes influenced by third-party tools or evolving technologies.
+  </Typography>
+
+  <Typography
+    sx={{
+      fontSize: 12,
+      color: '#B0C4DE',
+      textAlign: { xs: "left", sm: "center", md: "center" }, // md layout unchanged
+    }}
+  >
+    © 2025 Teamgrid. All rights reserved.
+  </Typography>
+</Box>
+
     </Box>
   );
 };
- 
+
 export default Footer;
