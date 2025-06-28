@@ -94,7 +94,7 @@ const WhatWeDoSection = () => {
                     pb: { xs: 12, md: 14 },
                     // m:1,
                     overflow: "hidden",
-                    ml:.5,
+                    ml:{md:.5},
                     width: "100%"
                 }}
             >
@@ -139,9 +139,9 @@ const WhatWeDoSection = () => {
 
                     <Box sx={{
                         display: "flex",
-                        flexDirection: { xs: 'column', sm: 'row' },
+                        flexDirection: { xs: 'column', sm: 'column' },
                         gap: 2,
-                        alignItems: { xs: 'flex-start', sm: 'center' }
+                        alignItems: { xs: 'flex-start', sm: 'flex-start' }
                     }}>
                         <Button
                             variant="outlined"
@@ -173,18 +173,20 @@ const WhatWeDoSection = () => {
                             justifyContent: { xs: 'space-between', sm: 'flex-start' }
                         }}>
                             <Button
+                                onClick={() => setActiveTab(prev => prev === 0 ? tabItems.length - 1 : prev - 1)}
                                 sx={{
                                     minWidth: 50,
                                     height: 50,
                                     borderRadius: "50%",
                                     bgcolor: "#FFFFFF75",
                                     boxShadow: 1,
-                                    "&:hover": { bgcolor: "#FFFFFF75" }
+                                    "&:hover": { bgcolor: "#FFFFFF" }
                                 }}
                             >
                                 ←
                             </Button>
                             <Button
+                                onClick={() => setActiveTab(prev => prev === tabItems.length - 1 ? 0 : prev + 1)}
                                 sx={{
                                     minWidth: 50,
                                     height: 50,

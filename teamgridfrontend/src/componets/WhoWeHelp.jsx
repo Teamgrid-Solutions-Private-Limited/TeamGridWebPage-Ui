@@ -22,7 +22,7 @@ const WhoWeHelp = () => {
                 alignItems: "flex-start",
                 justifyContent: "space-between",
                 px: { xs: 2, sm: 4, md: 3, lg: 10 },
-                py: { xs: 6, md: 8 },
+                py: { xs: 6, md: 4 },
                 bgcolor: "#fff",
                 maxWidth: "xl",
                 margin: "0 auto"
