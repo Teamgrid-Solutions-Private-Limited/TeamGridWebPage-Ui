@@ -154,7 +154,7 @@ const WhoWeHelp = () => {
                                 width: "100%",
                                 height: {
                                     xs: '40vw',
-                                    sm: '200px',
+                                    sm: '300px',
                                     md: '325.12px'
                                 },
                                 maxWidth: '272.87px',
@@ -166,7 +166,7 @@ const WhoWeHelp = () => {
                                 },
                                 transition: 'transform 0.3s ease',
                                 '@media (max-width: 900px)': {
-                                    height: '35vw'
+                                    height: '70vw'
                                 }
                             }}
                         >

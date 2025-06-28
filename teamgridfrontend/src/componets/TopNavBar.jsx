@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    AppBar, Toolbar, Typography, Button, Container, Box, Paper, Grid, IconButton, Drawer, List, ListItem, ListItemButton, ListItemText, Divider
+    AppBar, Toolbar, Typography, Button, Container, Box, Paper, Grid, IconButton, Drawer, List, ListItem, ListItemButton, ListItemText, Divider, Collapse
 } from "@mui/material";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import logo from "../assets/Layer_1 (1).png";
@@ -23,6 +23,9 @@ const TopNavBar = () => {
 
     // Drawer state for mobile navigation
     const [mobileOpen, setMobileOpen] = React.useState(false);
+    
+    // State for mobile "What We Do" section expansion
+    const [whatWeDoExpanded, setWhatWeDoExpanded] = React.useState(false);
 
     // Ref to hold the timeout ID for delayed close
     const closeTimeoutRef = React.useRef(null);
@@ -31,14 +34,10 @@ const TopNavBar = () => {
         setMobileOpen(!mobileOpen);
     };
 
-    const navItems = [
-        "Home",
-        "About Us",
-        "What We Do",
-        "Technologies We Use",
-        "How we work",
-        "Let's Talk",
-    ];
+    // Mobile drawer click handler for "What We Do"
+    const handleMobileWhatWeDoClick = () => {
+        setWhatWeDoExpanded(!whatWeDoExpanded);
+    };
 
     // Open the menu immediately and clear any pending close timeout
     const handleMouseEnter = () => {
@@ -265,13 +264,272 @@ const TopNavBar = () => {
                     <img src={logo} alt="logo" style={{ height: "40px" }} />
                     <Divider sx={{ borderColor: "rgba(255,255,255,0.2)", my: 2 }} />
                     <List>
-                        {navItems.map((item) => (
-                            <ListItem key={item} disablePadding>
-                                <ListItemButton sx={{ textAlign: "left", px: 3 }}>
-                                    <ListItemText primary={item} />
-                                </ListItemButton>
-                            </ListItem>
-                        ))}
+                        <ListItem disablePadding>
+                            <ListItemButton sx={{ textAlign: "left", px: 3 }}>
+                                <ListItemText primary="Home" />
+                            </ListItemButton>
+                        </ListItem>
+                        <ListItem disablePadding>
+                            <ListItemButton sx={{ textAlign: "left", px: 3 }}>
+                                <ListItemText primary="About Us" />
+                            </ListItemButton>
+                        </ListItem>
+                        
+                        {/* What We Do Section */}
+                        <ListItem disablePadding>
+                            <ListItemButton 
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleMobileWhatWeDoClick();
+                                }}
+                                sx={{ textAlign: "left", px: 3 }}
+                            >
+                                <ListItemText primary="What We Do" />
+                                <ArrowDropDownIcon />
+                            </ListItemButton>
+                        </ListItem>
+                        
+                        {/* Collapsible What We Do Options */}
+                        <Collapse in={whatWeDoExpanded} timeout="auto" unmountOnExit>
+                            <List 
+                                component="div" 
+                                disablePadding
+                            >
+                                {/* Web Development */}
+                                <ListItem disablePadding>
+                                    <ListItemButton 
+                                        onClick={(e) => e.stopPropagation()}
+                                        sx={{ pl: 6, pr: 3 }}
+                                    >
+                                        <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
+                                            <img src={frontendIcon} alt="Web Dev" style={{ width: "20px", height: "20px" }} />
+                                            <ListItemText 
+                                                primary="Web Development" 
+                                                primaryTypographyProps={{ fontSize: "14px", color: "rgba(255,255,255,0.8)" }}
+                                            />
+                                        </Box>
+                                    </ListItemButton>
+                                </ListItem>
+                                <ListItem disablePadding>
+                                    <ListItemButton 
+                                        onClick={(e) => e.stopPropagation()}
+                                        sx={{ pl: 9, pr: 3 }}
+                                    >
+                                        <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
+                                            <img src={frontendIcon} alt="Frontend" style={{ width: "16px", height: "16px" }} />
+                                            <ListItemText 
+                                                primary="Front-End Development" 
+                                                primaryTypographyProps={{ fontSize: "12px", color: "rgba(255,255,255,0.6)" }}
+                                            />
+                                        </Box>
+                                    </ListItemButton>
+                                </ListItem>
+                                <ListItem disablePadding>
+                                    <ListItemButton 
+                                        onClick={(e) => e.stopPropagation()}
+                                        sx={{ pl: 9, pr: 3 }}
+                                    >
+                                        <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
+                                            <img src={backendIcon} alt="Backend" style={{ width: "16px", height: "16px" }} />
+                                            <ListItemText 
+                                                primary="Back-End Development" 
+                                                primaryTypographyProps={{ fontSize: "12px", color: "rgba(255,255,255,0.6)" }}
+                                            />
+                                        </Box>
+                                    </ListItemButton>
+                                </ListItem>
+                                <ListItem disablePadding>
+                                    <ListItemButton 
+                                        onClick={(e) => e.stopPropagation()}
+                                        sx={{ pl: 9, pr: 3 }}
+                                    >
+                                        <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
+                                            <img src={mobileIcon} alt="WordPress" style={{ width: "16px", height: "16px" }} />
+                                            <ListItemText 
+                                                primary="WordPress & CMS" 
+                                                primaryTypographyProps={{ fontSize: "12px", color: "rgba(255,255,255,0.6)" }}
+                                            />
+                                        </Box>
+                                    </ListItemButton>
+                                </ListItem>
+                                
+                                {/* Mobile App Development */}
+                                <ListItem disablePadding>
+                                    <ListItemButton 
+                                        onClick={(e) => e.stopPropagation()}
+                                        sx={{ pl: 6, pr: 3 }}
+                                    >
+                                        <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
+                                            <img src={mobileIcon} alt="Mobile Dev" style={{ width: "20px", height: "20px" }} />
+                                            <ListItemText 
+                                                primary="Mobile App Development" 
+                                                primaryTypographyProps={{ fontSize: "14px", color: "rgba(255,255,255,0.8)" }}
+                                            />
+                                        </Box>
+                                    </ListItemButton>
+                                </ListItem>
+                                <ListItem disablePadding>
+                                    <ListItemButton 
+                                        onClick={(e) => e.stopPropagation()}
+                                        sx={{ pl: 9, pr: 3 }}
+                                    >
+                                        <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
+                                            <img src={designIcon} alt="iOS Android" style={{ width: "16px", height: "16px" }} />
+                                            <ListItemText 
+                                                primary="iOS & Android Development" 
+                                                primaryTypographyProps={{ fontSize: "12px", color: "rgba(255,255,255,0.6)" }}
+                                            />
+                                        </Box>
+                                    </ListItemButton>
+                                </ListItem>
+                                <ListItem disablePadding>
+                                    <ListItemButton 
+                                        onClick={(e) => e.stopPropagation()}
+                                        sx={{ pl: 9, pr: 3 }}
+                                    >
+                                        <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
+                                            <img src={crossPlatformIcon} alt="Cross Platform" style={{ width: "16px", height: "16px" }} />
+                                            <ListItemText 
+                                                primary="Cross-Platform Apps" 
+                                                primaryTypographyProps={{ fontSize: "12px", color: "rgba(255,255,255,0.6)" }}
+                                            />
+                                        </Box>
+                                    </ListItemButton>
+                                </ListItem>
+                                <ListItem disablePadding>
+                                    <ListItemButton 
+                                        onClick={(e) => e.stopPropagation()}
+                                        sx={{ pl: 9, pr: 3 }}
+                                    >
+                                        <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
+                                            <img src={pwaIcon} alt="PWA" style={{ width: "16px", height: "16px" }} />
+                                            <ListItemText 
+                                                primary="Progressive Web Apps" 
+                                                primaryTypographyProps={{ fontSize: "12px", color: "rgba(255,255,255,0.6)" }}
+                                            />
+                                        </Box>
+                                    </ListItemButton>
+                                </ListItem>
+                                
+                                {/* UI/UX & Design */}
+                                <ListItem disablePadding>
+                                    <ListItemButton 
+                                        onClick={(e) => e.stopPropagation()}
+                                        sx={{ pl: 6, pr: 3 }}
+                                    >
+                                        <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
+                                            <img src={designIcon} alt="UI/UX" style={{ width: "20px", height: "20px" }} />
+                                            <ListItemText 
+                                                primary="UI/UX & Design" 
+                                                primaryTypographyProps={{ fontSize: "14px", color: "rgba(255,255,255,0.8)" }}
+                                            />
+                                        </Box>
+                                    </ListItemButton>
+                                </ListItem>
+                                <ListItem disablePadding>
+                                    <ListItemButton 
+                                        onClick={(e) => e.stopPropagation()}
+                                        sx={{ pl: 9, pr: 3 }}
+                                    >
+                                        <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
+                                            <img src={designIcon} alt="UI/UX Design" style={{ width: "16px", height: "16px" }} />
+                                            <ListItemText 
+                                                primary="UI/UX Design" 
+                                                primaryTypographyProps={{ fontSize: "12px", color: "rgba(255,255,255,0.6)" }}
+                                            />
+                                        </Box>
+                                    </ListItemButton>
+                                </ListItem>
+                                <ListItem disablePadding>
+                                    <ListItemButton 
+                                        onClick={(e) => e.stopPropagation()}
+                                        sx={{ pl: 9, pr: 3 }}
+                                    >
+                                        <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
+                                            <img src={prototypeIcon} alt="Prototyping" style={{ width: "16px", height: "16px" }} />
+                                            <ListItemText 
+                                                primary="Prototyping & Wireframing" 
+                                                primaryTypographyProps={{ fontSize: "12px", color: "rgba(255,255,255,0.6)" }}
+                                            />
+                                        </Box>
+                                    </ListItemButton>
+                                </ListItem>
+                                <ListItem disablePadding>
+                                    <ListItemButton 
+                                        onClick={(e) => e.stopPropagation()}
+                                        sx={{ pl: 9, pr: 3 }}
+                                    >
+                                        <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
+                                            <img src={systemIcon} alt="Design Systems" style={{ width: "16px", height: "16px" }} />
+                                            <ListItemText 
+                                                primary="Design Systems" 
+                                                primaryTypographyProps={{ fontSize: "12px", color: "rgba(255,255,255,0.6)" }}
+                                            />
+                                        </Box>
+                                    </ListItemButton>
+                                </ListItem>
+                                
+                                {/* E-Commerce Solutions */}
+                                <ListItem disablePadding>
+                                    <ListItemButton 
+                                        onClick={(e) => e.stopPropagation()}
+                                        sx={{ pl: 6, pr: 3 }}
+                                    >
+                                        <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
+                                            <img src={shopifyIcon} alt="E-Commerce" style={{ width: "20px", height: "20px" }} />
+                                            <ListItemText 
+                                                primary="E-Commerce Solutions" 
+                                                primaryTypographyProps={{ fontSize: "14px", color: "rgba(255,255,255,0.8)" }}
+                                            />
+                                        </Box>
+                                    </ListItemButton>
+                                </ListItem>
+                                <ListItem disablePadding>
+                                    <ListItemButton 
+                                        onClick={(e) => e.stopPropagation()}
+                                        sx={{ pl: 9, pr: 3 }}
+                                    >
+                                        <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
+                                            <img src={shopifyIcon} alt="Shopify" style={{ width: "16px", height: "16px" }} />
+                                            <ListItemText 
+                                                primary="Shopify Development" 
+                                                primaryTypographyProps={{ fontSize: "12px", color: "rgba(255,255,255,0.6)" }}
+                                            />
+                                        </Box>
+                                    </ListItemButton>
+                                </ListItem>
+                                <ListItem disablePadding>
+                                    <ListItemButton 
+                                        onClick={(e) => e.stopPropagation()}
+                                        sx={{ pl: 9, pr: 3 }}
+                                    >
+                                        <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
+                                            <img src={wooIcon} alt="WooCommerce" style={{ width: "16px", height: "16px" }} />
+                                            <ListItemText 
+                                                primary="WooCommerce Integration" 
+                                                primaryTypographyProps={{ fontSize: "12px", color: "rgba(255,255,255,0.6)" }}
+                                            />
+                                        </Box>
+                                    </ListItemButton>
+                                </ListItem>
+                            </List>
+                        </Collapse>
+                        
+                        <ListItem disablePadding>
+                            <ListItemButton sx={{ textAlign: "left", px: 3 }}>
+                                <ListItemText primary="Technologies We Use" />
+                            </ListItemButton>
+                        </ListItem>
+                        <ListItem disablePadding>
+                            <ListItemButton sx={{ textAlign: "left", px: 3 }}>
+                                <ListItemText primary="How we work" />
+                            </ListItemButton>
+                        </ListItem>
+                        <ListItem disablePadding>
+                            <ListItemButton sx={{ textAlign: "left", px: 3 }}>
+                                <ListItemText primary="Let's Talk" />
+                            </ListItemButton>
+                        </ListItem>
                     </List>
                     <Button
                         variant="contained"
