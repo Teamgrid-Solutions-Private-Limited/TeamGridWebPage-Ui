@@ -5,7 +5,7 @@ import node from "../assets/Group 20.png";
 import postman from "../assets/Group 24.png";
 import wordpress from "../assets/Group 17.png";
 import wocom from "../assets/Group 18.png";
-import PostgreSQL from "../assets/Group 20.png";
+import PostgreSQL from "../assets/Group 21 (1).png";
 import mongodb from "../assets/Group 22.png";
 import figma from "../assets/Group 23.png";
 import shopify from "../assets/Group 19.png";

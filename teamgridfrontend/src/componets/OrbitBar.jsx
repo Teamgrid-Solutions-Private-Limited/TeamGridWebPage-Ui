@@ -65,13 +65,17 @@ const OrbitBar = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [selectedIcon, setSelectedIcon] = useState(null); // Holds clicked icon
   const [isZooming, setIsZooming] = useState(false); // Controls zoom animation
-  const handleIconClick = (icon) => {
-    setIsZooming(true);
-    setTimeout(() => {
-      setSelectedIcon(icon);
-      setIsZooming(false);
-    }, 500); // Matches the CSS transition duration
-  };
+  
+ const handleIconClick = (icon) => {
+  setIsPaused(true); // Pause animations immediately
+  setIsZooming(true);
+  // Use a single timeout to coordinate both changes
+  setTimeout(() => {
+    setSelectedIcon(icon);
+    setIsZooming(false);
+  }, 500);
+  // Match this with your CSS transition duration
+};
   const zoomedImages = {
     [bootstrapIcon]: btstrapIcon, // Changed from figmaIcon to btstrapIcon
     [figmaIcon]: figmasIcon,
@@ -513,12 +517,12 @@ const OrbitBar = () => {
                               selectedIcon === reactIcon ? "React" :
                                 selectedIcon === nodeIcon ? "Node.js" :
                                   selectedIcon === postqgIcon ? "PostgreSQL" :
-                                    selectedIcon === orangeIcon ? "Orange" : "Technology"}
+                                    selectedIcon === orangeIcon ? "Postman" : "Technology"}
                   </Typography>
                   <Box
                     sx={{
                       position: "absolute",
-                      top: { xs: 64, sm: 40, md: 145 },
+                      top: { xs: 69, sm: 40, md: 145 },
                       left: { xs: 30, sm: 36, md: 50 },
                       width: { xs: "44px", sm: "50px", md: "56px" },
                       height: { xs: "44px", sm: "50px", md: "56px" },
@@ -565,7 +569,7 @@ const OrbitBar = () => {
                               selectedIcon === reactIcon ? "React's" :
                                 selectedIcon === nodeIcon ? "Node.js's" :
                                   selectedIcon === postqgIcon ? "PostgreSQL's" :
-                                    selectedIcon === orangeIcon ? "Orange's" : ""} powerful framework, delivering clean layouts, fast performance, and consistent design across all devices.
+                                    selectedIcon === orangeIcon ? "Postman's" : ""} powerful framework, delivering clean layouts, fast performance, and consistent design across all devices.
                   </Typography>
                   <Button
                     sx={{
