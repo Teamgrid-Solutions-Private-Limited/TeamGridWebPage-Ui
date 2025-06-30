@@ -72,7 +72,7 @@ button:focus-visible {
 } */
 * {
   box-sizing: border-box;
-  font-family: '"PayPal Open"'
+  font-family: "Paypal Open", Arial, Sharif;
 }
 body {
   margin: 0;

@@ -71,6 +71,7 @@ const OurCapabilities = () => {
       bgcolor: "#0B3C7B",
       color: "white",
       py: { xs: 6, md: 8 },
+      px:{xs:1,md:10,lg:14},
       position: "relative",
       overflow: "hidden",
       zIndex: 1
@@ -78,8 +79,8 @@ const OurCapabilities = () => {
       {/* Container with same padding as navbar */}
       <Box sx={{
         maxWidth: "100%",
-        mx: "auto",
-        px: { xs: 2, sm: 4, md: 3, lg: 14.5 } // Match navbar padding
+        // mx: "auto",
+        // px: { xs: 2, sm: 6, md: 2, lg: 10} // Match navbar padding
       }}>
         {/* Top Heading Row */}
         <Box
@@ -95,7 +96,7 @@ const OurCapabilities = () => {
   <Box sx={{ flex: 1 }}>
     <Typography
       sx={{
-        fontFamily: 'PayPal Open',
+        fontFamily: '"Paypal Open", Arial, Sharif',
         fontWeight: 500,
         fontSize: { xs: '32px', sm: '44px', md: '56px' },
         lineHeight: '110%',
@@ -109,14 +110,14 @@ const OurCapabilities = () => {
 
     <Typography
       sx={{
-        fontFamily: 'PayPal Open',
+        fontFamily: '"Paypal Open", Arial, Sharif',
         fontWeight: 400,
         fontSize: { xs: '16px', sm: '17px', md: '18px' },
         lineHeight: '150%',
         opacity: 0.85,
         color: '#FAFAFA',
         maxWidth: '100%',
-        ml:{md:1}
+        ml:{md:2}
       }}
     >
       Modern Technologies & Collaborative Tools
@@ -131,7 +132,7 @@ const OurCapabilities = () => {
       bgcolor: "#1E90FF",
       color: '#FFFFFF',
       borderRadius: "999px",
-      fontFamily: 'PayPal Open',
+      fontFamily: '"Paypal Open", Arial, Sharif',
       fontWeight: 400,
       fontSize: '16px',
       lineHeight: '150%',
@@ -151,8 +152,9 @@ const OurCapabilities = () => {
         <Grid
           container
           rowSpacing={{ xs: 3, sm: 3 }}
-          columnSpacing={{ xs: 2, sm: 4, md: 8 }}
-          pl={{md:1}}
+          columnSpacing={{ xs: 2, sm: 4, md: 8 ,lg:8.5}}
+          // mx={{lg:1,xs:0}}
+          pl={{md:1,lg:1}}
           sx={{
             width: "100%",
             justifyContent: "flex-start"
@@ -163,7 +165,8 @@ const OurCapabilities = () => {
               item
               xs={12}
               sm={6}
-              md={4}
+              md={3}
+              // lg={3}
               key={index}
               sx={{
                 display: "flex",
@@ -173,13 +176,13 @@ const OurCapabilities = () => {
               <Paper
                 elevation={0}
                 sx={{
-                  width: { xs: '100%', sm: '384px' },
+                  width: { xs: '100%', sm: '384px', lg: '384px' },
                   height: { xs: 'auto', sm: '124px' },
                   minHeight: '90px',
-                  fontFamily: "PayPal Open",
+                  fontFamily: '"Paypal Open", Arial, Sharif',
                   bgcolor: "#0B3C7B",
                   borderRadius: "24px",
-                  p: "24px",
+                  p: "20px",
                   display: "flex",
                   alignItems: "center",
                   gap: "10px",
@@ -210,7 +213,7 @@ const OurCapabilities = () => {
                   <Typography
                     variant="subtitle1"
                     sx={{
-                      fontFamily: 'PayPal Open',
+                      fontFamily: '"Paypal Open", Arial, Sharif',
                       fontWeight: 500,
                       fontSize: '20px',
                       lineHeight: '100%',
@@ -226,7 +229,7 @@ const OurCapabilities = () => {
                   <Typography
                     variant="body2"
                     sx={{
-                      fontFamily: 'PayPal Open',
+                      fontFamily: '"Paypal Open", Arial, Sharif',
                       fontWeight: 400,
                       fontSize: '14px',
                       lineHeight: '21px',

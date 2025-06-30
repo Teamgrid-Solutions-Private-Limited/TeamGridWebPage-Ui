@@ -27,8 +27,10 @@ function TeamGridHomePage() {
     <Box>
       <TopNavBar />
       <OrbitBar />
-      <Box sx={{ height: { xs: '100vh', md: '110vh' } }} />
-      <Box sx={{ maxWidth: "100%", mx: "auto", px: { xs: 2, md: 4 } }}>
+      {/* <Box sx={{ height: { xs: '100vh', md: '110vh' } }} /> */}
+      <Box sx={{ maxWidth: "100%",
+         mx: "auto", px: { xs: 2, md: 4 }
+          }}>
 
         <WhoWeHelp />
         <WhatWeDoSection />

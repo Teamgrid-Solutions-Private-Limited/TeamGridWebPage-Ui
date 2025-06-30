@@ -14,7 +14,7 @@ const LetsBuildTogether = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "flex-start",
-        px: { xs: 2, sm: 4, md: 15.5},
+        px: { xs: 2, sm: 4, md: 15,lg:15},
         py: { xs: 8, sm: 10, md: 0 },
         position: "relative",
       }}
@@ -35,7 +35,7 @@ const LetsBuildTogether = () => {
         <Typography
           variant="h4"
           sx={{
-            fontFamily: 'PayPal Open',
+            fontFamily: '"Paypal Open", Arial, Sharif',
             fontWeight: 500,
             fontSize: { xs: '36px', sm: '44px', md: '56px' },
             lineHeight: 1,
@@ -43,13 +43,13 @@ const LetsBuildTogether = () => {
             color: '#FAFAFA',
           }}
         >
-          Let’s Build Together
+          Let's Build Together
         </Typography>
 
         <Typography
           variant="subtitle1"
           sx={{
-            fontFamily: 'PayPal Open',
+            fontFamily: '"Paypal Open", Arial, Sharif',
             fontWeight: 400,
             fontSize: { xs: '16px', sm: '18px' },
             lineHeight: 1.5,
@@ -62,7 +62,7 @@ const LetsBuildTogether = () => {
         <Typography
           variant="body1"
           sx={{
-            fontFamily: 'PayPal Open',
+            fontFamily: '"Paypal Open", Arial, Sharif',
             fontWeight: 400,
             fontSize: { xs: '16px', sm: '18px', md: '20px' },
             lineHeight: '30px',
@@ -87,7 +87,7 @@ const LetsBuildTogether = () => {
           <Button
             variant="contained"
             sx={{
-              fontFamily: 'PayPal Open',
+              fontFamily: '"Paypal Open", Arial, Sharif',
               fontWeight: 400,
               fontSize: '18px',
               lineHeight: '27px',
@@ -103,13 +103,13 @@ const LetsBuildTogether = () => {
               },
             }}
           >
-            Let’s Talk
+            Let's Talk
           </Button>
 
           <Button
             variant="contained"
             sx={{
-              fontFamily: 'PayPal Open',
+              fontFamily: '"Paypal Open", Arial, Sharif',
               fontWeight: 400,
               fontSize: '18px',
               lineHeight: '27px',

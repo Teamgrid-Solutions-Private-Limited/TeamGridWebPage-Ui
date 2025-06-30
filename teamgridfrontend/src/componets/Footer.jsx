@@ -5,7 +5,7 @@ import sendIcon from "../assets/send.png";
 import mailIcon from "../assets/mail.png"
 const Footer = () => {
   const headingStyles = {
-    fontFamily: 'PayPal Open',
+    fontFamily: '"Paypal Open", Arial, Sharif',
     fontWeight: 500,
     fontSize: '20px',
     lineHeight: '24px',
@@ -15,7 +15,7 @@ const Footer = () => {
   };
 
   const subTextStyles = {
-    fontFamily: 'PayPal Open',
+    fontFamily: '"Paypal Open", Arial, Sharif',
     fontWeight: 400,
     fontSize: '16px',
     lineHeight: '24px',
@@ -30,7 +30,8 @@ const Footer = () => {
   };
 
   return (
-    <Box sx={{ bgcolor: '#072449', color: '#fff', px: { xs: 2, sm: 4, md: 3, lg: 14 }, py: 6, width: '100%' }}>
+    <Box sx={{ bgcolor: '#072449', color: '#fff', 
+    px: { xs: 3, sm: 4, md: 3, lg: 14 }, py: 6, width: '100%' }}>
       {/* Top Row: 4 Columns */}
       <Box
         sx={{
@@ -38,7 +39,7 @@ const Footer = () => {
           flexWrap: 'wrap',
           justifyContent: 'space-between',
           mb: 4,
-          ml: { md: 2 }
+          ml: { md: 1 }
         }}
       >
         {/* Blogs */}
@@ -101,7 +102,7 @@ const Footer = () => {
             maxWidth: 400,
             mb: 2,
             boxSizing: 'border-box',
-            px: { xs: 0, sm: 2 },
+            px: { xs: 0, sm: 2,lg:1 },
           }}
         >
           <Typography variant="h6" sx={headingStyles}>
@@ -207,7 +208,7 @@ const Footer = () => {
   sx={{
     borderTop: '1px solid #2E4B7D',
     pt: 2,
-    pl: { xs: 1, sm: 2, md: 2 }, // Responsive left padding
+    pl: { xs: 1, sm: 2, md: 2 ,lg:1}, // Responsive left padding
     pr: { xs: 1, sm: 2 },        // Optional right padding for small screens
   }}
 >

@@ -14,7 +14,7 @@ const testimonialsRow1 = [
     name: "Lisa Monroe",
     title: "Creative Director, PixelRiver",
     avatar: "https://randomuser.me/api/portraits/women/44.jpg",
-    text: "They’ve become an extension of our team. From design to delivery, their process is smooth, and their quality is consistently top-notch.",
+    text: "They've become an extension of our team. From design to delivery, their process is smooth, and their quality is consistently top-notch.",
   },
   {
     name: "Jonas Malik",
@@ -26,13 +26,13 @@ const testimonialsRow1 = [
     name: "Amelia Jen",
     title: "Product Manager, BrightIdeas",
     avatar: "https://randomuser.me/api/portraits/women/48.jpg",
-    text: "Reliable, fast, and talented. The team nailed it across the board. We’ll be working together again soon!",
+    text: "Reliable, fast, and talented. The team nailed it across the board. We'll be working together again soon!",
   },
   {
     name: "Shawn Lee",
     title: "Lead Engineer, FinPay",
     avatar: "https://randomuser.me/api/portraits/men/50.jpg",
-    text: "Absolutely top-notch execution. We had weekly updates and on-time delivery. Couldn’t be happier.",
+    text: "Absolutely top-notch execution. We had weekly updates and on-time delivery. Couldn't be happier.",
   },
   {
     name: "Priya Nair",
@@ -48,13 +48,13 @@ const testimonialsRow2 = [
     name: "Amelia Jen",
     title: "Product Manager, BrightIdeas",
     avatar: "https://randomuser.me/api/portraits/women/48.jpg",
-    text: "Reliable, fast, and talented. The team nailed it across the board. We’ll be working together again soon!",
+    text: "Reliable, fast, and talented. The team nailed it across the board. We'll be working together again soon!",
   },
   {
     name: "Shawn Lee",
     title: "Lead Engineer, FinPay",
     avatar: "https://randomuser.me/api/portraits/men/50.jpg",
-    text: "Absolutely top-notch execution. We had weekly updates and on-time delivery. Couldn’t be happier.",
+    text: "Absolutely top-notch execution. We had weekly updates and on-time delivery. Couldn't be happier.",
   },
   {
     name: "Priya Nair",
@@ -72,7 +72,7 @@ const testimonialsRow2 = [
     name: "Lisa Monroe",
     title: "Creative Director, PixelRiver",
     avatar: "https://randomuser.me/api/portraits/women/44.jpg",
-    text: "They’ve become an extension of our team. From design to delivery, their process is smooth, and their quality is consistently top-notch.",
+    text: "They've become an extension of our team. From design to delivery, their process is smooth, and their quality is consistently top-notch.",
   },
   {
     name: "Jonas Malik",
@@ -117,7 +117,7 @@ const TestimonialRow = ({ testimonials, direction = "left", delay = 0 }) => (
           <FormatQuoteIcon sx={{ color: "#0b63e5", fontSize: 28, mb: 2 }} />
           <Typography
             sx={{
-              fontFamily: "PayPal Open",
+              fontFamily: '"Paypal Open", Arial, Sharif',
               fontWeight: 400,
               fontSize: { xs: "14px", sm: "15px", md: "16px" },
               lineHeight: "150%",
@@ -141,7 +141,7 @@ const TestimonialRow = ({ testimonials, direction = "left", delay = 0 }) => (
             <Box>
               <Typography
                 sx={{
-                  fontFamily: "PayPal Open",
+                  fontFamily: '"Paypal Open", Arial, Sharif',
                   fontWeight: 700,
                   fontSize: { xs: "14px", sm: "15px", md: "16px" },
                   lineHeight: "24px",
@@ -155,7 +155,7 @@ const TestimonialRow = ({ testimonials, direction = "left", delay = 0 }) => (
               <Typography
                 variant="body2"
                 sx={{
-                  fontFamily: "PayPal Open",
+                  fontFamily: '"Paypal Open", Arial, Sharif',
                   fontWeight: 400,
                   fontSize: "14px",
                   lineHeight: "21px",
@@ -178,7 +178,7 @@ const ClientTestimonials = () => {
     <Box sx={{ py: 10, backgroundColor: "#fff", overflow: "hidden" }}>
      <Typography
   sx={{
-    fontFamily: "PayPal Open",
+    fontFamily: '"Paypal Open", Arial, Sharif',
     fontWeight: 500,
     fontSize: { xs: "32px", sm: "40px", md: "56px" }, // smaller on mobile
     lineHeight: "120%", // increase to prevent vertical crowding
@@ -195,7 +195,7 @@ const ClientTestimonials = () => {
   variant="subtitle1"
   align="center"
   sx={{
-    fontFamily: "PayPal Open",
+    fontFamily: '"Paypal Open", Arial, Sharif',
     fontWeight: 400,
     fontSize: { xs: "14px", sm: "16px", md: "18px" },
     lineHeight: "150%",
@@ -214,7 +214,7 @@ const ClientTestimonials = () => {
         <Button
           variant="outlined"
           sx={{
-            fontFamily: "PayPal Open",
+            fontFamily: '"Paypal Open", Arial, Sharif',
             fontWeight: 400,
             fontSize: "18px",
             lineHeight: "27px",

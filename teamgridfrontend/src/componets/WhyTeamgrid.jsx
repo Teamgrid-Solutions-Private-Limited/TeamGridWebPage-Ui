@@ -28,7 +28,8 @@ const points = [
 
 const WhyTeamgrid = () => {
   return (
-    <Box sx={{ maxWidth: "1440px", mx: "auto", px: { xs: 2, sm: 4, md: 9.5 }, mb: 4 }}>
+    <Box sx={{ maxWidth: "100%", mx: "auto",
+     px: { xs: 1, sm: 4, md: 9.5 ,lg:10}, mb: 4 }}>
       {/* Header Row - Title and Button */}
       <Box sx={{
         display: "flex",
@@ -36,12 +37,13 @@ const WhyTeamgrid = () => {
         justifyContent: "space-between",
         alignItems: { xs: "center", md: "flex-start" },
         mb: { xs: 4, md: 0 }, // Reduced bottom margin
-        position: "relative"
+        position: "relative",
+        pl:{lg:1}
       }}>
         {/* Title - stays at the top */}
         <Typography
           sx={{
-            fontFamily: 'PayPal Open',
+            fontFamily: '"Paypal Open", Arial, Sharif',
             fontWeight: 500,
             fontSize: { xs: '32px', md: '56px' },
             lineHeight: '100%',
@@ -88,7 +90,7 @@ const WhyTeamgrid = () => {
       {/* Subtitle - stays in normal flow */}
       <Typography
         sx={{
-          fontFamily: 'PayPal Open',
+          fontFamily: '"Paypal Open", Arial, Sharif',
           fontWeight: 400,
           fontSize: { xs: '16px', md: '18px' },
           letterSpacing: 0,
@@ -96,13 +98,13 @@ const WhyTeamgrid = () => {
           textAlign: { xs: 'center', md: 'left' },
           mb: { xs: 3, md: 4 },
           mt: { md: 0 }, // Ensure no top margin on desktop
-          ml:{md:1}
+          ml:{md:1,lg:2}
         }}
       >
         Flexible Talent. Reliable Delivery. Scalable Results.
       </Typography>
 
-      <Grid container spacing={{ xs: 6, md: 16 }} alignItems="center" ml={1}>
+      <Grid container spacing={{ xs: 6, md: 16,lg:14 }} alignItems="center" ml={1}>
         {/* Left: Image */}
         <Grid item xs={12} md={6}>
           <Box
@@ -164,7 +166,7 @@ const WhyTeamgrid = () => {
                 >
                   <Typography
                     sx={{
-                      fontFamily: 'PayPal Open',
+                      fontFamily: '"Paypal Open", Arial, Sharif',
                       fontWeight: 500,
                       fontSize: '20px',
                       lineHeight: '120%',
@@ -177,7 +179,7 @@ const WhyTeamgrid = () => {
                   </Typography>
                   <Typography
                     sx={{
-                      fontFamily: 'PayPal Open',
+                      fontFamily: '"Paypal Open", Arial, Sharif',
                       fontWeight: 400,
                       fontSize: '16px',
                       lineHeight: '150%',

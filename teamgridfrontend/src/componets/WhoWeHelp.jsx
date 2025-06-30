@@ -16,15 +16,15 @@ const WhoWeHelp = () => {
     return (
         <Box
             sx={{
-                width: "100%",
+                maxWidth: "100%",
                 display: "flex",
                 flexDirection: { xs: "column", md: "row" },
                 alignItems: "flex-start",
                 justifyContent: "space-between",
-                px: { xs: 2, sm: 4, md: 3, lg: 10 },
-                py: { xs: 6, md: 4 },
+                px: { xs: 2, sm: 4, md: 2, lg: 10 },
+                py: { xs: 6, md: 10,lg:10 },
                 bgcolor: "#fff",
-                maxWidth: "xl",
+                // maxWidth: "xl",
                 margin: "0 auto"
             }}
         >
@@ -48,7 +48,7 @@ const WhoWeHelp = () => {
             >
                 <Typography
                     sx={{
-                        fontFamily: 'PayPal Open',
+                        fontFamily: '"Paypal Open", Arial, Sharif',
                         fontWeight: 500,
                         fontSize: {
                             xs: '32px',
@@ -69,7 +69,7 @@ const WhoWeHelp = () => {
 
                 <Typography
                     sx={{
-                        fontFamily: 'PayPal Open',
+                        fontFamily: '"Paypal Open", Arial, Sharif',
                         fontWeight: 400,
                         fontSize: {
                             xs: '16px',
@@ -89,7 +89,7 @@ const WhoWeHelp = () => {
 
                 <Typography
                     sx={{
-                        fontFamily: 'PayPal Open',
+                        fontFamily: '"Paypal Open", Arial, Sharif',
                         fontWeight: 400,
                         fontSize: '16px',
                         lineHeight: '150%',
@@ -110,12 +110,12 @@ const WhoWeHelp = () => {
                         height: '59px',
                         backgroundColor: '#05408E',
                         borderRadius: '39px',
-                        px: '40px',
+                        px: '30px',
                         py: '16px',
                         textTransform: 'none',
                         fontWeight: 400,
                         fontSize: '18px',
-                        fontFamily: 'PayPal Open',
+                        fontFamily: '"Paypal Open", Arial, Sharif',
                         lineHeight: '150%',
                         "&:hover": {
                             backgroundColor: "#003F9F",
@@ -133,7 +133,8 @@ const WhoWeHelp = () => {
                     display: "grid",
                     gridTemplateColumns: {
                         xs: "1fr ",
-                        md: "repeat(2, 1fr)"
+                        md: "repeat(2, 1fr)",
+                        
                     },
                     gap: { xs: 2, md: 3 },
                     mt: { xs: 4, md: 0 },
@@ -142,7 +143,6 @@ const WhoWeHelp = () => {
                     width: "100%"
                 }}
             >
-
                 {imageData.map((img, index) => {
                     const isLeftCol = index % 2 === 0;
                     const offset = isLeftCol ? { xs: "15px", md: "30px" } : "0px";
@@ -152,22 +152,31 @@ const WhoWeHelp = () => {
                             key={index}
                             sx={{
                                 width: "100%",
-                                height: {
-                                    xs: '40vw',
-                                    sm: '300px',
-                                    md: '325.12px'
-                                },
                                 maxWidth: '272.87px',
-                                minWidth: '150px', // Minimum width before wrapping
+                                minWidth: '150px',
                                 borderRadius: '24px',
                                 overflow: 'hidden',
                                 transform: {
                                     md: isLeftCol ? 'translateY(30px)' : 'translateY(0px)'
                                 },
                                 transition: 'transform 0.3s ease',
-                                '@media (max-width: 900px)': {
-                                    height: '70vw'
-                                }
+
+                                // Base heights
+                                height: {
+                                    xs: '60vw',
+                                    sm: '300px',
+                                    md: '325.12px',
+                                },
+
+                                // More general (833px) first
+                                '@media (max-width: 503px)': {
+                                    height: '50vw',
+                                },
+
+                                // More specific (360px) last so it overrides properly
+                                '@media (max-width: 500px)': {
+                                    height: '80vw',
+                                },
                             }}
                         >
                             <img
@@ -180,6 +189,7 @@ const WhoWeHelp = () => {
                                 }}
                             />
                         </Box>
+
                     );
                 })}
             </Box>
