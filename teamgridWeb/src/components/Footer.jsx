@@ -155,7 +155,6 @@ const Footer = () => {
           </Typography>
           <Typography
             sx={{
-              fontSize: 14,
               mb: 2,
               lineHeight: 1.5,
               fontWeight: 500,
