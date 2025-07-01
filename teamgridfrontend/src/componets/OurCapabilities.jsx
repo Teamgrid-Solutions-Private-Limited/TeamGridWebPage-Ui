@@ -71,7 +71,7 @@ const OurCapabilities = () => {
       bgcolor: "#0B3C7B",
       color: "white",
       py: { xs: 6, md: 8 },
-      px:{xs:1,md:10,lg:14},
+      px:{xs:3,md:10,lg:14},
       position: "relative",
       overflow: "hidden",
       zIndex: 1
@@ -96,7 +96,6 @@ const OurCapabilities = () => {
   <Box sx={{ flex: 1 }}>
     <Typography
       sx={{
-        fontFamily: '"Paypal Open", Arial, Sharif',
         fontWeight: 500,
         fontSize: { xs: '32px', sm: '44px', md: '56px' },
         lineHeight: '110%',
@@ -110,7 +109,6 @@ const OurCapabilities = () => {
 
     <Typography
       sx={{
-        fontFamily: '"Paypal Open", Arial, Sharif',
         fontWeight: 400,
         fontSize: { xs: '16px', sm: '17px', md: '18px' },
         lineHeight: '150%',
@@ -132,7 +130,6 @@ const OurCapabilities = () => {
       bgcolor: "#1E90FF",
       color: '#FFFFFF',
       borderRadius: "999px",
-      fontFamily: '"Paypal Open", Arial, Sharif',
       fontWeight: 400,
       fontSize: '16px',
       lineHeight: '150%',
@@ -179,7 +176,7 @@ const OurCapabilities = () => {
                   width: { xs: '100%', sm: '384px', lg: '384px' },
                   height: { xs: 'auto', sm: '124px' },
                   minHeight: '90px',
-                  fontFamily: '"Paypal Open", Arial, Sharif',
+                  fontWeight: 500,
                   bgcolor: "#0B3C7B",
                   borderRadius: "24px",
                   p: "20px",
@@ -213,7 +210,6 @@ const OurCapabilities = () => {
                   <Typography
                     variant="subtitle1"
                     sx={{
-                      fontFamily: '"Paypal Open", Arial, Sharif',
                       fontWeight: 500,
                       fontSize: '20px',
                       lineHeight: '100%',
@@ -229,7 +225,6 @@ const OurCapabilities = () => {
                   <Typography
                     variant="body2"
                     sx={{
-                      fontFamily: '"Paypal Open", Arial, Sharif',
                       fontWeight: 400,
                       fontSize: '14px',
                       lineHeight: '21px',

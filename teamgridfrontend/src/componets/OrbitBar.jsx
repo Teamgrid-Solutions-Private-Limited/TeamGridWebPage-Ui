@@ -115,7 +115,7 @@ const OrbitBar = () => {
         margin: 0,
         padding: 0,
         pb: { xs: 4, md: 0 }, // Add padding at the bottom for smaller screens
-        mb: { lg: 8 }
+        mb: {xs:2,sm:2,md:4, lg: 8 }
       }}
     >
       {/* Content Container */}
@@ -226,7 +226,6 @@ const OrbitBar = () => {
                 boxShadow: "none",
                 width: "204px",
                 height: "59px",
-                fontFamily: '"Paypal Open", Arial, Sharif',
                 fontWeight: 500,
                 fontSize: "16px",
                 textTransform: "none",
@@ -247,7 +246,6 @@ const OrbitBar = () => {
                 borderColor: "#444",
                 borderRadius: "40px",
                 padding: "16px 32px",
-                fontFamily: '"Paypal Open", Arial, Sharif',
                 fontWeight: 500,
                 fontSize: "16px",
                 bgcolor: "#072449",
@@ -273,7 +271,7 @@ const OrbitBar = () => {
             width: { xs: 300, sm: 400, md: 550 },
             height: { xs: 300, sm: 400, md: 550 },
             top: "47%",
-            left: { sm: "72%", md: "70.6%", lg: "68.5%" },
+            left: { sm: "72%", md: "70.6%", lg: "69.9%" },
             transform: "translateY(-50%)",
             borderRadius: "55%",
           }}
@@ -363,16 +361,16 @@ const OrbitBar = () => {
             sx={{
               position: selectedIcon ? "fixed" : "absolute",
               top: selectedIcon
-                ? { xs: "110%", sm: "90%", md: "75%", lg: "74%" }
+                ? { xs: "90%", sm: "90%", md: "75%", lg: "74%" }
                 : { xs: "50%", sm: "50%", md: "50%", lg: "50%" },
               left: selectedIcon
-                ? { xs: "99%", sm: "60%", md: "40%", lg: "48%" }
+                ? { xs: "60%", sm: "60%", md: "40%", lg: "48%" }
                 : "50%",
               width: selectedIcon
                 ? { xs: "100vw", sm: "100vw", md: "70vw", lg: 450 }
                 : { xs: 100, sm: 130, md: 200, lg: "245px" },
               height: selectedIcon
-                ? { xs: "70vh", sm: "70vh", md: "75vh", lg: 700 }
+                ? { xs: "100vh", sm: "70vh", md: "75vh", lg: 700 }
                 : { xs: 100, sm: 130, md: 200, lg: "245px" },
               borderRadius: selectedIcon ? "55px" : "50%",
               backgroundColor: selectedIcon ? "#4293FC" : "#0F4285",
@@ -397,8 +395,8 @@ const OrbitBar = () => {
                   alt="Left Logo"
                   sx={{
                     position: 'absolute',
-                    width: { xs: '40px', sm: '50px', md: '105.97px' },
-                    height: { xs: '70px', sm: '110px', md: '143.16px' },
+                    width: { xs: '40px', sm: '50px', md: '105.97px',lg: '105.97px' },
+                    height: { xs: '70px', sm: '110px', md: '103.16px' ,lg: '143.16px'},
                     top: { xs: '18px', sm: "10px", md: '55px', lg: "55px" },
 
                     objectFit: 'contain',
@@ -420,10 +418,10 @@ const OrbitBar = () => {
                   alt="Right Logo"
                   sx={{
                     position: 'absolute',
-                    width: { xs: '20px', sm: '30px', md: '53.12px' },
-                    height: { xs: '30px', sm: '42px', md: '54.1px' },
+                    width: { xs: '20px', sm: '30px', md: '33.12px', lg: '53.12px' },
+                    height: { xs: '30px', sm: '42px', md: '54.1px' ,lg: '54.1px'  },
                     top: { xs: '13px', md: '35px' },
-                    right: { xs: '30px', sm: '30px', md: '73.31px' },
+                    right: { xs: '30px', sm: '34px', md: '73.31px' },
                     objectFit: 'contain',
                     transform: isZooming ? {
                       xs: 'scale(8) translateX(-15px) translateY(15px)',
@@ -443,10 +441,10 @@ const OrbitBar = () => {
                   alt="Top Logo"
                   sx={{
                     position: 'absolute',
-                    width: { xs: '8px', sm: '20px', md: '23.94px' },
+                    width: { xs: '8px', sm: '20px', md: '15.94px' , lg: '23.94px'},
                     height: { xs: '11px', sm: '18px', md: '24.29px' },
-                    top: { xs: '17px', sm: '19px', md: '35px' },
-                    right: { xs: '30px', sm: '29px', md: '73.31px' },
+                    top: { xs: '17px', sm: '19px', md: '40px', lg: '35px' },
+                    right: { xs: '30px', sm: '33px', md: '73.31px' },
                     objectFit: 'contain',
                     transform: isZooming ? {
                       xs: 'scale(8) translateX(-15px) translateY(-15px)',
@@ -468,8 +466,8 @@ const OrbitBar = () => {
                   onClick={() => setSelectedIcon(null)}
                   sx={{
                     position: "absolute",
-                    top: { xs: 20, sm: 30, md: 60, lg: 60 },
-                    left: { xs: 20, sm: 30, md: 36, lg: 40 },
+                    top: { xs: 35, sm: 30, md: 60, lg: 60 },
+                    left: { xs: 30, sm: 30, md: 36, lg: 40 },
                     width: 40,
                     height: 40,
                     borderRadius: "50%",
@@ -504,9 +502,8 @@ const OrbitBar = () => {
                   {/* Icon Title */}
                   <Typography
                     sx={{
-                      fontFamily: '"PayPal Open"',
                       fontWeight: 600,
-                      mt: { xs: 12, sm: 16, md: 20, lg: 20 },
+                      mt: { xs: 17, sm: 16, md: 20, lg: 20 },
                       mb: { xs: 3, sm: 2, md: 4, lg: 4 },
                       // ml: { xs: 0, sm: 0, md: 0 },
                       fontSize: { xs: "24px", sm: "28px", md: "36px" },
@@ -527,8 +524,8 @@ const OrbitBar = () => {
                   <Box
                     sx={{
                       position: "absolute",
-                      top: { xs: 69, sm: 100, md: 145, lg: 145 },
-                      left: { xs: 30, sm: 36, md: 50, lg: 50 },
+                      top: { xs: 120, sm: 100, md: 145, lg: 145 },
+                      left: { xs: 35, sm: 36, md: 50, lg: 50 },
                       width: { xs: "44px", sm: "50px", md: "56px" },
                       height: { xs: "44px", sm: "50px", md: "56px" },
                       borderRadius: "12px",
@@ -553,13 +550,12 @@ const OrbitBar = () => {
                   {/* Description */}
                   <Typography
                     sx={{
-                      fontFamily: '"PayPal Open"',
                       fontSize: { xs: "14px", sm: "15px", md: "18px" },
                       lineHeight: 1.6,
                       color: "#FFFFFF",
                       fontWeight: 400,
                       // ml: { xs: 1, sm: 2, md: 0 },
-                      width: { xs: "100%", sm: "38%", md: "331px", lg: "85%" },
+                      width: { xs: "70%", sm: "38%", md: "331px", lg: "85%" },
                       height: "auto",
                       mb: 3,
                       zIndex: 900
@@ -580,7 +576,6 @@ const OrbitBar = () => {
                     sx={{
                       width: { xs: "180px", sm: "180px", md: "232px", lg: "232px" },
                       height: { xs: "48px", sm: "54px", md: "59px" },
-                      fontFamily: 'PayPal Open, sans-serif',
                       fontWeight: 400,
                       fontSize: { xs: "14px", sm: "15px", md: "18px" },
                       lineHeight: '150%',

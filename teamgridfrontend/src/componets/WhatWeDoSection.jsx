@@ -37,7 +37,7 @@ const WhatWeDoSection = () => {
     return (
         <Box sx={{
             width: "100%",
-            py: { xs: 6, md: 4 },
+            py: { xs: 4, md: 4, lg: 6 },
             px: { xs: 1, sm: 4, md: 3, lg: 10 }, // Match navbar padding
             // maxWidth: "xl",
             // mx: "auto"
@@ -50,12 +50,11 @@ const WhatWeDoSection = () => {
             }}>
                 <Typography
                     sx={{
-                        fontFamily: '"Paypal Open", Arial, Sharif',
                         fontWeight: 500,
                         fontSize: { xs: '32px', sm: '40px', md: '56px' },
                         lineHeight: '100%',
                         color: '#140E13',
-                        width: { xs: '100%', md: '325px' },
+                        width: { xs: '100%', md: '335px' },
                         textAlign: 'left',
                         mb: 2
                     }}
@@ -64,7 +63,6 @@ const WhatWeDoSection = () => {
                 </Typography>
                 <Typography
                     sx={{
-                        fontFamily: '"Paypal Open", Arial, Sharif',
                         fontWeight: 400,
                         fontSize: { xs: '14px', sm: '16px', md: '18px' },
                         lineHeight: '150%',
@@ -108,7 +106,6 @@ const WhatWeDoSection = () => {
                 }}>
                     <Typography
                         sx={{
-                            fontFamily: '"Paypal Open", Arial, Sharif',
                             fontWeight: 500,
                             fontSize: { xs: '28px', sm: '32px', md: '40px' },
                             lineHeight: '100%',
@@ -123,7 +120,6 @@ const WhatWeDoSection = () => {
 
                     <Typography
                         sx={{
-                            fontFamily: '"Paypal Open", Arial, Sharif',
                             fontWeight: 400,
                             fontSize: { xs: '14px', md: '16px' },
                             lineHeight: '150%',
@@ -147,7 +143,6 @@ const WhatWeDoSection = () => {
                         <Button
                             variant="outlined"
                             sx={{
-                                fontFamily: '"Paypal Open", Arial, Sharif',
                                 fontWeight: 500,
                                 fontSize: '16px',
                                 lineHeight: '100%',
@@ -194,7 +189,7 @@ const WhatWeDoSection = () => {
                                     borderRadius: "50%",
                                     bgcolor: "#FFFFFF75",
                                     boxShadow: 1,
-                                    "&:hover": { bgcolor: "#FFFFFF75" }
+                                    "&:hover": { bgcolor: "#FFFFFF" }
                                 }}
                             >
                                 →
@@ -307,41 +302,37 @@ const WhatWeDoSection = () => {
                             return (
                                 <Box
                                     key={item.title}
+                                    
                                     onClick={() => setActiveTab(index)}
                                     sx={{
+                                        position: "relative", //  ADD THIS LINE
                                         cursor: "pointer",
                                         px: { xs: 1.5, md: 2 },
                                         py: 2,
                                         textAlign: "left",
-                                        minWidth: { xs: 160, sm: 180, md: 200, lg: 203 },
-                                        flexShrink: 0, // Prevent items from shrinking
+                                        minWidth: { xs: 160, sm: 180, md: 200, lg: 202 },
+                                        flexShrink: 0,
 
-                                        // 👇 Thinner right border
-                                        // borderRight: index !== tabItems.length - 1 ? "0.8px solid #E0E0E0" : "none",
-
-                                        // 👇 Background + blur
-                                        color: index === isActive ? "#fff" : "#000",
-                                        backgroundColor:
-                                            index === isActive ? "#002b5b" : "transparent",
-                                        WebkitBackdropFilter: isActive ? "none" : "blur(20px)", // Safari support
-
-                                        // color: isActive ? "#FFFFFF" : "#002C6D",
+                                        color: isActive ? "#fff" : "#000",
+                                        backgroundColor: isActive ? "#072449" : "transparent",
+                                        WebkitBackdropFilter: isActive ? "none" : "blur(20px)",
                                         borderRadius: isActive ? "8px" : "0",
                                         transition: "all 0.3s ease",
 
                                         "&:hover": {
-                                            backgroundColor: isActive ? "#072449" : "#F5F5F5BF", // lighter hover effect
+                                            backgroundColor: isActive ? "#072449" : "#F5F5F5BF",
                                         },
                                     }}
+
                                 >
 
-                                    <Typography fontWeight="bold" fontSize={{ xs: '14px', md: '16px' }} gutterBottom>
+                                    <Typography fontWeight="bold" fontSize={{ xs: '14px', md: '16px' }} sx={{ color: isActive ? "#FFFFFF" : "#072449" }} gutterBottom>
                                         {item.title}
                                     </Typography>
                                     <Typography
-                                    variant="caption"
+                                        variant="caption"
                                         fontSize={{ xs: '12px', md: '13px' }}
-                                        sx={{ color: isActive ? "white" : "#0724498C" }}
+                                        sx={{ color: isActive ? "#9EAAB8" : "#0724498C" }}
                                     >
                                         {item.subtitle}
                                     </Typography>
@@ -354,10 +345,11 @@ const WhatWeDoSection = () => {
                                                 bottom: "35%",
                                                 width: "1.5px",
                                                 backgroundColor: "rgba(0, 0, 0, 0.32)",
-                                                display: { xs: "none", sm: "block" },
+                                                display: { xs: "block", sm: "block" },
                                             }}
                                         />
                                     )}
+
 
                                 </Box>
 

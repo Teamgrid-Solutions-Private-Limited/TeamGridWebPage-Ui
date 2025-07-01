@@ -38,12 +38,12 @@ const WhyTeamgrid = () => {
         alignItems: { xs: "center", md: "flex-start" },
         mb: { xs: 4, md: 0 }, // Reduced bottom margin
         position: "relative",
-        pl:{lg:1}
+        pl:{lg:1},
+        mt:{lg:3}
       }}>
         {/* Title - stays at the top */}
         <Typography
           sx={{
-            fontFamily: '"Paypal Open", Arial, Sharif',
             fontWeight: 500,
             fontSize: { xs: '32px', md: '56px' },
             lineHeight: '100%',
@@ -90,7 +90,6 @@ const WhyTeamgrid = () => {
       {/* Subtitle - stays in normal flow */}
       <Typography
         sx={{
-          fontFamily: '"Paypal Open", Arial, Sharif',
           fontWeight: 400,
           fontSize: { xs: '16px', md: '18px' },
           letterSpacing: 0,
@@ -166,7 +165,6 @@ const WhyTeamgrid = () => {
                 >
                   <Typography
                     sx={{
-                      fontFamily: '"Paypal Open", Arial, Sharif',
                       fontWeight: 500,
                       fontSize: '20px',
                       lineHeight: '120%',
@@ -179,7 +177,6 @@ const WhyTeamgrid = () => {
                   </Typography>
                   <Typography
                     sx={{
-                      fontFamily: '"Paypal Open", Arial, Sharif',
                       fontWeight: 400,
                       fontSize: '16px',
                       lineHeight: '150%',

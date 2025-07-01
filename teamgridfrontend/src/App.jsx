@@ -1,13 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
+import { ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
 import TeamGridHomePage from "./componets/TeamGridHomePage"
+import theme from './componets/theme'
 function App() {
 
   return (
     <>
+    <ThemeProvider theme={theme}>
+        <CssBaseline />
       <TeamGridHomePage />
+      </ThemeProvider>
     </>
   )
 }

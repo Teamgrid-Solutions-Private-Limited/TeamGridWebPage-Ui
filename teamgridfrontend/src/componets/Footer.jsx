@@ -5,7 +5,6 @@ import sendIcon from "../assets/send.png";
 import mailIcon from "../assets/mail.png"
 const Footer = () => {
   const headingStyles = {
-    fontFamily: '"Paypal Open", Arial, Sharif',
     fontWeight: 500,
     fontSize: '20px',
     lineHeight: '24px',
@@ -15,7 +14,6 @@ const Footer = () => {
   };
 
   const subTextStyles = {
-    fontFamily: '"Paypal Open", Arial, Sharif',
     fontWeight: 400,
     fontSize: '16px',
     lineHeight: '24px',
@@ -131,7 +129,7 @@ const Footer = () => {
           sx={{
             minWidth: { xs: '100%', sm: 280 },
             maxWidth: 400,
-            px: { xs: 0, sm: 2 },
+            px: { xs: 0, sm: 2 ,lg:0},
           }}
         >
           <Typography variant="h6" sx={headingStyles}>
@@ -222,7 +220,7 @@ const Footer = () => {
       flexWrap: "wrap", // Ensures proper text wrapping
     }}
   >
-    <strong>Disclaimer :</strong>&nbsp;Content and services on this site are for general information only and may change. Teamgrid is not liable for outcomes influenced by third-party tools or evolving technologies.
+    <span><strong>Disclaimer :</strong>&nbsp;Content and services on this site are for general information only and may change. Teamgrid is not liable for outcomes influenced by third-party tools or evolving technologies.</span> 
   </Typography>
 
   <Typography

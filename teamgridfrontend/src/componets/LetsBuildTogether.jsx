@@ -33,9 +33,7 @@ const LetsBuildTogether = () => {
         }}
       >
         <Typography
-          variant="h4"
           sx={{
-            fontFamily: '"Paypal Open", Arial, Sharif',
             fontWeight: 500,
             fontSize: { xs: '36px', sm: '44px', md: '56px' },
             lineHeight: 1,
@@ -49,7 +47,6 @@ const LetsBuildTogether = () => {
         <Typography
           variant="subtitle1"
           sx={{
-            fontFamily: '"Paypal Open", Arial, Sharif',
             fontWeight: 400,
             fontSize: { xs: '16px', sm: '18px' },
             lineHeight: 1.5,
@@ -62,7 +59,6 @@ const LetsBuildTogether = () => {
         <Typography
           variant="body1"
           sx={{
-            fontFamily: '"Paypal Open", Arial, Sharif',
             fontWeight: 400,
             fontSize: { xs: '16px', sm: '18px', md: '20px' },
             lineHeight: '30px',
@@ -87,7 +83,6 @@ const LetsBuildTogether = () => {
           <Button
             variant="contained"
             sx={{
-              fontFamily: '"Paypal Open", Arial, Sharif',
               fontWeight: 400,
               fontSize: '18px',
               lineHeight: '27px',
@@ -109,7 +104,6 @@ const LetsBuildTogether = () => {
           <Button
             variant="contained"
             sx={{
-              fontFamily: '"Paypal Open", Arial, Sharif',
               fontWeight: 400,
               fontSize: '18px',
               lineHeight: '27px',

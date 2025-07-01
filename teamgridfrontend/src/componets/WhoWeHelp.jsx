@@ -7,8 +7,8 @@ import manWorking from '../assets/Rectangle 46.png';
 
 const imageData = [
     { src: womanLaptop, alt: "Woman with laptop", bg: "#F1F8FF" },
-    { src: teamDiscussion, alt: "Team discussion", bg: "#FFF6F0" },
-    { src: groupWork, alt: "Group work", bg: "#F1F8FF" },
+    { src: groupWork, alt: "Group work", bg: "#F1F8FF"},
+    { src: teamDiscussion, alt: "Team discussion", bg: "#FFF6F0"  },
     { src: manWorking, alt: "Man working", bg: "#FFF6F0" }
 ];
 
@@ -22,7 +22,7 @@ const WhoWeHelp = () => {
                 alignItems: "flex-start",
                 justifyContent: "space-between",
                 px: { xs: 2, sm: 4, md: 2, lg: 10 },
-                py: { xs: 6, md: 10,lg:10 },
+                py: { xs: 6, md: 10,lg:6 },
                 bgcolor: "#fff",
                 // maxWidth: "xl",
                 margin: "0 auto"
@@ -48,8 +48,10 @@ const WhoWeHelp = () => {
             >
                 <Typography
                     sx={{
-                        fontFamily: '"Paypal Open", Arial, Sharif',
+                        // fontFamily: '"PayPal Open", Arial, sans-serif',
                         fontWeight: 500,
+                        //    fontWeight: "bold",
+
                         fontSize: {
                             xs: '32px',
                             sm: '40px',
@@ -59,17 +61,16 @@ const WhoWeHelp = () => {
                         color: '#140E13',
                         width: {
                             xs: '100%',
-                            md: '359px'
+                            md: '369px'
                         },
                     }}
-                    gutterBottom
+                    // gutterBottom
                 >
                     Who We Help
                 </Typography>
 
                 <Typography
                     sx={{
-                        fontFamily: '"Paypal Open", Arial, Sharif',
                         fontWeight: 400,
                         fontSize: {
                             xs: '16px',
@@ -89,7 +90,6 @@ const WhoWeHelp = () => {
 
                 <Typography
                     sx={{
-                        fontFamily: '"Paypal Open", Arial, Sharif',
                         fontWeight: 400,
                         fontSize: '16px',
                         lineHeight: '150%',
@@ -115,8 +115,6 @@ const WhoWeHelp = () => {
                         textTransform: 'none',
                         fontWeight: 400,
                         fontSize: '18px',
-                        fontFamily: '"Paypal Open", Arial, Sharif',
-                        lineHeight: '150%',
                         "&:hover": {
                             backgroundColor: "#003F9F",
                         },
@@ -133,10 +131,14 @@ const WhoWeHelp = () => {
                     display: "grid",
                     gridTemplateColumns: {
                         xs: "1fr ",
+                        sm: "repeat(2, 1fr)",
                         md: "repeat(2, 1fr)",
+                         lg: "repeat(2, 1fr)",
                         
                     },
-                    gap: { xs: 2, md: 3 },
+                    // gap: { xs: 2, md: 3 },
+                    columnGap:{ xs: 2,sm:.5, md: 3,lg:3},
+                    rowGap:{ xs: 2, md: 3,lg:3},
                     mt: { xs: 4, md: 0 },
                     ml: { xs: 0, md: 4 }, // Reduced margin to avoid overflow
                     justifyItems: "center", // Better visual alignment
