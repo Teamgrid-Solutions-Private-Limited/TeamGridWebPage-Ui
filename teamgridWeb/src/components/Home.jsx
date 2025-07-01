@@ -1,15 +1,4 @@
 import React from "react";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Box,
-  Menu,
-  MenuItem,
-} from "@mui/material";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import logo from "../assets/logo.png"; // Adjust the path as necessary
 import HeroSection from "./HeroSection";
 import WhoWeHelp from "./WhoWeHelp";
 import WhatWeDo from "./WhatWeDo"; // Import the WhatWeDo component
