@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography, Button } from "@mui/material";
-import build from "../assets/build.png"; // Replace with your actual image path
+import build from "../assets/Build.png"; // Replace with your actual image path
 
 const LetsBuildTogether = () => {
   return (
