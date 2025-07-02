@@ -1,4 +1,5 @@
 import React from "react";
+import Whatwedo from "./whatwedo/whatwedo"; 
 import {
   AppBar,
   Toolbar,
@@ -335,7 +336,7 @@ const NavBar = () => {
                       onClick={() => setSelected(item)}
                       sx={{
                         fontSize: "16px",
-                        fontFamily: "PayPalOpen , Sans-serif",
+                        fontWeight:"400",
                         textTransform: "none",
                         color: "#fff",
                         borderRadius: "999px",
@@ -365,9 +366,9 @@ const NavBar = () => {
                     width: "139px",
                     textTransform: "none",
                     fontSize: "16px",
-                    fontFamily: "PayPalOpen , Sans-serif",
+                    fontWeight:"400",
                     "&:hover": { backgroundColor: "#002366" },
-                    ml: 6,
+                    ml:4
                   }}
                 >
                   Get a Quote
@@ -409,7 +410,6 @@ const NavBar = () => {
                     display: "block",
                     fontSize: "14px",
                     letterSpacing: "0.1em",
-                    fontFamily: "PayPalOpen , Sans-serif",
                   }}
                 >
                   {column.title}
@@ -442,7 +442,6 @@ const NavBar = () => {
                           fontWeight: 500,
                           fontSize: 14,
                           color: "#0B3C7B",
-                          fontFamily: "PayPalOpen , Sans-serif",
                         }}
                       >
                         {item.label}
@@ -451,7 +450,6 @@ const NavBar = () => {
                         sx={{
                           fontSize: 14,
                           color: "#767676",
-                          fontFamily: "PayPalOpen , Sans-serif",
                         }}
                       >
                         {item.desc}
