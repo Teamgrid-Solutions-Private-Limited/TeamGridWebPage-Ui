@@ -3,6 +3,8 @@ import { Box, Typography, Button } from "@mui/material";
 import ecommerceImageBottom from "../assets/Funiro Landing Page 3.png";
 import ecommerceImageTop from "../assets/Funiro Landing Page 4.png";
 import { useState } from "react";
+import rightArrowImg from "../assets/ci_arrow-right-lg (1).png"
+import leftArrowImg from "../assets/ci_arrow-right-lg (2).png"
 
 const tabItems = [
     {
@@ -33,7 +35,7 @@ const tabItems = [
 
 const WhatWeDoSection = () => {
     const [activeTab, setActiveTab] = useState(0);
-
+    const [activeButton, setActiveButton] = useState(null);
     return (
         <Box sx={{
             width: "100%",
@@ -169,30 +171,39 @@ const WhatWeDoSection = () => {
                             justifyContent: { xs: 'space-between', sm: 'flex-start' }
                         }}>
                             <Button
-                                onClick={() => setActiveTab(prev => prev === 0 ? tabItems.length - 1 : prev - 1)}
+                                onClick={() => {
+                                    setActiveTab(prev => prev === 0 ? tabItems.length - 1 : prev - 1)
+                                    setActiveButton("left")
+                                }
+                                }
                                 sx={{
                                     minWidth: 50,
                                     height: 50,
                                     borderRadius: "50%",
-                                    bgcolor: "#FFFFFF75",
+                                    bgcolor: activeButton === "left" ? "#FFFFFF" : "#FFFFFF75",
                                     boxShadow: 1,
                                     "&:hover": { bgcolor: "#FFFFFF" }
                                 }}
                             >
-                                ←
+                                <img src={leftArrowImg} alt="rightArrow" />
+
                             </Button>
                             <Button
-                                onClick={() => setActiveTab(prev => prev === tabItems.length - 1 ? 0 : prev + 1)}
+                                onClick={() => {
+                                    setActiveTab(prev => prev === tabItems.length - 1 ? 0 : prev + 1)
+                                    setActiveButton("right")
+                                }
+                                }
                                 sx={{
                                     minWidth: 50,
                                     height: 50,
                                     borderRadius: "50%",
-                                    bgcolor: "#FFFFFF75",
+                                    bgcolor: activeButton === "right" ? "#FFFFFF" : "#FFFFFF75",
                                     boxShadow: 1,
                                     "&:hover": { bgcolor: "#FFFFFF" }
                                 }}
                             >
-                                →
+                                <img src={rightArrowImg} alt="rightArrow" />
                             </Button>
                         </Box>
                     </Box>
@@ -302,7 +313,7 @@ const WhatWeDoSection = () => {
                             return (
                                 <Box
                                     key={item.title}
-                                    
+
                                     onClick={() => setActiveTab(index)}
                                     sx={{
                                         position: "relative", //  ADD THIS LINE
