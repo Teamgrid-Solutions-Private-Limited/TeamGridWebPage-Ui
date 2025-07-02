@@ -361,10 +361,10 @@ const OrbitBar = () => {
             sx={{
               position: selectedIcon ? "fixed" : "absolute",
               top: selectedIcon
-                ? { xs: "90%", sm: "90%", md: "75%", lg: "74%" }
+                ? { xs: "100%", sm: "90%", md: "75%", lg: "74%" }
                 : { xs: "50%", sm: "50%", md: "50%", lg: "50%" },
               left: selectedIcon
-                ? { xs: "60%", sm: "60%", md: "40%", lg: "48%" }
+                ? { xs: "70%", sm: "60%", md: "40%", lg: "48%" }
                 : "50%",
               width: selectedIcon
                 ? { xs: "100vw", sm: "100vw", md: "70vw", lg: 450 }

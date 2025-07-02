@@ -71,7 +71,7 @@ const OurCapabilities = () => {
       bgcolor: "#0B3C7B",
       color: "white",
       py: { xs: 6, md: 8 },
-      px:{xs:3,md:10,lg:14},
+      px:{xs:3,sm:6,md:10,lg:14},
       position: "relative",
       overflow: "hidden",
       zIndex: 1
@@ -149,7 +149,7 @@ const OurCapabilities = () => {
         <Grid
           container
           rowSpacing={{ xs: 3, sm: 3 }}
-          columnSpacing={{ xs: 2, sm: 4, md: 8 ,lg:8.5}}
+          columnSpacing={{ xs: 2, sm: 5, md: 8 ,lg:8,xl:11}}
           // mx={{lg:1,xs:0}}
           pl={{md:1,lg:1}}
           sx={{
@@ -173,7 +173,7 @@ const OurCapabilities = () => {
               <Paper
                 elevation={0}
                 sx={{
-                  width: { xs: '100%', sm: '384px', lg: '384px' },
+                  width: { xs: '100%', sm: '280px', md: '354px', lg: '360px', xl: '370px' },
                   height: { xs: 'auto', sm: '124px' },
                   minHeight: '90px',
                   fontWeight: 500,

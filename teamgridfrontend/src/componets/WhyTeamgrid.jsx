@@ -103,7 +103,7 @@ const WhyTeamgrid = () => {
         Flexible Talent. Reliable Delivery. Scalable Results.
       </Typography>
 
-      <Grid container spacing={{ xs: 6, md: 16,lg:14 }} alignItems="center" ml={1}>
+      <Grid container spacing={{ xs: 6,sm:4, md: 16,lg:7.5,xl:10 }} alignItems="center" ml={1}>
         {/* Left: Image */}
         <Grid item xs={12} md={6}>
           <Box
