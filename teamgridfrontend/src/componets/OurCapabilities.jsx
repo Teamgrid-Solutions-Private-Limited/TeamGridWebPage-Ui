@@ -64,6 +64,8 @@ const capabilities = [
   },
 ];
 const OurCapabilities = () => {
+  console.log("Width: " + window.innerWidth + "px");
+console.log("Height: " + window.innerHeight + "px");
   return (
     <Box sx={{
       width: "100vw", // Full viewport width
@@ -149,7 +151,7 @@ const OurCapabilities = () => {
         <Grid
           container
           rowSpacing={{ xs: 3, sm: 3 }}
-          columnSpacing={{ xs: 2, sm: 5, md: 8 ,lg:8,xl:11}}
+          columnSpacing={{ xs: 2, sm: 5, md: 8 ,lg:7,xl:11}}
           // mx={{lg:1,xs:0}}
           pl={{md:1,lg:1}}
           sx={{
@@ -162,8 +164,8 @@ const OurCapabilities = () => {
               item
               xs={12}
               sm={6}
-              md={3}
-              // lg={3}
+              md={4}
+              // lg={6}
               key={index}
               sx={{
                 display: "flex",
@@ -173,7 +175,7 @@ const OurCapabilities = () => {
               <Paper
                 elevation={0}
                 sx={{
-                  width: { xs: '100%', sm: '280px', md: '354px', lg: '360px', xl: '370px' },
+                  width: { xs: '90%', sm: '280px', md: '354px', lg: '360px', xl: '370px' },
                   height: { xs: 'auto', sm: '124px' },
                   minHeight: '90px',
                   fontWeight: 500,
@@ -230,6 +232,7 @@ const OurCapabilities = () => {
                       lineHeight: '21px',
                       letterSpacing: '0%',
                       color: '#E3EFFF',
+                     
                     }}
                   >
                     {cap.description}

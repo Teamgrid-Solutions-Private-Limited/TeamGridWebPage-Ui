@@ -4,7 +4,6 @@ import {
 } from "@mui/material";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import logo from "../assets/Layer_1 (1).png";
-import whiteLogo from "../assets/Layer_1 (2).png"
 import MenuIcon from '@mui/icons-material/Menu';
 
 // Icons
@@ -19,22 +18,14 @@ import pwaIcon from "../assets/Group 31.png";
 import prototypeIcon from "../assets/Group 30.png";
 import systemIcon from "../assets/Group 35.png";
 
-const TopNavBar = () => {
+const NavBar = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const [hoverMenuOpen, setHoverMenuOpen] = React.useState(false);
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const [whatWeDoExpanded, setWhatWeDoExpanded] = React.useState(false);
     const closeTimeoutRef = React.useRef(null);
-    const [scrolled, setScrolled] = React.useState(false);
 
-    React.useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 10);
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
@@ -78,10 +69,8 @@ const TopNavBar = () => {
             <AppBar
                 position="fixed"
                 sx={{
-                    background: scrolled
-                        ? "#FFFFFF" // or any solid color you want
-                        : "linear-gradient(180deg, #000E1F 0%, #05234A00 100%)",
-                    boxShadow: scrolled ? "0px 2px 6px rgba(0,0,0,0.15)" : "none",
+                    background: "linear-gradient(180deg, #000E1F 0%, #05234A00 100%)",
+                    boxShadow: "none",
                     width: "100%",
                     zIndex: 1100,
                     px: { xs: 0, sm: 2, md: 3, lg: 11 },
@@ -101,7 +90,7 @@ const TopNavBar = () => {
                             {/* Logo */}
                             <Grid item xs={6} md={2}>
                                 <Box sx={{ display: "flex", alignItems: "center", p: 1 }}>
-                                    <img src={scrolled?whiteLogo:logo} alt="logo" style={{ height: "40px", width: "auto", maxWidth: "150px" }} />
+                                    <img src={logo} alt="logo" style={{ height: "40px", width: "auto", maxWidth: "150px" }} />
                                 </Box>
                             </Grid>
 
@@ -118,8 +107,8 @@ const TopNavBar = () => {
 
                             {/* Navigation - Desktop */}
                             <Box sx={{ display: { xs: "none", md: "flex" }, gap: 1, alignItems: "center" }}>
-                                <Button sx={navBtnStyle(scrolled)}>Home</Button>
-                                <Button sx={navBtnStyle(scrolled)}>About Us</Button>
+                                <Button sx={navBtnStyle()}>Home</Button>
+                                <Button sx={navBtnStyle()}>About Us</Button>
 
                                 {/* Dropdown Trigger */}
                                 <Box
@@ -130,7 +119,7 @@ const TopNavBar = () => {
                                 >
                                     <Button
                                         endIcon={<ArrowDropDownIcon />}
-                                        sx={navBtnStyle(scrolled)}
+                                        sx={navBtnStyle()}
                                     >
                                         What We Do
                                     </Button>
@@ -139,7 +128,7 @@ const TopNavBar = () => {
                                     {hoverMenuOpen && (
                                         <Paper
                                             elevation={3}
-                                            gap={{ md: 0, lg: 0, xl: 2 }}
+                                            gap={{ md:0,lg:0,xl: 2 }}
                                             gutterBottom
                                             onMouseEnter={handleMouseEnter}
                                             onMouseLeave={handleMouseLeave}
@@ -153,11 +142,11 @@ const TopNavBar = () => {
                                                 borderRadius: 3,
                                                 boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
                                                 zIndex: 1300,
-                                                width: { xs: "90vw", sm: "1000px", md: "1070px", lg: "1260px", xl: "1300px" },
+                                                width: { xs: "90vw",sm:"1000px", md: "1070px", lg: "1260px", xl: "1300px" },
                                                 maxWidth: "90vw"
                                             }}
                                         >
-                                            <Grid container spacing={{ xs: 2, sm: 0, md: 0, lg: 1, xl: 5 }}>
+                                            <Grid container spacing={{xs:2, sm:0,md: 0, lg: 1, xl: 5 }}>
                                                 {/* Web Dev */}
                                                 <Grid item xs={12} md={3}>
                                                     <Typography
@@ -220,8 +209,8 @@ const TopNavBar = () => {
                                     )}
                                 </Box>
 
-                                <Button sx={navBtnStyle(scrolled)}>Technologies We Use</Button>
-                                <Button sx={navBtnStyle(scrolled)}>How we work</Button>
+                                <Button sx={navBtnStyle()}>Technologies We Use</Button>
+                                <Button sx={navBtnStyle()}>How we work</Button>
                                 {/* <Button sx={navBtnStyle()}>Let's Talk</Button> */}
                             </Box>
 
@@ -247,7 +236,7 @@ const TopNavBar = () => {
                                 }}
                                 onClick={() => alert("Get a Quote Clicked!")}
                             >
-                                Let's Talk
+                               Let's Talk
                             </Button>
                         </Container>
                     </Box>
@@ -580,21 +569,19 @@ const feature = (icon, title, desc) => (
     </Box>
 );
 
-const navBtnStyle = (scrolled = false) => ({
+const navBtnStyle = () => ({
     fontWeight: 400,
     fontSize: "16px",
     textTransform: "none",
-    color: scrolled ? "#072449" : "#FFFFFF",
+    color: "#FFFFFF",
     borderRadius: 99,
     px: 1.5,
     py: .5,
     transition: "all 0.3s ease",
     '&:hover': {
-        backgroundColor: scrolled ? "#E6F0FF" : "#0E4FA2",
+        backgroundColor: "#0E4FA2",
         transform: "scale(1.07)",
-        color: scrolled ? "#05408E" : "#FFFFFF",
     },
 });
 
-
-export default TopNavBar;
+export default NavBar;

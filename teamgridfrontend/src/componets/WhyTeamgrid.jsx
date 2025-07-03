@@ -103,16 +103,16 @@ const WhyTeamgrid = () => {
         Flexible Talent. Reliable Delivery. Scalable Results.
       </Typography>
 
-      <Grid container spacing={{ xs: 6,sm:4, md: 16,lg:7.5,xl:10 }} alignItems="center" ml={1}>
+      <Grid container spacing={{ xs: 6,sm:4, md: 3,lg:2,xl:10 }} alignItems="center" ml={1}>
         {/* Left: Image */}
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={6} lg={6} xl={6}>
           <Box
             component="img"
             src={teamgridImage}
             alt="Teamgrid"
             sx={{
-              width: { xs: '100%', md: '690px' },
-              height: { xs: 'auto', md: '522px' },
+              width: { xs: '100%', md: '100%',lg: '95%',xl: '100%' },
+              height: { xs: 'auto', md: 'auto' },
               borderRadius: '24px',
               boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
               objectFit: 'cover',
@@ -121,7 +121,7 @@ const WhyTeamgrid = () => {
         </Grid>
 
         {/* Right: Bullet Points */}
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} md={6} lg={6} xl={6} >
           <Box
             sx={{
               width: { xs: '100%', md: '100%' },

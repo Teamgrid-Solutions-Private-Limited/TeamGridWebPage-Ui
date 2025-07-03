@@ -2,19 +2,19 @@
 // App.jsx
 import React from "react";
 import { Typography, Button, Box } from "@mui/material";
-import TopNavBar from "./TopNavBar";
-import OrbitBar from "./OrbitBar";
+import TopNavBar from "../componets/TopNavBar";
+import OrbitBar from "../componets/OrbitBar";
 import womanLaptop from '../assets/Rectangle 41.png';
 import teamDiscussion from '../assets/Rectangle 40.png';
 import groupWork from '../assets/Rectangle 45.png';
 import manWorking from '../assets/Rectangle 46.png';
-import WhatWeDoSection from "./WhatWeDoSection";
-import WhyTeamgrid from "./WhyTeamgrid";
-import OurCapabilities from "./OurCapabilities";
-import LetsBuildTogether from "./LetsBuildTogether";
-import Footer from "./Footer";
-import ClientTestimonials from "./ClientTestimonials";
-import WhoWeHelp from "./WhoWeHelp";
+import WhatWeDoSection from "../componets/WhatWeDoSection";
+import WhyTeamgrid from "../componets/WhyTeamgrid";
+import OurCapabilities from "../componets/OurCapabilities";
+import LetsBuildTogether from "../componets/LetsBuildTogether";
+import Footer from "../componets/Footer";
+import ClientTestimonials from "../componets/ClientTestimonials";
+import WhoWeHelp from "../componets/WhoWeHelp";
 function TeamGridHomePage() {
   const imageData = [
     { src: womanLaptop, alt: "Woman with laptop", bg: "#FEE2E2" },

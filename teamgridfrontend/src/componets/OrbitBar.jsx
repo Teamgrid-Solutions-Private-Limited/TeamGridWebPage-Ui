@@ -107,7 +107,7 @@ const OrbitBar = () => {
         background: "radial-gradient(circle at center,#072449,#072449 100%)",
         color: "white",
         overflow: "hidden",
-        top: "40px",
+        top: 0,
         left: 0,
         display: "flex",
         alignItems: "center",
@@ -502,7 +502,7 @@ const OrbitBar = () => {
                   {/* Icon Title */}
                   <Typography
                     sx={{
-                      fontWeight: 600,
+                      fontWeight: 500,
                       mt: { xs: 17, sm: 16, md: 20, lg: 20 },
                       mb: { xs: 3, sm: 2, md: 4, lg: 4 },
                       // ml: { xs: 0, sm: 0, md: 0 },
