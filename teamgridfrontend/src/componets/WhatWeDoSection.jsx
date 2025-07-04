@@ -87,7 +87,7 @@ const WhatWeDoSection = () => {
                     display: "flex",
                     flexDirection: { xs: "column", md: "row" },
                     alignItems: "center",
-                    justifyContent: "space-between",
+                    justifyContent: "flex-start",
                     bgcolor: "#E1ECF9",
                     borderRadius: 4,
                     px: { xs: 3, md: 6 },
@@ -102,8 +102,9 @@ const WhatWeDoSection = () => {
                 {/* Left Content */}
                 <Box sx={{
                     flex: 1,
-                    px: { md: 2 },
+                    px: { md: 8},
                     mb: { xs: 4, md: 0 },
+                    justifyContent: "flex-start",
                     width: { xs: '100%', md: 'auto' }
                 }}>
                     <Typography
@@ -215,7 +216,8 @@ const WhatWeDoSection = () => {
                     position: "relative",
                     minHeight: { xs: 250, sm: 320, md: 420 },
                     width: { xs: '100%', md: 'auto' },
-                    mt: { xs: 4, md: 0 }
+                    mt: { xs: 4, md: 0 },
+                    //   pl: { md: 14 }
                 }}>
                     {/* Bottom Image */}
                     <Box
@@ -224,12 +226,12 @@ const WhatWeDoSection = () => {
                         alt="Bottom E-commerce"
                         sx={{
                             position: "absolute",
-                            width: { xs: "80%", sm: "70%", md: "65%" },
+                            width: { xs: "80%", sm: "70%", md: "382px" },
                             height: { xs: "80%", md: "120%" },
                             objectFit: "cover",
                             borderRadius: "12px",
                             boxShadow: "0 8px 24px rgba(0,0,0,0.1)",
-                            top: { xs: "10%", md: "-60px" },
+                            top: { xs: "10%", md: "-70px" },
                             right: { xs: "5%", md: "10px" },
                         }}
                     />
@@ -241,12 +243,12 @@ const WhatWeDoSection = () => {
                         alt="Top E-commerce Overlay"
                         sx={{
                             position: "absolute",
-                            top: { xs: "0", md: "5%" },
-                            left: { xs: "5%", md: "1%" },
-                            width: { xs: "80%", sm: "70%", md: "65%" },
+                            top: { xs: "0", md: "0%" },
+                            left: { xs: "5%", md: "-13%" },
+                            width: { xs: "80%", sm: "70%", md: "382px" },
                             borderRadius: "12px",
                             boxShadow: "0 8px 24px rgba(0,0,0,0.15)",
-                            height: { xs: "80%", md: "121%" },
+                            height: { xs: "80%", md: "129%" },
                             zIndex: 1,
                         }}
                     />

@@ -3,21 +3,22 @@ import {
     AppBar, Toolbar, Typography, Button, Container, Box, Paper, Grid, IconButton, Drawer, List, ListItem, ListItemButton, ListItemText, Divider, Collapse, useMediaQuery, useTheme
 } from "@mui/material";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import logo from "../assets/Layer_1 (1).png";
-import whiteLogo from "../assets/Layer_1 (2).png"
+import logo from "../assets/Layer_1 (1).svg";
+import whiteLogo from "../assets/Layer_1.svg"
 import MenuIcon from '@mui/icons-material/Menu';
 
 // Icons
-import frontendIcon from "../assets/Group 25.png";
-import backendIcon from "../assets/Group 26.png";
-import mobileIcon from "../assets/Group 28.png";
-import designIcon from "../assets/Group 29.png";
-import shopifyIcon from "../assets/Group 36.png";
-import wooIcon from "../assets/Group 34.png";
-import crossPlatformIcon from "../assets/Group 33.png";
-import pwaIcon from "../assets/Group 31.png";
-import prototypeIcon from "../assets/Group 30.png";
-import systemIcon from "../assets/Group 35.png";
+import frontendIcon from "../assets/lucide_file-code.svg";
+import backendIcon from "../assets/lucide_database-zap.svg";
+import wordpressIcon from "../assets/ic_round-wordpress.svg";
+import mobileIcon from "../assets/lucide_tablet-smartphone.svg";
+import shopifyIcon from "../assets/hugeicons_shopify.svg";
+import wooIcon from "../assets/streamline-logos_woocommerce-logo.svg";
+import crossPlatformIcon from "../assets/lucide_monitor-smartphone.svg";
+import pwaIcon from "../assets/proicons_apps.svg";
+import uiUxIcon from "../assets/lucide_layout-template.svg";
+import prototypeIcon from "../assets/lucide_pencil-ruler.svg";
+import designSystemIcon from "../assets/lucide_paintbrush-vertical.svg";
 
 const TopNavBar = () => {
     const theme = useTheme();
@@ -101,7 +102,7 @@ const TopNavBar = () => {
                             {/* Logo */}
                             <Grid item xs={6} md={2}>
                                 <Box sx={{ display: "flex", alignItems: "center", p: 1 }}>
-                                    <img src={scrolled?whiteLogo:logo} alt="logo" style={{ height: "40px", width: "auto", maxWidth: "150px" }} />
+                                    <img src={scrolled?whiteLogo:logo} alt="logo" style={{ height: "50px", width: "auto", maxWidth: "158px" }} />
                                 </Box>
                             </Grid>
 
@@ -175,7 +176,7 @@ const TopNavBar = () => {
 
                                                     {feature(frontendIcon, "Front-End Development", "Fast, responsive, and pixel-perfect user interfaces.")}
                                                     {feature(backendIcon, "Back-End Development", "Scalable, secure, and efficient architecture.")}
-                                                    {feature(mobileIcon, "WordPress & CMS", "Custom WordPress sites with Elementor, and more.")}
+                                                    {feature(wordpressIcon, "WordPress & CMS", "Custom WordPress sites with Elementor, and more.")}
                                                 </Grid>
 
                                                 {/* Mobile Dev */}
@@ -186,7 +187,7 @@ const TopNavBar = () => {
                                                         textTransform: "uppercase",
                                                         letterSpacing: "3%",
                                                     }}>MOBILE APP DEVELOPMENT</Typography>
-                                                    {feature(designIcon, "iOS & Android Development", "Native mobile experiences that perform and scale.")}
+                                                    {feature(mobileIcon, "iOS & Android Development", "Native mobile experiences that perform and scale.")}
                                                     {feature(crossPlatformIcon, "Cross-Platform Apps", "Build and deploy everywhere with React Native or Flutter.")}
                                                     {feature(pwaIcon, "Progressive Web Apps", "Web apps that work offline and feel native.")}
                                                 </Grid>
@@ -199,9 +200,9 @@ const TopNavBar = () => {
                                                         textTransform: "uppercase",
                                                         letterSpacing: "3%",
                                                     }}>UI/UX & DESIGN</Typography>
-                                                    {feature(designIcon, "UI/UX Design", "Intuitive, user-focused design for web and mobile.")}
+                                                    {feature(uiUxIcon, "UI/UX Design", "Intuitive, user-focused design for web and mobile.")}
                                                     {feature(prototypeIcon, "Prototyping & Wireframing", "Visualize fast using tools like Figma and Adobe XD.")}
-                                                    {feature(systemIcon, "Design Systems", "Scalable design libraries to maintain brand consistency.")}
+                                                    {feature(designSystemIcon, "Design Systems", "Scalable design libraries to maintain brand consistency.")}
                                                 </Grid>
 
                                                 {/* E-Commerce */}
@@ -309,7 +310,6 @@ const TopNavBar = () => {
                                 <ListItem disablePadding>
                                     <ListItemButton sx={{ pl: 6, pr: 3 }}>
                                         <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
-                                            <img src={frontendIcon} alt="Web Dev" style={{ width: "20px", height: "20px" }} />
                                             <ListItemText
                                                 primary="Web Development"
                                                 primaryTypographyProps={{ fontSize: "14px", color: "rgba(255,255,255,0.8)" }}
@@ -342,7 +342,7 @@ const TopNavBar = () => {
                                 <ListItem disablePadding>
                                     <ListItemButton sx={{ pl: 9, pr: 3 }}>
                                         <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
-                                            <img src={mobileIcon} alt="WordPress" style={{ width: "16px", height: "16px" }} />
+                                            <img src={wordpressIcon} alt="WordPress" style={{ width: "16px", height: "16px" }} />
                                             <ListItemText
                                                 primary="WordPress & CMS"
                                                 primaryTypographyProps={{ fontSize: "12px", color: "rgba(255,255,255,0.6)" }}
@@ -355,7 +355,6 @@ const TopNavBar = () => {
                                 <ListItem disablePadding>
                                     <ListItemButton sx={{ pl: 6, pr: 3 }}>
                                         <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
-                                            <img src={mobileIcon} alt="Mobile Dev" style={{ width: "20px", height: "20px" }} />
                                             <ListItemText
                                                 primary="Mobile App Development"
                                                 primaryTypographyProps={{ fontSize: "14px", color: "rgba(255,255,255,0.8)" }}
@@ -366,7 +365,7 @@ const TopNavBar = () => {
                                 <ListItem disablePadding>
                                     <ListItemButton sx={{ pl: 9, pr: 3 }}>
                                         <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
-                                            <img src={designIcon} alt="iOS Android" style={{ width: "16px", height: "16px" }} />
+                                            <img src={mobileIcon} alt="iOS Android" style={{ width: "16px", height: "16px" }} />
                                             <ListItemText
                                                 primary="iOS & Android Development"
                                                 primaryTypographyProps={{ fontSize: "12px", color: "rgba(255,255,255,0.6)" }}
@@ -401,7 +400,6 @@ const TopNavBar = () => {
                                 <ListItem disablePadding>
                                     <ListItemButton sx={{ pl: 6, pr: 3 }}>
                                         <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
-                                            <img src={designIcon} alt="UI/UX" style={{ width: "20px", height: "20px" }} />
                                             <ListItemText
                                                 primary="UI/UX & Design"
                                                 primaryTypographyProps={{ fontSize: "14px", color: "rgba(255,255,255,0.8)" }}
@@ -412,7 +410,7 @@ const TopNavBar = () => {
                                 <ListItem disablePadding>
                                     <ListItemButton sx={{ pl: 9, pr: 3 }}>
                                         <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
-                                            <img src={designIcon} alt="UI/UX Design" style={{ width: "16px", height: "16px" }} />
+                                            <img src={uiUxIcon} alt="UI/UX Design" style={{ width: "16px", height: "16px" }} />
                                             <ListItemText
                                                 primary="UI/UX Design"
                                                 primaryTypographyProps={{ fontSize: "12px", color: "rgba(255,255,255,0.6)" }}
@@ -434,7 +432,7 @@ const TopNavBar = () => {
                                 <ListItem disablePadding>
                                     <ListItemButton sx={{ pl: 9, pr: 3 }}>
                                         <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
-                                            <img src={systemIcon} alt="Design Systems" style={{ width: "16px", height: "16px" }} />
+                                            <img src={designSystemIcon} alt="Design Systems" style={{ width: "16px", height: "16px" }} />
                                             <ListItemText
                                                 primary="Design Systems"
                                                 primaryTypographyProps={{ fontSize: "12px", color: "rgba(255,255,255,0.6)" }}
@@ -447,7 +445,6 @@ const TopNavBar = () => {
                                 <ListItem disablePadding>
                                     <ListItemButton sx={{ pl: 6, pr: 3 }}>
                                         <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
-                                            <img src={shopifyIcon} alt="E-Commerce" style={{ width: "20px", height: "20px" }} />
                                             <ListItemText
                                                 primary="E-Commerce Solutions"
                                                 primaryTypographyProps={{ fontSize: "14px", color: "rgba(255,255,255,0.8)" }}
@@ -522,8 +519,6 @@ const TopNavBar = () => {
         </>
     );
 };
-
-// Reusable Feature Item
 const feature = (icon, title, desc) => (
     <Box
         sx={{
@@ -533,7 +528,7 @@ const feature = (icon, title, desc) => (
             borderRadius: "16px",
             padding: "16px",
             display: "flex",
-            gap: "10px",
+            gap: "12px",  // Slightly increased gap
             backgroundColor: "#fff",
             alignItems: "flex-start",
             transition: "all 0.3s ease",
@@ -541,20 +536,41 @@ const feature = (icon, title, desc) => (
             "&:hover": {
                 backgroundColor: "#F3F3F6",
                 transform: "scale(1.02)",
+                "& .icon-wrapper": {
+                    backgroundColor: "#FFFFFF",
+                }
             },
         }}
     >
+        {/* Icon Wrapper - Updated to 40px × 40px */}
         <Box
-            component="img"
-            src={icon}
-            alt={title}
+            className="icon-wrapper"
             sx={{
-                width: 40,
-                height: 40,
+                width: "40px",
+                height: "40px",
+                minWidth: "40px",  // Ensure it doesn't shrink
                 borderRadius: "8px",
-                objectFit: "contain",
+                backgroundColor: "#F3F3F6",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                transition: "background-color 0.3s ease",
             }}
-        />
+        >
+            {/* Icon - Updated to 24px × 24px */}
+            <Box
+                component="img"
+                src={icon}
+                alt={title}
+                sx={{
+                    width: "24px",
+                    height: "24px",
+                    objectFit: "contain",
+                }}
+            />
+        </Box>
+
+        {/* Text Content */}
         <Box>
             <Typography
                 sx={{
@@ -579,6 +595,7 @@ const feature = (icon, title, desc) => (
         </Box>
     </Box>
 );
+
 
 const navBtnStyle = (scrolled = false) => ({
     fontWeight: 400,
