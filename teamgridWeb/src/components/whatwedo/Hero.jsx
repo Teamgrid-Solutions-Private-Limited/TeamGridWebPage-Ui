@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography, Button } from "@mui/material";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, color } from "framer-motion";
+import WhatWeOffer from "./Whatweoffer";
 
 // Assets
-import centerImage from "../assets/555.png";
-import P1 from "../assets/P1.png";
-import P11 from "../assets/P11.png";
-import P111 from "../assets/P111.png";
-import P2 from "../assets/P2.png";
-import P22 from "../assets/P22.png";
-import P3 from "../assets/P3.png";
-import P33 from "../assets/P33.png";
-import P4 from "../assets/P4.png";
-import P44 from "../assets/P44.png";
-import back from "../assets/back.png";
-import smallCircle from "../assets/smallCircle.png";
+import P1 from "../../assets/figmaa.png"
+import P2 from "../../assets/reactt.png"
+import P3 from "../../assets/wooo.png"
+import P11 from "../../assets/P11.png";
+import P111 from "../../assets/P111.png";
+import P22 from "../../assets/P22.png";
+import P33 from "../../assets/P33.png";
+import P4 from "../../assets/P4.png";
+import P44 from "../../assets/P44.png";
+import back from "../../assets/back.png";
+import centerImage from "../../assets/smallCircle.png";
 
 // Responsive center positions
 const getCenterPosition = () => {
@@ -24,75 +24,41 @@ const getCenterPosition = () => {
   } else if (width < 900) {
     return { x: width / 2, y: 350 };
   } else {
-    return { x: 1350, y: 397 };
+    return { x: 1450, y: 700 };
   }
 };
 
 const orbitPlanetsData = [
   [
     {
-      img: P1,
-      name: "React",
+      img: P3,
+      name: "Node.js",
       description:
-        "A JavaScript library for building user interfaces with component-based architecture.",
-    },
-    {
-      img: P11,
-      name: "Next.js",
-      description:
-        "React framework for production-grade server-rendered applications.",
-    },
-    {
-      img: P111,
-      name: "Gatsby",
-      description: "React-based static site generator for fast websites.",
+        "JavaScript runtime built on Chrome's V8 engine for backend development.",
     },
   ],
   [
     {
       img: P2,
-      name: "Node.js",
-      description:
-        "JavaScript runtime built on Chrome's V8 engine for backend development.",
-    },
-    {
-      img: P22,
-      name: "Express",
-      description:
-        "Fast, unopinionated web framework for Node.js applications.",
-    },
-  ],
-  [
-    {
-      img: P3,
       name: "MongoDB",
       description: "Document-based NoSQL database for modern applications.",
     },
-    {
-      img: P33,
-      name: "PostgreSQL",
-      description: "Advanced open-source relational database system.",
-    },
   ],
   [
     {
-      img: P4,
+      img: P1,
       name: "WordPress",
       description: "Popular open-source content management system.",
     },
-    {
-      img: P44,
-      name: "WooCommerce",
-      description: "Flexible eCommerce platform built on WordPress.",
-    },
   ],
 ];
+
 
 const Orbit = ({ index, size, isPaused, setIsPaused, setSelectedPlanet }) => {
   const [centerPos, setCenterPos] = useState(getCenterPosition());
   const duration = 500 + index * 20;
   const planets = orbitPlanetsData[index];
-  const planetSize = window.innerWidth < 600 ? 45 : 65;
+  const planetSize = window.innerWidth < 600 ? 45 : 214;
 
   useEffect(() => {
     const handleResize = () => {
@@ -144,7 +110,7 @@ const Orbit = ({ index, size, isPaused, setIsPaused, setSelectedPlanet }) => {
       >
         {/* White Circles on Orbit */}
         {whiteDots.map((_, i) => {
-          const angle = (360 / whiteDots.length) * i;
+          const angle = 270;
           const rad = (angle * Math.PI) / 180;
           const radius = size.width / 2;
           const x = radius * Math.cos(rad);
@@ -156,8 +122,8 @@ const Orbit = ({ index, size, isPaused, setIsPaused, setSelectedPlanet }) => {
                 position: "absolute",
                 top: "50%",
                 left: "50%",
-                width: 8,
-                height: 8,
+                width: 20,
+                height: 20,
                 backgroundColor: "white",
                 borderRadius: "50%",
                 transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
@@ -579,7 +545,7 @@ const CenterPiece = ({ setSelectedPlanet, selectedPlanet, setLogoZoomed }) => {
   );
 };
 
-const HeroSection = () => {
+const Hero = () => {
   const [selectedPlanet, setSelectedPlanet] = useState(null);
   const [isPaused, setIsPaused] = useState(false);
   const [logoZoomed, setLogoZoomed] = useState(false);
@@ -591,10 +557,9 @@ const HeroSection = () => {
       return []; // No orbits on mobile
     }
     return [
-      { width: 1645, height: 1645 },
-      { width: 1301, height: 1301 },
-      { width: 957, height: 957 },
-      { width: 623, height: 623 },
+      { width: 1600, height: 1600 },
+      { width: 1100, height: 1100 },
+      { width: 600, height: 600 },
     ];
   };
 
@@ -624,35 +589,21 @@ const HeroSection = () => {
       sx={{
         width: "100%",
         height: { xs: "100vh", md: "100vh" },
-        minHeight: {
-          xs: "700px",
-          sm: "700px",
-          md: "600px",
-          lg: "650px",
-          xl: "720px",
-        },
+        minHeight: { xs: "700px", md: "600px" },
         position: "relative",
         backgroundColor: "#072449",
         overflow: "hidden",
         margin: "0 auto",
         display: "flex",
-        alignItems: { xs: "flex-start", sm: "center" },
-        justifyContent: "center", // optional: center horizontally
-        padding: {
-          xs: "80px 16px 40px", // mobile
-          sm: "100px 24px 40px", // tablet
-          md: "0 60px", // medium desktop
-          lg: "0 100px", // large desktop
-          xl: "0 140px", // very large screens
-        },
-        boxSizing: "border-box", // ensure padding doesn’t break layout
+        alignItems: { xs: "flex-start", md: "center" },
+        padding: { xs: "80px 16px 40px", sm: "100px 24px 40px", md: "0 120px" },
       }}
     >
-      <CenterPiece
+      {/* <CenterPiece
         setSelectedPlanet={setSelectedPlanet}
         selectedPlanet={selectedPlanet}
         setLogoZoomed={setLogoZoomed}
-      />
+      /> */}
 
       {/* Desktop Orbits */}
       {orbitSizes.map((orbit, index) => (
@@ -678,186 +629,87 @@ const HeroSection = () => {
       <Box
         sx={{
           position: "absolute",
-          top: {
-            xs: "64px", // Smaller offset for mobile
-            sm: "100px",
-            md: "180px",
-            lg: "220px",
-            xl: "245px",
-          },
-          left: {
-            xs: "16px",
-            sm: "24px",
-            md: "80px",
-            lg: "80px",
-            xl: "120px",
-          },
-          right: {
-            xs: "16px", // Allow padding on both sides on mobile
-            sm: "24px",
-            md: "auto",
-          },
-          maxWidth: {
-            xs: "100%", // Full width on phones
-            sm: "100%",
-            md: "720px",
-            lg: "800px",
-            xl: "848px",
-          },
+          top: { xs: "80px", sm: "100px", md: "245px" },
+          left: { xs: "16px", sm: "24px", md: "120px" },
+          right: { xs: "16px", sm: "24px", md: "auto" },
+          maxWidth: { xs: "100%", sm: "100%", md: "848px" },
           zIndex: 10,
           textAlign: "left",
           display: "flex",
           flexDirection: "column",
-          gap: {
-            xs: "12px",
-            sm: "14px",
-            md: "16px",
-          },
+          gap: { xs: "12px", md: "14px" },
           pointerEvents: "none",
         }}
       >
         <Typography
           sx={{
-            color: "#E1E0E0",
-            fontSize: {
-              xs: "13px",
-              sm: "15px",
-              md: "18px",
-              lg: "20px",
-            },
-            fontWeight: 500,
-            lineHeight: 1.4,
-          }}
-        >
-          Powering growth through talent
-        </Typography>
-
-        <Typography
-          sx={{
             color: "white",
             fontWeight: 700,
-            fontSize: {
-              xs: "24px",
-              sm: "32px",
-              md: "48px",
-              lg: "56px",
-              xl: "64px",
-            },
-            lineHeight: {
-              xs: "30px",
-              sm: "40px",
-              md: "52px",
-              lg: "60px",
-              xl: "68px",
-            },
+            fontSize: { xs: "28px", sm: "36px", md: "64px" },
+            lineHeight: { xs: "32px", sm: "42px", md: "68px" },
           }}
         >
-          Extend Your Team,
+          Front End Development
           <br />
-          Accelerate Your Growth
+          for{" "}
+          <Box component="span" sx={{ color: "#30ECAD" }}>
+            Fast and Scalable
+          </Box>
+          <br />
+          Interfaces
         </Typography>
 
         <Typography
           sx={{
             color: "#E1E0E0",
-            fontSize: {
-              xs: "13px",
-              sm: "15px",
-              md: "18px",
-              lg: "20px",
-            },
+            fontSize: { xs: "14px", sm: "16px", md: "20px" },
             fontWeight: 300,
-            lineHeight: {
-              xs: "20px",
-              sm: "24px",
-              md: "26px",
-              lg: "28px",
-            },
+            lineHeight: { xs: "20px", sm: "24px", md: "28px" },
           }}
         >
-          We help agencies and startups scale smarter — with dedicated
-          professionals, high-quality solutions, and flexible engagement models
-          that fit your workflow and goals.
+          Hire expert front-end developers skilled in ReactJS, Material UI, and
+          modern frameworks. Ideal for agencies looking to scale delivery
+          without growing overhead.
         </Typography>
 
         <Box
           sx={{
             display: "flex",
-            flexDirection: {
-              xs: "column",
-              sm: "row",
-            },
-            gap: {
-              xs: "8px",
-              sm: "12px",
-              md: "16px",
-            },
-            mt: {
-              xs: "16px",
-              sm: "20px",
-              md: "24px",
-            },
+            gap: { xs: "8px", md: "10px" },
+            flexDirection: { xs: "column", sm: "row" },
+            mt: { xs: "16px", md: "0" },
           }}
         >
           <Button
             variant="contained"
             sx={{
               pointerEvents: "auto",
-              backgroundColor: "#1A73E8",
-              borderRadius: "40px",
-              width: {
-                xs: "100%",
-                sm: "160px",
-                md: "180px",
-                lg: "204px",
-              },
-              height: {
-                xs: "44px",
-                sm: "48px",
-                md: "50px",
-              },
-              fontSize: {
-                xs: "13px",
-                sm: "15px",
-                md: "16px",
-                lg: "18px",
-              },
+              backgroundColor: "#0070FF",
+              borderRadius: "16px",
+              width: { xs: "100%", sm: "160px", md: "199px" },
+              height: { xs: "48px", md: "59px" },
+              fontSize: { xs: "14px", md: "18px" },
               fontWeight: 400,
               textTransform: "none",
             }}
           >
-            Let's Talk
+            Hire Developer
           </Button>
-
           <Button
             variant="outlined"
             sx={{
               pointerEvents: "auto",
               borderColor: "#ffffff99",
               color: "#fff",
-              borderRadius: "40px",
-              width: {
-                xs: "100%",
-                sm: "180px",
-                md: "200px",
-                lg: "230px",
-              },
-              height: {
-                xs: "44px",
-                sm: "48px",
-                md: "50px",
-              },
-              fontSize: {
-                xs: "13px",
-                sm: "15px",
-                md: "16px",
-                lg: "18px",
-              },
+              height: { xs: "48px", md: "59px" },
+              width: { xs: "100%", sm: "180px", md: "254px" },
+              fontSize: { xs: "14px", md: "18px" },
+              borderRadius: "16px",
               fontWeight: 400,
               textTransform: "none",
               "&:hover": {
                 borderColor: "#fff",
-                backgroundColor: "rgba(255, 255, 255, 0.1)",
+                backgroundColor: "#072449",
               },
             }}
           >
@@ -869,4 +721,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+export default Hero;

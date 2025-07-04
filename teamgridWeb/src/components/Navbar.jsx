@@ -1,5 +1,4 @@
 import React from "react";
-import Whatwedo from "./whatwedo/whatwedo"; 
 import {
   AppBar,
   Toolbar,
@@ -7,23 +6,25 @@ import {
   Button,
   Container,
   Box,
-  Paper,
-  Grid,
-  useMediaQuery,
-  IconButton,
   Drawer,
   List,
   ListItem,
   ListItemButton,
   ListItemText,
   Collapse,
+  useMediaQuery,
+  IconButton,
+  Paper,
+  Grid,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import MenuIcon from "@mui/icons-material/Menu";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import logo from "../assets/Logo.png";
+import { useNavigate } from "react-router-dom";
+import whiteLogo from "../assets/Logo.png"; // use your actual white version
+import darkLogo from "../assets/LogoDark.png"; // the default black/dark version
 
 // Icons
 import frontendIcon from "../assets/frontend.png";
@@ -36,7 +37,7 @@ import uiuxIcon from "../assets/uiux.png";
 import prototypeIcon from "../assets/prototype.png";
 import designIcon from "../assets/design.png";
 import shopifyIcon from "../assets/shopifyy.png";
-import wooIcon from "../assets/wooo (1).png";
+import wooIcon from "../assets/wooo(1).png";
 
 const megaMenuItems = [
   {
@@ -125,17 +126,33 @@ const navItems = [
   "Let's Talk",
 ];
 
+const navRoutes = {
+  Home: "/",
+  "About Us": "/about",
+  "What We Do": "/whatwedo",
+  "Technologies We Use": "/technologies",
+  "How we work": "/how-we-work",
+  "Let's Talk": "/contact",
+};
+
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [selected, setSelected] = React.useState("Home");
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [mobileMoreOpen, setMobileMoreOpen] = React.useState(false);
+  const [isScrolled, setIsScrolled] = React.useState(false);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
+  const navigate = useNavigate();
 
-  const handleDrawerToggle = () => setDrawerOpen(!drawerOpen);
-  const handleMobileMoreClick = () => setMobileMoreOpen(!mobileMoreOpen);
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const drawer = (
     <Box
@@ -145,29 +162,48 @@ const NavBar = () => {
         height: "100%",
         py: 2,
         color: "white",
+        px: {
+          xs: 2, // phones
+          sm: 3, // tablets
+          md: 6, // 1024px
+          lg: 10, // 1440px
+          xl: 20, // 1920px+
+        },
       }}
     >
-      <Box sx={{ mb: 2, textAlign: "center" }}>
-        <img src={logo} alt="logo" style={{ height: "48px", width: "148px" }} />
+      {/* Logo */}
+      <Box
+        sx={{
+          mb: 2,
+          textAlign: { xs: "center", md: "left" },
+        }}
+      >
+        <img
+          src={isScrolled ? darkLogo : whiteLogo}
+          alt="logo"
+          style={{
+            height: "48px",
+            width: "148px",
+            transition: "0.3s ease-in-out",
+          }}
+        />
       </Box>
+
+      {/* Menu */}
       <List>
         {navItems.map((item) =>
           item === "What We Do" ? (
             <React.Fragment key={item}>
-              <ListItemButton onClick={handleMobileMoreClick}>
+              <ListItemButton
+                onClick={() => setMobileMoreOpen(!mobileMoreOpen)}
+              >
                 <ListItemText primary={item} sx={{ color: "white" }} />
-                {mobileMoreOpen ? (
-                  <ExpandLess sx={{ color: "white" }} />
-                ) : (
-                  <ExpandMore sx={{ color: "white" }} />
-                )}
+                {mobileMoreOpen ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
               <Collapse in={mobileMoreOpen}>
                 {megaMenuItems.map((section) => (
                   <Box key={section.title} sx={{ pl: 4, pr: 2 }}>
-                    <Typography
-                      sx={{ color: "#ccc", fontWeight: "500", mt: 1, fontSize:"14px" }}
-                    >
+                    <Typography sx={{ color: "#ccc", fontWeight: 500, mt: 1 }}>
                       {section.title}
                     </Typography>
                     {section.items.map((menuItem) => (
@@ -184,13 +220,21 @@ const NavBar = () => {
             </React.Fragment>
           ) : (
             <ListItem key={item} disablePadding>
-              <ListItemButton>
+              <ListItemButton onClick={() => navigate(navRoutes[item])}>
                 <ListItemText primary={item} sx={{ color: "white", pl: 2 }} />
               </ListItemButton>
             </ListItem>
           )
         )}
-        <ListItem sx={{ mt: 2 }}>
+
+        {/* CTA Button */}
+        <ListItem
+          sx={{
+            mt: 2,
+            display: "flex",
+            justifyContent: { xs: "center", sm: "flex-start" },
+          }}
+        >
           <Button
             variant="contained"
             sx={{
@@ -201,8 +245,6 @@ const NavBar = () => {
               textTransform: "none",
               fontSize: "16px",
               fontWeight: 400,
-              mt: 2,
-              mr: 20,
               "&:hover": { backgroundColor: "#002366" },
             }}
           >
@@ -218,41 +260,39 @@ const NavBar = () => {
       <AppBar
         position="fixed"
         sx={{
-          background:
-            "linear-gradient(0deg, rgba(5, 35, 74, 0) -20%, #000E1F 105.53%)",
-          minHeight: "84px", // Changed from height to minHeight
-          maxHeight: "84px", // Added maxHeight to prevent expansion
+          backgroundColor: isScrolled ? "#fff" : "transparent",
+          transition: "all 0.3s ease",
+          boxShadow: isScrolled ? "0 2px 10px rgba(0,0,0,0.05)" : "none",
+          minHeight: "84px",
+          maxHeight: "84px",
           zIndex: 1100,
-          boxShadow: "none",
         }}
       >
-        <Toolbar
-          disableGutters
-          sx={{
-            minHeight: "84px !important", // Force toolbar height
-            height: "84px", // Set explicit height
-          }}
-        >
+        <Toolbar sx={{ minHeight: "84px !important", height: "84px" }}>
           <Container
             maxWidth="xl"
             sx={{
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
-              height: "100%", // Make container take full height
+              height: "100%",
             }}
           >
             <Box
               sx={{
                 display: "flex",
                 alignItems: "center",
-                ml: isMobile ? 2 : 12,
+                ml: { xs: 1, md: 2, lg: 4, xl: 9 },
               }}
             >
               <img
-                src={logo}
+                src={isScrolled ? darkLogo : whiteLogo}
                 alt="logo"
-                style={{ height: "48px", width: "148px" }}
+                style={{
+                  height: "48px",
+                  width: "148px",
+                  transition: "0.3s ease-in-out",
+                }}
               />
             </Box>
 
@@ -260,7 +300,7 @@ const NavBar = () => {
               <>
                 <IconButton
                   color="inherit"
-                  onClick={handleDrawerToggle}
+                  onClick={() => setDrawerOpen(true)}
                   sx={{ mr: 2 }}
                 >
                   <MenuIcon />
@@ -268,7 +308,7 @@ const NavBar = () => {
                 <Drawer
                   anchor="left"
                   open={drawerOpen}
-                  onClose={handleDrawerToggle}
+                  onClose={() => setDrawerOpen(false)}
                   ModalProps={{ keepMounted: true }}
                   PaperProps={{
                     sx: {
@@ -276,7 +316,6 @@ const NavBar = () => {
                       maxWidth: "100vw",
                       background:
                         "linear-gradient(0deg, rgba(5, 35, 74, 0) -20%, #000E1F 105.53%)",
-                      boxSizing: "border-box",
                     },
                   }}
                 >
@@ -287,11 +326,9 @@ const NavBar = () => {
               <Box
                 sx={{
                   display: "flex",
-                  alignItems: "center", // Center align items vertically
+                  alignItems: "center",
                   columnGap: 1.5,
-                  ml: isMobile ? 2 : 13,
-                  flexGrow: 1,
-                  height: "100%", // Take full height
+                  mr: 6,
                 }}
               >
                 {navItems.map((item) =>
@@ -299,31 +336,36 @@ const NavBar = () => {
                     <Box
                       key={item}
                       onMouseEnter={() => setMenuOpen(true)}
-                      onMouseLeave={() => setMenuOpen(false)}
-                      sx={{
-                        position: "relative",
-                        height: "fit-content", // Prevent box from expanding
-                      }}
+                      // onMouseLeave={() => setMenuOpen(false)}
+                      sx={{ position: "relative" }}
                     >
                       <Button
                         endIcon={<ArrowDropDownIcon />}
-                        onClick={() => setSelected(item)}
+                        onClick={() => {
+                          setSelected(item);
+                          navigate(navRoutes[item]);
+                        }}
                         sx={{
                           fontSize: "16px",
-                          fontWeight:"400px",
+                          fontWeight: "400",
                           textTransform: "none",
-                          color: "#fff",
+                          color: isScrolled ? "#0B3C7B" : "#fff",
                           borderRadius: "999px",
                           height: 40,
                           px: 3,
-                          letterSpacing: 0,
                           backgroundColor:
-                            selected === item ? "#0E4FA2" : "transparent",
+                            selected === item
+                              ? isScrolled
+                                ? "#E0E7FF"
+                                : "#0E4FA2"
+                              : "transparent",
                           "&:hover": {
                             backgroundColor:
                               selected === item
-                                ? "#0E4FA2"
-                                : "rgba(255,255,255,0.1)",
+                                ? isScrolled
+                                  ? "#CBD5FF"
+                                  : "#0E4FA2"
+                                : "rgba(0,0,0,0.05)",
                           },
                         }}
                       >
@@ -333,23 +375,31 @@ const NavBar = () => {
                   ) : (
                     <Button
                       key={item}
-                      onClick={() => setSelected(item)}
+                      onClick={() => {
+                        setSelected(item);
+                        navigate(navRoutes[item]);
+                      }}
                       sx={{
                         fontSize: "16px",
-                        fontWeight:"400",
+                        fontWeight: "400",
                         textTransform: "none",
-                        color: "#fff",
+                        color: isScrolled ? "#0B3C7B" : "#fff",
                         borderRadius: "999px",
                         height: 40,
-                        px: 2.55,
-                        letterSpacing: 0,
+                        px: 2.5,
                         backgroundColor:
-                          selected === item ? "#0E4FA2" : "transparent",
+                          selected === item
+                            ? isScrolled
+                              ? "#E0E7FF"
+                              : "#0E4FA2"
+                            : "transparent",
                         "&:hover": {
                           backgroundColor:
                             selected === item
-                              ? "#0E4FA2"
-                              : "rgba(255,255,255,0.1)",
+                              ? isScrolled
+                                ? "#CBD5FF"
+                                : "#0E4FA2"
+                              : "rgba(0,0,0,0.05)",
                         },
                       }}
                     >
@@ -366,9 +416,9 @@ const NavBar = () => {
                     width: "139px",
                     textTransform: "none",
                     fontSize: "16px",
-                    fontWeight:"400",
+                    fontWeight: 400,
+                    ml: 4,
                     "&:hover": { backgroundColor: "#002366" },
-                    ml:4
                   }}
                 >
                   Get a Quote
@@ -379,21 +429,37 @@ const NavBar = () => {
         </Toolbar>
       </AppBar>
 
-      {/* Mega Menu - positioned absolutely to not affect navbar height */}
       {!isMobile && menuOpen && (
         <Paper
           elevation={3}
           sx={{
             position: "fixed",
-            width: "84.3vw",
-            left: "8vw",
-            top: "84px", // Position directly below navbar
-            height: 400,
+            width: {
+              xs: "100vw", // Full width on mobile
+              sm: "95vw",
+              md: "90vw",
+              lg: "84.3vw", // Consistent width on large screens
+            },
+            left: {
+              xs: 0,
+              sm: "2.5vw",
+              md: "5vw",
+              lg: "8vw", // Aligned same as nav button
+            },
+            top: "84px",
+            height: {
+              xs: "auto",
+              md: 380,
+              lg: 386, // Fixed height on large screens
+            },
+            overflowY: "auto",
             borderRadius: 3,
-            padding: 3,
+            padding: { xs: 2, sm: 3, md: 4 },
             zIndex: 1200,
-            overflow: "hidden",
-            backgroundColor: "white",
+            backgroundColor: "#fff",
+            boxSizing: "border-box",
+            scrollbarWidth: "none",
+            "&::-webkit-scrollbar": { display: "none" },
           }}
           onMouseEnter={() => setMenuOpen(true)}
           onMouseLeave={() => setMenuOpen(false)}
@@ -404,11 +470,12 @@ const NavBar = () => {
                 <Typography
                   variant="overline"
                   sx={{
-                    fontWeight: 500,
-                    color: "grey.600",
+                    fontWeight: 400,
+                    color: "#898989",
                     mb: 1,
+                    my: 1,
                     display: "block",
-                    fontSize: "14px",
+                    fontSize: "12px",
                     letterSpacing: "0.1em",
                   }}
                 >
@@ -420,27 +487,46 @@ const NavBar = () => {
                     sx={{
                       display: "flex",
                       gap: 2,
-                      mb: 2,
+                      mb: 3,
                       borderRadius: 2,
-                      p: 2,
                       alignItems: "flex-start",
                       cursor: "pointer",
                       transition: "0.3s",
-                      "&:hover": { boxShadow: "0 4px 20px rgba(0,0,0,0.1)" },
+                      "&:hover": {
+                        boxShadow: "0 4px 12px rgba(0,0,0,0.06)",
+                        transform: "translateY(-2px)",
+                      },
                     }}
                   >
-                    <Box sx={{ height: 40, width: 40 }}>
+                    <Box
+                      sx={{
+                        height: 40,
+                        width: 40,
+                        borderRadius: "8px",
+                        backgroundColor: "#F5F6FA",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexShrink: 0,
+                      }}
+                    >
                       <img
                         src={item.icon}
                         alt={item.label}
-                        style={{ height: "100%", width: "100%" }}
+                        style={{
+                          height: 24,
+                          width: 24,
+                          objectFit: "contain",
+                        }}
                       />
                     </Box>
+
                     <Box>
                       <Typography
                         sx={{
                           fontWeight: 500,
-                          fontSize: 14,
+                          fontSize: "14px",
+                          lineHeight: 1.4,
                           color: "#0B3C7B",
                         }}
                       >
@@ -448,8 +534,11 @@ const NavBar = () => {
                       </Typography>
                       <Typography
                         sx={{
-                          fontSize: 14,
+                          fontWeight: 400,
+                          fontSize: "14px",
                           color: "#767676",
+                          mt: 0.5,
+                          lineHeight: 1.6,
                         }}
                       >
                         {item.desc}

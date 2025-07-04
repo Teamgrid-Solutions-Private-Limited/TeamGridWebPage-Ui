@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Box, Typography, Button } from "@mui/material";
+import { AnimatePresence, motion } from "framer-motion";
 
-// Images (replace with actual paths)
+// Images
 import ecommerceImageBottom from "../assets/Ecommerce.png";
 import ecommerceImageTop from "../assets/yhui.png";
 import webTop from "../assets/web1.jpg";
@@ -14,7 +15,6 @@ import dedicatedTop from "../assets/team1.jpg";
 import dedicatedBottom from "../assets/team2.jpg";
 import aiTop from "../assets/ai1.jpg";
 import aiBottom from "../assets/ai2.jpg";
-import { AnimatePresence, motion } from "framer-motion";
 
 const tabItems = [
   {
@@ -69,15 +69,14 @@ const tabItems = [
 
 const WhatWeDo = () => {
   const [activeTab, setActiveTab] = useState(0);
-  const totalTabs = tabItems.length;
   const activeContent = tabItems[activeTab];
 
   const handlePrev = () => {
-    setActiveTab((prev) => (prev === 0 ? totalTabs - 1 : prev - 1));
+    setActiveTab((prev) => (prev === 0 ? tabItems.length - 1 : prev - 1));
   };
 
   const handleNext = () => {
-    setActiveTab((prev) => (prev === totalTabs - 1 ? 0 : prev + 1));
+    setActiveTab((prev) => (prev === tabItems.length - 1 ? 0 : prev + 1));
   };
 
   return (
@@ -87,7 +86,7 @@ const WhatWeDo = () => {
         sx={{
           maxWidth: "1440px",
           px: { xs: 2, md: 3 },
-          ml: { xs: 0, sm: 2, md: 8, lg: 12, xl: "100px" },
+          ml: { xs: 0, sm: 2, md: 8, lg: 6, xl: "100px" },
           mb: { xs: 2, md: 4 },
         }}
       >
@@ -131,21 +130,17 @@ const WhatWeDo = () => {
           alignItems: { xs: "flex-start", md: "center" },
           justifyContent: "space-between",
           bgcolor: "#E1ECF9",
-          minHeight: { xs: "auto", md: "585px" },
-          height: { xs: "auto", md: "585px" },
-          width: {
-            xs: "calc(100% - 16px)",
-            sm: "95%",
-            md: "95%",
-            lg: "1300px",
-          },
-          maxWidth: "100%",
+          width: "100%",
+          maxWidth: { xs: "100%", md:"100%",lg: "1300px" , xl:"1300px"}, // ✅ lock width on large devices
+          height: { xs: "auto", lg: "585px" }, // ✅ lock height on large devices
+          // mx: "auto",
           borderRadius: { xs: 2, md: 4 },
           px: { xs: 2, sm: 3, md: 6 },
           pt: { xs: 3, sm: 4, md: 8 },
           pb: { xs: "80px", sm: "100px", md: "120px" },
           mt: { xs: 2, md: 4 },
-          ml: { xs: 1, sm: 2, md: 8, lg: 16, xl: "120px" },
+          ml: { sm: "5px", md: "10px", lg: "75px",xl:"120px" },
+
           overflow: "hidden",
         }}
       >
@@ -159,12 +154,10 @@ const WhatWeDo = () => {
           }}
         >
           <Typography
-            variant="h5"
-            fontWeight="bold"
+            fontWeight="500"
             gutterBottom
             sx={{
               fontSize: { xs: "24px", sm: "28px", md: "36px", lg: "40px" },
-              fontWeight: "500",
               lineHeight: { xs: 1.2, md: 1.3 },
               mb: { xs: 1, md: 2 },
             }}
@@ -172,8 +165,6 @@ const WhatWeDo = () => {
             {activeContent.title}
           </Typography>
           <Typography
-            variant="subtitle1"
-            gutterBottom
             sx={{
               color: "black",
               fontSize: { xs: "16px", sm: "18px", md: "16px" },
@@ -212,7 +203,6 @@ const WhatWeDo = () => {
             Explore Our Portfolio →
           </Button>
 
-          {/* Navigation Arrows */}
           <Box
             sx={{
               display: "flex",
@@ -241,7 +231,6 @@ const WhatWeDo = () => {
                 borderRadius: "50%",
                 bgcolor: "#FFFFFFA6",
                 boxShadow: 1,
-                fontFamily: "PayPalOpen, Sans-serif",
                 fontSize: { xs: "18px", md: "20px" },
               }}
             >
@@ -250,15 +239,15 @@ const WhatWeDo = () => {
           </Box>
         </Box>
 
-        {/* Right Dynamic Images */}
+        {/* Right Image for Desktop */}
         <Box
           sx={{
             flex: { xs: "none", md: 1 },
             position: "relative",
             minHeight: { xs: 250, sm: 300, md: 420 },
-            height: { xs: 250, sm: 300, md: 420 },
-            width: { xs: "100%", md: "auto" },
+            width: "100%",
             mt: { xs: 2, md: 0 },
+            display: { xs: "none", md: "block" },
           }}
         >
           <AnimatePresence mode="wait">
@@ -307,6 +296,22 @@ const WhatWeDo = () => {
           </AnimatePresence>
         </Box>
 
+        {/* Mobile Single Image */}
+        <Box sx={{ display: { xs: "block", md: "none" }, mt: 2 }}>
+          <Box
+            component="img"
+            src={activeContent.bottomImage}
+            alt="Mobile View"
+            sx={{
+              width: "100%",
+              height: "auto",
+              borderRadius: "12px",
+              objectFit: "cover",
+              boxShadow: 3,
+            }}
+          />
+        </Box>
+
         {/* Bottom Tabs */}
         <Box
           sx={{
@@ -315,9 +320,8 @@ const WhatWeDo = () => {
             left: "50%",
             transform: "translateX(-50%)",
             width: { xs: "calc(100% - 16px)", sm: "95%" },
-            maxWidth: "100%",
-            backgroundColor: "#FFFFFFBF", // Corrected background color
-            backdropFilter: "blur(156.9px)", // Fixed syntax (was broken earlier)
+            backgroundColor: "#FFFFFFBF",
+            backdropFilter: "blur(156.9px)",
             borderRadius: { xs: "8px", md: "12px" },
             boxShadow: "0 8px 24px rgba(0,0,0,0.1)",
             display: "flex",
@@ -327,8 +331,8 @@ const WhatWeDo = () => {
             p: { xs: 0.5, md: 1 },
             px: { xs: 1, sm: 2, md: 3 },
             gap: { xs: "5px", md: "10px" },
-            scrollbarWidth: "none", // Firefox
-            "&::-webkit-scrollbar": { display: "none" }, // Chrome/Safari
+            scrollbarWidth: "none",
+            "&::-webkit-scrollbar": { display: "none" },
           }}
         >
           {tabItems.map((item, index) => {
@@ -347,14 +351,12 @@ const WhatWeDo = () => {
                   color: isActive ? "#ffffff" : "#000000",
                   borderRadius: { xs: "6px", md: "10px" },
                   flexShrink: 0,
-                  transition: "all 0.3s ease-in-out",
                   minWidth: { xs: "auto", sm: "120px" },
                 }}
               >
                 <Typography
-                  fontWeight="bold"
+                  fontWeight={isActive ? "600" : "500"}
                   sx={{
-                    fontWeight: isActive ? "600" : "500",
                     fontSize: { xs: "12px", sm: "14px", md: "16px" },
                   }}
                 >
@@ -362,7 +364,7 @@ const WhatWeDo = () => {
                 </Typography>
                 <Typography
                   sx={{
-                    color: isActive ? "#ffffff" : " #738499",
+                    color: isActive ? "#ffffff" : "#738499",
                     fontSize: { xs: "10px", sm: "11px", md: "13px" },
                     display: { xs: "none", sm: "block" },
                   }}

@@ -23,11 +23,11 @@ const Footer = () => {
           justifyContent: "space-between",
           rowGap: 4,
           mb: 4,
-          ml: { xs: 2, sm: 5, md: 10, lg: 15, xl: "60px" }, // Align to logo margin
+          ml: { xs: 0, sm: 0, md: 0, lg: 1, xl: "60px" }, // Align to logo margin
         }}
       >
         {/* Blogs */}
-        <Box sx={{ minWidth: 250, flex: 1, mr: 4 }}>
+        <Box sx={{ minWidth: 250, flex: 1, mr: 8 }}>
           <Typography sx={{ fontWeight: "500", mb: 2, fontSize: "20px" }}>
             Blogs
           </Typography>
@@ -145,7 +145,7 @@ const Footer = () => {
           pt: 4,
           pb: 4,
           rowGap: 4,
-          ml: { xs: 2, sm: 5, md: 10, lg: 15, xl: "70px" }, // Align to logo margin
+          ml: { xs: 0, sm: 0, md: 0, lg: 1, xl: "70px" }, // Align to logo margin
         }}
       >
         {/* Contact */}
@@ -201,7 +201,7 @@ const Footer = () => {
             }}
           >
             Stay updated with expert insights, smart development tips, and
-            exclusive Teamgrid news—delivered straight to your inbox.
+            exclusive <br/>Teamgrid news—delivered straight to your inbox.
           </Typography>
 
           {/* Input group with send icon outside */}
@@ -260,7 +260,7 @@ const Footer = () => {
         sx={{
           borderTop: "1px solid #2E4B7D",
           pt: 2,
-          ml: { xs: 2, sm: 5, md: 10, lg: 15, xl: "70px" },
+          ml: { xs: 0, sm: 0, md: 0, lg: 1, xl: "70px" },
         }}
       >
         <Typography

@@ -29,7 +29,7 @@ const LetsBuildTogether = () => {
           flexDirection: "column",
           gap: "10px",
           color: "#fff",
-          ml: { xs: 0, md: 7 },
+          ml: { xs: 0, sm:0 , md:0 , lg:1 , xl:7},
         }}
       >
         <Typography

@@ -77,8 +77,21 @@ const Capabilities = () => {
       <Box
         sx={{
           maxWidth: "100%",
-          mx: "2",
-          px: { xs: 0, sm: 2, md: 4, lg: 13 },
+          mx: 2,
+          px: {
+            xs: 2, // Smallest padding on mobile
+            sm: 4,
+            md: 8,
+            lg: 7,
+            xl: 10, // More padding on wide screens
+          },
+          ml: {
+            xs: 0,
+            sm: 0,
+            md: 0,
+            lg: "0px", // Applies for 1200px+
+            xl: "30px", // Applies for 1536px+
+          },
         }}
       >
         <Box
@@ -152,7 +165,7 @@ const Capabilities = () => {
                   width: { xs: "100%", sm: "84px", md: "400px" }, // xs full width
                   bgcolor: "#0B3C7B",
                   borderRadius: { xs: "16px", sm: "24px" },
-                  p: { xs: 2, sm: "20px" , lg: "15px" },
+                  p: { xs: 2, sm: "20px", lg: "15px" },
                   display: "flex",
                   flexDirection: { xs: "column", sm: "row" }, // change this line
                   alignItems: { xs: "flex-start", sm: "center" }, // adjust for column layout
