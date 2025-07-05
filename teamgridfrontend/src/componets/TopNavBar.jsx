@@ -147,7 +147,7 @@ const TopNavBar = () => {
                                             sx={{
                                                 position: "absolute",
                                                 top: 58,
-                                                left: "65%",
+                                                left: "53%",
                                                 transform: "translateX(-46.5%)",
                                                 p: 3,
                                                 backgroundColor: "white",

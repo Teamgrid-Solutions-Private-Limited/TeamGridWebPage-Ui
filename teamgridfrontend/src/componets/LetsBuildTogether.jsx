@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography, Button } from "@mui/material";
-import build from "../assets/Rectangle 25.png";
+import build from "../assets/Rectangle 25.svg";
 
 const LetsBuildTogether = () => {
   return (

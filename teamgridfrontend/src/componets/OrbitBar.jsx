@@ -22,9 +22,9 @@ import postManIcon from "../assets/Group 3 (1).png";
 import figmasIcon from "../assets/figma-icon (1).png";
 import reactSIcon from "../assets/react.svg"
 import arrowIcon from "../assets/ci_arrow-right-lg.png"
-import leftLogo from "../assets/Vector (2).png"
-import rightLogo from "../assets/Vector (3).png"
-import topLogo from "../assets/Vector (4).png"
+import leftLogo from "../assets/Vector.svg"
+import rightLogo from "../assets/Vector (2).svg"
+import topLogo from "../assets/Vector (1).svg"
 
 
 const orbitLayers = [
@@ -65,16 +65,27 @@ const OrbitBar = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [selectedIcon, setSelectedIcon] = useState(null); // Holds clicked icon
   const [isZooming, setIsZooming] = useState(false); // Controls zoom animation
-  // For left logo animation
+  // For logo animations
   const [leftLogoRect, setLeftLogoRect] = useState(null);
+  const [rightTopLogoRect, setRightTopLogoRect] = useState(null);
   const [zoomed, setZoomed] = useState(false);
   const leftLogoRef = useRef();
+  const rightTopLogoRef = useRef();
 
   const handleIconClick = (icon) => {
-    // If left logo is visible, get its position
+    // Get positions of all logos
     if (leftLogoRef.current) {
       const rect = leftLogoRef.current.getBoundingClientRect();
       setLeftLogoRect({
+        top: rect.top + rect.height / 2,
+        left: rect.left + rect.width / 2,
+        width: rect.width,
+        height: rect.height,
+      });
+    }
+    if (rightTopLogoRef.current) {
+      const rect = rightTopLogoRef.current.getBoundingClientRect();
+      setRightTopLogoRect({
         top: rect.top + rect.height / 2,
         left: rect.left + rect.width / 2,
         width: rect.width,
@@ -87,18 +98,19 @@ const OrbitBar = () => {
       setSelectedIcon(icon);
       setIsZooming(false);
       setLeftLogoRect(null);
+      setRightTopLogoRect(null);
       setZoomed(false);
-    }, 1000); // Match this with your CSS transition duration
+    }, 700); // Match this with your CSS transition duration
   };
 
   useEffect(() => {
-    if (isZooming && leftLogoRect) {
+    if (isZooming && (leftLogoRect || rightTopLogoRect)) {
       // Trigger the zoomed transform after mount
       setTimeout(() => setZoomed(true), 10);
     } else {
       setZoomed(false);
     }
-  }, [isZooming, leftLogoRect]);
+  }, [isZooming, leftLogoRect, rightTopLogoRect]);
 
   const zoomedImages = {
     [bootstrapIcon]: btstrapIcon, // Changed from figmaIcon to btstrapIcon
@@ -142,7 +154,7 @@ const OrbitBar = () => {
         mb: { xs: 2, sm: 2, md: 4, lg: 4 }
       }}
     >
-      {/* Render zoomed left logo above everything when zooming */}
+      {/* Render zoomed logos above everything when zooming */}
       {isZooming && leftLogoRect && (
         <Box
           component="img"
@@ -155,18 +167,69 @@ const OrbitBar = () => {
             width: leftLogoRect.width,
             height: leftLogoRect.height,
             zIndex: 3000,
-            transition: 'all 1s cubic-bezier(0.25, 1, 0.5, 1)',
+            transition: 'all .7s cubic-bezier(0.35, 0, 0.5, 1)',
             transform: 'translate(-50%, -50%) scale(1)',
             pointerEvents: 'none',
             ...(zoomed && {
-              top: { xs: '100%', sm: '90%', md: '75%', lg: '74%' },
-              left: { xs: '70%', sm: '60%', md: '40%', lg: '98%' },
-              width: { xs: '100vw', sm: '100vw', md: '70vw', lg: 450 },
+              top: { xs: '50%', sm: '75%', md: '75%', lg: '74%' },
+              left: { xs: '70%', sm: '79%', md: '90%', lg: '98%' },
+              width: { xs: '100vw', sm: '100vw', md: '70vw', lg: 580 },
               height: { xs: '100vh', sm: '70vh', md: '75vh', lg: 700 },
               transform: 'translate(-50%, -50%) scale(1)',
             }),
           }}
         />
+      )}
+      
+      {/* Render zoomed right-top logo container */}
+      {isZooming && rightTopLogoRect && (
+        <Box
+          sx={{
+            position: 'fixed',
+            top: rightTopLogoRect.top,
+            left: rightTopLogoRect.left,
+            width: rightTopLogoRect.width,
+            height: rightTopLogoRect.height,
+            zIndex: 3001,
+            transition: 'all .7s cubic-bezier(0.35, 0, 0.5, 1)',
+            transform: 'translate(21%, -80%) scale(1)',
+            pointerEvents: 'none',
+            ...(zoomed && {
+              top: { xs: '50%', sm: '75%', md: '75%', lg: '30%' },
+              left: { xs: '70%', sm: '79%', md: '90%', lg: '100%' },
+              width: { xs: '100vw', sm: '100vw', md: '70vw', lg: 280 },
+              height: { xs: '100vh', sm: '70vh', md: '75vh', lg: 200 },
+              transform: 'translate(-50%, -50%) scale(1)',
+            }),
+          }}
+        >
+          <Box
+            component="img"
+            src={rightLogo}
+            alt="Right Logo"
+            sx={{
+              position: 'absolute',
+              width: { xs: '20px', sm: '30px', md: '33.12px', lg: '53.12px' },
+              height: { xs: '30px', sm: '42px', md: '54.1px', lg: '54.1px' },
+              top: { xs: '13px', md: '35px' },
+              right: { xs: '30px', sm: '34px', md: '73.31px' },
+              objectFit: 'contain',
+            }}
+          />
+          <Box
+            component="img"
+            src={topLogo}
+            alt="Top Logo"
+            sx={{
+              position: 'absolute',
+              width: { xs: '8px', sm: '20px', md: '15.94px', lg: '23.94px' },
+              height: { xs: '11px', sm: '18px', md: '24.29px' },
+              top: { xs: '17px', sm: '19px', md: '40px', lg: '35px' },
+              right: { xs: '30px', sm: '33px', md: '73.31px' },
+              objectFit: 'contain',
+            }}
+          />
+        </Box>
       )}
       {/* Content Container */}
       <Box
@@ -321,7 +384,7 @@ const OrbitBar = () => {
             width: { xs: 300, sm: 400, md: 550 },
             height: { xs: 300, sm: 400, md: 550 },
             top: "50%",
-            left: { sm: "72%", md: "70.6%", lg: "69.7%" },
+            left: { sm: "65%", md: "63%", lg: "69.7%" },
             transform: "translateY(-50%)",
             borderRadius: "55%",
           }}
@@ -348,7 +411,7 @@ const OrbitBar = () => {
             />
           ))}
           {/* Enhanced Blue Ripple Effect */}
-          {[0.3, 0.6, 0.9].map((scale, i) => (
+          {/* {[0.2, 0.3, 0.4].map((scale, i) => (
             <Box
               key={`ripple-${i}`}
               sx={{
@@ -361,7 +424,7 @@ const OrbitBar = () => {
                 borderRadius: "50%",
                 border: `1px solid rgba(0, 112, 255, ${0.7 - (i * 0.2)})`,
                 boxShadow: `0 0 15px rgba(0, 112, 255, ${0.5 - (i * 0.15)})`,
-                animation: `rippleEffect 3s ${i * 0.4}s ease-out infinite`,
+                animation: `rippleEffect 1s ${i * 1}s ease-out infinite`,
                 animationPlayState: isPaused ? 'paused' : 'running',
                 opacity: 0,
                 zIndex: 1,
@@ -369,12 +432,10 @@ const OrbitBar = () => {
                 pointerEvents: 'none',
               }}
             />
-          ))}
-
-
+          ))} */}
 
           {/* Ripple effect outside the center icon */}
-          <Box
+          {/* <Box
             sx={{
               position: "absolute",
               top: "50%",
@@ -387,7 +448,7 @@ const OrbitBar = () => {
               zIndex: 1,
               pointerEvents: "none",
             }}
-          />
+          /> */}
 
           {/* Backdrop when zoomed */}
           {/* {selectedIcon && (
@@ -429,9 +490,10 @@ const OrbitBar = () => {
               alignItems: "center",
               justifyContent: "center",
               zIndex: selectedIcon ? 1200 : 2,
-              transition: "all 0.5s cubic-bezier(0.25, 1, 0.5, 1)",
+                transition: selectedIcon?"all 0.7s ease":"all .7s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+
               overflow: "hidden",
-              boxShadow: selectedIcon ? "0 20px 50px rgba(0, 0, 0, 0.3)" : "none",
+              // boxShadow: selectedIcon ? "0 20px 50px rgba(0, 0, 0, 0.3)" : "none",
               cursor: selectedIcon ? "default" : "pointer",
               p: { xs: 2, sm: 2.5, md: 3, lg: 4 },
             }}
@@ -452,59 +514,57 @@ const OrbitBar = () => {
                       height: { xs: '70px', sm: '110px', md: '103.16px', lg: '143.16px' },
                       top: { xs: '18px', sm: "10px", md: '55px', lg: "55px" },
                       objectFit: 'contain',
-                      transform: 'scale(1)',
-                      transition: "transform 1s ease-in-out, opacity 3s",
+                      // transform: 'scale(1)',
+                      // transition: "transform 1s ease-in-out, opacity 3s",
                       zIndex: 5,
                       opacity: 1, // keep visible when not zooming
                     }}
                   />
                 )}
 
-                {/* Right Logo - Enhanced Animation */}
+                {/* Right-Top Logo Container */}
                 <Box
-                  component="img"
-                  src={rightLogo}
-                  alt="Right Logo"
+                  ref={rightTopLogoRef}
                   sx={{
                     position: 'absolute',
-                    width: { xs: '20px', sm: '30px', md: '33.12px', lg: '53.12px' },
-                    height: { xs: '30px', sm: '42px', md: '54.1px', lg: '54.1px' },
                     top: { xs: '13px', md: '35px' },
                     right: { xs: '30px', sm: '34px', md: '73.31px' },
-                    objectFit: 'contain',
-                    transform: isZooming ? {
-                      xs: 'scale(8) translateX(-15px) translateY(15px)',
-                      sm: 'scale(10) translateX(-20px) translateY(20px)',
-                      md: 'scale(12) translateX(-25px) translateY(25px)'
-                    } : 'scale(1)',
-                    opacity: isZooming ? 0 : 1,
-                    transition: 'all 0.5s cubic-bezier(0.25, 1, 0.5, 1)',
+                    width: { xs: '50px', sm: '60px', md: '80px', lg: '100px' },
+                    height: { xs: '60px', sm: '70px', md: '90px', lg: '110px' },
                     zIndex: 3,
+                    opacity: isZooming ? 0 : 1,
                   }}
-                />
+                >
+                  {/* Right Logo */}
+                  <Box
+                    component="img"
+                    src={rightLogo}
+                    alt="Right Logo"
+                    sx={{
+                      position: 'absolute',
+                      width: { xs: '20px', sm: '30px', md: '33.12px', lg: '53.12px' },
+                      height: { xs: '30px', sm: '42px', md: '54.1px', lg: '54.1px' },
+                      top: 0,
+                      right: 0,
+                      objectFit: 'contain',
+                    }}
+                  />
 
-                {/* Top Logo - Enhanced Animation */}
-                <Box
-                  component="img"
-                  src={topLogo}
-                  alt="Top Logo"
-                  sx={{
-                    position: 'absolute',
-                    width: { xs: '8px', sm: '20px', md: '15.94px', lg: '23.94px' },
-                    height: { xs: '11px', sm: '18px', md: '24.29px' },
-                    top: { xs: '17px', sm: '19px', md: '40px', lg: '35px' },
-                    right: { xs: '30px', sm: '33px', md: '73.31px' },
-                    objectFit: 'contain',
-                    transform: isZooming ? {
-                      xs: 'scale(8) translateX(-15px) translateY(-15px)',
-                      sm: 'scale(10) translateX(-20px) translateY(-20px)',
-                      md: 'scale(12) translateX(-25px) translateY(-25px)'
-                    } : 'scale(1)',
-                    opacity: isZooming ? 0 : 1,
-                    transition: 'all 0.5s cubic-bezier(0.25, 1, 0.5, 1)',
-                    zIndex: 3,
-                  }}
-                />
+                  {/* Top Logo */}
+                  <Box
+                    component="img"
+                    src={topLogo}
+                    alt="Top Logo"
+                    sx={{
+                      position: 'absolute',
+                      width: { xs: '10px', sm: '15px', md: '15.94px', lg: '23.94px' },
+                      height: { xs: '11px', sm: '18px', md: '24.29px' },
+                      top: { xs: '4px', sm: '5px', md: '6px', lg: '0px' },
+                      right: { xs: '0px', sm: '0px', md: '0px', lg: '0px' },
+                      objectFit: 'contain',
+                    }}
+                  />
+                </Box>
               </>
             )}
 
@@ -527,7 +587,7 @@ const OrbitBar = () => {
                     cursor: "pointer",
                     zIndex: 1001,
                     // px:4,
-                    transition: "transform 0.2s ease",
+                    // transition: "transform 0.2s ease",
                     '&:hover': {
                       transform: 'scale(1.1)',
                     }
@@ -545,7 +605,7 @@ const OrbitBar = () => {
                     flexDirection: "column",
                     padding: { xs: "16px", sm: "20px", md: "24px" },
                     color: "#072449",
-                    animation: "fadeIn 0.5s ease-out",
+                    // animation: "fadeIn 0.5s ease-out",
                   }}
                 >
                   {/* Icon Title */}
@@ -636,7 +696,7 @@ const OrbitBar = () => {
                       backgroundColor: '#05408E',
                       color: '#fff',
                       borderRadius: '39px',
-                      ml: { xs: 1, sm: 0, md: 7 },
+                      // ml: { xs: 1, sm: 0, md: 7 },
                     }}
                   >
                     Explore Services

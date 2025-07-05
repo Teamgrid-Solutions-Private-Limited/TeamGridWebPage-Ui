@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography, Button } from "@mui/material";
-import ecommerceImageBottom from "../assets/Funiro Landing Page 3.png";
-import ecommerceImageTop from "../assets/Funiro Landing Page 4.png";
+import ecommerceImageBottom from "../assets/Funiro Landing Page 3.svg";
+import ecommerceImageTop from "../assets/Funiro Landing Page 4.svg";
 import { useState } from "react";
 import rightArrowImg from "../assets/ci_arrow-right-lg (1).png"
 import leftArrowImg from "../assets/ci_arrow-right-lg (2).png"

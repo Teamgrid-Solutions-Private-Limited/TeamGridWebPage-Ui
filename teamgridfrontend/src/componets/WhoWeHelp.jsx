@@ -1,9 +1,9 @@
 import React from "react";
 import { Box, Typography, Button } from "@mui/material";
-import womanLaptop from '../assets/Rectangle 41.png';
-import teamDiscussion from '../assets/Rectangle 40.png';
-import groupWork from '../assets/Rectangle 45.png';
-import manWorking from '../assets/Rectangle 46.png';
+import womanLaptop from '../assets/Rectangle 41.svg';
+import teamDiscussion from '../assets/Rectangle 40.svg';
+import groupWork from '../assets/Rectangle 45.svg';
+import manWorking from '../assets/Rectangle 46.svg';
 
 const imageData = [
     { src: womanLaptop, alt: "Woman with laptop", bg: "#F1F8FF" },

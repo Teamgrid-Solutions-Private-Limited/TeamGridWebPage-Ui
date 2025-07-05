@@ -1,14 +1,14 @@
 import React from "react";
 import { Box, Grid, Typography, Button, Paper } from "@mui/material";
-import reactImg from "../assets/Group 16.png";
-import node from "../assets/Group 20.png";
-import postman from "../assets/Group 24.png";
-import wordpress from "../assets/Group 17.png";
-import wocom from "../assets/Group 18.png";
-import PostgreSQL from "../assets/Group 21 (1).png";
-import mongodb from "../assets/Group 22.png";
-import figma from "../assets/Group 23.png";
-import shopify from "../assets/Group 19.png";
+import reactImg from "../assets/Group 16.svg";
+import node from "../assets/Group 20.svg";
+import postman from "../assets/Group 24.svg";
+import wordpress from "../assets/Group 17.svg";
+import wocom from "../assets/Group 18.svg";
+import PostgreSQL from "../assets/Group 21.svg";
+import mongodb from "../assets/Group 22.svg";
+import figma from "../assets/Group 23.svg";
+import shopify from "../assets/Group 19.svg";
 
 const capabilities = [
   {
