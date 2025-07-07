@@ -546,7 +546,7 @@ const OrbitBar = () => {
                     color: "#FFFFFF",
                     fontWeight: 400,
                     ml: { xs: 2.5, sm: 0, md: 3, lg: 3 },
-                    width: { xs: "75%", sm: "55%", md: "331px", lg: "65%" },
+                    width: { xs: "80%", sm: "55%", md: "331px", lg: "65%" },
                     height: "auto",
                     mb: 3,
                     zIndex: 900
@@ -579,7 +579,7 @@ const OrbitBar = () => {
                     backgroundColor: '#05408E',
                     color: '#fff',
                     borderRadius: '39px',
-                    ml: { xs: 1, sm: 0, md: 3, lg: 3 },
+                    ml: { xs: 3, sm: 0, md: 3, lg: 3 },
                   }}
                 >
                   Explore Services

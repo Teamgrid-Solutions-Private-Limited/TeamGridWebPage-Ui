@@ -112,9 +112,17 @@ const TopNavBar = () => {
                                 aria-label="open drawer"
                                 edge="start"
                                 onClick={handleDrawerToggle}
-                                sx={{ display: { md: "none" } }}
+                                sx={{ 
+                                    display: { md: "none" },
+                                    backgroundColor: scrolled ? '#05408E' : 'transparent',
+                                    color: scrolled ? '#fff' : 'inherit',
+                                    transition: 'background-color 0.3s',
+                                    '&:hover': {
+                                        backgroundColor: scrolled ? '#0E4FA2' : 'rgba(0,0,0,0.08)',
+                                    },
+                                }}
                             >
-                                <MenuIcon />
+                                <MenuIcon sx={{ color: scrolled ? '#fff' : 'inherit' }} />
                             </IconButton>
 
                             {/* Navigation - Desktop */}
