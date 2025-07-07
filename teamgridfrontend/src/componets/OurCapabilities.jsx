@@ -151,7 +151,7 @@ console.log("Height: " + window.innerHeight + "px");
         <Grid
           container
           rowSpacing={{ xs: 3, sm: 3 }}
-          columnSpacing={{ xs: 2, sm: 5, md: 8 ,lg:7,xl:11}}
+          columnSpacing={{ xs: 2, sm: 5, md: 8 ,lg:7.5,xl:11}}
           // mx={{lg:1,xs:0}}
           pl={{md:1,lg:1}}
           sx={{

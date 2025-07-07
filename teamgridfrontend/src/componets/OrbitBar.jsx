@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography, Button, useTheme, useMediaQuery } from "@mui/material";
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 // Orbit icons
 import orangeIcon from "../assets/Frame 157.png";
 import nodeIcon from "../assets/Frame 153.png";
@@ -11,6 +11,7 @@ import bootstrapIcon from "../assets/Frame 154.png";
 import materialUiIcon from "../assets/Frame 159.png";
 import reactIcon from "../assets/Frame 152.png";
 import postqgIcon from "../assets/Frame 158.png";
+import centerLogo from "../assets/Group 8.svg";
 import backIcon from "../assets/Variant3.png"
 import btstrapIcon from "../assets/Vector.png";
 import wordprsIcon from "../assets/Vector (1).png"
@@ -22,10 +23,6 @@ import postManIcon from "../assets/Group 3 (1).png";
 import figmasIcon from "../assets/figma-icon (1).png";
 import reactSIcon from "../assets/react.svg"
 import arrowIcon from "../assets/ci_arrow-right-lg.png"
-import leftLogo from "../assets/Vector.svg"
-import rightLogo from "../assets/Vector (2).svg"
-import topLogo from "../assets/Vector (1).svg"
-
 
 const orbitLayers = [
   // First orbit (innermost) - React and Node
@@ -63,54 +60,12 @@ const createDots = (radius) => {
 const OrbitBar = () => {
   // Add state to track whether hover is active on the center icon
   const [isPaused, setIsPaused] = useState(false);
+  const [centerLogoZoomed, setCenterLogoZoomed] = useState(false);
   const [selectedIcon, setSelectedIcon] = useState(null); // Holds clicked icon
-  const [isZooming, setIsZooming] = useState(false); // Controls zoom animation
-  // For logo animations
-  const [leftLogoRect, setLeftLogoRect] = useState(null);
-  const [rightTopLogoRect, setRightTopLogoRect] = useState(null);
-  const [zoomed, setZoomed] = useState(false);
-  const leftLogoRef = useRef();
-  const rightTopLogoRef = useRef();
+  const [showContent, setShowContent] = useState(false);
+  // Fade-in state for info panel
+  const [infoPanelVisible, setInfoPanelVisible] = useState(false);
 
-  const handleIconClick = (icon) => {
-    // Get positions of all logos
-    if (leftLogoRef.current) {
-      const rect = leftLogoRef.current.getBoundingClientRect();
-      setLeftLogoRect({
-        top: rect.top + rect.height / 2,
-        left: rect.left + rect.width / 2,
-        width: rect.width,
-        height: rect.height,
-      });
-    }
-    if (rightTopLogoRef.current) {
-      const rect = rightTopLogoRef.current.getBoundingClientRect();
-      setRightTopLogoRect({
-        top: rect.top + rect.height / 2,
-        left: rect.left + rect.width / 2,
-        width: rect.width,
-        height: rect.height,
-      });
-    }
-    setIsPaused(true); // Pause animations immediately
-    setIsZooming(true);
-    setTimeout(() => {
-      setSelectedIcon(icon);
-      setIsZooming(false);
-      setLeftLogoRect(null);
-      setRightTopLogoRect(null);
-      setZoomed(false);
-    }, 700); // Match this with your CSS transition duration
-  };
-
-  useEffect(() => {
-    if (isZooming && (leftLogoRect || rightTopLogoRect)) {
-      // Trigger the zoomed transform after mount
-      setTimeout(() => setZoomed(true), 10);
-    } else {
-      setZoomed(false);
-    }
-  }, [isZooming, leftLogoRect, rightTopLogoRect]);
 
   const zoomedImages = {
     [bootstrapIcon]: btstrapIcon, // Changed from figmaIcon to btstrapIcon
@@ -123,6 +78,52 @@ const OrbitBar = () => {
     [postqgIcon]: postQglIcon,
     [orangeIcon]: postManIcon,
   };
+
+  const handleOrbitIconClick = (icon) => {
+    setIsPaused(true);
+    setCenterLogoZoomed(true);
+    setSelectedIcon(icon);
+
+    // Delay showing content until after zoom animation
+    setTimeout(() => {
+      setShowContent(true);
+    }, 700); // Match this with your zoom animation duration
+  };
+
+  // Fade-in effect for info panel
+  React.useEffect(() => {
+    if (showContent) {
+      // Small delay to trigger fade-in after content is mounted
+      const timer = setTimeout(() => setInfoPanelVisible(true), 50);
+      return () => clearTimeout(timer);
+    } else {
+      setInfoPanelVisible(false);
+    }
+  }, [showContent]);
+
+  // Reset function
+  const resetCenterLogo = () => {
+    setShowContent(false);
+    setCenterLogoZoomed(false);
+    setIsPaused(false);
+    setTimeout(() => {
+      setSelectedIcon(null);
+    }, 300); // Small delay for smoother transition
+  };
+  // // Modify the icon click handler
+  // const handleOrbitIconClick = (icon) => {
+  //   setCenterLogoZoomed(true);
+  //   setIsPaused(true);
+  //   setTimeout(() => {
+  //     setSelectedIcon(icon);
+  //   }, 700); // match the zoom transition duration
+  // };
+
+  // // Add reset function
+  // const resetCenterLogo = () => {
+  //   setCenterLogoZoomed(false);
+  //   setIsPaused(false);
+  // };
   // Determine current screen size to sync the JS radius with the CSS orbit size
   const theme = useTheme();
   const isXs = useMediaQuery(theme.breakpoints.only("xs"));   // <600px
@@ -132,6 +133,16 @@ const OrbitBar = () => {
     if (isSm) return 400;   // matches sm wrapper width
     return 550;             // md and up wrapper width
   }, [isXs, isSm]);
+  const isMd = useMediaQuery(theme.breakpoints.only("md"));  // 900px–1199px
+  const isLg = useMediaQuery(theme.breakpoints.only("lg"));  // 1200px–1535px
+  const zoomTransform = React.useMemo(() => {
+    if (!centerLogoZoomed) return "scale(1) translateY(0)";
+    if (isXs) return "scale(45) translateY(16px) translateX(14px)";
+    if (isSm) return "scale(32) translateY(28px) translateX(22px)";
+    if (isMd) return "scale(30) translateY(47px) translateX(38px)";
+    if (isLg) return "scale(19) translateY(51px) translateX(41px)";
+    return "scale(19) translateY(51px) translateX(41px)"; // fallback for xl and above
+  }, [centerLogoZoomed, isXs, isSm, isMd, isLg]);
 
   return (
     <Box
@@ -154,83 +165,7 @@ const OrbitBar = () => {
         mb: { xs: 2, sm: 2, md: 4, lg: 4 }
       }}
     >
-      {/* Render zoomed logos above everything when zooming */}
-      {isZooming && leftLogoRect && (
-        <Box
-          component="img"
-          src={leftLogo}
-          alt="Left Logo Zooming"
-          sx={{
-            position: 'fixed',
-            top: leftLogoRect.top,
-            left: leftLogoRect.left,
-            width: leftLogoRect.width,
-            height: leftLogoRect.height,
-            zIndex: 3000,
-            transition: 'all .7s cubic-bezier(0.35, 0, 0.5, 1)',
-            transform: 'translate(-50%, -50%) scale(1)',
-            pointerEvents: 'none',
-            ...(zoomed && {
-              top: { xs: '50%', sm: '75%', md: '75%', lg: '74%' },
-              left: { xs: '70%', sm: '79%', md: '90%', lg: '98%' },
-              width: { xs: '100vw', sm: '100vw', md: '70vw', lg: 580 },
-              height: { xs: '100vh', sm: '70vh', md: '75vh', lg: 700 },
-              transform: 'translate(-50%, -50%) scale(1)',
-            }),
-          }}
-        />
-      )}
-      
-      {/* Render zoomed right-top logo container */}
-      {isZooming && rightTopLogoRect && (
-        <Box
-          sx={{
-            position: 'fixed',
-            top: rightTopLogoRect.top,
-            left: rightTopLogoRect.left,
-            width: rightTopLogoRect.width,
-            height: rightTopLogoRect.height,
-            zIndex: 3001,
-            transition: 'all .7s cubic-bezier(0.35, 0, 0.5, 1)',
-            transform: 'translate(21%, -80%) scale(1)',
-            pointerEvents: 'none',
-            ...(zoomed && {
-              top: { xs: '50%', sm: '75%', md: '75%', lg: '30%' },
-              left: { xs: '70%', sm: '79%', md: '90%', lg: '100%' },
-              width: { xs: '100vw', sm: '100vw', md: '70vw', lg: 280 },
-              height: { xs: '100vh', sm: '70vh', md: '75vh', lg: 200 },
-              transform: 'translate(-50%, -50%) scale(1)',
-            }),
-          }}
-        >
-          <Box
-            component="img"
-            src={rightLogo}
-            alt="Right Logo"
-            sx={{
-              position: 'absolute',
-              width: { xs: '20px', sm: '30px', md: '33.12px', lg: '53.12px' },
-              height: { xs: '30px', sm: '42px', md: '54.1px', lg: '54.1px' },
-              top: { xs: '13px', md: '35px' },
-              right: { xs: '30px', sm: '34px', md: '73.31px' },
-              objectFit: 'contain',
-            }}
-          />
-          <Box
-            component="img"
-            src={topLogo}
-            alt="Top Logo"
-            sx={{
-              position: 'absolute',
-              width: { xs: '8px', sm: '20px', md: '15.94px', lg: '23.94px' },
-              height: { xs: '11px', sm: '18px', md: '24.29px' },
-              top: { xs: '17px', sm: '19px', md: '40px', lg: '35px' },
-              right: { xs: '30px', sm: '33px', md: '73.31px' },
-              objectFit: 'contain',
-            }}
-          />
-        </Box>
-      )}
+
       {/* Content Container */}
       <Box
         sx={{
@@ -248,7 +183,11 @@ const OrbitBar = () => {
             position: "relative",
             maxWidth: { xs: '100%', md: 848 },
             minHeight: { xs: 'auto', md: 329 },
-            zIndex: selectedIcon ? "none" : 1,
+            // zIndex: 1,
+            zIndex: centerLogoZoomed ? 0 : 2,  // push behind zoomed image
+
+            transition: "opacity 0.5s ease", // optional smooth transition
+
             // Lower z-index than orbiting icons
             width: "100%",
             py: { xs: 4, md: 20 },
@@ -345,8 +284,8 @@ const OrbitBar = () => {
                 '&:hover': {
                   backgroundColor: "#0070FF"
                 },
-                pointerEvents: selectedIcon ? "none" : 'auto',
-                zIndex: selectedIcon ? 0 : 3
+                pointerEvents: 'auto',
+                zIndex: 3
               }}
             >
               Let's Talk
@@ -390,7 +329,8 @@ const OrbitBar = () => {
           }}
         >
           {/* Original Blue Concentric Circles */}
-          {[0.65, 0.8, 0.95].map((scale, i) => (
+          {/* Original Blue Concentric Circles - Updated with smaller ripple */}
+          {[0.5, 0.4, 0.3].map((scale, i) => (
             <Box
               key={`animated-ring-${i}`}
               sx={{
@@ -402,7 +342,7 @@ const OrbitBar = () => {
                 transform: "translate(-50%, -50%)",
                 borderRadius: "50%",
                 backgroundColor: i % 2 === 0 ? "#0B3161" : "#0A2B55",
-                animation: `rippleOrbitGrow 4s ${i * 0.8}s ease-out infinite`,
+                animation: `rippleOrbitGrow 3s ${i * 0.5}s ease-out infinite`, // Faster animation
                 animationPlayState: isPaused ? 'paused' : 'running',
                 opacity: 0,
                 zIndex: 1,
@@ -410,10 +350,9 @@ const OrbitBar = () => {
               }}
             />
           ))}
-          {/* Enhanced Blue Ripple Effect */}
-          {/* {[0.2, 0.3, 0.4].map((scale, i) => (
+          {/* {[0.7, 0.6, 0.5].map((scale, i) => (
             <Box
-              key={`ripple-${i}`}
+              key={`animated-ring-${i}`}
               sx={{
                 position: "absolute",
                 width: "0%",
@@ -422,293 +361,236 @@ const OrbitBar = () => {
                 left: "50%",
                 transform: "translate(-50%, -50%)",
                 borderRadius: "50%",
-                border: `1px solid rgba(0, 112, 255, ${0.7 - (i * 0.2)})`,
-                boxShadow: `0 0 15px rgba(0, 112, 255, ${0.5 - (i * 0.15)})`,
-                animation: `rippleEffect 1s ${i * 1}s ease-out infinite`,
+                backgroundColor: i % 2 === 0 ? "#0B3161" : "#0A2B55",
+                animation: `rippleOrbitGrow 4s ${i * 0.7}s ease-out infinite`,
                 animationPlayState: isPaused ? 'paused' : 'running',
                 opacity: 0,
                 zIndex: 1,
-                backgroundColor: "transparent",
                 pointerEvents: 'none',
               }}
             />
           ))} */}
 
-          {/* Ripple effect outside the center icon */}
-          {/* <Box
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              width: 50, // start small
-              height: 50,
-              borderRadius: "50%",
-              border: "2px solid rgba(0, 191, 255, 0.5)", // soft bluish border
-              transform: "translate(-50%, -50%)",
-              zIndex: 1,
-              pointerEvents: "none",
-            }}
-          /> */}
-
-          {/* Backdrop when zoomed */}
-          {/* {selectedIcon && (
-            <Box
-              sx={{
-                position: "fixed",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                // backgroundColor: "rgba(0, 0, 0, 0.5)",
-                zIndex: 999,
-                // backdropFilter: "blur(4px)",
-              }}
-              onClick={() => setSelectedIcon(null)}
-            />
-          )} */}
 
           {/* Static Center Logo */}
           <Box
             sx={{
-              position: selectedIcon ? "fixed" : "absolute",
-              top: selectedIcon
-                ? { xs: "100%", sm: "90%", md: "75%", lg: "74%" }
-                : { xs: "50%", sm: "50%", md: "50%", lg: "50%" },
-              left: selectedIcon
-                ? { xs: "70%", sm: "60%", md: "40%", lg: "48%" }
-                : "50%",
-              width: selectedIcon
-                ? { xs: "100vw", sm: "100vw", md: "70vw", lg: 450 }
-                : { xs: 100, sm: 130, md: 200, lg: "245px" },
-              height: selectedIcon
-                ? { xs: "100vh", sm: "70vh", md: "75vh", lg: 700 }
-                : { xs: 100, sm: 130, md: 200, lg: "245px" },
-              borderRadius: selectedIcon ? "55px" : "50%",
-              backgroundColor: selectedIcon ? "#4293FC" : "#0F4285",
+              position: "absolute",
+              top: { xs: "50%", sm: "50%", md: "50%", lg: "50%" },
+              left: "50%",
+              width: { xs: 90, sm: 130, md: 200, lg: "245px" },
+              height: { xs: 90, sm: 130, md: 200, lg: "245px" },
+              borderRadius: "50%",
+              backgroundColor: "#0F4285",
+              // boxShadow: centerLogoZoomed ? 8 : undefined,
               transform: "translate(-50%, -50%)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               zIndex: selectedIcon ? 1200 : 2,
-                transition: selectedIcon?"all 0.7s ease":"all .7s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 
-              overflow: "hidden",
-              // boxShadow: selectedIcon ? "0 20px 50px rgba(0, 0, 0, 0.3)" : "none",
-              cursor: selectedIcon ? "default" : "pointer",
+              transition: "all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+              overflow: "visible",
+              cursor: "pointer",
               p: { xs: 2, sm: 2.5, md: 3, lg: 4 },
             }}
+            onClick={centerLogoZoomed ? resetCenterLogo : undefined}
           >
-            {!selectedIcon && (
-              <>
+            {/* Image Container */}
+            <Box
+              sx={{
+                width: { xs: "40px", sm: "100px", md: "120px", lg: "105.97px", },
+                height: { xs: "50px", sm: "90px", md: "140px", lg: "160px", },
 
-                {/* Left Logo - Enhanced Animation */}
-                {!isZooming && (
-                  <Box
-                    component="img"
-                    src={leftLogo}
-                    alt="Left Logo"
-                    ref={leftLogoRef}
-                    sx={{
-                      position: 'absolute',
-                      width: { xs: '40px', sm: '50px', md: '105.97px', lg: '105.97px' },
-                      height: { xs: '70px', sm: '110px', md: '103.16px', lg: '143.16px' },
-                      top: { xs: '18px', sm: "10px", md: '55px', lg: "55px" },
-                      objectFit: 'contain',
-                      // transform: 'scale(1)',
-                      // transition: "transform 1s ease-in-out, opacity 3s",
-                      zIndex: 5,
-                      opacity: 1, // keep visible when not zooming
-                    }}
-                  />
-                )}
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                zIndex: selectedIcon ? 2200 : 2,
+                transform: zoomTransform,
+                transition: "transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                position: "relative",
+                pointerEvents: centerLogoZoomed ? "auto" : "none",
+                overflow: "visible",
+              }}
+            >
+              <Box
+                component="img"
+                src={centerLogo}
+                alt="centeredLogo"
+                sx={{
 
-                {/* Right-Top Logo Container */}
+                  pointerEvents: "none",
+
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain",
+                  // transition: "transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                  // transform: centerLogoZoomed ? "scale(9.5)" : "scale(1)",
+                  zIndex: centerLogoZoomed ? 1200 : 3,
+                  // boxShadow: centerLogoZoomed ? "0 8px 32px 8px rgba(0,0,0,0.25)" : undefined,
+                }}
+              />
+            </Box>
+          </Box>
+
+          {showContent && selectedIcon && (
+            <Box
+              sx={{
+                position: "absolute",
+                top: { xs: -12, sm: 0, md: 20, lg: 23 },
+                left: { xs: 40, sm: 0, md: 60, lg: 60 },
+                width: "100%",
+                height: "100%",
+                zIndex: 1200, // Below zoomed logo but above other elements
+                // pointerEvents: "auto",
+                opacity: infoPanelVisible ? 1 : 0,
+                transition: "opacity 0.6s cubic-bezier(0.4,0,0.2,1)",
+              }}
+            >
+              {/* Back Button */}
+              <Box
+                onClick={resetCenterLogo}
+                sx={{
+                  position: "absolute",
+                  top: { xs: 35, sm: 10, md: 60, lg: 60 },
+                  left: { xs: 30, sm: 10, md: 36, lg: 40 },
+                  width: 40,
+                  height: 40,
+                  borderRadius: "50%",
+                  color: "white",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer",
+                  pointerEvents: "auto",
+                  zIndex: 9501,
+                  '&:hover': {
+                    transform: 'scale(1.1)',
+                  }
+                }}
+              >
+                <img src={backIcon} alt="backBtn" />
+              </Box>
+
+              {/* Main Content with Fade-in Animation */}
+              <Box
+                sx={{
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  padding: { xs: "16px", sm: "20px", md: "24px" },
+                  color: "#072449",
+                  zIndex: 4001,
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                }}
+              >
                 <Box
-                  ref={rightTopLogoRef}
-                  sx={{
-                    position: 'absolute',
-                    top: { xs: '13px', md: '35px' },
-                    right: { xs: '30px', sm: '34px', md: '73.31px' },
-                    width: { xs: '50px', sm: '60px', md: '80px', lg: '100px' },
-                    height: { xs: '60px', sm: '70px', md: '90px', lg: '110px' },
-                    zIndex: 3,
-                    opacity: isZooming ? 0 : 1,
-                  }}
-                >
-                  {/* Right Logo */}
-                  <Box
-                    component="img"
-                    src={rightLogo}
-                    alt="Right Logo"
-                    sx={{
-                      position: 'absolute',
-                      width: { xs: '20px', sm: '30px', md: '33.12px', lg: '53.12px' },
-                      height: { xs: '30px', sm: '42px', md: '54.1px', lg: '54.1px' },
-                      top: 0,
-                      right: 0,
-                      objectFit: 'contain',
-                    }}
-                  />
-
-                  {/* Top Logo */}
-                  <Box
-                    component="img"
-                    src={topLogo}
-                    alt="Top Logo"
-                    sx={{
-                      position: 'absolute',
-                      width: { xs: '10px', sm: '15px', md: '15.94px', lg: '23.94px' },
-                      height: { xs: '11px', sm: '18px', md: '24.29px' },
-                      top: { xs: '4px', sm: '5px', md: '6px', lg: '0px' },
-                      right: { xs: '0px', sm: '0px', md: '0px', lg: '0px' },
-                      objectFit: 'contain',
-                    }}
-                  />
-                </Box>
-              </>
-            )}
-
-            {selectedIcon && (
-              <>
-                {/* Back Button */}
-                <Box
-                  onClick={() => setSelectedIcon(null)}
                   sx={{
                     position: "absolute",
-                    top: { xs: 35, sm: 30, md: 60, lg: 60 },
-                    left: { xs: 30, sm: 30, md: 36, lg: 40 },
-                    width: 40,
-                    height: 40,
-                    borderRadius: "50%",
-                    color: "white",
+                    top: { xs: 120, sm: 100, md: 145, lg: 145 },
+                    left: { xs: 35, sm: 16, md: 50, lg: 50 },
+                    width: { xs: "44px", sm: "50px", md: "56px" },
+                    height: { xs: "44px", sm: "50px", md: "56px" },
+                    borderRadius: "12px",
+                    backgroundColor: "#f5f5f5",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    cursor: "pointer",
-                    zIndex: 1001,
-                    // px:4,
-                    // transition: "transform 0.2s ease",
-                    '&:hover': {
-                      transform: 'scale(1.1)',
-                    }
                   }}
                 >
-                  <img src={backIcon} alt="backBtn" />
-                </Box>
-
-                {/* Main Content with Fade-in Animation */}
-                <Box
-                  sx={{
-                    width: "100%",
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    padding: { xs: "16px", sm: "20px", md: "24px" },
-                    color: "#072449",
-                    // animation: "fadeIn 0.5s ease-out",
-                  }}
-                >
-                  {/* Icon Title */}
-                  <Typography
-                    sx={{
-                      fontWeight: 500,
-                      mt: { xs: 17, sm: 16, md: 20, lg: 20 },
-                      mb: { xs: 3, sm: 2, md: 4, lg: 4 },
-                      // ml: { xs: 0, sm: 0, md: 0 },
-                      fontSize: { xs: "24px", sm: "28px", md: "36px" },
-                      color: "#FFFFFF",
-                    }}
-                  >
-
-                    {selectedIcon === bootstrapIcon ? "Bootstrap" :
-                      selectedIcon === figmaIcon ? "Figma" :
-                        selectedIcon === materialUiIcon ? "Material UI" :
-                          selectedIcon === shopifyIcon ? "Shopify" :
-                            selectedIcon === wordpressIcon ? "WordPress" :
-                              selectedIcon === reactIcon ? "React" :
-                                selectedIcon === nodeIcon ? "Node.js" :
-                                  selectedIcon === postqgIcon ? "PostgreSQL" :
-                                    selectedIcon === orangeIcon ? "Postman" : "Technology"}
-                  </Typography>
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      top: { xs: 120, sm: 100, md: 145, lg: 145 },
-                      left: { xs: 35, sm: 36, md: 50, lg: 50 },
-                      width: { xs: "44px", sm: "50px", md: "56px" },
-                      height: { xs: "44px", sm: "50px", md: "56px" },
-                      borderRadius: "12px",
-                      backgroundColor: "#f5f5f5",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <img
-                      src={zoomedImages[selectedIcon]}
-                      alt="Selected Technology"
-                      style={{
-                        width: "70%",
-                        height: "auto",
-                        objectFit: "contain",
-                      }}
-                    />
-                  </Box>
-
-
-                  {/* Description */}
-                  <Typography
-                    sx={{
-                      fontSize: { xs: "14px", sm: "15px", md: "18px" },
-                      lineHeight: 1.6,
-                      color: "#FFFFFF",
-                      fontWeight: 400,
-                      // ml: { xs: 1, sm: 2, md: 0 },
-                      width: { xs: "70%", sm: "38%", md: "331px", lg: "85%" },
+                  <img
+                    src={zoomedImages[selectedIcon]}
+                    alt="Selected Technology"
+                    style={{
+                      width: "70%",
                       height: "auto",
-                      mb: 3,
-                      zIndex: 900
+                      objectFit: "contain",
                     }}
-                  >
-
-                    We build responsive, mobile-first websites using {selectedIcon === bootstrapIcon ? "Bootstrap's" :
-                      selectedIcon === figmaIcon ? "Figma's" :
-                        selectedIcon === materialUiIcon ? "Material UI's" :
-                          selectedIcon === shopifyIcon ? "Shopify's" :
-                            selectedIcon === wordpressIcon ? "WordPress's" :
-                              selectedIcon === reactIcon ? "React's" :
-                                selectedIcon === nodeIcon ? "Node.js's" :
-                                  selectedIcon === postqgIcon ? "PostgreSQL's" :
-                                    selectedIcon === orangeIcon ? "Postman's" : ""} powerful framework, delivering clean layouts, fast performance, and consistent design across all devices.
-                  </Typography>
-                  <Button
-                    sx={{
-                      width: { xs: "180px", sm: "180px", md: "232px", lg: "232px" },
-                      height: { xs: "48px", sm: "54px", md: "59px" },
-                      fontWeight: 400,
-                      fontSize: { xs: "14px", sm: "15px", md: "18px" },
-                      lineHeight: '150%',
-                      textTransform: 'none',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '8px',
-                      backgroundColor: '#05408E',
-                      color: '#fff',
-                      borderRadius: '39px',
-                      // ml: { xs: 1, sm: 0, md: 7 },
-                    }}
-                  >
-                    Explore Services
-                    <img src={arrowIcon} alt="arrow" style={{ width: 20, height: 20 }} />
-                  </Button>
-
-
-
+                  />
                 </Box>
-              </>
-            )}
-          </Box>
+
+                {/* Icon Title */}
+                <Typography
+                  sx={{
+
+                    fontWeight: 500,
+                    mt: { xs: 20, sm: 20, md: 29, lg: 26 },
+                    mb: { xs: 3, sm: 2, md: 4, lg: 4 },
+                    ml: { xs: 2.5, sm: 0, md: 3, lg: 3 },
+                    fontSize: { xs: "24px", sm: "28px", md: "36px" },
+                    color: "#FFFFFF",
+                  }}
+                >
+
+                  {selectedIcon === bootstrapIcon ? "Bootstrap" :
+                    selectedIcon === figmaIcon ? "Figma" :
+                      selectedIcon === materialUiIcon ? "Material UI" :
+                        selectedIcon === shopifyIcon ? "Shopify" :
+                          selectedIcon === wordpressIcon ? "WordPress" :
+                            selectedIcon === reactIcon ? "React" :
+                              selectedIcon === nodeIcon ? "Node.js" :
+                                selectedIcon === postqgIcon ? "PostgreSQL" :
+                                  selectedIcon === orangeIcon ? "Postman" : "Technology"}
+                </Typography>
+
+
+
+                {/* Description */}
+                <Typography
+                  sx={{
+                    fontSize: { xs: "14px", sm: "15px", md: "18px" },
+                    lineHeight: 1.6,
+                    color: "#FFFFFF",
+                    fontWeight: 400,
+                    ml: { xs: 2.5, sm: 0, md: 3, lg: 3 },
+                    width: { xs: "75%", sm: "55%", md: "331px", lg: "65%" },
+                    height: "auto",
+                    mb: 3,
+                    zIndex: 900
+                  }}
+                >
+
+                  We build responsive, mobile-first websites using {selectedIcon === bootstrapIcon ? "Bootstrap's" :
+                    selectedIcon === figmaIcon ? "Figma's" :
+                      selectedIcon === materialUiIcon ? "Material UI's" :
+                        selectedIcon === shopifyIcon ? "Shopify's" :
+                          selectedIcon === wordpressIcon ? "WordPress's" :
+                            selectedIcon === reactIcon ? "React's" :
+                              selectedIcon === nodeIcon ? "Node.js's" :
+                                selectedIcon === postqgIcon ? "PostgreSQL's" :
+                                  selectedIcon === orangeIcon ? "Postman's" : ""} powerful framework, delivering clean layouts, fast performance, and consistent design across all devices.
+                </Typography>
+                <Button
+                  sx={{
+                    width: { xs: "180px", sm: "180px", md: "232px", lg: "232px" },
+                    height: { xs: "48px", sm: "54px", md: "59px" },
+                    fontWeight: 400,
+                    fontSize: { xs: "14px", sm: "15px", md: "18px" },
+                    lineHeight: '190%',
+                    textTransform: 'none',
+                    py: "16px",
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    backgroundColor: '#05408E',
+                    color: '#fff',
+                    borderRadius: '39px',
+                    ml: { xs: 1, sm: 0, md: 3, lg: 3 },
+                  }}
+                >
+                  Explore Services
+                  <img src={arrowIcon} alt="arrow" style={{ width: 20, height: 20 }} />
+                </Button>
+
+
+
+              </Box>
+            </Box>
+          )}
 
           {/* Outer White Orbit Circles */}
           {orbitScales.map((scale, i) => (
@@ -819,16 +701,7 @@ const OrbitBar = () => {
                   return (
                     <Box
                       key={`icon-${orbitIndex}-${iconIndex}`}
-                      // onClick={() => {
-                      //   setIsZooming(true);
-                      //   setTimeout(() => {
-                      //     setSelectedIcon(icon);
-                      //     setIsZooming(false);
-                      //   }, 400); // Match transition duration
-                      // }}
-                      onClick={() => handleIconClick(icon)}
-
-
+                      onClick={() => handleOrbitIconClick(icon)}
                       sx={{
                         position: "absolute",
                         top: `calc(50% + ${y}px - 32px)`,
@@ -842,7 +715,7 @@ const OrbitBar = () => {
                         alignItems: "center",
                         justifyContent: "center",
                         boxShadow: "0 0 4px rgba(255, 255, 255, 0.2)",
-                        zIndex: selectedIcon ? "none" : 50, // Highest z-index to ensure icons are always clickable
+                        zIndex: 50,
                         pointerEvents: "auto",
                         cursor: "pointer",
                         transition: "transform 0.3s ease, box-shadow 0.3s ease",
@@ -853,7 +726,9 @@ const OrbitBar = () => {
                         },
                       }}
                       onMouseEnter={() => setIsPaused(true)}
-                      onMouseLeave={() => setIsPaused(false)}
+                      onMouseLeave={() =>
+                        // !centerLogoZoomed && 
+                        setIsPaused(false)}
                     >
                       <Box
                         component="img"
@@ -951,8 +826,8 @@ const OrbitBar = () => {
     opacity: 1;
   }
   100% {
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
     opacity: 0;
   }
 }
@@ -960,10 +835,10 @@ const OrbitBar = () => {
   0% {
     width: "10%";
     height: "10%";
-    opacity: 0;
+    opacity: 1;
   }
   20% {
-    opacity: 0.7;
+    opacity: 1.7;
   }
   100% {
     width: "100%";

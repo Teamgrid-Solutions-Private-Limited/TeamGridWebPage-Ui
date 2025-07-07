@@ -154,7 +154,7 @@ const TopNavBar = () => {
                                                 borderRadius: 3,
                                                 boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
                                                 zIndex: 1300,
-                                                width: { xs: "90vw", sm: "1000px", md: "1070px", lg: "1260px", xl: "1300px" },
+                                                width: { xs: "90vw", sm: "1000px", md: "1070px", lg: "1210px", xl: "1300px" },
                                                 maxWidth: "90vw"
                                             }}
                                         >
