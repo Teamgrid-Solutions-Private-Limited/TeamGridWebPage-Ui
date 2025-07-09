@@ -6,6 +6,7 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import logo from "../assets/Layer_1 (1).svg";
 import whiteLogo from "../assets/Layer_1.svg"
 import MenuIcon from '@mui/icons-material/Menu';
+import { useNavigate } from 'react-router-dom';
 
 // Icons
 import frontendIcon from "../assets/lucide_file-code.svg";
@@ -28,6 +29,7 @@ const TopNavBar = () => {
     const [whatWeDoExpanded, setWhatWeDoExpanded] = React.useState(false);
     const closeTimeoutRef = React.useRef(null);
     const [scrolled, setScrolled] = React.useState(false);
+    const navigate = useNavigate();
 
     React.useEffect(() => {
         const handleScroll = () => {
@@ -127,7 +129,7 @@ const TopNavBar = () => {
 
                             {/* Navigation - Desktop */}
                             <Box sx={{ display: { xs: "none", md: "flex" }, gap: 1, alignItems: "center" }}>
-                                <Button sx={navBtnStyle(scrolled)}>Home</Button>
+                                <Button sx={navBtnStyle(scrolled)} onClick={() => navigate('/')}>Home</Button>
                                 <Button sx={navBtnStyle(scrolled)}>About Us</Button>
 
                                 {/* Dropdown Trigger */}
@@ -182,7 +184,7 @@ const TopNavBar = () => {
                                                         WEB DEVELOPMENT
                                                     </Typography>
 
-                                                    {feature(frontendIcon, "Front-End Development", "Fast, responsive, and pixel-perfect user interfaces.")}
+                                                    {feature(frontendIcon, "Front-End Development", "Fast, responsive, and pixel-perfect user interfaces.", () => navigate('/what-we-do/frontend'))}
                                                     {feature(backendIcon, "Back-End Development", "Scalable, secure, and efficient architecture.")}
                                                     {feature(wordpressIcon, "WordPress & CMS", "Custom WordPress sites with Elementor, and more.")}
                                                 </Grid>
@@ -246,7 +248,7 @@ const TopNavBar = () => {
                                     letterSpacing: "0%",
                                     textTransform: "none",
                                     color: "#FFFFFF",
-                                    borderRadius: 999,
+                                    borderRadius: "12px",
                                     px: 3,
                                     py: 1.2,
                                     display: { xs: "none", md: "inline-flex" },
@@ -284,7 +286,7 @@ const TopNavBar = () => {
                     <Divider sx={{ borderColor: "rgba(255,255,255,0.2)", my: 2 }} />
                     <List>
                         <ListItem disablePadding>
-                            <ListItemButton sx={{ textAlign: "left", px: 3 }}>
+                            <ListItemButton sx={{ textAlign: "left", px: 3 }} onClick={() => navigate('/') }>
                                 <ListItemText primary="Home" />
                             </ListItemButton>
                         </ListItem>
@@ -326,7 +328,7 @@ const TopNavBar = () => {
                                     </ListItemButton>
                                 </ListItem>
                                 <ListItem disablePadding>
-                                    <ListItemButton sx={{ pl: 9, pr: 3 }}>
+                                    <ListItemButton sx={{ pl: 9, pr: 3 }} onClick={() => navigate('/what-we-do/frontend')}>
                                         <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
                                             <img src={frontendIcon} alt="Frontend" style={{ width: "16px", height: "16px" }} />
                                             <ListItemText
@@ -527,7 +529,7 @@ const TopNavBar = () => {
         </>
     );
 };
-const feature = (icon, title, desc) => (
+const feature = (icon, title, desc, onClick) => (
     <Box
         sx={{
             width: "100%",
@@ -549,6 +551,7 @@ const feature = (icon, title, desc) => (
                 }
             },
         }}
+        onClick={onClick}
     >
         {/* Icon Wrapper - Updated to 40px × 40px */}
         <Box
@@ -610,12 +613,12 @@ const navBtnStyle = (scrolled = false) => ({
     fontSize: "16px",
     textTransform: "none",
     color: scrolled ? "#072449" : "#FFFFFF",
-    borderRadius: 99,
+    borderRadius: "12px",
     px: 1.5,
     py: .5,
     transition: "all 0.3s ease",
     '&:hover': {
-        backgroundColor: scrolled ? "#E6F0FF" : "#0E4FA2",
+        backgroundColor: scrolled ? "#F3F3F6" : "#3082EC3B",
         transform: "scale(1.07)",
         color: scrolled ? "#05408E" : "#FFFFFF",
     },

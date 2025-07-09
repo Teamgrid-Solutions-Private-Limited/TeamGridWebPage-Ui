@@ -271,7 +271,7 @@ const OrbitBar = () => {
               variant="outlined"
               sx={{
                 backgroundColor: "#072449",
-                borderRadius: "40px",
+                borderRadius: "12px",
                 borderColor: "#444",
                 color: "#FFFFFF",
                 padding: "16px 32px",
@@ -296,7 +296,7 @@ const OrbitBar = () => {
               sx={{
                 color: "#FFFFFF",
                 borderColor: "#444",
-                borderRadius: "40px",
+                borderRadius: "12px",
                 padding: "16px 32px",
                 fontWeight: 500,
                 fontSize: "16px",
@@ -407,7 +407,8 @@ const OrbitBar = () => {
                 justifyContent: "center",
                 zIndex: selectedIcon ? 2200 : 2,
                 transform: zoomTransform,
-                transition: "transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+              transition: "transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+
                 position: "relative",
                 pointerEvents: centerLogoZoomed ? "auto" : "none",
                 overflow: "visible",

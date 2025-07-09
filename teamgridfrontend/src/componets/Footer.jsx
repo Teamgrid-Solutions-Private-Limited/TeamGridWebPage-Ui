@@ -100,7 +100,7 @@ const Footer = () => {
             maxWidth: 400,
             mb: 2,
             boxSizing: 'border-box',
-            px: { xs: 0, sm: 2,lg:1 },
+            px: { xs: 0, sm: 0,md:1,lg:1 },
           }}
         >
           <Typography variant="h6" sx={headingStyles}>
@@ -129,7 +129,7 @@ const Footer = () => {
           sx={{
             minWidth: { xs: '100%', sm: 280 },
             maxWidth: 400,
-            px: { xs: 0, sm: 2 ,lg:0},
+            px: { xs: 0, sm: 0 ,lg:0},
           }}
         >
           <Typography variant="h6" sx={headingStyles}>
@@ -206,7 +206,7 @@ const Footer = () => {
   sx={{
     borderTop: '1px solid #2E4B7D',
     pt: 2,
-    pl: { xs: 1, sm: 2, md: 2 ,lg:1}, // Responsive left padding
+    pl: { xs: 1, sm: 0, md: 2 ,lg:1}, // Responsive left padding
     pr: { xs: 1, sm: 2 },        // Optional right padding for small screens
   }}
 >

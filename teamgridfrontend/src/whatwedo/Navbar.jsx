@@ -3,29 +3,41 @@ import {
     AppBar, Toolbar, Typography, Button, Container, Box, Paper, Grid, IconButton, Drawer, List, ListItem, ListItemButton, ListItemText, Divider, Collapse, useMediaQuery, useTheme
 } from "@mui/material";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import logo from "../assets/Layer_1 (1).png";
+import logo from "../assets/Layer_1 (1).svg";
+import whiteLogo from "../assets/Layer_1.svg"
 import MenuIcon from '@mui/icons-material/Menu';
+import { useNavigate } from 'react-router-dom';
 
 // Icons
-import frontendIcon from "../assets/Group 25.png";
-import backendIcon from "../assets/Group 26.png";
-import mobileIcon from "../assets/Group 28.png";
-import designIcon from "../assets/Group 29.png";
-import shopifyIcon from "../assets/Group 36.png";
-import wooIcon from "../assets/Group 34.png";
-import crossPlatformIcon from "../assets/Group 33.png";
-import pwaIcon from "../assets/Group 31.png";
-import prototypeIcon from "../assets/Group 30.png";
-import systemIcon from "../assets/Group 35.png";
+import frontendIcon from "../assets/lucide_file-code.svg";
+import backendIcon from "../assets/lucide_database-zap.svg";
+import wordpressIcon from "../assets/ic_round-wordpress.svg";
+import mobileIcon from "../assets/lucide_tablet-smartphone.svg";
+import shopifyIcon from "../assets/hugeicons_shopify.svg";
+import wooIcon from "../assets/streamline-logos_woocommerce-logo.svg";
+import crossPlatformIcon from "../assets/lucide_monitor-smartphone.svg";
+import pwaIcon from "../assets/proicons_apps.svg";
+import uiUxIcon from "../assets/lucide_layout-template.svg";
+import prototypeIcon from "../assets/lucide_pencil-ruler.svg";
+import designSystemIcon from "../assets/lucide_paintbrush-vertical.svg";
 
-const NavBar = () => {
+const Navbar = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const [hoverMenuOpen, setHoverMenuOpen] = React.useState(false);
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const [whatWeDoExpanded, setWhatWeDoExpanded] = React.useState(false);
     const closeTimeoutRef = React.useRef(null);
+    const [scrolled, setScrolled] = React.useState(false);
+    const navigate = useNavigate();
 
+    React.useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 10);
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
@@ -69,28 +81,34 @@ const NavBar = () => {
             <AppBar
                 position="fixed"
                 sx={{
-                    background: "linear-gradient(180deg, #000E1F 0%, #05234A00 100%)",
-                    boxShadow: "none",
-                    width: "100%",
-                    zIndex: 1100,
-                    px: { xs: 0, sm: 2, md: 3, lg: 11 },
+                    background: scrolled
+                        ? "#FFFFFF" // or any solid color you want
+                        : "linear-gradient(180deg, #000E1F 0%, #05234A00 100%)",
+                    boxShadow: scrolled ? "0px 2px 6px rgba(0,0,0,0.15)" : "none",
+                    // overflow: "hidden",
+                    // maxWidth: "1440px",
+                    width: '100%',
+                    margin: '0 auto',
                 }}
             >
 
                 <Toolbar disableGutters>
                     <Box sx={{ width: "100%", }}>
                         <Container
-                            maxWidth="100%"
+                            maxWidth={false}
                             sx={{
+                                maxWidth: "1440px",
+                                // mx: "auto",
                                 display: "flex",
                                 justifyContent: "space-between",
-                                alignItems: "center"
+                                alignItems: "center",
+                                px: { xs: 2, sm: 3, md: 6, lg: 9 },
                             }}
                         >
                             {/* Logo */}
                             <Grid item xs={6} md={2}>
                                 <Box sx={{ display: "flex", alignItems: "center", p: 1 }}>
-                                    <img src={logo} alt="logo" style={{ height: "40px", width: "auto", maxWidth: "150px" }} />
+                                    <img src={scrolled ? whiteLogo : logo} alt="logo" style={{ height: "50px", width: "auto", maxWidth: "158px" }} />
                                 </Box>
                             </Grid>
 
@@ -100,15 +118,23 @@ const NavBar = () => {
                                 aria-label="open drawer"
                                 edge="start"
                                 onClick={handleDrawerToggle}
-                                sx={{ display: { md: "none" } }}
+                                sx={{
+                                    display: { md: "none" },
+                                    backgroundColor: scrolled ? '#05408E' : 'transparent',
+                                    color: scrolled ? '#fff' : 'inherit',
+                                    transition: 'background-color 0.3s',
+                                    '&:hover': {
+                                        backgroundColor: scrolled ? '#0E4FA2' : 'rgba(0,0,0,0.08)',
+                                    },
+                                }}
                             >
-                                <MenuIcon />
+                                <MenuIcon sx={{ color: scrolled ? '#fff' : 'inherit' }} />
                             </IconButton>
 
                             {/* Navigation - Desktop */}
                             <Box sx={{ display: { xs: "none", md: "flex" }, gap: 1, alignItems: "center" }}>
-                                <Button sx={navBtnStyle()}>Home</Button>
-                                <Button sx={navBtnStyle()}>About Us</Button>
+                                <Button sx={navBtnStyle(scrolled)} onClick={() => navigate('/')}>Home</Button>
+                                <Button sx={navBtnStyle(scrolled)}>About Us</Button>
 
                                 {/* Dropdown Trigger */}
                                 <Box
@@ -119,7 +145,7 @@ const NavBar = () => {
                                 >
                                     <Button
                                         endIcon={<ArrowDropDownIcon />}
-                                        sx={navBtnStyle()}
+                                        sx={navBtnStyle(scrolled)}
                                     >
                                         What We Do
                                     </Button>
@@ -128,25 +154,25 @@ const NavBar = () => {
                                     {hoverMenuOpen && (
                                         <Paper
                                             elevation={3}
-                                            gap={{ md:0,lg:0,xl: 2 }}
+                                            gap={{ md: 0, lg: 0, xl: 2 }}
                                             gutterBottom
                                             onMouseEnter={handleMouseEnter}
                                             onMouseLeave={handleMouseLeave}
                                             sx={{
                                                 position: "absolute",
                                                 top: 58,
-                                                left: "65%",
+                                                left: "53%",
                                                 transform: "translateX(-46.5%)",
                                                 p: 3,
                                                 backgroundColor: "white",
                                                 borderRadius: 3,
                                                 boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
                                                 zIndex: 1300,
-                                                width: { xs: "90vw",sm:"1000px", md: "1070px", lg: "1260px", xl: "1300px" },
+                                                width: { xs: "90vw", sm: "1000px", md: "1070px", lg: "1200px", xl: "1290px" },
                                                 maxWidth: "90vw"
                                             }}
                                         >
-                                            <Grid container spacing={{xs:2, sm:0,md: 0, lg: 1, xl: 5 }}>
+                                            <Grid container spacing={{ xs: 2, sm: 0, md: 0, lg: 1, xl: 4.5 }}>
                                                 {/* Web Dev */}
                                                 <Grid item xs={12} md={3}>
                                                     <Typography
@@ -162,9 +188,9 @@ const NavBar = () => {
                                                         WEB DEVELOPMENT
                                                     </Typography>
 
-                                                    {feature(frontendIcon, "Front-End Development", "Fast, responsive, and pixel-perfect user interfaces.")}
+                                                    {feature(frontendIcon, "Front-End Development", "Fast, responsive, and pixel-perfect user interfaces.", () => navigate('/what-we-do/frontend'))}
                                                     {feature(backendIcon, "Back-End Development", "Scalable, secure, and efficient architecture.")}
-                                                    {feature(mobileIcon, "WordPress & CMS", "Custom WordPress sites with Elementor, and more.")}
+                                                    {feature(wordpressIcon, "WordPress & CMS", "Custom WordPress sites with Elementor, and more.")}
                                                 </Grid>
 
                                                 {/* Mobile Dev */}
@@ -175,7 +201,7 @@ const NavBar = () => {
                                                         textTransform: "uppercase",
                                                         letterSpacing: "3%",
                                                     }}>MOBILE APP DEVELOPMENT</Typography>
-                                                    {feature(designIcon, "iOS & Android Development", "Native mobile experiences that perform and scale.")}
+                                                    {feature(mobileIcon, "iOS & Android Development", "Native mobile experiences that perform and scale.")}
                                                     {feature(crossPlatformIcon, "Cross-Platform Apps", "Build and deploy everywhere with React Native or Flutter.")}
                                                     {feature(pwaIcon, "Progressive Web Apps", "Web apps that work offline and feel native.")}
                                                 </Grid>
@@ -188,9 +214,9 @@ const NavBar = () => {
                                                         textTransform: "uppercase",
                                                         letterSpacing: "3%",
                                                     }}>UI/UX & DESIGN</Typography>
-                                                    {feature(designIcon, "UI/UX Design", "Intuitive, user-focused design for web and mobile.")}
+                                                    {feature(uiUxIcon, "UI/UX Design", "Intuitive, user-focused design for web and mobile.")}
                                                     {feature(prototypeIcon, "Prototyping & Wireframing", "Visualize fast using tools like Figma and Adobe XD.")}
-                                                    {feature(systemIcon, "Design Systems", "Scalable design libraries to maintain brand consistency.")}
+                                                    {feature(designSystemIcon, "Design Systems", "Scalable design libraries to maintain brand consistency.")}
                                                 </Grid>
 
                                                 {/* E-Commerce */}
@@ -209,8 +235,8 @@ const NavBar = () => {
                                     )}
                                 </Box>
 
-                                <Button sx={navBtnStyle()}>Technologies We Use</Button>
-                                <Button sx={navBtnStyle()}>How we work</Button>
+                                <Button sx={navBtnStyle(scrolled)}>Technologies We Use</Button>
+                                <Button sx={navBtnStyle(scrolled)}>How we work</Button>
                                 {/* <Button sx={navBtnStyle()}>Let's Talk</Button> */}
                             </Box>
 
@@ -226,7 +252,7 @@ const NavBar = () => {
                                     letterSpacing: "0%",
                                     textTransform: "none",
                                     color: "#FFFFFF",
-                                    borderRadius: 999,
+                                    borderRadius: "16px",
                                     px: 3,
                                     py: 1.2,
                                     display: { xs: "none", md: "inline-flex" },
@@ -236,7 +262,7 @@ const NavBar = () => {
                                 }}
                                 onClick={() => alert("Get a Quote Clicked!")}
                             >
-                               Let's Talk
+                                Let's Talk
                             </Button>
                         </Container>
                     </Box>
@@ -264,7 +290,7 @@ const NavBar = () => {
                     <Divider sx={{ borderColor: "rgba(255,255,255,0.2)", my: 2 }} />
                     <List>
                         <ListItem disablePadding>
-                            <ListItemButton sx={{ textAlign: "left", px: 3 }}>
+                            <ListItemButton sx={{ textAlign: "left", px: 3 }} onClick={() => navigate('/') }>
                                 <ListItemText primary="Home" />
                             </ListItemButton>
                         </ListItem>
@@ -298,7 +324,6 @@ const NavBar = () => {
                                 <ListItem disablePadding>
                                     <ListItemButton sx={{ pl: 6, pr: 3 }}>
                                         <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
-                                            <img src={frontendIcon} alt="Web Dev" style={{ width: "20px", height: "20px" }} />
                                             <ListItemText
                                                 primary="Web Development"
                                                 primaryTypographyProps={{ fontSize: "14px", color: "rgba(255,255,255,0.8)" }}
@@ -307,7 +332,7 @@ const NavBar = () => {
                                     </ListItemButton>
                                 </ListItem>
                                 <ListItem disablePadding>
-                                    <ListItemButton sx={{ pl: 9, pr: 3 }}>
+                                    <ListItemButton sx={{ pl: 9, pr: 3 }} onClick={() => navigate('/what-we-do/frontend')}>
                                         <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
                                             <img src={frontendIcon} alt="Frontend" style={{ width: "16px", height: "16px" }} />
                                             <ListItemText
@@ -331,7 +356,7 @@ const NavBar = () => {
                                 <ListItem disablePadding>
                                     <ListItemButton sx={{ pl: 9, pr: 3 }}>
                                         <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
-                                            <img src={mobileIcon} alt="WordPress" style={{ width: "16px", height: "16px" }} />
+                                            <img src={wordpressIcon} alt="WordPress" style={{ width: "16px", height: "16px" }} />
                                             <ListItemText
                                                 primary="WordPress & CMS"
                                                 primaryTypographyProps={{ fontSize: "12px", color: "rgba(255,255,255,0.6)" }}
@@ -344,7 +369,6 @@ const NavBar = () => {
                                 <ListItem disablePadding>
                                     <ListItemButton sx={{ pl: 6, pr: 3 }}>
                                         <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
-                                            <img src={mobileIcon} alt="Mobile Dev" style={{ width: "20px", height: "20px" }} />
                                             <ListItemText
                                                 primary="Mobile App Development"
                                                 primaryTypographyProps={{ fontSize: "14px", color: "rgba(255,255,255,0.8)" }}
@@ -355,7 +379,7 @@ const NavBar = () => {
                                 <ListItem disablePadding>
                                     <ListItemButton sx={{ pl: 9, pr: 3 }}>
                                         <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
-                                            <img src={designIcon} alt="iOS Android" style={{ width: "16px", height: "16px" }} />
+                                            <img src={mobileIcon} alt="iOS Android" style={{ width: "16px", height: "16px" }} />
                                             <ListItemText
                                                 primary="iOS & Android Development"
                                                 primaryTypographyProps={{ fontSize: "12px", color: "rgba(255,255,255,0.6)" }}
@@ -390,7 +414,6 @@ const NavBar = () => {
                                 <ListItem disablePadding>
                                     <ListItemButton sx={{ pl: 6, pr: 3 }}>
                                         <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
-                                            <img src={designIcon} alt="UI/UX" style={{ width: "20px", height: "20px" }} />
                                             <ListItemText
                                                 primary="UI/UX & Design"
                                                 primaryTypographyProps={{ fontSize: "14px", color: "rgba(255,255,255,0.8)" }}
@@ -401,7 +424,7 @@ const NavBar = () => {
                                 <ListItem disablePadding>
                                     <ListItemButton sx={{ pl: 9, pr: 3 }}>
                                         <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
-                                            <img src={designIcon} alt="UI/UX Design" style={{ width: "16px", height: "16px" }} />
+                                            <img src={uiUxIcon} alt="UI/UX Design" style={{ width: "16px", height: "16px" }} />
                                             <ListItemText
                                                 primary="UI/UX Design"
                                                 primaryTypographyProps={{ fontSize: "12px", color: "rgba(255,255,255,0.6)" }}
@@ -423,7 +446,7 @@ const NavBar = () => {
                                 <ListItem disablePadding>
                                     <ListItemButton sx={{ pl: 9, pr: 3 }}>
                                         <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
-                                            <img src={systemIcon} alt="Design Systems" style={{ width: "16px", height: "16px" }} />
+                                            <img src={designSystemIcon} alt="Design Systems" style={{ width: "16px", height: "16px" }} />
                                             <ListItemText
                                                 primary="Design Systems"
                                                 primaryTypographyProps={{ fontSize: "12px", color: "rgba(255,255,255,0.6)" }}
@@ -436,7 +459,6 @@ const NavBar = () => {
                                 <ListItem disablePadding>
                                     <ListItemButton sx={{ pl: 6, pr: 3 }}>
                                         <Box sx={{ display: "flex", alignItems: "center", gap: 2, width: "100%" }}>
-                                            <img src={shopifyIcon} alt="E-Commerce" style={{ width: "20px", height: "20px" }} />
                                             <ListItemText
                                                 primary="E-Commerce Solutions"
                                                 primaryTypographyProps={{ fontSize: "14px", color: "rgba(255,255,255,0.8)" }}
@@ -511,9 +533,7 @@ const NavBar = () => {
         </>
     );
 };
-
-// Reusable Feature Item
-const feature = (icon, title, desc) => (
+const feature = (icon, title, desc, onClick) => (
     <Box
         sx={{
             width: "100%",
@@ -522,7 +542,7 @@ const feature = (icon, title, desc) => (
             borderRadius: "16px",
             padding: "16px",
             display: "flex",
-            gap: "10px",
+            gap: "12px",  // Slightly increased gap
             backgroundColor: "#fff",
             alignItems: "flex-start",
             transition: "all 0.3s ease",
@@ -530,20 +550,42 @@ const feature = (icon, title, desc) => (
             "&:hover": {
                 backgroundColor: "#F3F3F6",
                 transform: "scale(1.02)",
+                "& .icon-wrapper": {
+                    backgroundColor: "#FFFFFF",
+                }
             },
         }}
+        onClick={onClick}
     >
+        {/* Icon Wrapper - Updated to 40px × 40px */}
         <Box
-            component="img"
-            src={icon}
-            alt={title}
+            className="icon-wrapper"
             sx={{
-                width: 40,
-                height: 40,
+                width: "40px",
+                height: "40px",
+                minWidth: "40px",  // Ensure it doesn't shrink
                 borderRadius: "8px",
-                objectFit: "contain",
+                backgroundColor: "#F3F3F6",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                transition: "background-color 0.3s ease",
             }}
-        />
+        >
+            {/* Icon - Updated to 24px × 24px */}
+            <Box
+                component="img"
+                src={icon}
+                alt={title}
+                sx={{
+                    width: "24px",
+                    height: "24px",
+                    objectFit: "contain",
+                }}
+            />
+        </Box>
+
+        {/* Text Content */}
         <Box>
             <Typography
                 sx={{
@@ -569,19 +611,22 @@ const feature = (icon, title, desc) => (
     </Box>
 );
 
-const navBtnStyle = () => ({
+
+const navBtnStyle = (scrolled = false) => ({
     fontWeight: 400,
     fontSize: "16px",
     textTransform: "none",
-    color: "#FFFFFF",
-    borderRadius: 99,
+    color: scrolled ? "#072449" : "#FFFFFF",
+    borderRadius: "12px",
     px: 1.5,
     py: .5,
     transition: "all 0.3s ease",
     '&:hover': {
-        backgroundColor: "#0E4FA2",
+        backgroundColor: scrolled ? "#F3F3F6" : "#3082EC3B",
         transform: "scale(1.07)",
+        color: scrolled ? "#05408E" : "#FFFFFF",
     },
 });
 
-export default NavBar;
+
+export default Navbar;

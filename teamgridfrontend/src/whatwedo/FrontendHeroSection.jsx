@@ -1,92 +1,73 @@
 import React from "react";
 import { Box, Button, Typography, Grid } from "@mui/material";
-import wordpressIcon from "../assets/Frame 254.png";
-import reactIcon from "../assets/Frame 253.png";
-import figmaIcon from "../assets/Frame 161.png";
-import { keyframes } from "@emotion/react"; // Needed for MUI animations
+import wordpressIcon from "../assets/Frame 254.svg";
+import reactIcon from "../assets/Frame 253.svg";
+import figmaIcon from "../assets/Group 119.svg";
 
 const FrontendHeroSection = () => {
-    // Orbit style definitions
-
-    const rotateClockwise = keyframes`
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-`;
-
-    const rotateCounterClockwise = keyframes`
-  0% { transform: rotate(360deg); }
-  100% { transform: rotate(0deg); }
-`;
-
     const orbitStyles = [
         {
             width: 586,
             height: 586,
-            icon: reactIcon,
+            icon: figmaIcon,
             duration: "28s",
             direction: "clockwise",
         },
         {
-            width: 1020,
-            height: 1020,
-            icon: figmaIcon,
+            width: 1050,
+            height: 1050,
+            icon: reactIcon,
             duration: "34s",
             direction: "counter",
         },
         {
-            width: 1465,
-            height: 1465,
+            width: 1490,
+            height: 1490,
             icon: wordpressIcon,
             duration: "48s",
             direction: "clockwise",
         },
     ];
 
-    // Rotation animation keyframes
-    const rotate = keyframes`
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  `;
-
     return (
         <Box
             sx={{
                 background: "#072449",
                 color: "#FFFFFF",
-                px: { xs: 2, md: 8 },
-                py: { xs: 6, md: 10 },
+                px: { xs: 2, sm: 3, md: 4, lg: 7 },
+                py: { xs: 6, sm: 8, md: 10, lg: 12 },
                 position: "relative",
                 overflow: "hidden",
-                maxHeight: "625px",
-                height: "625px",
-                maxWidth: { xs: '100%', md: '1800px' },
+                maxHeight: { xs: 'auto', md: 625 },
+                height: { xs: 'auto', md: 625 },
+                maxWidth: { xs: '100%', md: '1440px' },
                 width: '100%',
                 margin: '0 auto',
             }}
         >
-            {/* Hero Content */}
             <Grid container spacing={4} alignItems="center">
                 <Grid item xs={12} md={6}>
                     <Box
                         sx={{
-                            width: "690px",
-                            height: "366px",
+                            width: { xs: '100%', sm: 400, md: 690 },
+                            minHeight: { xs: 'auto', md: 366 },
                             position: "relative",
-                            top: "80px",
-                            left: "58px",
+                            top: { xs: 30, md: "70px" },
+                            left: { xs: 0, md: "15px" },
                             display: "flex",
                             flexDirection: "column",
                             justifyContent: "center",
-                            gap: "24px",
-                            zIndex: 2
+                            gap: { xs: 2, md: 3 },
+                            zIndex: 2,
+                            m:{xs:1}
                         }}
                     >
                         <Typography
                             sx={{
                                 fontFamily: "PayPal Open, sans-serif",
                                 fontWeight: 700,
-                                fontSize: "56px",
-                                lineHeight: "56px",
+                                fontSize: { xs: '2.2rem', sm: '2.8rem', md: '3.5rem', lg: '56px' },
+                                lineHeight: { xs: '110%', md: '56px' },
                             }}
                         >
                             Front-End Development for{" "}
@@ -100,8 +81,8 @@ const FrontendHeroSection = () => {
                             sx={{
                                 fontFamily: "PayPal Open, sans-serif",
                                 fontWeight: 300,
-                                fontSize: "20px",
-                                lineHeight: "30px",
+                                fontSize: { xs: '1rem', sm: '1.1rem', md: '1.25rem', lg: '20px' },
+                                lineHeight: { xs: '150%', md: '30px' },
                                 color: "#E1E0E0",
                             }}
                         >
@@ -110,22 +91,30 @@ const FrontendHeroSection = () => {
                             without growing overhead.
                         </Typography>
 
-                        <Box sx={{ display: "flex", gap: "15px", width: "468px", height: "59px" }}>
+                        <Box sx={{
+                            display: "flex",
+                            flexDirection: { xs: 'column', sm: 'row' },
+                            gap: { xs: 2, sm: 2, md: 3 },
+                            width: { xs: '90%', sm: 350, md: 468 },
+                            height: { xs: 'auto', md: 59 },
+                            position: 'relative',
+                            zIndex: 30
+                        }}>
                             <Button
                                 sx={{
                                     color: "#fff",
-                                    px: 4,
+                                    px: {sm:2,md:2,lg:4},
                                     py: 2,
                                     borderRadius: "16px",
                                     textTransform: "none",
                                     fontFamily: "PayPal Open",
                                     fontWeight: 400,
-                                    fontSize: "18px",
+                                    fontSize: { xs: '1rem', sm: '1.1rem', md: '1.25rem', lg: '18px' },
                                     border: "1px solid #FFFFFF45",
                                     lineHeight: "150%",
                                     "&:hover": { backgroundColor: "#0070FF" },
-                                    height: "59px",
-                                    minWidth: "200px",
+                                    height: { xs: 48, md: 59 },
+                                    minWidth: { xs: 10, sm:180,md: 200,lg:200 },
                                 }}
                             >
                                 Hire Developers
@@ -136,20 +125,23 @@ const FrontendHeroSection = () => {
                                     color: "#fff",
                                     borderColor: "#4D5BCE",
                                     border: "1px solid #FFFFFF45",
-                                    px: 4,
+                                    px: {sm:2,md:2,lg:4},
                                     py: 2,
                                     borderRadius: "16px",
                                     textTransform: "none",
                                     fontFamily: "PayPal Open",
                                     fontWeight: 400,
-                                    fontSize: "18px",
+                                    fontSize: { xs: '1rem', sm: '1.1rem', md: '1.25rem', lg: '18px' },
                                     lineHeight: "150%",
-                                    height: "59px",
-                                    minWidth: "254px",
+                                    height: { xs: 48, md: 59 },
+                                    minWidth: { xs: 140, md: 254 },
+                                    bgcolor: "#072449",
                                     "&:hover": {
                                         backgroundColor: "#0070FF",
                                         borderColor: "#FFFFFF45",
                                     },
+                                    zIndex: 30,
+                                    position: 'relative',
                                 }}
                                 endIcon={<span style={{ fontSize: "1.2rem" }}>→</span>}
                             >
@@ -159,42 +151,46 @@ const FrontendHeroSection = () => {
                     </Box>
                 </Grid>
 
-                {/* Right-side Orbits with Icons */}
-                {orbitStyles.map((style, i) => (
-                    <Box
-                        key={`orbit-${i}`}
-                        sx={{
-                            position: "absolute",
-                            width: `${style.width}px`,
-                            height: `${style.height}px`,
-                            top: "102%",
-                            left: "92%",
-                            transform: `translate(-50%, -50%)`,
-                            borderRadius: "50%",
-                            border: "1px solid rgba(255, 255, 255, 0.1)",
-                            pointerEvents: "none",
-                            zIndex: 1,
-                        }}
-                    >
-                        {/* Rotating Container */}
+                {/* Orbits + Icons + Dots */}
+                {orbitStyles.map((style, i) => {
+                    const radius = style.width / 2;
+                    let angleRad;
+                    if (i === 0 || i === 1) {
+                        angleRad = 65 * Math.PI / 180;
+                    } else if (i === 2) {
+                        angleRad = 15 * Math.PI / 180;
+                    } else {
+                        angleRad = Math.PI / 4;
+                    }
+                    const x = radius * Math.cos(angleRad);
+                    const y = radius * Math.sin(angleRad);
+
+                    return (
                         <Box
+                            key={`orbit-${i}`}
                             sx={{
-                                width: "100%",
-                                height: "100%",
-                                position: "relative",
-                                animation: `${style.direction === "counter" ? rotateCounterClockwise : rotateClockwise} ${style.duration} linear infinite`,
+                                position: "absolute",
+                                width: `${style.width}px`,
+                                height: `${style.height}px`,
+                                top: "105%",
+                                left: "93%",
+                                transform: `translate(-50%, -50%)`,
+                                borderRadius: "50%",
+                                border: "1px solid rgba(255, 255, 255, 0.1)",
+                                pointerEvents: "none",
+                                zIndex: 1,
                             }}
                         >
-                            {/* Icon Wrapper */}
+                            {/* Orbiting Icon */}
                             <Box
                                 sx={{
-                                    width: "163px",
-                                    height: "186px",
+                                    width: "208px",
+                                    height: "208px",
                                     position: "absolute",
-                                    top: "50%",
-                                    left: "100%",
-                                    transform: "translate(-50%, -50%)  rotate(-180deg)",
-
+                                    left: `calc(50% - ${x}px)`,
+                                    top: `calc(50% - ${y}px)`,
+                                    transform: "translate(-50%, -50%)",
+                                    zIndex: 1,
                                 }}
                             >
                                 <Box
@@ -208,11 +204,73 @@ const FrontendHeroSection = () => {
                                     }}
                                 />
                             </Box>
+
+                            {/* Orbit Dots */}
+                            {i === 0 && (() => {
+                                const dotAngle = 105 * Math.PI / 180;
+                                const dotX = radius * Math.cos(dotAngle);
+                                const dotY = radius * Math.sin(dotAngle);
+                                return (
+                                    <Box
+                                        key={`dot-${i}-0`}
+                                        sx={{
+                                            position: "absolute",
+                                            width: "20px",
+                                            height: "20px",
+                                            borderRadius: "50%",
+                                            backgroundColor: "#B2D2FC",
+                                            left: `calc(50% - ${dotX}px)`,
+                                            top: `calc(50% - ${dotY}px)` ,
+                                            transform: "translate(-50%, -50%)",
+                                        }}
+                                    />
+                                );
+                            })()}
+                            {i === 1 && [
+                                { angle: Math.PI / 2 }, // 90deg (right)
+                                { angle: 35 * Math.PI / 180 } // 35deg (slightly north-east)
+                            ].map((dot, dotIdx) => {
+                                const dotX = radius * Math.cos(dot.angle);
+                                const dotY = radius * Math.sin(dot.angle);
+                                return (
+                                    <Box
+                                        key={`dot-${i}-${dotIdx}`}
+                                        sx={{
+                                            position: "absolute",
+                                            width: "20px",
+                                            height: "20px",
+                                            borderRadius: "50%",
+                                            backgroundColor: "#B2D2FC",
+                                            left: `calc(50% - ${dotX}px)`,
+                                            top: `calc(50% - ${dotY}px)`,
+                                            transform: "translate(-50%, -50%)",
+                                        }}
+                                    />
+                                );
+                            })}
+                            {i === 2 && (() => {
+                                const dotAngle = Math.PI / 4; // 45deg
+                                const dotX = radius * Math.cos(dotAngle);
+                                const dotY = radius * Math.sin(dotAngle);
+                                return (
+                                    <Box
+                                        key={`dot-${i}-0`}
+                                        sx={{
+                                            position: "absolute",
+                                            width: "20px",
+                                            height: "20px",
+                                            borderRadius: "50%",
+                                            backgroundColor: "#B2D2FC",
+                                            left: `calc(50% - ${dotX}px)`,
+                                            top: `calc(50% - ${dotY}px)` ,
+                                            transform: "translate(-50%, -50%)",
+                                        }}
+                                    />
+                                );
+                            })()}
                         </Box>
-                    </Box>
-                ))}
-
-
+                    );
+                })}
             </Grid>
         </Box>
     );
