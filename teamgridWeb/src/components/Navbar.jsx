@@ -238,17 +238,17 @@ const NavBar = () => {
           <Button
             variant="contained"
             sx={{
-              backgroundColor: "#003087",
-              borderRadius: 999,
+              backgroundColor: "#05408E",
+              borderRadius: "12px",
               height: "48px",
-              width: "139px",
+              width: "116px",
               textTransform: "none",
               fontSize: "16px",
               fontWeight: 400,
               "&:hover": { backgroundColor: "#002366" },
             }}
           >
-            Get a Quote
+            Let’s Talk
           </Button>
         </ListItem>
       </List>
@@ -410,10 +410,10 @@ const NavBar = () => {
                 <Button
                   variant="contained"
                   sx={{
-                    backgroundColor: "#003087",
-                    borderRadius: 999,
+                    backgroundColor: "#05408E",
+                    borderRadius: "12px",
                     height: "48px",
-                    width: "139px",
+                    width: "116px",
                     textTransform: "none",
                     fontSize: "16px",
                     fontWeight: 400,
@@ -421,7 +421,7 @@ const NavBar = () => {
                     "&:hover": { backgroundColor: "#002366" },
                   }}
                 >
-                  Get a Quote
+                  Let’s Talk
                 </Button>
               </Box>
             )}

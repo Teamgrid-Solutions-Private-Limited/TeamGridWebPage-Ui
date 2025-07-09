@@ -38,66 +38,74 @@ const FaqSection = () => {
   };
 
   return (
-    <Box sx={{ py: { xs: 8, md: 12 }, backgroundColor: "#F7FAFC" }}>
+    <Box sx={{ py: { xs: 8, md: 12 }, backgroundColor: "#F4F9FF" }}>
       <Container maxWidth="md">
         <Typography
-          variant="h4"
-          fontWeight={700}
+          fontWeight={500}
           textAlign="center"
-          sx={{ mb: 2 }}
+          sx={{ mb: 2, color: "#140E13", fontSize: "48px" }}
         >
           Got Questions
         </Typography>
         <Typography
-          variant="body1"
-          color="text.secondary"
           textAlign="center"
-          sx={{ mb: 6 }}
+          sx={{ mb: 6, color: "#000000", fontSize: "18px", fontWeight: 500 }}
         >
-          Clear responses to common questions about how we work and what we
-          deliver.
+          Clear responses to common questions about how we <br /> work and what
+          we deliver.
         </Typography>
 
-        {faqs.map((faq, index) => (
-          <Accordion
-            key={index}
-            expanded={expandedIndex === index}
-            onChange={handleChange(index)}
-            sx={{
-              mb: 2,
-              borderRadius: "16px",
-              boxShadow: "none",
-              backgroundColor: "#fff",
-              border: "1px solid #E2E8F0",
-            }}
-          >
-            <AccordionSummary
-              expandIcon={
-                expandedIndex === index ? (
-                  <RemoveIcon sx={{ color: "#05408E" }} />
-                ) : (
-                  <AddIcon sx={{ color: "#05408E" }} />
-                )
-              }
-              aria-controls={`panel${index}-content`}
-              id={`panel${index}-header`}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          {faqs.map((faq, index) => (
+            <Accordion
+              key={index}
+              expanded={expandedIndex === index}
+              onChange={handleChange(index)}
+              sx={{
+                mb: 2,
+                borderRadius: "16px",
+                boxShadow: "none",
+                backgroundColor: "#fff",
+                width: "100%",
+                maxWidth: "588px",
+                border: "1px solid #D2E6FF",
+                overflow:"hidden"
+              }}
             >
-              <Typography
-                fontWeight={500}
-                color="#05408E"
-                fontSize="16px"
-                sx={{ mr: 2 }}
+              <AccordionSummary
+                expandIcon={
+                  expandedIndex === index ? (
+                    <RemoveIcon sx={{ color: "#05408E" }} />
+                  ) : (
+                    <AddIcon sx={{ color: "#05408E" }} />
+                  )
+                }
+                aria-controls={`panel${index}-content`}
+                id={`panel${index}-header`}
               >
-                {faq.question}
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography color="text.secondary" fontSize="15px">
-                {faq.answer}
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-        ))}
+                <Typography
+                  fontWeight={400}
+                  color="#05408E"
+                  fontSize="18px"
+                  sx={{ mr: 2 }}
+                >
+                  {faq.question}
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography color="#140E13" fontSize="16px" fontWeight={400}>
+                  {faq.answer}
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+          ))}
+        </Box>
       </Container>
     </Box>
   );

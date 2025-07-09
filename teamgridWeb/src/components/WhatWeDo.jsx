@@ -86,7 +86,7 @@ const WhatWeDo = () => {
         sx={{
           maxWidth: "1440px",
           px: { xs: 2, md: 3 },
-          ml: { xs: 0, sm: 2, md: 8, lg: 6, xl: "100px" },
+          ml: { xs: 0, sm: 2, md: 8, lg: 6, xl: "90px" },
           mb: { xs: 2, md: 4 },
         }}
       >
@@ -139,7 +139,7 @@ const WhatWeDo = () => {
           pt: { xs: 3, sm: 4, md: 8 },
           pb: { xs: "80px", sm: "100px", md: "120px" },
           mt: { xs: 2, md: 4 },
-          ml: { sm: "5px", md: "10px", lg: "75px",xl:"120px" },
+          ml: { sm: "5px", md: "10px", lg: "75px",xl:"118px" },
 
           overflow: "hidden",
         }}

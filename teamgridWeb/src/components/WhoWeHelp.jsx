@@ -27,7 +27,7 @@ const WhoWeHelp = () => {
           top: { md: "253px" },
           left: { md: "%" ,lg:"2.5%"},
           width: { xs: "100%", sm: "400px", md: "468px" },
-          px: { xs: 0, sm: 3, md: 0, lg:2 , xl:6 },
+          px: { xs: 0, sm: 3, md: 0, lg:5 , xl:5 },
         }}
       >
         <Typography

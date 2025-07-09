@@ -145,7 +145,7 @@ const Footer = () => {
           pt: 4,
           pb: 4,
           rowGap: 4,
-          ml: { xs: 0, sm: 0, md: 0, lg: 1, xl: "70px" }, // Align to logo margin
+          ml: { xs: 0, sm: 0, md: 0, lg: 1, xl: "60px" }, // Align to logo margin
         }}
       >
         {/* Contact */}
@@ -260,7 +260,7 @@ const Footer = () => {
         sx={{
           borderTop: "1px solid #2E4B7D",
           pt: 2,
-          ml: { xs: 0, sm: 0, md: 0, lg: 1, xl: "70px" },
+          ml: { xs: 0, sm: 0, md: 0, lg: 1, xl: "60px" },
         }}
       >
         <Typography

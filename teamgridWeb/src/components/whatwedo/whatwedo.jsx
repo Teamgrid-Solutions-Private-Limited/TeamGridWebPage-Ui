@@ -6,6 +6,8 @@ import WhyPartnerWithUs from './WhyPartnerWithUs'
 import HowWeWork from './HowWeWork'
 import EngagementModels from './EngagementModels '
 import FaqSection from './FaqSection'
+import Need from './Need'
+import Footer from "../Footer.jsx"
 
 export default function Whatwedo(){
 
@@ -18,6 +20,8 @@ export default function Whatwedo(){
         <HowWeWork/>
         <EngagementModels/>
         <FaqSection/>
+        <Need/>
+        <Footer/>
         </>
     )
 }

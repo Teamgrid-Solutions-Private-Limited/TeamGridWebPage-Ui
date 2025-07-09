@@ -1,7 +1,15 @@
 import React from "react";
-import { Box, Typography, Grid, Card, CardContent } from "@mui/material";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import {
+  Box,
+  Typography,
+  Grid,
+  Card,
+  CardContent
+} from "@mui/material";
+import leftarrow from "../../assets/left.png";
+import rightarrow from "../../assets/right.png";
+import rightdownward from "../../assets/rightdownward.png";
+import leftdownward from "../../assets/leftdownward.png";
 
 const steps = [
   {
@@ -23,6 +31,12 @@ const steps = [
       "We connect front-end with backend or CMS APIs to handle real-time data and error states reliably.",
   },
   {
+    number: "03",
+    title: "Development",
+    description:
+      "We build responsive, pixel-perfect interfaces using React and modern CSS with clean, scalable code.",
+  },
+  {
     number: "05",
     title: "QA & Testing",
     description:
@@ -36,107 +50,162 @@ const steps = [
   },
 ];
 
+const arrowIcons = [
+  rightarrow,
+  rightdownward,
+  leftarrow,
+  leftdownward,
+  rightarrow,
+];
+
 const HowWeWork = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "#003057",
+        backgroundColor: "#0B3C7B",
         px: { xs: 2, md: 10 },
         py: { xs: 6, md: 10 },
         color: "#fff",
         borderRadius: "40px",
+        width: { md:"100%",lg: "1250px", xl: "1300px" },
+        height: "auto",
+        ml: {md:"4%", lg: "6%", xl: "8%" }
       }}
     >
-      <Typography 
-        variant="h4" 
-        fontWeight={600} 
-        sx={{ 
-          fontSize: { xs: 28, md: 40 }, 
+      <Typography
+        fontWeight={500}
+        sx={{
+          fontSize: { xs: 28, md: 56 },
           mb: 1,
-          textAlign: "center" 
+          textAlign: "center",
+          color: "#FFFFFF",
         }}
       >
         How We Work
       </Typography>
-      <Typography 
-        sx={{ 
-          mb: 6, 
-          color: "#C5D7E5",
-          textAlign: "center" 
+      <Typography
+        sx={{
+          mb: 6,
+          color: "#B2D2FC",
+          textAlign: "center",
+          fontSize: "16px",
+          fontWeight: 400,
         }}
       >
-        Our front-end development process is built to deliver speed, quality, and collaboration.
+        Our front-end development process is built to deliver speed, <br />
+        quality, and collaboration.
       </Typography>
 
-      <Grid 
-        container 
-        spacing={4} 
-        sx={{
-          maxWidth: "1000px",
-          margin: "0 auto"
-        }}
+      <Grid
+        container
+        spacing={4}
+        rowSpacing={8}
+        sx={{ maxWidth: "1000px", margin: "0 auto" }}
       >
         {steps.map((step, index) => (
           <React.Fragment key={index}>
-            <Grid item xs={12} md={2.4}>
+            {index === 2 && <Grid item xs={12} />}
+
+            <Grid
+              item
+              xs={12}
+              md={2.4}
+              sx={{
+                ...(index === 2 && { ml: { md: 10 } }),
+                ...(index === 3 && { ml: { md: -2 } }),
+                ...(index === 4 && { ml: { md: -14 } }),
+                ...(index === 5 && { ml: { md: -3 } }),
+              }}
+            >
               <Box
                 sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 2,
-                  alignItems: "center",
+                  position: "relative",
+                  width: "100%",
+                  maxWidth: "384px",
+                  height: "auto",
+                  mx: { xs: "auto", md: "0" },
                 }}
               >
+                {/* Step Number */}
                 <Box
                   sx={{
-                    width: "48px",
-                    height: "48px",
-                    borderRadius: "12px",
-                    backgroundColor: "#C2F2DA",
-                    color: "#003057",
-                    fontWeight: 600,
-                    fontSize: "18px",
+                    position: "absolute",
+                    top: "-20px",
+                    left: "-20px",
+                    width: "80px",
+                    height: "80px",
+                    borderRadius: "24px",
+                    backgroundColor: "#30ECAD",
+                    color: "#089767",
+                    fontWeight: 300,
+                    fontSize: "40px",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    zIndex: 2,
                   }}
                 >
                   {step.number}
                 </Box>
+
+                {/* Card */}
                 <Card
                   sx={{
-                    backgroundColor: "#0073FF",
+                    backgroundColor: "#005DD5",
                     color: "#fff",
-                    borderRadius: "16px",
+                    borderRadius: "24px",
                     width: "100%",
-                    minHeight: "160px",
+                    height: "100%",
+                    px: 3,
+                    py: 2,
                   }}
                 >
-                  <CardContent>
-                    <Typography fontWeight={600} fontSize="16px" mb={1}>
+                  <CardContent sx={{ p: 0 }}>
+                    <Typography
+                      fontWeight={500}
+                      fontSize="20px"
+                      mb={1}
+                      ml={5}
+                    >
                       {step.title}
                     </Typography>
-                    <Typography fontSize="14px">{step.description}</Typography>
+                    <Typography
+                      fontSize="16px"
+                      fontWeight={400}
+                      sx={{ color: "#B2D2FC", ml: 5 }}
+                    >
+                      {step.description}
+                    </Typography>
                   </CardContent>
                 </Card>
               </Box>
             </Grid>
-            
+
+            {/* Arrows – Hidden on xs & sm */}
             {index < steps.length - 1 && (
-              <Grid item xs={12} md={0.6} sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <ArrowForwardIcon 
-                  sx={{ 
-                    color: "#fff", 
-                    fontSize: "40px",
-                    display: { xs: "none", md: "block" } 
-                  }} 
-                />
-                <ArrowDownwardIcon 
-                  sx={{ 
-                    color: "#fff", 
-                    fontSize: "40px",
-                    display: { xs: "block", md: "none" } 
-                  }} 
+              <Grid
+                item
+                xs={12}
+                md={0.6}
+                sx={{
+                  display: { xs: "none", sm: "none", md: "none" , lg:"flex" , xl:"flex"},
+                  alignItems: "center",
+                  justifyContent: "center",
+                  ...(index === 3 && {
+                    position: "relative",
+                    top: "-180px",
+                    ml: 3,
+                  }),
+                }}
+              >
+                <Box
+                  component="img"
+                  src={arrowIcons[index % arrowIcons.length]}
+                  alt={`arrow-${index}`}
+                  sx={{
+                    width: "54px",
+                    height: "auto",
+                  }}
                 />
               </Grid>
             )}

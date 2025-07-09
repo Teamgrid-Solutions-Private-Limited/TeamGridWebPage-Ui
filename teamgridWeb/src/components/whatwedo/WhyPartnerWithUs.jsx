@@ -8,7 +8,7 @@ import {
   Button,
 } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import people from "../../assets/people.png";
+import people from "../../assets/teamm.svg";
 import { darken } from "@mui/system";
 
 // Sample icon placeholder (can be replaced with an image or SVG)
@@ -30,37 +30,42 @@ const features = [
     description:
       "Specifically designed to support digital and creative agencies with reliable, scalable front-end development services.",
     bgColor: "#FFF6C7",
+    teamColor : "#FDE658",
   },
   {
     title: "Speed & Flexibility",
     description:
       "Kickstart projects quickly and scale up or down as your client demands change — no overhead, just results.",
     bgColor: "#EAE8FF",
+    teamColor : "#DADAFD",
   },
   {
     title: "UI-First Thinking",
     description:
       "Our developers prioritize design fidelity with responsive, pixel-perfect implementations that bring your mockups to life flawlessly.",
     bgColor: "#E7F9D9",
+    teamColor : "#CDF5B3",
   },
   {
     title: "NDA-Compliant",
     description:
       "We work under strict non-disclosure agreements, ensuring full confidentiality while representing your brand seamlessly.",
     bgColor: "#FCE7FB",
+    teamColor : "#FFDDF9",
   },
   {
     title: "Seamless Integration",
     description:
       "We collaborate smoothly with your in-house designers, backend developers, and project managers.",
     bgColor: "#DFF6FD",
+    teamColor : "#CBEFFF",
   },
 ];
 
 
 const WhyPartnerWithUs = () => {
   return (
-    <Box sx={{ px: { xs: 2, md: 10 }, py: { xs: 6, md: 10 }, ml: 5 }}>
+    <Box sx={{ px: { xs: 2, md: 10 }, py: { xs: 6, md: 10 }, ml: {lg:0 , xl:5} }}>
       <Box
         sx={{
           display: "flex",
@@ -104,8 +109,8 @@ const WhyPartnerWithUs = () => {
               sx={{
                 borderRadius: "24px",
                 backgroundColor: feature.bgColor,
-                height: "252px",
-                width: "420px",
+                height: {lg:"242px", xl:"252px"},
+                width: {lg:"405px", xl:"420px"},
               }}
             >
               <CardContent>
@@ -115,7 +120,7 @@ const WhyPartnerWithUs = () => {
                     height: 64,
                     width: 64,
                     borderRadius: "14px",
-                    backgroundColor: darken(feature.bgColor, 0.08), // darken by 10%
+                    backgroundColor: feature.teamColor, // darken by 10%
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",

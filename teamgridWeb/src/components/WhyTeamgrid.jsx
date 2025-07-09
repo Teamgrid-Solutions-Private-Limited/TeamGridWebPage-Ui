@@ -48,7 +48,7 @@ const WhyTeamgrid = () => {
         pt: { xs: 2, sm: 4, md: 8 },
         pb: { xs: 4, sm: 6, md: 8 },
         px: { xs: 2, sm: 3, md: 4 }, // Add horizontal padding for all sizes
-        ml: { xs: 0, sm: 2, md: 2, lg: 5, xl: "90px" }, // Reduce left margin on mobile
+        ml: { xs: 0, sm: 2, md: 2, lg: 5, xl: "85px" }, // Reduce left margin on mobile
       }}
     >
       {/* Heading Section */}
@@ -139,7 +139,7 @@ const WhyTeamgrid = () => {
             height: "auto",
             objectFit: "cover",
             borderRadius: { xs: 1, sm: 2 },
-            mx: { xs: 0, sm: "auto", md: 0 }, // Center on small screens
+            mx: { xs: 0, sm: "auto", md: 0 , lg:0,xl:0.5}, // Center on small screens
           }}
         />
 

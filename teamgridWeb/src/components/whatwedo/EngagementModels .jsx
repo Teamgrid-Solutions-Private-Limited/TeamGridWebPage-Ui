@@ -10,12 +10,13 @@ import {
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import verify from "../../assets/verifyy.png";
 
 const models = [
   {
     title: "Flexible Time & Material Model for Evolving Needs",
     points: [
-      "Pay only for hours worked",
+      "Only pay for the work you need — no fixed cost, no idle time",
       "Ideal for ongoing or evolving tasks",
       "Transparent weekly timesheets",
     ],
@@ -40,7 +41,7 @@ const models = [
 
 const EngagementModels = () => {
   return (
-    <Box sx={{ px: { xs: 2, md: 10 }, py: { xs: 6, md: 10 } }}>
+    <Box sx={{ px: { xs: 2, md: 15 , lg:10, xl:15}, py: { xs: 6, md: 10 } }}>
       <Box
         sx={{
           display: "flex",
@@ -51,10 +52,15 @@ const EngagementModels = () => {
         }}
       >
         <Box>
-          <Typography variant="h4" fontWeight={600} sx={{ fontSize: { xs: 28, md: 40 }, mb: 1 }}>
+          <Typography
+            fontWeight={500}
+            sx={{ fontSize: { xs: 28, md: 48 }, mb: 1, color: "#140E13" }}
+          >
             Engagement Models
           </Typography>
-          <Typography variant="body1" sx={{ color: "#555" }}>
+          <Typography
+            sx={{ color: "#000000", fontSize: "18px", fontWeight: "500" }}
+          >
             Choose the engagement model that best suits your project needs
           </Typography>
         </Box>
@@ -62,42 +68,64 @@ const EngagementModels = () => {
           variant="outlined"
           endIcon={<ArrowForwardIcon />}
           sx={{
-            borderRadius: "12px",
-            height: 48,
+            borderRadius: "16px",
+            color: "#140E13",
+            width: "246px",
+            height: "59px",
             px: 3,
             mt: { xs: 2, md: 0 },
-            borderColor: "#cbd5e1",
+            borderColor: "#CACACA",
             textTransform: "none",
-            fontWeight: 500,
+            fontWeight: 400,
+            mr:{lg:2}
           }}
         >
           Explore Services
         </Button>
       </Box>
 
-      <Grid container spacing={3}>
+      <Grid container spacing={5}>
         {models.map((model, index) => (
           <Grid item xs={12} md={4} key={index}>
             <Card
               sx={{
-                backgroundColor: "#F6F7FA",
-                borderRadius: "20px",
-                height: "100%",
+                backgroundColor: "#F3F3F6",
+                borderRadius: "24px",
+                height: "322px",
+                width: {lg:"395px",xl:"400px"},
+                py: 2,
+                px:2
               }}
             >
               <CardContent>
-                <Typography fontWeight={600} fontSize="16px" color="#003057" mb={2}>
+                <Typography
+                  fontWeight={500}
+                  fontSize="24px"
+                  color="#05408E"
+                  mb={2}
+                >
                   {model.title}
                 </Typography>
                 <Stack spacing={1} mb={3}>
                   {model.points.map((point, i) => (
-                    <Box key={i} sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                      <CheckCircleIcon sx={{ color: "#00B67A", fontSize: 20 }} />
-                      <Typography fontSize="14px">{point}</Typography>
+                    <Box
+                      key={i}
+                      sx={{ display: "flex", alignItems: "center", gap: 1 }}
+                    >
+                      <Box
+                        component="img"
+                        src={verify}
+                        alt="Check icon"
+                        sx={{ height: 20, width: 20 }}
+                      />
+                      <Typography fontSize="16px" fontWeight={400}>
+                        {point}
+                      </Typography>
                     </Box>
                   ))}
                 </Stack>
-                <Stack direction="row" spacing={2}>
+
+                <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
                   <Button
                     variant="contained"
                     endIcon={<ArrowForwardIcon />}
@@ -105,7 +133,11 @@ const EngagementModels = () => {
                       textTransform: "none",
                       borderRadius: "12px",
                       backgroundColor: "#05408E",
-                      fontWeight: 500,
+                      height: "48px",
+                      width: "143px",
+                      fontWeight: 400,
+                      color: "#FAFAFA",
+                      fontSize: "16px",
                     }}
                   >
                     Reach us
@@ -115,9 +147,12 @@ const EngagementModels = () => {
                     sx={{
                       textTransform: "none",
                       borderRadius: "12px",
-                      fontWeight: 500,
-                      color: "#000",
-                      borderColor: "#cbd5e1",
+                      fontWeight: 400,
+                      height: "48px",
+                      width: "144px",
+                      borderColor: "#D7D7D7",
+                      color: "#140E13",
+                      fontSize: "16px",
                     }}
                   >
                     Know more...

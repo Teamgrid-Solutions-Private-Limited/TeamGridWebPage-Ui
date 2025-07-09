@@ -4,9 +4,9 @@ import { motion, AnimatePresence, color } from "framer-motion";
 import WhatWeOffer from "./Whatweoffer";
 
 // Assets
-import P1 from "../../assets/figmaa.png"
-import P2 from "../../assets/reactt.png"
-import P3 from "../../assets/wooo.png"
+import P1 from "../../assets/figmaa.png";
+import P2 from "../../assets/reactt.png";
+import P3 from "../../assets/wooo.png";
 import P11 from "../../assets/P11.png";
 import P111 from "../../assets/P111.png";
 import P22 from "../../assets/P22.png";
@@ -53,7 +53,6 @@ const orbitPlanetsData = [
   ],
 ];
 
-
 const Orbit = ({ index, size, isPaused, setIsPaused, setSelectedPlanet }) => {
   const [centerPos, setCenterPos] = useState(getCenterPosition());
   const duration = 500 + index * 20;
@@ -69,7 +68,18 @@ const Orbit = ({ index, size, isPaused, setIsPaused, setSelectedPlanet }) => {
   }, []);
 
   // 4 white dots
-  const whiteDots = Array.from({ length: 4 });
+  // Set number of dots and their angles based on orbit index
+  let dotAngles = [];
+  if (index === 0) {
+    dotAngles = [220]; // 1 dot in Orbit 1
+  } else if (index === 1) {
+    dotAngles = [200, 260]; // 2 dots in Orbit 2
+  } else if (index === 2) {
+    dotAngles = [270]; // 1 dot in Orbit 3
+  }
+  const whiteDots = Array.from({ length: dotAngles.length });
+
+  const planetAngles = [190, 230, 232];
 
   return (
     <>
@@ -89,14 +99,8 @@ const Orbit = ({ index, size, isPaused, setIsPaused, setSelectedPlanet }) => {
       />
 
       {/* Orbit Content (Planets + White Circles) */}
-      <motion.div
-        animate={{ rotate: isPaused ? 0 : index % 2 === 0 ? 360 : -360 }}
-        transition={{
-          repeat: isPaused ? 0 : Infinity,
-          duration,
-          ease: "linear",
-        }}
-        style={{
+      <Box
+        sx={{
           position: "absolute",
           top: `${centerPos.y - size.height / 2}px`,
           left: `${centerPos.x - size.width / 2}px`,
@@ -105,16 +109,16 @@ const Orbit = ({ index, size, isPaused, setIsPaused, setSelectedPlanet }) => {
           borderRadius: "50%",
           zIndex: 4,
           transformOrigin: "center center",
-          display: window.innerWidth < 900 ? "none" : "block",
+          display: { xs: "none", md: "block" },
         }}
       >
         {/* White Circles on Orbit */}
-        {whiteDots.map((_, i) => {
-          const angle = 270;
+        {dotAngles.map((angle, i) => {
           const rad = (angle * Math.PI) / 180;
           const radius = size.width / 2;
           const x = radius * Math.cos(rad);
           const y = radius * Math.sin(rad);
+
           return (
             <Box
               key={`dot-${i}`}
@@ -124,7 +128,7 @@ const Orbit = ({ index, size, isPaused, setIsPaused, setSelectedPlanet }) => {
                 left: "50%",
                 width: 20,
                 height: 20,
-                backgroundColor: "white",
+                backgroundColor: "#B2D2FC",
                 borderRadius: "50%",
                 transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
               }}
@@ -134,7 +138,7 @@ const Orbit = ({ index, size, isPaused, setIsPaused, setSelectedPlanet }) => {
 
         {/* Planets on Orbit */}
         {planets.map((planet, i) => {
-          const angle = (360 / planets.length) * i;
+          const angle = planetAngles[index];
           const rad = (angle * Math.PI) / 180;
           const radius = size.width / 2;
           const x = radius * Math.cos(rad);
@@ -156,7 +160,7 @@ const Orbit = ({ index, size, isPaused, setIsPaused, setSelectedPlanet }) => {
               onMouseLeave={() => setIsPaused(false)}
               onClick={() => setSelectedPlanet(planet)}
             >
-              <div
+              <Box
                 style={{
                   width: "100%",
                   height: "100%",
@@ -173,11 +177,11 @@ const Orbit = ({ index, size, isPaused, setIsPaused, setSelectedPlanet }) => {
                     borderRadius: "50%",
                   }}
                 />
-              </div>
+              </Box>
             </Box>
           );
         })}
-      </motion.div>
+      </Box>
     </>
   );
 };
@@ -224,14 +228,8 @@ const MobileOrbit = ({ setSelectedPlanet, isPaused, setIsPaused }) => {
       />
 
       {/* Animated planets on mobile */}
-      <motion.div
-        animate={{ rotate: isPaused ? 0 : 360 }}
-        transition={{
-          repeat: isPaused ? 0 : Infinity,
-          duration: 60,
-          ease: "linear",
-        }}
-        style={{
+      <Box
+        sx={{
           position: "absolute",
           top: `${centerPos.y - radius}px`,
           left: `${centerPos.x - radius}px`,
@@ -292,7 +290,7 @@ const MobileOrbit = ({ setSelectedPlanet, isPaused, setIsPaused }) => {
             </Box>
           );
         })}
-      </motion.div>
+      </Box>
 
       {/* Mobile Technology Label */}
       <Box
@@ -630,7 +628,7 @@ const Hero = () => {
         sx={{
           position: "absolute",
           top: { xs: "80px", sm: "100px", md: "245px" },
-          left: { xs: "16px", sm: "24px", md: "120px" },
+          left: { xs: "16px", sm: "24px" , lg:"80px",xl:"120px"},
           right: { xs: "16px", sm: "24px", md: "auto" },
           maxWidth: { xs: "100%", sm: "100%", md: "848px" },
           zIndex: 10,

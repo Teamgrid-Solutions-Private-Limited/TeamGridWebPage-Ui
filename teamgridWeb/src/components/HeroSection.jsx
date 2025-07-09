@@ -103,8 +103,8 @@ const Orbit = ({ index, size, isPaused, setIsPaused, setSelectedPlanet }) => {
   }, []);
 
   // 4 white dots
-  const whiteDots = Array.from({ length: 4 });
-
+  const dotCounts = [12, 10, 8, 4];
+  const whiteDots = Array.from({ length: dotCounts[index] });
   return (
     <>
       {/* Orbit Line */}
@@ -158,7 +158,7 @@ const Orbit = ({ index, size, isPaused, setIsPaused, setSelectedPlanet }) => {
                 left: "50%",
                 width: 8,
                 height: 8,
-                backgroundColor: "white",
+                backgroundColor: "#B2D2FC",
                 borderRadius: "50%",
                 transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
               }}
@@ -424,20 +424,30 @@ const CenterPiece = ({ setSelectedPlanet, selectedPlanet, setLogoZoomed }) => {
           zIndex: 2,
         }}
       />
-      <motion.div
-        animate={{ scale: [1, 1.2, 1.2], opacity: [0, 1, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeOut" }}
-        style={{
-          position: "absolute",
-          top: "25%",
-          left: "25%",
-          width: "50%",
-          height: "50%",
-          borderRadius: "50%",
-          background: "rgba(0, 123, 255, 0.15)",
-          zIndex: 1,
-        }}
-      />
+      {/* Ripple effect */}
+      {[...Array(3)].map((_, i) => (
+        <motion.div
+          key={i}
+          animate={{ scale: [1.2, 2], opacity: [0, 0.3, 0] }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            delay: i * 1.5,
+            ease: "easeOut",
+          }}
+          style={{
+            position: "absolute",
+            top: "25%",
+            left: "25%",
+            width: "50%",
+            height: "50%",
+            borderRadius: "50%",
+            background: "rgba(0, 123, 255, 0.2)",
+            zIndex: 1,
+          }}
+        />
+      ))}
+
       <motion.div
         initial={{ scale: 1 }}
         animate={{
@@ -690,7 +700,7 @@ const HeroSection = () => {
             sm: "24px",
             md: "80px",
             lg: "80px",
-            xl: "120px",
+            xl: "115px",
           },
           right: {
             xs: "16px", // Allow padding on both sides on mobile
