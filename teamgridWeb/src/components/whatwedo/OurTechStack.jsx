@@ -35,7 +35,9 @@ const OurTechStack = () => {
   return (
     <Box
       sx={{
-        px: { xs: 2, sm: 4, md: 15, lg:10, xl:15 },
+        maxWidth: "1440px", // Limit width on large screens
+        mx: "auto", // Horizontally center the container
+        px: { xs: 2, sm: 3, md: 10 }, // Responsive horizontal padding
         py: { xs: 6, sm: 8, md: 12 },
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
@@ -88,20 +90,35 @@ const OurTechStack = () => {
             color: "#fff",
           }}
         >
-          <Typography sx={{ fontSize: { xs: "28px", sm: "32px", md: "48px" }, fontWeight: 500 }}>
+          <Typography
+            sx={{
+              fontSize: { xs: "28px", sm: "32px", md: "48px" },
+              fontWeight: 500,
+            }}
+          >
             We use <span style={{ color: "#30ECAD" }}>modern,</span>
           </Typography>
-          <Typography sx={{ fontSize: { xs: "28px", sm: "32px", md: "48px" }, fontWeight: 500 }}>
+          <Typography
+            sx={{
+              fontSize: { xs: "28px", sm: "32px", md: "48px" },
+              fontWeight: 500,
+            }}
+          >
             <span style={{ color: "#30ECAD" }}>scalable</span> front-end
           </Typography>
-          <Typography sx={{ fontSize: { xs: "28px", sm: "32px", md: "48px" }, fontWeight: 500 }}>
+          <Typography
+            sx={{
+              fontSize: { xs: "28px", sm: "32px", md: "48px" },
+              fontWeight: 500,
+            }}
+          >
             technologies
           </Typography>
         </Box>
       </Box>
 
       {/* Right Content */}
-      <Box sx={{ flex: 1, width: "100%", ml:5 }}>
+      <Box sx={{ flex: 1, width: "100%", ml: 5 }}>
         <Typography
           fontWeight={500}
           sx={{
@@ -139,13 +156,13 @@ const OurTechStack = () => {
                   py: 3,
                   px: 2,
                   height: "115px",
-                  width:"123px",
+                  width: "123px",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
                   justifyContent: "center",
                   border: "1px solid #CFE5FF",
-                  boxShadow:"none"
+                  boxShadow: "none",
                 }}
               >
                 <Box
@@ -165,7 +182,11 @@ const OurTechStack = () => {
                     sx={{ width: 56, height: 56 }}
                   />
                 </Box>
-                <Typography fontSize="16px" fontWeight="500" sx={{ color: "#05408E" }}>
+                <Typography
+                  fontSize="16px"
+                  fontWeight="500"
+                  sx={{ color: "#05408E" }}
+                >
                   {tech.name}
                 </Typography>
               </Card>

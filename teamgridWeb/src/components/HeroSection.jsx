@@ -633,7 +633,7 @@ const HeroSection = () => {
     <Box
       sx={{
         width: "100%",
-        height: { xs: "100vh", md: "100vh" },
+        // height: { xs: "100vh", md: "100vh" },
         minHeight: {
           xs: "700px",
           sm: "700px",

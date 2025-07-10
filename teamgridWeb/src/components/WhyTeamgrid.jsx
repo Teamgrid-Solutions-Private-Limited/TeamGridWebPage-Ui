@@ -47,8 +47,8 @@ const WhyTeamgrid = () => {
         bgcolor: "#fff",
         pt: { xs: 2, sm: 4, md: 8 },
         pb: { xs: 4, sm: 6, md: 8 },
-        px: { xs: 2, sm: 3, md: 4 }, // Add horizontal padding for all sizes
-        ml: { xs: 0, sm: 2, md: 2, lg: 5, xl: "85px" }, // Reduce left margin on mobile
+        px: { xs: 2, sm: 3, md: 8 , lg: 10, xl:10 }, // Add horizontal padding for all sizes
+        // ml: { xs: 0, sm: 2, md: 2, lg: 5, xl: "85px" }, // Reduce left margin on mobile
       }}
     >
       {/* Heading Section */}

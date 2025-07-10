@@ -41,7 +41,14 @@ const models = [
 
 const EngagementModels = () => {
   return (
-    <Box sx={{ px: { xs: 2, md: 15 , lg:10, xl:15}, py: { xs: 6, md: 10 } }}>
+    <Box
+      sx={{
+        px: { xs: 2, md: 15, lg: 10, xl: 10 }, // Horizontal padding
+        py: { xs: 6, md: 10 }, // Vertical padding
+        mx: "auto", // Center horizontally
+        maxWidth: "1440px", // Optional: restrict width on large screens
+      }}
+    >
       <Box
         sx={{
           display: "flex",
@@ -77,7 +84,7 @@ const EngagementModels = () => {
             borderColor: "#CACACA",
             textTransform: "none",
             fontWeight: 400,
-            mr:{lg:2}
+            mr: { lg: 2 },
           }}
         >
           Explore Services
@@ -92,9 +99,9 @@ const EngagementModels = () => {
                 backgroundColor: "#F3F3F6",
                 borderRadius: "24px",
                 height: "322px",
-                width: {lg:"395px",xl:"400px"},
+                width: { lg: "395px", xl: "395px" },
                 py: 2,
-                px:2
+                px: 2,
               }}
             >
               <CardContent>

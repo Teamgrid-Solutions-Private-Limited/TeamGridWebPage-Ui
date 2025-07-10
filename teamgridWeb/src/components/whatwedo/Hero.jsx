@@ -586,8 +586,14 @@ const Hero = () => {
     <Box
       sx={{
         width: "100%",
-        height: { xs: "100vh", md: "100vh" },
-        minHeight: { xs: "700px", md: "600px" },
+        // height: { xs: "100vh", md: "100vh" },
+          minHeight: {
+          xs: "700px",
+          sm: "700px",
+          md: "600px",
+          lg: "720px",
+          xl: "720px",
+        },
         position: "relative",
         backgroundColor: "#072449",
         overflow: "hidden",

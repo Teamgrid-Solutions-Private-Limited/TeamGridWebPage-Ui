@@ -80,13 +80,25 @@ const WhatWeDo = () => {
   };
 
   return (
-    <Box sx={{ width: "100%", px: { xs: 1, sm: 0 } }}>
+    <Box  sx={{
+        position: "relative",
+        width: "100%",
+        maxWidth: "1440px",
+        height: { xs: "auto", md: "900px" },
+        bgcolor: "#fff",
+        overflow: "hidden",
+        px: { xs: 2, md: 6 },
+        py: { xs: 8, md: 0 },
+        mx: "auto",
+      }}
+    >
       {/* Headings */}
       <Box
         sx={{
           maxWidth: "1440px",
           px: { xs: 2, md: 3 },
-          ml: { xs: 0, sm: 2, md: 8, lg: 6, xl: "90px" },
+          // ml: { xs: 0, sm: 2, md: 8, lg: 6, xl: "90px" },
+          mx:"0",
           mb: { xs: 2, md: 4 },
         }}
       >
@@ -139,7 +151,7 @@ const WhatWeDo = () => {
           pt: { xs: 3, sm: 4, md: 8 },
           pb: { xs: "80px", sm: "100px", md: "120px" },
           mt: { xs: 2, md: 4 },
-          ml: { sm: "5px", md: "10px", lg: "75px",xl:"118px" },
+          // ml: { sm: "5px", md: "10px", lg: "75px",xl:"118px" },
 
           overflow: "hidden",
         }}

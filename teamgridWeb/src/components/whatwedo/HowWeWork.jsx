@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Typography,
-  Grid,
-  Card,
-  CardContent
-} from "@mui/material";
+import { Box, Typography, Grid, Card, CardContent } from "@mui/material";
 import leftarrow from "../../assets/left.png";
 import rightarrow from "../../assets/right.png";
 import rightdownward from "../../assets/rightdownward.png";
@@ -67,9 +61,10 @@ const HowWeWork = () => {
         py: { xs: 6, md: 10 },
         color: "#fff",
         borderRadius: "40px",
-        width: { md:"100%",lg: "1250px", xl: "1300px" },
+        width: "100%",
+        maxWidth: { md: "100%", lg: "1250px", xl: "1300px" }, // responsive max width
         height: "auto",
-        ml: {md:"4%", lg: "6%", xl: "8%" }
+        mx: "auto", // center horizontally
       }}
     >
       <Typography
@@ -161,12 +156,7 @@ const HowWeWork = () => {
                   }}
                 >
                   <CardContent sx={{ p: 0 }}>
-                    <Typography
-                      fontWeight={500}
-                      fontSize="20px"
-                      mb={1}
-                      ml={5}
-                    >
+                    <Typography fontWeight={500} fontSize="20px" mb={1} ml={5}>
                       {step.title}
                     </Typography>
                     <Typography
@@ -188,7 +178,13 @@ const HowWeWork = () => {
                 xs={12}
                 md={0.6}
                 sx={{
-                  display: { xs: "none", sm: "none", md: "none" , lg:"flex" , xl:"flex"},
+                  display: {
+                    xs: "none",
+                    sm: "none",
+                    md: "none",
+                    lg: "flex",
+                    xl: "flex",
+                  },
                   alignItems: "center",
                   justifyContent: "center",
                   ...(index === 3 && {

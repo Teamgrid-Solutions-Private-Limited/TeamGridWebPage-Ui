@@ -23,8 +23,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { useNavigate } from "react-router-dom";
-import whiteLogo from "../assets/Logo.png"; // use your actual white version
-import darkLogo from "../assets/LogoDark.png"; // the default black/dark version
+import whiteLogo from "../assets/Logo.png";
+import darkLogo from "../assets/LogoDark.png";
 
 // Icons
 import frontendIcon from "../assets/frontend.png";
@@ -144,6 +144,7 @@ const NavBar = () => {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
+  const isSmallMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -154,28 +155,36 @@ const NavBar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleDrawerToggle = () => {
+    setDrawerOpen(!drawerOpen);
+  };
+
+  const handleNavItemClick = (item) => {
+    setSelected(item);
+    navigate(navRoutes[item]);
+    setDrawerOpen(false);
+  };
+
   const drawer = (
     <Box
       sx={{
         background:
           "linear-gradient(0deg, rgba(5, 35, 74, 0) -20%, #000E1F 105.53%)",
-        height: "100%",
+        height: "100vh",
         py: 2,
         color: "white",
-        px: {
-          xs: 2, // phones
-          sm: 3, // tablets
-          md: 6, // 1024px
-          lg: 10, // 1440px
-          xl: 20, // 1920px+
-        },
+        px: isSmallMobile ? 2 : 4,
+        width: isSmallMobile ? "100vw" : "400px",
       }}
     >
       {/* Logo */}
       <Box
         sx={{
           mb: 2,
-          textAlign: { xs: "center", md: "left" },
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          px: isSmallMobile ? 1 : 2,
         }}
       >
         <img
@@ -187,30 +196,63 @@ const NavBar = () => {
             transition: "0.3s ease-in-out",
           }}
         />
+        <IconButton
+          onClick={handleDrawerToggle}
+          sx={{ color: "white", display: { lg: "none" } }}
+        >
+          <MenuIcon />
+        </IconButton>
       </Box>
 
       {/* Menu */}
-      <List>
+      <List sx={{ overflowY: "auto", maxHeight: "calc(100vh - 120px)" }}>
         {navItems.map((item) =>
           item === "What We Do" ? (
             <React.Fragment key={item}>
               <ListItemButton
                 onClick={() => setMobileMoreOpen(!mobileMoreOpen)}
+                sx={{
+                  "&:hover": { backgroundColor: "rgba(255,255,255,0.1)" },
+                }}
               >
-                <ListItemText primary={item} sx={{ color: "white" }} />
+                <ListItemText
+                  primary={item}
+                  primaryTypographyProps={{
+                    sx: { color: "white", fontSize: isSmallMobile ? "14px" : "16px" }
+                  }}
+                />
                 {mobileMoreOpen ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
-              <Collapse in={mobileMoreOpen}>
+              <Collapse in={mobileMoreOpen} timeout="auto" unmountOnExit>
                 {megaMenuItems.map((section) => (
                   <Box key={section.title} sx={{ pl: 4, pr: 2 }}>
-                    <Typography sx={{ color: "#ccc", fontWeight: 500, mt: 1 }}>
+                    <Typography 
+                      sx={{ 
+                        color: "#ccc", 
+                        fontWeight: 500, 
+                        mt: 1,
+                        fontSize: isSmallMobile ? "12px" : "14px"
+                      }}
+                    >
                       {section.title}
                     </Typography>
                     {section.items.map((menuItem) => (
-                      <ListItemButton key={menuItem.label}>
+                      <ListItemButton 
+                        key={menuItem.label}
+                        sx={{ pl: 2 }}
+                        onClick={() => {
+                          navigate("/whatwedo");
+                          setDrawerOpen(false);
+                        }}
+                      >
                         <ListItemText
                           primary={menuItem.label}
-                          sx={{ color: "#eee" }}
+                          primaryTypographyProps={{
+                            sx: { 
+                              color: "#eee",
+                              fontSize: isSmallMobile ? "13px" : "14px"
+                            }
+                          }}
                         />
                       </ListItemButton>
                     ))}
@@ -220,8 +262,22 @@ const NavBar = () => {
             </React.Fragment>
           ) : (
             <ListItem key={item} disablePadding>
-              <ListItemButton onClick={() => navigate(navRoutes[item])}>
-                <ListItemText primary={item} sx={{ color: "white", pl: 2 }} />
+              <ListItemButton 
+                onClick={() => handleNavItemClick(item)}
+                sx={{
+                  "&:hover": { backgroundColor: "rgba(255,255,255,0.1)" },
+                }}
+              >
+                <ListItemText 
+                  primary={item} 
+                  primaryTypographyProps={{
+                    sx: { 
+                      color: "white", 
+                      pl: 2,
+                      fontSize: isSmallMobile ? "14px" : "16px"
+                    }
+                  }} 
+                />
               </ListItemButton>
             </ListItem>
           )
@@ -232,23 +288,24 @@ const NavBar = () => {
           sx={{
             mt: 2,
             display: "flex",
-            justifyContent: { xs: "center", sm: "flex-start" },
+            justifyContent: "center",
           }}
         >
           <Button
             variant="contained"
+            onClick={() => handleNavItemClick("Let's Talk")}
             sx={{
               backgroundColor: "#05408E",
               borderRadius: "12px",
               height: "48px",
-              width: "116px",
+              minWidth: "140px",
               textTransform: "none",
               fontSize: "16px",
               fontWeight: 400,
               "&:hover": { backgroundColor: "#002366" },
             }}
           >
-            Let’s Talk
+            Let's Talk
           </Button>
         </ListItem>
       </List>
@@ -263,12 +320,11 @@ const NavBar = () => {
           backgroundColor: isScrolled ? "#fff" : "transparent",
           transition: "all 0.3s ease",
           boxShadow: isScrolled ? "0 2px 10px rgba(0,0,0,0.05)" : "none",
-          minHeight: "84px",
-          maxHeight: "84px",
-          zIndex: 1100,
+          height: { xs: "64px", sm: "72px", md: "84px" },
+          zIndex: (theme) => theme.zIndex.drawer + 1,
         }}
       >
-        <Toolbar sx={{ minHeight: "84px !important", height: "84px" }}>
+        <Toolbar sx={{ minHeight: "inherit !important", height: "inherit" }}>
           <Container
             maxWidth="xl"
             sx={{
@@ -276,59 +332,46 @@ const NavBar = () => {
               justifyContent: "space-between",
               alignItems: "center",
               height: "100%",
+              px: { xs: 2, sm: 3, md: 10 , lg:8 , xl:12 },
             }}
           >
             <Box
               sx={{
                 display: "flex",
                 alignItems: "center",
-                ml: { xs: 1, md: 2, lg: 4, xl: 9 },
+                flexShrink: 0,
               }}
             >
               <img
                 src={isScrolled ? darkLogo : whiteLogo}
                 alt="logo"
                 style={{
-                  height: "48px",
-                  width: "148px",
+                  height: isSmallMobile ? "40px" : "48px",
+                  width: isSmallMobile ? "120px" : "148px",
                   transition: "0.3s ease-in-out",
                 }}
               />
             </Box>
 
             {isMobile ? (
-              <>
-                <IconButton
-                  color="inherit"
-                  onClick={() => setDrawerOpen(true)}
-                  sx={{ mr: 2 }}
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Drawer
-                  anchor="left"
-                  open={drawerOpen}
-                  onClose={() => setDrawerOpen(false)}
-                  ModalProps={{ keepMounted: true }}
-                  PaperProps={{
-                    sx: {
-                      width: "100%",
-                      maxWidth: "100vw",
-                      background:
-                        "linear-gradient(0deg, rgba(5, 35, 74, 0) -20%, #000E1F 105.53%)",
-                    },
-                  }}
-                >
-                  {drawer}
-                </Drawer>
-              </>
+              <IconButton
+                color="inherit"
+                onClick={handleDrawerToggle}
+                edge="end"
+                sx={{ 
+                  color: isScrolled ? "#0B3C7B" : "white",
+                  ml: "auto"
+                }}
+              >
+                <MenuIcon />
+              </IconButton>
             ) : (
               <Box
                 sx={{
                   display: "flex",
                   alignItems: "center",
-                  columnGap: 1.5,
-                  mr: 6,
+                  columnGap: 1,
+                  mr: { md: 2, lg: 4, xl: 6 },
                 }}
               >
                 {navItems.map((item) =>
@@ -336,7 +379,7 @@ const NavBar = () => {
                     <Box
                       key={item}
                       onMouseEnter={() => setMenuOpen(true)}
-                      // onMouseLeave={() => setMenuOpen(false)}
+                      onMouseLeave={() => setMenuOpen(false)}
                       sx={{ position: "relative" }}
                     >
                       <Button
@@ -346,13 +389,13 @@ const NavBar = () => {
                           navigate(navRoutes[item]);
                         }}
                         sx={{
-                          fontSize: "16px",
+                          fontSize: { md: "14px", lg: "16px" },
                           fontWeight: "400",
                           textTransform: "none",
                           color: isScrolled ? "#0B3C7B" : "#fff",
                           borderRadius: "999px",
                           height: 40,
-                          px: 3,
+                          px: { md: 2, lg: 3 },
                           backgroundColor:
                             selected === item
                               ? isScrolled
@@ -380,13 +423,13 @@ const NavBar = () => {
                         navigate(navRoutes[item]);
                       }}
                       sx={{
-                        fontSize: "16px",
+                        fontSize: { md: "14px", lg: "16px" },
                         fontWeight: "400",
                         textTransform: "none",
                         color: isScrolled ? "#0B3C7B" : "#fff",
                         borderRadius: "999px",
                         height: 40,
-                        px: 2.5,
+                        px: { md: 2, lg: 2.5 },
                         backgroundColor:
                           selected === item
                             ? isScrolled
@@ -409,19 +452,20 @@ const NavBar = () => {
                 )}
                 <Button
                   variant="contained"
+                  onClick={() => handleNavItemClick("Let's Talk")}
                   sx={{
                     backgroundColor: "#05408E",
                     borderRadius: "12px",
                     height: "48px",
-                    width: "116px",
+                    minWidth: "116px",
                     textTransform: "none",
                     fontSize: "16px",
                     fontWeight: 400,
-                    ml: 4,
+                    ml: { md: 2, lg: 4 },
                     "&:hover": { backgroundColor: "#002366" },
                   }}
                 >
-                  Let’s Talk
+                  Let's Talk
                 </Button>
               </Box>
             )}
@@ -429,32 +473,53 @@ const NavBar = () => {
         </Toolbar>
       </AppBar>
 
+      {/* Mobile Drawer */}
+      <Drawer
+        anchor="left"
+        open={drawerOpen}
+        onClose={handleDrawerToggle}
+        ModalProps={{ keepMounted: true }}
+        sx={{
+          "& .MuiDrawer-paper": {
+            width: isSmallMobile ? "100vw" : "400px",
+            boxSizing: "border-box",
+          },
+        }}
+      >
+        {drawer}
+      </Drawer>
+
+      {/* Mega Menu Dropdown */}
       {!isMobile && menuOpen && (
         <Paper
           elevation={3}
           sx={{
             position: "fixed",
             width: {
-              xs: "100vw", // Full width on mobile
+              xs: "100vw",
               sm: "95vw",
               md: "90vw",
-              lg: "84.3vw", // Consistent width on large screens
+              lg: "84vw",
+              xl: "80vw",
             },
             left: {
               xs: 0,
               sm: "2.5vw",
               md: "5vw",
-              lg: "8vw", // Aligned same as nav button
+              lg: "8vw",
+              xl: "10vw",
             },
-            top: "84px",
+            top: { xs: "64px", sm: "72px", md: "84px" },
             height: {
               xs: "auto",
-              md: 380,
-              lg: 386, // Fixed height on large screens
+              sm: 320,
+              md: 360,
+              lg: 380,
+              xl: 400,
             },
             overflowY: "auto",
             borderRadius: 3,
-            padding: { xs: 2, sm: 3, md: 4 },
+            p: { xs: 1, sm: 2, md: 3 },
             zIndex: 1200,
             backgroundColor: "#fff",
             boxSizing: "border-box",
@@ -466,7 +531,14 @@ const NavBar = () => {
         >
           <Grid container spacing={3} wrap="nowrap">
             {megaMenuItems.map((column, index) => (
-              <Grid item key={index} sx={{ minWidth: 280 }}>
+              <Grid 
+                item 
+                key={index} 
+                sx={{ 
+                  minWidth: 240,
+                  maxWidth: 300,
+                }}
+              >
                 <Typography
                   variant="overline"
                   sx={{
@@ -496,6 +568,10 @@ const NavBar = () => {
                         boxShadow: "0 4px 12px rgba(0,0,0,0.06)",
                         transform: "translateY(-2px)",
                       },
+                    }}
+                    onClick={() => {
+                      navigate("/whatwedo");
+                      setMenuOpen(false);
                     }}
                   >
                     <Box

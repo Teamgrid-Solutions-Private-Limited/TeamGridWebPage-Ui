@@ -30,42 +30,48 @@ const features = [
     description:
       "Specifically designed to support digital and creative agencies with reliable, scalable front-end development services.",
     bgColor: "#FFF6C7",
-    teamColor : "#FDE658",
+    teamColor: "#FDE658",
   },
   {
     title: "Speed & Flexibility",
     description:
       "Kickstart projects quickly and scale up or down as your client demands change — no overhead, just results.",
     bgColor: "#EAE8FF",
-    teamColor : "#DADAFD",
+    teamColor: "#DADAFD",
   },
   {
     title: "UI-First Thinking",
     description:
       "Our developers prioritize design fidelity with responsive, pixel-perfect implementations that bring your mockups to life flawlessly.",
     bgColor: "#E7F9D9",
-    teamColor : "#CDF5B3",
+    teamColor: "#CDF5B3",
   },
   {
     title: "NDA-Compliant",
     description:
       "We work under strict non-disclosure agreements, ensuring full confidentiality while representing your brand seamlessly.",
     bgColor: "#FCE7FB",
-    teamColor : "#FFDDF9",
+    teamColor: "#FFDDF9",
   },
   {
     title: "Seamless Integration",
     description:
       "We collaborate smoothly with your in-house designers, backend developers, and project managers.",
     bgColor: "#DFF6FD",
-    teamColor : "#CBEFFF",
+    teamColor: "#CBEFFF",
   },
 ];
 
-
 const WhyPartnerWithUs = () => {
   return (
-    <Box sx={{ px: { xs: 2, md: 10 }, py: { xs: 6, md: 10 }, ml: {lg:0 , xl:5} }}>
+    <Box
+      sx={{
+        py: { xs: 6, md: 10 }, // Top-bottom padding
+        px: { xs: 2, sm: 3, md: 10 }, // Left-right padding (responsive)
+        maxWidth: "1440px", // Max width on large screens
+        mx: "auto", // Center horizontally
+      }}
+    >
       <Box
         sx={{
           display: "flex",
@@ -109,8 +115,8 @@ const WhyPartnerWithUs = () => {
               sx={{
                 borderRadius: "24px",
                 backgroundColor: feature.bgColor,
-                height: {lg:"242px", xl:"252px"},
-                width: {lg:"405px", xl:"420px"},
+                height: { lg: "242px", xl: "252px" },
+                width: { lg: "405px", xl: "405px" },
               }}
             >
               <CardContent>
@@ -134,10 +140,15 @@ const WhyPartnerWithUs = () => {
                   />
                 </Box>
 
-                <Typography fontWeight="500" fontSize="20px" mb={1} sx={{ color:"#05408E"}}>
+                <Typography
+                  fontWeight="500"
+                  fontSize="20px"
+                  mb={1}
+                  sx={{ color: "#05408E" }}
+                >
                   {feature.title}
                 </Typography>
-                <Typography fontSize="16px" color="#140E13" fontWeight={400} >
+                <Typography fontSize="16px" color="#140E13" fontWeight={400}>
                   {feature.description}
                 </Typography>
               </CardContent>
