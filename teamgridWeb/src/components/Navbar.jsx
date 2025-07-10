@@ -130,7 +130,7 @@ const navRoutes = {
   "About Us": "/about",
   "What We Do": "/whatwedo",
   "Technologies We Use": "/technologies",
-  "How we work": "/how-we-work"
+  "How we work": "/how-we-work",
 };
 
 const NavBar = () => {
@@ -216,7 +216,10 @@ const NavBar = () => {
                 <ListItemText
                   primary={item}
                   primaryTypographyProps={{
-                    sx: { color: "white", fontSize: isSmallMobile ? "14px" : "16px" }
+                    sx: {
+                      color: "white",
+                      fontSize: isSmallMobile ? "14px" : "16px",
+                    },
                   }}
                 />
                 {mobileMoreOpen ? <ExpandLess /> : <ExpandMore />}
@@ -224,18 +227,18 @@ const NavBar = () => {
               <Collapse in={mobileMoreOpen} timeout="auto" unmountOnExit>
                 {megaMenuItems.map((section) => (
                   <Box key={section.title} sx={{ pl: 4, pr: 2 }}>
-                    <Typography 
-                      sx={{ 
-                        color: "#ccc", 
-                        fontWeight: 500, 
+                    <Typography
+                      sx={{
+                        color: "#ccc",
+                        fontWeight: 500,
                         mt: 1,
-                        fontSize: isSmallMobile ? "12px" : "14px"
+                        fontSize: isSmallMobile ? "12px" : "14px",
                       }}
                     >
                       {section.title}
                     </Typography>
                     {section.items.map((menuItem) => (
-                      <ListItemButton 
+                      <ListItemButton
                         key={menuItem.label}
                         sx={{ pl: 2 }}
                         onClick={() => {
@@ -246,10 +249,10 @@ const NavBar = () => {
                         <ListItemText
                           primary={menuItem.label}
                           primaryTypographyProps={{
-                            sx: { 
+                            sx: {
                               color: "#eee",
-                              fontSize: isSmallMobile ? "13px" : "14px"
-                            }
+                              fontSize: isSmallMobile ? "13px" : "14px",
+                            },
                           }}
                         />
                       </ListItemButton>
@@ -260,21 +263,21 @@ const NavBar = () => {
             </React.Fragment>
           ) : (
             <ListItem key={item} disablePadding>
-              <ListItemButton 
+              <ListItemButton
                 onClick={() => handleNavItemClick(item)}
                 sx={{
                   "&:hover": { backgroundColor: "rgba(255,255,255,0.1)" },
                 }}
               >
-                <ListItemText 
-                  primary={item} 
+                <ListItemText
+                  primary={item}
                   primaryTypographyProps={{
-                    sx: { 
-                      color: "white", 
+                    sx: {
+                      color: "white",
                       pl: 2,
-                      fontSize: isSmallMobile ? "14px" : "16px"
-                    }
-                  }} 
+                      fontSize: isSmallMobile ? "14px" : "16px",
+                    },
+                  }}
                 />
               </ListItemButton>
             </ListItem>
@@ -333,7 +336,7 @@ const NavBar = () => {
               justifyContent: "space-between",
               alignItems: "center",
               height: "100%",
-              px: { xs: 2, sm: 3, md: 10 , lg:8 , xl:12 },
+              px: { xs: 2, sm: 3, md: 10, lg: 8, xl: 12 },
             }}
           >
             <Box
@@ -359,9 +362,9 @@ const NavBar = () => {
                 color="inherit"
                 onClick={handleDrawerToggle}
                 edge="end"
-                sx={{ 
+                sx={{
                   color: isScrolled ? "#0B3C7B" : "white",
-                  ml: "auto"
+                  ml: "auto",
                 }}
               >
                 <MenuIcon />
@@ -380,7 +383,6 @@ const NavBar = () => {
                     <Box
                       key={item}
                       onMouseEnter={() => setMenuOpen(true)}
-
                       sx={{ position: "relative" }}
                     >
                       <Button
@@ -451,26 +453,25 @@ const NavBar = () => {
                     </Button>
                   )
                 )}
-               
               </Box>
             )}
-             <Button
-                  variant="contained"
-                  onClick={() => handleNavItemClick("Let's Talk")}
-                  sx={{
-                    backgroundColor: "#05408E",
-                    borderRadius: "12px",
-                    height: "48px",
-                    minWidth: "116px",
-                    textTransform: "none",
-                    fontSize: "16px",
-                    fontWeight: 400,
-                    ml: { md: 2, lg: 2 },
-                    "&:hover": { backgroundColor: "#002366" },
-                  }}
-                >
-                  Let's Talk
-                </Button>
+            <Button
+              variant="contained"
+              onClick={() => handleNavItemClick("Let's Talk")}
+              sx={{
+                backgroundColor: "#05408E",
+                borderRadius: "12px",
+                height: "48px",
+                minWidth: "116px",
+                textTransform: "none",
+                fontSize: "16px",
+                fontWeight: 400,
+                ml: { md: 2, lg: 2 },
+                "&:hover": { backgroundColor: "#002366" },
+              }}
+            >
+              Let's Talk
+            </Button>
           </Container>
         </Toolbar>
       </AppBar>
@@ -497,21 +498,11 @@ const NavBar = () => {
           elevation={3}
           sx={{
             position: "fixed",
-            width: {
-              xs: "100vw",
-              sm: "95vw",
-              md: "90vw",
-              lg: "84vw",
-              xl: "80vw",
-            },
-            left: {
-              xs: 0,
-              sm: "2.5vw",
-              md: "5vw",
-              lg: "8vw",
-              xl: "10vw",
-            },
             top: { xs: "64px", sm: "72px", md: "84px" },
+            left: "50%",
+            transform: "translateX(-50%)", // center it
+            width: "100%",
+            maxWidth: "1200px", // ⬅️ restrict max width
             height: {
               xs: "auto",
               sm: 320,
@@ -533,10 +524,10 @@ const NavBar = () => {
         >
           <Grid container spacing={3} wrap="nowrap">
             {megaMenuItems.map((column, index) => (
-              <Grid 
-                item 
-                key={index} 
-                sx={{ 
+              <Grid
+                item
+                key={index}
+                sx={{
                   minWidth: 240,
                   maxWidth: 300,
                 }}

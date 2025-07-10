@@ -587,11 +587,11 @@ const Hero = () => {
       sx={{
         width: "100%",
         // height: { xs: "100vh", md: "100vh" },
-          minHeight: {
+        minHeight: {
           xs: "700px",
           sm: "700px",
           md: "600px",
-          lg: "720px",
+          lg: "650px",
           xl: "720px",
         },
         position: "relative",
@@ -599,126 +599,145 @@ const Hero = () => {
         overflow: "hidden",
         margin: "0 auto",
         display: "flex",
-        alignItems: { xs: "flex-start", md: "center" },
-        padding: { xs: "80px 16px 40px", sm: "100px 24px 40px", md: "0 120px" },
+        alignItems: { xs: "flex-start", sm: "center" },
+        justifyContent: "center", // optional: center horizontally
+        padding: {
+          xs: "80px 16px 40px", // mobile
+          sm: "100px 24px 40px", // tablet
+          md: "0 60px", // medium desktop
+          lg: "0 100px", // large desktop
+          xl: "0 140px", // very large screens
+        },
+        boxSizing: "border-box", // ensure padding doesn’t break layout
       }}
     >
-      {/* <CenterPiece
+      <Box
+        sx={{
+          width: "100%",
+          maxWidth: "1440px",
+          position: "none",
+          "@media (min-width: 2000px)": {
+            position: "relative", // center if screen is zoomed out / ultra wide
+          },
+        }}
+      >
+        {/* <CenterPiece
         setSelectedPlanet={setSelectedPlanet}
         selectedPlanet={selectedPlanet}
         setLogoZoomed={setLogoZoomed}
       /> */}
 
-      {/* Desktop Orbits */}
-      {orbitSizes.map((orbit, index) => (
-        <Box key={index} sx={{ display: { xs: "none", md: "block" } }}>
-          <Orbit
-            index={index}
-            size={orbit}
-            isPaused={isPaused}
-            setIsPaused={setIsPaused}
-            setSelectedPlanet={handlePlanetClick}
-          />
-        </Box>
-      ))}
-
-      {/* Mobile Animated Orbit */}
-      <MobileOrbit
-        setSelectedPlanet={handlePlanetClick}
-        isPaused={isPaused}
-        setIsPaused={setIsPaused}
-      />
-
-      {/* Main Content */}
-      <Box
-        sx={{
-          position: "absolute",
-          top: { xs: "80px", sm: "100px", md: "245px" },
-          left: { xs: "16px", sm: "24px" , lg:"80px",xl:"120px"},
-          right: { xs: "16px", sm: "24px", md: "auto" },
-          maxWidth: { xs: "100%", sm: "100%", md: "848px" },
-          zIndex: 10,
-          textAlign: "left",
-          display: "flex",
-          flexDirection: "column",
-          gap: { xs: "12px", md: "14px" },
-          pointerEvents: "none",
-        }}
-      >
-        <Typography
-          sx={{
-            color: "white",
-            fontWeight: 700,
-            fontSize: { xs: "28px", sm: "36px", md: "64px" },
-            lineHeight: { xs: "32px", sm: "42px", md: "68px" },
-          }}
-        >
-          Front End Development
-          <br />
-          for{" "}
-          <Box component="span" sx={{ color: "#30ECAD" }}>
-            Fast and Scalable
+        {/* Desktop Orbits */}
+        {orbitSizes.map((orbit, index) => (
+          <Box key={index} sx={{ display: { xs: "none", md: "block" } }}>
+            <Orbit
+              index={index}
+              size={orbit}
+              isPaused={isPaused}
+              setIsPaused={setIsPaused}
+              setSelectedPlanet={handlePlanetClick}
+            />
           </Box>
-          <br />
-          Interfaces
-        </Typography>
+        ))}
 
-        <Typography
-          sx={{
-            color: "#E1E0E0",
-            fontSize: { xs: "14px", sm: "16px", md: "20px" },
-            fontWeight: 300,
-            lineHeight: { xs: "20px", sm: "24px", md: "28px" },
-          }}
-        >
-          Hire expert front-end developers skilled in ReactJS, Material UI, and
-          modern frameworks. Ideal for agencies looking to scale delivery
-          without growing overhead.
-        </Typography>
+        {/* Mobile Animated Orbit */}
+        <MobileOrbit
+          setSelectedPlanet={handlePlanetClick}
+          isPaused={isPaused}
+          setIsPaused={setIsPaused}
+        />
 
+        {/* Main Content */}
         <Box
           sx={{
+            position: "absolute",
+            top: { xs: "80px", sm: "100px", md: "245px" },
+            left: { xs: "16px", sm: "24px", lg: "80px", xl: "120px" },
+            right: { xs: "16px", sm: "24px", md: "auto" },
+            maxWidth: { xs: "100%", sm: "100%", md: "848px" },
+            zIndex: 10,
+            textAlign: "left",
             display: "flex",
-            gap: { xs: "8px", md: "10px" },
-            flexDirection: { xs: "column", sm: "row" },
-            mt: { xs: "16px", md: "0" },
+            flexDirection: "column",
+            gap: { xs: "12px", md: "14px" },
+            pointerEvents: "none",
           }}
         >
-          <Button
-            variant="contained"
+          <Typography
             sx={{
-              pointerEvents: "auto",
-              backgroundColor: "#0070FF",
-              borderRadius: "16px",
-              width: { xs: "100%", sm: "160px", md: "199px" },
-              height: { xs: "48px", md: "59px" },
-              fontSize: { xs: "14px", md: "18px" },
-              fontWeight: 400,
-              textTransform: "none",
+              color: "white",
+              fontWeight: 700,
+              fontSize: { xs: "28px", sm: "36px", md: "64px" },
+              lineHeight: { xs: "32px", sm: "42px", md: "68px" },
             }}
           >
-            Hire Developer
-          </Button>
-          <Button
-            variant="outlined"
+            Front End Development
+            <br />
+            for{" "}
+            <Box component="span" sx={{ color: "#30ECAD" }}>
+              Fast and Scalable
+            </Box>
+            <br />
+            Interfaces
+          </Typography>
+
+          <Typography
             sx={{
-              pointerEvents: "auto",
-              borderColor: "#ffffff99",
-              color: "#fff",
-              height: { xs: "48px", md: "59px" },
-              width: { xs: "100%", sm: "180px", md: "254px" },
-              fontSize: { xs: "14px", md: "18px" },
-              borderRadius: "16px",
-              fontWeight: 400,
-              textTransform: "none",
-              "&:hover": {
-                borderColor: "#fff",
-                backgroundColor: "#072449",
-              },
+              color: "#E1E0E0",
+              fontSize: { xs: "14px", sm: "16px", md: "20px" },
+              fontWeight: 300,
+              lineHeight: { xs: "20px", sm: "24px", md: "28px" },
             }}
           >
-            Explore Services →
-          </Button>
+            Hire expert front-end developers skilled in ReactJS, Material UI,
+            and modern frameworks. Ideal for agencies looking to scale delivery
+            without growing overhead.
+          </Typography>
+
+          <Box
+            sx={{
+              display: "flex",
+              gap: { xs: "8px", md: "10px" },
+              flexDirection: { xs: "column", sm: "row" },
+              mt: { xs: "16px", md: "0" },
+            }}
+          >
+            <Button
+              variant="contained"
+              sx={{
+                pointerEvents: "auto",
+                backgroundColor: "#0070FF",
+                borderRadius: "16px",
+                width: { xs: "100%", sm: "160px", md: "199px" },
+                height: { xs: "48px", md: "59px" },
+                fontSize: { xs: "14px", md: "18px" },
+                fontWeight: 400,
+                textTransform: "none",
+              }}
+            >
+              Hire Developer
+            </Button>
+            <Button
+              variant="outlined"
+              sx={{
+                pointerEvents: "auto",
+                borderColor: "#ffffff99",
+                color: "#fff",
+                height: { xs: "48px", md: "59px" },
+                width: { xs: "100%", sm: "180px", md: "254px" },
+                fontSize: { xs: "14px", md: "18px" },
+                borderRadius: "16px",
+                fontWeight: 400,
+                textTransform: "none",
+                "&:hover": {
+                  borderColor: "#fff",
+                  backgroundColor: "#072449",
+                },
+              }}
+            >
+              Explore Services →
+            </Button>
+          </Box>
         </Box>
       </Box>
     </Box>

@@ -658,221 +658,232 @@ const HeroSection = () => {
         boxSizing: "border-box", // ensure padding doesn’t break layout
       }}
     >
-      <CenterPiece
-        setSelectedPlanet={setSelectedPlanet}
-        selectedPlanet={selectedPlanet}
-        setLogoZoomed={setLogoZoomed}
-      />
-
-      {/* Desktop Orbits */}
-      {orbitSizes.map((orbit, index) => (
-        <Box key={index} sx={{ display: { xs: "none", md: "block" } }}>
-          <Orbit
-            index={index}
-            size={orbit}
-            isPaused={isPaused}
-            setIsPaused={setIsPaused}
-            setSelectedPlanet={handlePlanetClick}
-          />
-        </Box>
-      ))}
-
-      {/* Mobile Animated Orbit */}
-      <MobileOrbit
-        setSelectedPlanet={handlePlanetClick}
-        isPaused={isPaused}
-        setIsPaused={setIsPaused}
-      />
-
-      {/* Main Content */}
       <Box
         sx={{
-          position: "absolute",
-          top: {
-            xs: "64px", // Smaller offset for mobile
-            sm: "100px",
-            md: "180px",
-            lg: "220px",
-            xl: "245px",
+          width: "100%",
+          maxWidth: "1440px",
+          position: "none",
+          "@media (min-width: 2000px)": {
+           position: "absolute", // center if screen is zoomed out / ultra wide
           },
-          left: {
-            xs: "16px",
-            sm: "24px",
-            md: "80px",
-            lg: "80px",
-            xl: "115px",
-          },
-          right: {
-            xs: "16px", // Allow padding on both sides on mobile
-            sm: "24px",
-            md: "auto",
-          },
-          maxWidth: {
-            xs: "100%", // Full width on phones
-            sm: "100%",
-            md: "720px",
-            lg: "800px",
-            xl: "848px",
-          },
-          zIndex: 10,
-          textAlign: "left",
-          display: "flex",
-          flexDirection: "column",
-          gap: {
-            xs: "12px",
-            sm: "14px",
-            md: "16px",
-          },
-          pointerEvents: "none",
         }}
       >
-        <Typography
-          sx={{
-            color: "#E1E0E0",
-            fontSize: {
-              xs: "13px",
-              sm: "15px",
-              md: "18px",
-              lg: "20px",
-            },
-            fontWeight: 500,
-            lineHeight: 1.4,
-          }}
-        >
-          Powering growth through talent
-        </Typography>
+        <CenterPiece
+          setSelectedPlanet={setSelectedPlanet}
+          selectedPlanet={selectedPlanet}
+          setLogoZoomed={setLogoZoomed}
+        />
 
-        <Typography
-          sx={{
-            color: "white",
-            fontWeight: 700,
-            fontSize: {
-              xs: "24px",
-              sm: "32px",
-              md: "48px",
-              lg: "56px",
-              xl: "64px",
-            },
-            lineHeight: {
-              xs: "30px",
-              sm: "40px",
-              md: "52px",
-              lg: "60px",
-              xl: "68px",
-            },
-          }}
-        >
-          Extend Your Team,
-          <br />
-          Accelerate Your Growth
-        </Typography>
+        {/* Desktop Orbits */}
+        {orbitSizes.map((orbit, index) => (
+          <Box key={index} sx={{ display: { xs: "none", md: "block" } }}>
+            <Orbit
+              index={index}
+              size={orbit}
+              isPaused={isPaused}
+              setIsPaused={setIsPaused}
+              setSelectedPlanet={handlePlanetClick}
+            />
+          </Box>
+        ))}
 
-        <Typography
-          sx={{
-            color: "#E1E0E0",
-            fontSize: {
-              xs: "13px",
-              sm: "15px",
-              md: "18px",
-              lg: "20px",
-            },
-            fontWeight: 300,
-            lineHeight: {
-              xs: "20px",
-              sm: "24px",
-              md: "26px",
-              lg: "28px",
-            },
-          }}
-        >
-          We help agencies and startups scale smarter — with dedicated
-          professionals, high-quality solutions, and flexible engagement models
-          that fit your workflow and goals.
-        </Typography>
+        {/* Mobile Animated Orbit */}
+        <MobileOrbit
+          setSelectedPlanet={handlePlanetClick}
+          isPaused={isPaused}
+          setIsPaused={setIsPaused}
+        />
 
+        {/* Main Content */}
         <Box
           sx={{
-            display: "flex",
-            flexDirection: {
-              xs: "column",
-              sm: "row",
+            position: "absolute",
+            top: {
+              xs: "64px", // Smaller offset for mobile
+              sm: "100px",
+              md: "180px",
+              lg: "220px",
+              xl: "245px",
             },
+            left: {
+              xs: "16px",
+              sm: "24px",
+              md: "80px",
+              lg: "80px",
+              xl: "115px",
+            },
+            right: {
+              xs: "16px", // Allow padding on both sides on mobile
+              sm: "24px",
+              md: "auto",
+            },
+            maxWidth: {
+              xs: "100%", // Full width on phones
+              sm: "100%",
+              md: "720px",
+              lg: "800px",
+              xl: "848px",
+            },
+            zIndex: 10,
+            textAlign: "left",
+            display: "flex",
+            flexDirection: "column",
             gap: {
-              xs: "8px",
-              sm: "12px",
+              xs: "12px",
+              sm: "14px",
               md: "16px",
             },
-            mt: {
-              xs: "16px",
-              sm: "20px",
-              md: "24px",
-            },
+            pointerEvents: "none",
           }}
         >
-          <Button
-            variant="contained"
+          <Typography
             sx={{
-              pointerEvents: "auto",
-              backgroundColor: "#1A73E8",
-              borderRadius: "40px",
-              width: {
-                xs: "100%",
-                sm: "160px",
-                md: "180px",
-                lg: "204px",
-              },
-              height: {
-                xs: "44px",
-                sm: "48px",
-                md: "50px",
-              },
+              color: "#E1E0E0",
               fontSize: {
                 xs: "13px",
                 sm: "15px",
-                md: "16px",
-                lg: "18px",
+                md: "18px",
+                lg: "20px",
               },
-              fontWeight: 400,
-              textTransform: "none",
+              fontWeight: 500,
+              lineHeight: 1.4,
             }}
           >
-            Let's Talk
-          </Button>
+            Powering growth through talent
+          </Typography>
 
-          <Button
-            variant="outlined"
+          <Typography
             sx={{
-              pointerEvents: "auto",
-              borderColor: "#ffffff99",
-              color: "#fff",
-              borderRadius: "40px",
-              width: {
-                xs: "100%",
-                sm: "180px",
-                md: "200px",
-                lg: "230px",
-              },
-              height: {
-                xs: "44px",
-                sm: "48px",
-                md: "50px",
-              },
+              color: "white",
+              fontWeight: 700,
               fontSize: {
-                xs: "13px",
-                sm: "15px",
-                md: "16px",
-                lg: "18px",
+                xs: "24px",
+                sm: "32px",
+                md: "48px",
+                lg: "56px",
+                xl: "64px",
               },
-              fontWeight: 400,
-              textTransform: "none",
-              "&:hover": {
-                borderColor: "#fff",
-                backgroundColor: "rgba(255, 255, 255, 0.1)",
+              lineHeight: {
+                xs: "30px",
+                sm: "40px",
+                md: "52px",
+                lg: "60px",
+                xl: "68px",
               },
             }}
           >
-            Explore Services →
-          </Button>
+            Extend Your Team,
+            <br />
+            Accelerate Your Growth
+          </Typography>
+
+          <Typography
+            sx={{
+              color: "#E1E0E0",
+              fontSize: {
+                xs: "13px",
+                sm: "15px",
+                md: "18px",
+                lg: "20px",
+              },
+              fontWeight: 300,
+              lineHeight: {
+                xs: "20px",
+                sm: "24px",
+                md: "26px",
+                lg: "28px",
+              },
+            }}
+          >
+            We help agencies and startups scale smarter — with dedicated
+            professionals, high-quality solutions, and flexible engagement
+            models that fit your workflow and goals.
+          </Typography>
+
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: {
+                xs: "column",
+                sm: "row",
+              },
+              gap: {
+                xs: "8px",
+                sm: "12px",
+                md: "16px",
+              },
+              mt: {
+                xs: "16px",
+                sm: "20px",
+                md: "24px",
+              },
+            }}
+          >
+            <Button
+              variant="contained"
+              sx={{
+                pointerEvents: "auto",
+                backgroundColor: "#1A73E8",
+                borderRadius: "40px",
+                width: {
+                  xs: "100%",
+                  sm: "160px",
+                  md: "180px",
+                  lg: "204px",
+                },
+                height: {
+                  xs: "44px",
+                  sm: "48px",
+                  md: "50px",
+                },
+                fontSize: {
+                  xs: "13px",
+                  sm: "15px",
+                  md: "16px",
+                  lg: "18px",
+                },
+                fontWeight: 400,
+                textTransform: "none",
+              }}
+            >
+              Let's Talk
+            </Button>
+
+            <Button
+              variant="outlined"
+              sx={{
+                pointerEvents: "auto",
+                borderColor: "#ffffff99",
+                color: "#fff",
+                borderRadius: "40px",
+                width: {
+                  xs: "100%",
+                  sm: "180px",
+                  md: "200px",
+                  lg: "230px",
+                },
+                height: {
+                  xs: "44px",
+                  sm: "48px",
+                  md: "50px",
+                },
+                fontSize: {
+                  xs: "13px",
+                  sm: "15px",
+                  md: "16px",
+                  lg: "18px",
+                },
+                fontWeight: 400,
+                textTransform: "none",
+                "&:hover": {
+                  borderColor: "#fff",
+                  backgroundColor: "rgba(255, 255, 255, 0.1)",
+                },
+              }}
+            >
+              Explore Services →
+            </Button>
+          </Box>
         </Box>
       </Box>
     </Box>
