@@ -62,7 +62,7 @@ const HowWeWork = () => {
         color: "#fff",
         borderRadius: "40px",
         width: "100%",
-        maxWidth: { md: "100%", lg: "1250px", xl: "1300px" }, // responsive max width
+        maxWidth: { md: "100%", lg: "1260px", xl: "1285px" }, // responsive max width
         height: "auto",
         mx: "auto", // center horizontally
       }}

@@ -47,7 +47,7 @@ const WhyTeamgrid = () => {
         bgcolor: "#fff",
         pt: { xs: 2, sm: 4, md: 8 },
         pb: { xs: 4, sm: 6, md: 8 },
-        px: { xs: 2, sm: 3, md: 8 , lg: 10, xl:10 }, // Add horizontal padding for all sizes
+        px: { xs: 2, sm: 3, md: 8 , lg: 11, xl:10 }, // Add horizontal padding for all sizes
         // ml: { xs: 0, sm: 2, md: 2, lg: 5, xl: "85px" }, // Reduce left margin on mobile
       }}
     >
@@ -95,7 +95,6 @@ const WhyTeamgrid = () => {
             borderRadius: "39px",
             px: { xs: 2, sm: 3 },
             py: { xs: 1.2, sm: 1.5 },
-            mr: { xs: 0, md: 10 },
             textTransform: "none",
             width: { xs: "100%", sm: "240px" }, // Full width on mobile
             maxWidth: "240px",

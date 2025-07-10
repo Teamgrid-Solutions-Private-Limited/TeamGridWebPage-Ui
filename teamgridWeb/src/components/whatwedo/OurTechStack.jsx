@@ -37,7 +37,7 @@ const OurTechStack = () => {
       sx={{
         maxWidth: "1440px", // Limit width on large screens
         mx: "auto", // Horizontally center the container
-        px: { xs: 2, sm: 3, md: 10 }, // Responsive horizontal padding
+        px: { xs: 2, sm: 3, md: 10 , lg:11, xl:10 }, // Responsive horizontal padding
         py: { xs: 6, sm: 8, md: 12 },
         display: "flex",
         flexDirection: { xs: "column", md: "row" },

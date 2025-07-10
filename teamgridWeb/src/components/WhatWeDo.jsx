@@ -87,7 +87,7 @@ const WhatWeDo = () => {
         height: { xs: "auto", md: "900px" },
         bgcolor: "#fff",
         overflow: "hidden",
-        px: { xs: 2, md: 6 },
+        px: { xs: 2, md: 6 , lg:7 , xl:6 },
         py: { xs: 8, md: 0 },
         mx: "auto",
       }}
@@ -143,7 +143,7 @@ const WhatWeDo = () => {
           justifyContent: "space-between",
           bgcolor: "#E1ECF9",
           width: "100%",
-          maxWidth: { xs: "100%", md:"100%",lg: "1300px" , xl:"1300px"}, // ✅ lock width on large devices
+          maxWidth: { xs: "100%", md:"100%",lg: "1270px" , xl:"1290px"}, // ✅ lock width on large devices
           height: { xs: "auto", lg: "585px" }, // ✅ lock height on large devices
           // mx: "auto",
           borderRadius: { xs: 2, md: 4 },
@@ -151,6 +151,7 @@ const WhatWeDo = () => {
           pt: { xs: 3, sm: 4, md: 8 },
           pb: { xs: "80px", sm: "100px", md: "120px" },
           mt: { xs: 2, md: 4 },
+          mx:{lg:"22px", xl:"25px"},
           // ml: { sm: "5px", md: "10px", lg: "75px",xl:"118px" },
 
           overflow: "hidden",
@@ -341,7 +342,7 @@ const WhatWeDo = () => {
             overflowX: "auto",
             zIndex: 2,
             p: { xs: 0.5, md: 1 },
-            px: { xs: 1, sm: 2, md: 3 },
+            px: { xs: 1, sm: 2, md: 2 , lg: 1 ,xl :2 },
             gap: { xs: "5px", md: "10px" },
             scrollbarWidth: "none",
             "&::-webkit-scrollbar": { display: "none" },

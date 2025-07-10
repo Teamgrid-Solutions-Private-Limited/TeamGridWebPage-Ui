@@ -43,12 +43,14 @@ const testimonials = [
 ];
 
 const TestimonialRow = ({ testimonials, direction = "left", delay = 0 }) => (
-  <Box sx={{ 
-    overflow: "hidden", 
-    width: "100%", 
-    py: { xs: 1, sm: 1.5, md: 2 },
-    px: { xs: 0, sm: 1 }
-  }}>
+  <Box
+    sx={{
+      overflow: "hidden",
+      width: "100%",
+      py: { xs: 1, sm: 1.5, md: 2 },
+      px: { xs: 0, sm: 1 },
+    }}
+  >
     <Box
       className="scroll-track"
       sx={{
@@ -76,11 +78,11 @@ const TestimonialRow = ({ testimonials, direction = "left", delay = 0 }) => (
           key={index}
           sx={{
             flex: "0 0 auto",
-            width: { 
-              xs: "280px", 
-              sm: "320px", 
+            width: {
+              xs: "280px",
+              sm: "320px",
               md: "350px",
-              lg: "384px" 
+              lg: "384px",
             },
             minWidth: { xs: "280px", sm: "320px" },
             maxWidth: { xs: "280px", sm: "320px", md: "384px" },
@@ -102,11 +104,13 @@ const TestimonialRow = ({ testimonials, direction = "left", delay = 0 }) => (
           }}
         >
           <Box>
-            <FormatQuoteIcon sx={{ 
-              color: "#0b63e5", 
-              fontSize: { xs: 24, sm: 26, md: 28 }, 
-              mb: { xs: 1.5, sm: 2 } 
-            }} />
+            <FormatQuoteIcon
+              sx={{
+                color: "#0b63e5",
+                fontSize: { xs: 24, sm: 26, md: 28 },
+                mb: { xs: 1.5, sm: 2 },
+              }}
+            />
             <Typography
               sx={{
                 mb: { xs: 2, sm: 2.5, md: 3 },
@@ -124,26 +128,28 @@ const TestimonialRow = ({ testimonials, direction = "left", delay = 0 }) => (
               {item.text}
             </Typography>
           </Box>
-          
-          <Box sx={{ 
-            display: "flex", 
-            alignItems: "center", 
-            gap: { xs: 1.5, sm: 2 },
-            mt: "auto"
-          }}>
-            <Avatar 
-              src={item.avatar} 
-              sx={{ 
-                height: { xs: 44, sm: 48, md: 53 }, 
+
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: { xs: 1.5, sm: 2 },
+              mt: "auto",
+            }}
+          >
+            <Avatar
+              src={item.avatar}
+              sx={{
+                height: { xs: 44, sm: 48, md: 53 },
                 width: { xs: 44, sm: 48, md: 53 },
-                border: "2px solid #E2E8F0"
-              }} 
+                border: "2px solid #E2E8F0",
+              }}
             />
             <Box sx={{ minWidth: 0, flex: 1 }}>
               <Typography
                 fontWeight={700}
-                sx={{ 
-                  fontSize: { xs: "14px", sm: "15px", md: "16px" }, 
+                sx={{
+                  fontSize: { xs: "14px", sm: "15px", md: "16px" },
                   fontWeight: 700,
                   color: "#000000",
                   lineHeight: 1.3,
@@ -178,26 +184,31 @@ const TestimonialRow = ({ testimonials, direction = "left", delay = 0 }) => (
 
 const TestimonialsSection = () => {
   return (
-    <Box sx={{ 
-      py: { xs: 6, sm: 8, md: 10 }, 
-      backgroundColor: "#fff", 
-      overflow: "hidden",
-      px: { xs: 2, sm: 3, md: 4 }
-    }}>
-      <Box sx={{ 
-        maxWidth: "1200px", 
-        mx: "auto",
-        mb: { xs: 4, sm: 5, md: 6 }
-      }}>
+    <Box
+      sx={{
+        py: { xs: 6, sm: 8, md: 10 },
+        backgroundColor: "#fff",
+        overflow: "hidden",
+        px: { xs: 2, sm: 3, md: 4 },
+      }}
+    >
+      <Box
+        sx={{
+          maxWidth: "1440px", // ← updated from 1200px
+          mx: "auto", // ← centers the section horizontally
+          mb: { xs: 4, sm: 5, md: 6 },
+          px: { xs: 2, sm: 3, md: 4 }, // responsive horizontal padding
+        }}
+      >
         <Typography
           align="center"
           fontWeight="500"
           gutterBottom
-          sx={{ 
+          sx={{
             fontSize: { xs: "24px", sm: "32px", md: "40px", lg: "56px" },
             lineHeight: { xs: 1.2, sm: 1.3 },
             color: "#1A202C",
-            mb: { xs: 1, sm: 2 }
+            mb: { xs: 1, sm: 2 },
           }}
         >
           What Our Clients Say
@@ -205,25 +216,35 @@ const TestimonialsSection = () => {
         <Typography
           align="center"
           color="#140E13"
-          sx={{ 
+          sx={{
             fontSize: { xs: "14px", sm: "16px", md: "18px" },
             fontWeight: 400,
             lineHeight: { xs: 1.4, sm: 1.5 },
             maxWidth: "600px",
             mx: "auto",
-            px: { xs: 1, sm: 0 }
+            px: { xs: 1, sm: 0 },
           }}
         >
           Trusted by teams for smart ideas and reliable execution.
         </Typography>
       </Box>
 
-      <Box sx={{ 
-        mx: { xs: -2, sm: -3, md: -4 }, // Negative margin to allow full-width scrolling
-        px: { xs: 2, sm: 3, md: 4 }
-      }}>
-        <TestimonialRow testimonials={testimonials} direction="left" delay={0} />
-        <TestimonialRow testimonials={testimonials} direction="right" delay={2} />
+      <Box
+        sx={{
+          mx: { xs: -2, sm: -3, md: -4 }, // Negative margin to allow full-width scrolling
+          px: { xs: 2, sm: 3, md: 4 },
+        }}
+      >
+        <TestimonialRow
+          testimonials={testimonials}
+          direction="left"
+          delay={0}
+        />
+        <TestimonialRow
+          testimonials={testimonials}
+          direction="right"
+          delay={2}
+        />
       </Box>
 
       <style>

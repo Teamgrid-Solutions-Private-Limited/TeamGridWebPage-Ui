@@ -15,7 +15,7 @@ const WhoWeHelp = () => {
         height: { xs: "auto", md: "900px" },
         bgcolor: "#fff",
         overflow: "hidden",
-        px: { xs: 2, md: 6 },
+        px: { xs: 2, md: 2, lg:12 , xl:12 },
         py: { xs: 8, md: 0 },
         mx: "auto",
       }}
@@ -27,7 +27,7 @@ const WhoWeHelp = () => {
           top: { md: "253px" },
           left: { md: "%" ,lg:"2.5%"},
           width: { xs: "100%", sm: "400px", md: "468px" },
-          px: { xs: 0, sm: 3, md: 0, lg:5 , xl:5 },
+          px: { xs: 0, sm: 3, md: 0, lg:6 , xl:5 },
         }}
       >
         <Typography
@@ -131,7 +131,7 @@ const WhoWeHelp = () => {
             sx={{
               position: "absolute",
               top: "105px",
-              left: "57%",
+              left: "56%",
               width: "272px",
               height: "325px",
               borderRadius: "16px",
@@ -171,7 +171,7 @@ const WhoWeHelp = () => {
             sx={{
               position: "absolute",
               top: "455px",
-              left: "57%",
+              left: "56%",
               width: "272px",
               height: "325px",
               borderRadius: "16px",

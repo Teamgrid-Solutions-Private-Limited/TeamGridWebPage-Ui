@@ -43,7 +43,7 @@ const EngagementModels = () => {
   return (
     <Box
       sx={{
-        px: { xs: 2, md: 15, lg: 10, xl: 10 }, // Horizontal padding
+        px: { xs: 2, md: 15, lg: 11, xl: 10 }, // Horizontal padding
         py: { xs: 6, md: 10 }, // Vertical padding
         mx: "auto", // Center horizontally
         maxWidth: "1440px", // Optional: restrict width on large screens
@@ -99,7 +99,7 @@ const EngagementModels = () => {
                 backgroundColor: "#F3F3F6",
                 borderRadius: "24px",
                 height: "322px",
-                width: { lg: "395px", xl: "395px" },
+                width: { lg: "392px", xl: "395px" },
                 py: 2,
                 px: 2,
               }}

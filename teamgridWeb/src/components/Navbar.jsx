@@ -123,7 +123,6 @@ const navItems = [
   "What We Do",
   "Technologies We Use",
   "How we work",
-  "Let's Talk",
 ];
 
 const navRoutes = {
@@ -131,8 +130,7 @@ const navRoutes = {
   "About Us": "/about",
   "What We Do": "/whatwedo",
   "Technologies We Use": "/technologies",
-  "How we work": "/how-we-work",
-  "Let's Talk": "/contact",
+  "How we work": "/how-we-work"
 };
 
 const NavBar = () => {
@@ -284,14 +282,18 @@ const NavBar = () => {
         )}
 
         {/* CTA Button */}
-        <ListItem
+        {/* <ListItem
           sx={{
             mt: 2,
             display: "flex",
             justifyContent: "center",
           }}
         >
-          <Button
+         
+        </ListItem> */}
+      </List>
+      {/* <Box sx={{ml:5}}>
+         <Button
             variant="contained"
             onClick={() => handleNavItemClick("Let's Talk")}
             sx={{
@@ -307,8 +309,7 @@ const NavBar = () => {
           >
             Let's Talk
           </Button>
-        </ListItem>
-      </List>
+      </Box> */}
     </Box>
   );
 
@@ -379,7 +380,7 @@ const NavBar = () => {
                     <Box
                       key={item}
                       onMouseEnter={() => setMenuOpen(true)}
-                      onMouseLeave={() => setMenuOpen(false)}
+
                       sx={{ position: "relative" }}
                     >
                       <Button
@@ -450,7 +451,10 @@ const NavBar = () => {
                     </Button>
                   )
                 )}
-                <Button
+               
+              </Box>
+            )}
+             <Button
                   variant="contained"
                   onClick={() => handleNavItemClick("Let's Talk")}
                   sx={{
@@ -461,14 +465,12 @@ const NavBar = () => {
                     textTransform: "none",
                     fontSize: "16px",
                     fontWeight: 400,
-                    ml: { md: 2, lg: 4 },
+                    ml: { md: 2, lg: 2 },
                     "&:hover": { backgroundColor: "#002366" },
                   }}
                 >
                   Let's Talk
                 </Button>
-              </Box>
-            )}
           </Container>
         </Toolbar>
       </AppBar>

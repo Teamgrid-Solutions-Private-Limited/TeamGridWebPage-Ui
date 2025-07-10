@@ -76,21 +76,14 @@ const Capabilities = () => {
     >
       <Box
         sx={{
-          maxWidth: "100%",
-          mx: 2,
+          maxWidth: "1440px",
+          mx: "auto",
           px: {
-            xs: 2, // Smallest padding on mobile
+            xs: 2,
             sm: 4,
-            md: 8,
-            lg: 7,
-            xl: 10, // More padding on wide screens
-          },
-          ml: {
-            xs: 0,
-            sm: 0,
-            md: 0,
-            lg: "0px", // Applies for 1200px+
-            xl: "30px", // Applies for 1536px+
+            md: 6,
+            lg: 8,
+            xl: 10,
           },
         }}
       >
@@ -102,6 +95,7 @@ const Capabilities = () => {
             alignItems: { xs: "flex-start", md: "center" },
             mb: { xs: 3, sm: 4, md: 4 },
             width: "100%",
+            mx: { lg: "12px", xl: "-5px" },
           }}
         >
           <Box sx={{ mb: { xs: 3, md: 0 }, width: { xs: "100%", md: "auto" } }}>
@@ -140,7 +134,6 @@ const Capabilities = () => {
               borderRadius: "999px",
               px: { xs: 3, sm: 4 },
               py: 1,
-              mr: { xs: 0, sm: -2 },
               textTransform: "none",
               fontWeight: "400",
               color: "white",
@@ -148,6 +141,7 @@ const Capabilities = () => {
               "&:hover": {
                 bgcolor: "#0056CC",
               },
+              mr: { lg: 2, xl: 0 },
             }}
           >
             Get a Quote →
@@ -162,7 +156,13 @@ const Capabilities = () => {
                 sx={{
                   height: { xs: "auto", sm: "124px" },
                   minHeight: { xs: "100px", sm: "124px" },
-                  width: { xs: "100%", sm: "84px", md: "400px" }, // xs full width
+                  width: {
+                    xs: "100%",
+                    sm: "84px",
+                    md: "120px",
+                    lg: "400px",
+                    xl: "400px",
+                  }, // xs full width
                   bgcolor: "#0B3C7B",
                   borderRadius: { xs: "16px", sm: "24px" },
                   p: { xs: 2, sm: "20px", lg: "15px" },

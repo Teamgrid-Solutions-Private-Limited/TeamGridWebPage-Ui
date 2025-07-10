@@ -12,7 +12,7 @@ const LetsBuildTogether = () => {
         backgroundSize: "cover",
         backgroundPosition: "center",
         display: "flex",
-        alignItems: "center",
+        alignItems: "flex-start",
         justifyContent: "flex-start",
         p: { xs: 2, md: 8 },
         position: "relative",
@@ -22,6 +22,7 @@ const LetsBuildTogether = () => {
         sx={{
           width: { xs: "100%", sm: "90%", md: "792px" },
           minHeight: { xs: "auto", md: "428px" },
+          maxWidth: "1440px",
           borderRadius: "24px",
           backgroundColor: "#072449",
           p: { xs: 4, md: 8 },
@@ -29,7 +30,9 @@ const LetsBuildTogether = () => {
           flexDirection: "column",
           gap: "10px",
           color: "#fff",
-          ml: { xs: 0, sm:0 , md:0 , lg:1 , xl:7},
+          // ml: { xs: 0, sm:0 , md:0 , lg:1 , xl:7},
+          mx:"auto",
+          
         }}
       >
         <Typography

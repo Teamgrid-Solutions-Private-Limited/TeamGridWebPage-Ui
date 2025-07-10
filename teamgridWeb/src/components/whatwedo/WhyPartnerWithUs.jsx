@@ -67,7 +67,7 @@ const WhyPartnerWithUs = () => {
     <Box
       sx={{
         py: { xs: 6, md: 10 }, // Top-bottom padding
-        px: { xs: 2, sm: 3, md: 10 }, // Left-right padding (responsive)
+        px: { xs: 2, sm: 3, md: 10, lg: 11 , xl:10 }, // Left-right padding (responsive)
         maxWidth: "1440px", // Max width on large screens
         mx: "auto", // Center horizontally
       }}
@@ -102,7 +102,7 @@ const WhyPartnerWithUs = () => {
             height: "59px",
             px: 0,
             border: "1px solid #CACACA",
-            mr: 3,
+            mr :0.5
           }}
         >
           Explore Services
@@ -116,7 +116,7 @@ const WhyPartnerWithUs = () => {
                 borderRadius: "24px",
                 backgroundColor: feature.bgColor,
                 height: { lg: "242px", xl: "252px" },
-                width: { lg: "405px", xl: "405px" },
+                width: { lg: "405px", xl: "412px" },
               }}
             >
               <CardContent>
