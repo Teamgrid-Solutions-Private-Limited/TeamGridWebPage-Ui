@@ -12,8 +12,11 @@ const LetsBuildTogether = () => {
         backgroundSize: "cover",
         backgroundPosition: "center",
         display: "flex",
-        alignItems: "flex-start",
-        justifyContent: "flex-start",
+        justifyContent: {
+          xs: "center", // center on phones
+          md: "center", // maybe center on tablets
+          lg: "flex-start", // align children to left on desktops
+        },
         p: { xs: 2, md: 8 },
         position: "relative",
       }}
@@ -30,9 +33,10 @@ const LetsBuildTogether = () => {
           flexDirection: "column",
           gap: "10px",
           color: "#fff",
-          // ml: { xs: 0, sm:0 , md:0 , lg:1 , xl:7},
-          mx:"auto",
-          
+          mx: {lg:"28px",xl:"50px"}, // default left offset
+          "@media (min-width: 2000px)": {
+            mx: "auto", // center if screen is zoomed out / ultra wide
+          },
         }}
       >
         <Typography
@@ -48,7 +52,6 @@ const LetsBuildTogether = () => {
         <Typography
           variant="subtitle1"
           sx={{
-
             fontSize: { xs: "16px", md: "18px" },
             fontWeight: "400",
             color: "#FAFAFA",

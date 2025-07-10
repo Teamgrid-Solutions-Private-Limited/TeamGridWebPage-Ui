@@ -50,7 +50,10 @@ const Need = () => {
           gap: "10px",
           color: "#fff",
           // ml: { xs: 0, sm: 0, md: 0, lg: 1, xl: 7 },
-          mx:"auto",
+          mx: { lg: "28px", xl: "50px" }, // default left offset
+          "@media (min-width: 2000px)": {
+            mx: "auto", // center if screen is zoomed out / ultra wide
+          },
           position: "relative",
           zIndex: 1,
         }}

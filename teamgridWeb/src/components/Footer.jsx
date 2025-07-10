@@ -18,8 +18,10 @@ const Footer = () => {
       <Box
         sx={{
           maxWidth: "1440px",
-          mx: "auto",
-          px: { xs: 2, sm: 3, md: 6 },
+          mx: {lg:"70px",xl:"100px"}, // default left offset
+          "@media (min-width: 2000px)": {
+            mx: "auto", // center if screen is zoomed out / ultra wide
+          },
         }}
       >
         {/* Top Row */}
