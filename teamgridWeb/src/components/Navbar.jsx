@@ -468,7 +468,9 @@ const NavBar = () => {
                 fontWeight: 400,
                 ml: { md: 2, lg: 2 },
                 "&:hover": { backgroundColor: "#002366" },
+                display:{xs:"none" , md:"block"}
               }}
+
             >
               Let's Talk
             </Button>

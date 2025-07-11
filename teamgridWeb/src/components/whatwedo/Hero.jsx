@@ -582,6 +582,19 @@ const Hero = () => {
     setLogoZoomed(true);
   };
 
+  const [isZoomedOut, setIsZoomedOut] = useState(false);
+
+  useEffect(() => {
+    const checkZoom = () => {
+      const zoomLevel = window.devicePixelRatio;
+      setIsZoomedOut(zoomLevel <= 0.5); // adjust this threshold if needed
+    };
+
+    checkZoom(); // initial check
+    window.addEventListener("resize", checkZoom);
+    return () => window.removeEventListener("resize", checkZoom);
+  }, []);
+
   return (
     <Box
       sx={{
@@ -651,7 +664,16 @@ const Hero = () => {
         <Box
           sx={{
             position: "absolute",
-            top: { xs: "80px", sm: "100px", md: "245px" },
+            top: isZoomedOut
+              ? "-80px"
+              : {
+                  xs: "64px",
+                  sm: "100px",
+                  md: "180px",
+                  lg: "220px",
+                  xl: "245px",
+                },
+
             left: { xs: "16px", sm: "24px", lg: "80px", xl: "120px" },
             right: { xs: "16px", sm: "24px", md: "auto" },
             maxWidth: { xs: "100%", sm: "100%", md: "848px" },

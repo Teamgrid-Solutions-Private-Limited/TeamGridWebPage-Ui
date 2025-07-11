@@ -629,6 +629,19 @@ const HeroSection = () => {
     setLogoZoomed(true);
   };
 
+  const [isZoomedOut, setIsZoomedOut] = useState(false);
+
+  useEffect(() => {
+    const checkZoom = () => {
+      const zoomLevel = window.devicePixelRatio;
+      setIsZoomedOut(zoomLevel <= 0.5); // adjust this threshold if needed
+    };
+
+    checkZoom(); // initial check
+    window.addEventListener("resize", checkZoom);
+    return () => window.removeEventListener("resize", checkZoom);
+  }, []);
+
   return (
     <Box
       sx={{
@@ -664,7 +677,7 @@ const HeroSection = () => {
           maxWidth: "1440px",
           position: "none",
           "@media (min-width: 2000px)": {
-           position: "absolute", // center if screen is zoomed out / ultra wide
+            position: "absolute", // center if screen is zoomed out / ultra wide
           },
         }}
       >
@@ -698,13 +711,16 @@ const HeroSection = () => {
         <Box
           sx={{
             position: "absolute",
-            top: {
-              xs: "64px", // Smaller offset for mobile
-              sm: "100px",
-              md: "180px",
-              lg: "220px",
-              xl: "245px",
-            },
+            top: isZoomedOut
+              ? "-50px"
+              : {
+                  xs: "64px",
+                  sm: "100px",
+                  md: "180px",
+                  lg: "220px",
+                  xl: "245px",
+                },
+
             left: {
               xs: "16px",
               sm: "24px",
