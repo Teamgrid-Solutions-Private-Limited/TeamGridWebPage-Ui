@@ -508,9 +508,9 @@ const NavBar = () => {
             height: {
               xs: "auto",
               sm: 320,
-              md: 360,
-              lg: 380,
-              xl: 400,
+              md: 320,
+              lg: 340,
+              xl: 345,
             },
             overflowY: "auto",
             borderRadius: 3,
