@@ -50,22 +50,21 @@ const EngagementElement = () => {
           alignItems: { xs: "flex-start", md: "center" },
           flexDirection: { xs: "column", md: "row" },
           mb: 4,
-          ml: 1
+          ml: { xs: 0, sm: 1 },
+          gap: { xs: 2, md: 0 }, // space between heading and button on small screens
         }}
       >
-        <Box>
+        <Box sx={{ width: "100%", maxWidth: { xs: "100%", md: "954px" } }}>
           <Typography
             sx={{
-              width: "477px",
-              height: "34px",
               fontFamily: '"PayPal Open", sans-serif',
               fontWeight: 500,
-              fontSize: "48px",
+              fontSize: { xs: "32px", sm: "40px", md: "48px" },
               lineHeight: "100%",
               color: "#000000",
-              textAlign: "center",
+              textAlign: { xs: "left", md: "left" },
               opacity: 1,
-              mb:3
+              mb: 2,
             }}
           >
             Engagement Models
@@ -73,20 +72,19 @@ const EngagementElement = () => {
 
           <Typography
             sx={{
-              width: "954px",
-              height: "27px",
               fontFamily: '"PayPal Open", sans-serif',
-              fontSize: "18px",
+              fontSize: { xs: "16px", sm: "17px", md: "18px" },
               fontWeight: 500,
               lineHeight: "150%",
               letterSpacing: "0%",
               color: "#000000",
               opacity: 1,
+              maxWidth: "100%",
+              textAlign: { xs: "left", md: "left" },
             }}
           >
             Choose the engagement model that best suits your project needs
           </Typography>
-
         </Box>
 
         <Button
@@ -95,11 +93,7 @@ const EngagementElement = () => {
             <img
               src={ArrowForwardIcon}
               alt="arrow"
-              style={{
-                width: "16px",
-                height: "16px",
-                opacity: 1,
-              }}
+              style={{ width: "16px", height: "16px", opacity: 1 }}
             />
           }
           sx={{
@@ -109,10 +103,12 @@ const EngagementElement = () => {
             fontWeight: 400,
             fontSize: "18px",
             lineHeight: "150%",
-            px: "40px",
-            py: "16px",
+            px: { xs: 2, sm: 3, md: 5 }, // horizontal padding
+            py: { xs: 1.5, sm: 2, md: 2 }, // vertical padding
+
             border: "1px solid #CACACA",
             color: "#000",
+            width: { xs: "100%", sm: "auto", md: "306px" ,lg:"246px"}, // full-width on small screens
           }}
         >
           Explore Services
@@ -120,7 +116,7 @@ const EngagementElement = () => {
       </Box>
 
       {/* Model Cards */}
-      <Grid container spacing={3.5} ml={1}>
+      <Grid container spacing={3.5} ml={1} sx={{    display: { xs: "none", md: "flex" } }}>
         {models.map((model, index) => (
           <Grid key={index} item xs={12} md={4}>
             <Box
@@ -303,6 +299,191 @@ const EngagementElement = () => {
           </Grid>
         ))}
       </Grid>
+       {/* Mobile Carousel - Only shows on xs and sm */}
+      <Box
+        sx={{
+          display: { xs: "flex", md: "none" },
+          gap: "16px",
+          overflowX: "auto",
+          pb: 2,
+          scrollbarWidth: "none",
+          "&::-webkit-scrollbar": { display: "none" },
+          "-ms-overflow-style": "none",
+          ml: 1,
+        }}
+      >
+        {models.map((model, index) => (
+          <Box
+            key={index}
+            sx={{
+              minWidth: "410px", // Same width as desktop cards
+              height: "350px", // Same height as desktop
+              borderRadius: "24px",
+              pt: "32px",
+              px: "34px",
+              pb: "24px",
+              backgroundColor: "#F5F7FA",
+              display: "flex",
+              flexDirection: "column",
+              gap: "24px",
+              opacity: 1,
+              flexShrink: 0, // Prevent cards from shrinking
+            }}
+          >
+            {/* EXACT SAME CARD CONTENT AS DESKTOP VERSION */}
+            <Typography
+              sx={{
+                width: "330px",
+                height: "46px",
+                fontFamily: '"PayPal Open", sans-serif',
+                fontWeight: 500,
+                fontSize: "24px",
+                lineHeight: "120%",
+                letterSpacing: "0%",
+                color: "#05408E",
+                textAlign: "left",
+                opacity: 1,
+              }}
+            >
+              {model.title}
+            </Typography>
+            
+            <Box
+              sx={{
+                width: "336px",
+                height: "124px",
+                opacity: 1,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-start",
+                my: 2
+              }}
+            >
+              {model.points.map((point, i) => (
+                <Box
+                  key={i}
+                  sx={{
+                    width: "336px",
+                    height: "52px",
+                    borderRadius: "8px",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "16px",
+                    opacity: 1,
+                  }}
+                >
+                  <img
+                    src={CheckCircleIcon}
+                    alt="check"
+                    style={{
+                      width: 24,
+                      height: 24,
+                      opacity: 1,
+                      transform: "rotate(0deg)",
+                    }}
+                  />
+                  <Typography
+                    sx={{
+                      width: "301px",
+                      height: "48px",
+                      fontFamily: '"PayPal Open", sans-serif',
+                      fontWeight: 400,
+                      fontSize: "16px",
+                      lineHeight: "150%",
+                      letterSpacing: "0%",
+                      color: "#140E13",
+                      opacity: 1,
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    {point}
+                  </Typography>
+                </Box>
+              ))}
+            </Box>
+
+            <Box sx={{ display: "flex", gap: 2, mt: "auto" }}>
+              <Button
+                endIcon={
+                  <img
+                    src={ArrowForwardIcon1}
+                    alt="arrow"
+                    style={{
+                      width: "16px",
+                      height: "16px",
+                      opacity: 1,
+                    }}
+                  />
+                }
+                sx={{
+                  width: "144px",
+                  border: "1px solid #D7D7D7",
+                  borderRadius: "12px",
+                  backgroundColor: "#05408E",
+                  py: "10px",
+                  textTransform: "none",
+                  "&:hover": { backgroundColor: "#003E79" },
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  height: "48px",
+                }}
+              >
+                <Typography
+                  sx={{
+                    width: "69px",
+                    height: "24px",
+                    fontFamily: '"PayPal Open", sans-serif',
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "150%",
+                    letterSpacing: "0%",
+                    color: "#FAFAFA",
+                    opacity: 1,
+                  }}
+                >
+                  Reach us
+                </Typography>
+              </Button>
+
+              <Box
+                sx={{
+                  width: "144px",
+                  height: "48px",
+                  border: "1px solid #D7D7D7",
+                  borderRadius: "12px",
+                  padding: "12px 24px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "10px",
+                  opacity: 1,
+                }}
+              >
+                <Typography
+                  sx={{
+                    width: "96px",
+                    height: "24px",
+                    fontFamily: '"PayPal Open", sans-serif',
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "150%",
+                    letterSpacing: "0%",
+                    color: "#140E13",
+                    opacity: 1,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  Know More..
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+        ))}
+      </Box>
     </Box>
   );
 };

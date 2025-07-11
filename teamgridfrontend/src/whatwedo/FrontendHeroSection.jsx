@@ -34,7 +34,7 @@ const FrontendHeroSection = () => {
             sx={{
                 background: "#072449",
                 color: "#FFFFFF",
-                px: { xs: 2, sm: 3, md: 4, lg: 7 },
+                px: { xs: 1, sm: 3, md: 4, lg: 7 },
                 py: { xs: 6, sm: 8, md: 10, lg: 12 },
                 position: "relative",
                 overflow: "hidden",
@@ -103,7 +103,7 @@ const FrontendHeroSection = () => {
                             <Button
                                 sx={{
                                     color: "#fff",
-                                    px: {sm:2,md:2,lg:4},
+                                    px: {xs:2,sm:2,md:2,lg:4},
                                     py: 2,
                                     borderRadius: "16px",
                                     textTransform: "none",
@@ -134,7 +134,7 @@ const FrontendHeroSection = () => {
                                     fontSize: { xs: '1rem', sm: '1.1rem', md: '1.25rem', lg: '18px' },
                                     lineHeight: "150%",
                                     height: { xs: 48, md: 59 },
-                                    minWidth: { xs: 140, md: 254 },
+                                    minWidth: { xs: 140,sm:260,md: 254 },
                                     bgcolor: "#072449",
                                     "&:hover": {
                                         backgroundColor: "#0070FF",

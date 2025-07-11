@@ -54,8 +54,8 @@ const GotQuestions = () => {
         {/* Heading box */}
         <Box
           sx={{
-            width: "477px",
-            height: "104px",
+            width: { xs: '100%', sm: '90%', md: '477px' },
+            height: { xs: 'auto', md: '104px' },
             opacity: 1,
             display: "flex",
             flexDirection: "column",
@@ -66,10 +66,10 @@ const GotQuestions = () => {
         >
           <Typography
             sx={{
-              width: "328px",
-              height: "34px",
+              width: { xs: '100%', sm: '90%', md: '328px' },
+              height: { xs: 'auto', md: '34px' },
               fontFamily: '"PayPal Open", sans-serif',
-              fontSize: "48px",
+              fontSize: { xs: '28px', sm: '36px', md: '48px' },
               fontWeight: 500,
               lineHeight: "100%",
               letterSpacing: "0%",
@@ -85,10 +85,10 @@ const GotQuestions = () => {
 
           <Typography
             sx={{
-              width: "477px",
-              height: "54px",
+              width: { xs: '100%', sm: '90%', md: '477px' },
+              height: { xs: 'auto', md: '54px' },
               fontFamily: '"PayPal Open", sans-serif',
-              fontSize: "18px",
+              fontSize: { xs: '14px', sm: '16px', md: '18px' },
               fontWeight: 500,
               lineHeight: "150%",
               letterSpacing: "0%",
@@ -105,7 +105,7 @@ const GotQuestions = () => {
         {/* Accordion List */}
         <Box
           sx={{
-            width: "588px",
+            width: { xs: '100%', sm: '95%', md: '588px' },
             // height: "382px",
             opacity: 1,
             display: "flex",

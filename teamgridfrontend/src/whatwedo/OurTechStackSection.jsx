@@ -25,23 +25,26 @@ const OurTechStackSection = () => {
                 maxWidth: '1440px',
                 mx: 'auto',
                 px: { xs: 2, md: 9 },
-                py: { xs: 6, md: 10 },
+                py: { xs: 2, sm: 3, md: 10 }, // Reduced vertical padding for xs/sm
                 display: 'flex',
                 flexDirection: { xs: 'column', md: 'row' },
-                gap: 16,
+                gap: { xs: 4, sm: 6, md: 16 }, // Reduced gap for xs/sm
                 alignItems: 'center',
             }}
         >
             {/* LEFT IMAGE BLOCK */}
             <Box
+
                 sx={{
-                    width: '486px',
-                    height: '591px',
+                    width: { xs: '100%', sm: '486px' },
+                    height: { xs: 'auto', sm: '591px' },
+
                     borderRadius: '24px',
                     overflow: 'hidden',
                     position: 'relative',
                     flexShrink: 0,
-                    ml: 1
+                    ml: { lg: 1 },
+                    mb: { xs: 2, sm: 0 }, // Add margin-bottom for xs only
                 }}
             >
                 <img
@@ -57,21 +60,23 @@ const OurTechStackSection = () => {
                 <Box
                     sx={{
                         position: 'absolute',
-                        bottom: 40,
-                        left: 35,
+                        bottom: { xs: 16, sm: 40 },
+                        left: { xs: 16, sm: 35 },
                         color: '#FFFFFF',
                         fontFamily: '"PayPal Open", sans-serif',
-                        width: '436px',
-                        height: '146px',
+                        width: { xs: '90%', sm: '436px' },
+                        height: 'auto',
                     }}
                 >
+
                     <Typography
                         sx={{
-                            fontSize: '48px',
+                            fontSize: { xs: '24px', sm: '48px' },
                             fontWeight: 500,
-                            lineHeight: '100%',
+                            lineHeight: '120%',
                         }}
                     >
+
                         We use <Box component="span" sx={{ color: '#30ECAD' }}>modern,</Box>
                     </Typography>
 
@@ -92,7 +97,7 @@ const OurTechStackSection = () => {
             <Box
                 sx={{
                     width: { xs: '100%', md: '608px' },
-                    height: { xs: 'auto', md: '528px' },
+                    height: { xs: 'auto', md: 'auto', lg: '528px' },
                     background: '#fff',
                     borderRadius: '24px',
                     // boxShadow: '0px 6px 24px rgba(0,0,0,0.06)',
@@ -126,7 +131,7 @@ const OurTechStackSection = () => {
                         lineHeight: '150%',          // 150%
                         letterSpacing: '0%',
                         color: 'text.secondary',     // Or use '#000000' if needed
-                        maxWidth: '500px',
+                        maxWidth: '100%',
                         mb: 4,
                     }}
                 >
@@ -141,8 +146,8 @@ const OurTechStackSection = () => {
                             <Paper
                                 elevation={0}
                                 sx={{
-                                    width: '123px',
-                                    height: '115px',
+                                    width: {xs:"80px",sm:"auto", md: '80px', lg: '123px' },
+                                    height: { md: 'auto', lg: '115px' },
                                     display: 'flex',
                                     flexDirection: 'column',
                                     justifyContent: 'space-between',
@@ -160,7 +165,11 @@ const OurTechStackSection = () => {
                                     component="img"
                                     src={item.icon}
                                     alt={item.label}
-                                    sx={{ width: 56, height: 56, mb: 1 }}
+                                    sx={{
+                                        width: { xs: 40, sm: 48, md: 45,lg:56 }, // ✅ Responsive image sizing
+                                        height: { xs: 40, sm: 48, md: 45,lg:56 },
+                                        mb: 1
+                                    }}
                                 />
                                 <Typography
                                     sx={{
@@ -168,7 +177,7 @@ const OurTechStackSection = () => {
                                         height: '11px',
                                         fontFamily: '"PayPal Open", sans-serif',
                                         fontWeight: 500,              // Medium
-                                        fontSize: '16px',
+                                         fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '16px' }, // ✅ Responsive font
                                         lineHeight: '100%',
                                         letterSpacing: '0%',
                                         color: '#05408E',

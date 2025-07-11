@@ -77,7 +77,7 @@ const WhyPartnerWithUs = () => {
                         width: { xs: "100%", sm: "246px" },
                         height: { xs: "48px", md: "59px" },
                         padding: { xs: "12px 24px", md: "16px 40px" },
-                        borderRadius: "16px",
+                        borderRadius: "38px",
                         borderWidth: "1px",
                         borderColor: "#CACACA",
                         fontFamily: '"PayPal Open", sans-serif',

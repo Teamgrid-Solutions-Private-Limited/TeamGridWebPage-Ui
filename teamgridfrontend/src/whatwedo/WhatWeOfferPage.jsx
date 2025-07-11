@@ -48,6 +48,7 @@ const WhatWeOfferSection = () => {
   const scrollRef = useRef(null);
   const [activeTab, setActiveTab] = useState(0);
   // Scroll handlers (optional, keep for horizontal scroll)
+ // Scroll handlers (optional, keep for horizontal scroll)
   const scrollLeft = () => {
     setActiveTab((prev) => (prev === 0 ? offerings.length - 1 : prev - 1));
     if (scrollRef.current) {
@@ -99,7 +100,7 @@ const WhatWeOfferSection = () => {
       <Box
         sx={{
           width: { xs: '100%', md: '588px' },
-          minHeight: '360px',
+          minHeight: {xs:"160px",sm:"260px",md:"360px",lg:"360px"},
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
@@ -111,14 +112,14 @@ const WhatWeOfferSection = () => {
           <Typography
             sx={{
               fontFamily: '"PayPal Open", sans-serif',
-              fontWeight: 500,             // 500 matches "Medium"
-              fontSize: '56px',            // Matches the design
-              lineHeight: '100%',          // 100% = 1, can use 1 or '56px'
+              fontWeight: 500,
+              fontSize: { xs: '32px', sm: '40px', md: '56px' },
+              lineHeight: '100%',
               letterSpacing: '0px',
               opacity: 1,
-              width: '477px',
-              height: '40px',
-              transform: 'rotate(0deg)',   // No rotation
+              width: { xs: '100%', md: '477px' },
+              height: 'auto',
+              mb: 2,
             }}
           >
             What We Offer
@@ -127,17 +128,13 @@ const WhatWeOfferSection = () => {
           <Typography
             sx={{
               fontFamily: '"PayPal Open", sans-serif',
-              fontWeight: 500,              // Medium = 500
-              fontSize: '18px',
-              // lineHeight: '150%',           // Equivalent to 1.5
-              letterSpacing: '0px',
+              fontWeight: 500,
+              fontSize: { xs: '14px', sm: '16px', md: '18px' },
               color: '#000000',
               opacity: 1,
-              width: '486px',
-              height: '54px',
-              transform: 'rotate(0deg)',
-              gap: '16px',
-              my: 4              // only applies if wrapping content in a flex container
+              width: { xs: '100%', md: '486px' },
+              height: 'auto',
+              my: 2,
             }}
           >
             Pixel-Perfect Front-End Development, Aligned with Your Designs and Deadlines
@@ -145,20 +142,19 @@ const WhatWeOfferSection = () => {
 
           <Box
             sx={{
-              width: '486px',
-              height: '120px',
+              width: { xs: '100%', md: '486px' },
+              height: 'auto',
               opacity: 1,
-              transform: 'rotate(0deg)', // Optional since 0deg does nothing
-              overflow: 'hidden',        // optional: to prevent overflow
+              overflow: 'hidden',
+              mb: 2,
             }}
           >
             <Typography
               sx={{
                 fontFamily: '"PayPal Open", sans-serif',
                 fontWeight: 400,
-                fontSize: '16px',
+                fontSize: { xs: '13px', sm: '15px', md: '16px' },
                 lineHeight: '150%',
-                letterSpacing: '0px',
                 color: 'text.secondary',
               }}
             >
@@ -173,21 +169,24 @@ const WhatWeOfferSection = () => {
         <Button
           variant="contained"
           sx={{
-            width: '246px',
+            width: { xs: '90%', sm: '90%',  md: '246px'},
             height: '59px',
-            padding: '16px 40px',
-            borderRadius: '16px',
+            padding: { xs: '12px 0', sm: '16px 40px' },
+            borderRadius: '40px',
             backgroundColor: '#05408E',
             textTransform: 'none',
             fontWeight: 600,
-            fontSize: '16px', // Optional: to match visual scale
+            fontSize: '16px',
             letterSpacing: '0px',
             gap: '10px',
             opacity: 1,
+          
             '&:hover': {
-              backgroundColor: '#003E79', // slightly darker hover color
+              backgroundColor: '#003E79',
             },
-          }}
+            mt: 2,
+            ml:{xs:2,sm:4,md:0}
+                    }}
         >
           Explore Services →
         </Button>
@@ -199,10 +198,12 @@ const WhatWeOfferSection = () => {
           flex: 1,
           minWidth: 0,
           height: 'auto',
-          overflow: 'hidden',
+          overflowX: 'auto', // Enable horizontal scroll
           position: 'relative',
           display: 'flex',
           flexDirection: 'column',
+          width: '100%',
+          pb: {xs:6,sm:4,md:2,lg:1}, // Optional: add padding-bottom for scroll bar space
         }}
       >
         <Box
@@ -223,16 +224,19 @@ const WhatWeOfferSection = () => {
           onMouseLeave={handleMouseLeave}
           onMouseUp={handleMouseUp}
           onMouseMove={handleMouseMove}
+          onTouchStart={handleMouseDown} // Alias for touch
+          onTouchMove={handleMouseMove} // Alias for touch
         >
           {offerings.map((item, index) => (
             <Card
               key={index}
               onClick={() => setActiveTab(index)}
               sx={{
-                width: '282px',
-                height: '242px',
+                width: { xs: '90vw', sm: '282px' },
+                minWidth: { xs: '220px', sm: '282px' },
+                height: { xs: 'auto', sm: '242px' },
                 borderRadius: '24px',
-                p: '24px',
+                p: { xs: 2, sm: '24px' },
                 bgcolor: index === activeTab ? '#05408E' : '#F3F3F6',
                 color: index === activeTab ? '#fff' : '#000',
                 boxShadow: 'none',
@@ -317,7 +321,7 @@ const WhatWeOfferSection = () => {
       <Box
         sx={{
           position: 'absolute',
-          left: { xs: 0, md: 'auto', lg: 0 },
+          left: { xs: 25,sm:40, md: 0, lg: 0 },
           bottom: 4,
           display: 'flex',
           gap: 1,

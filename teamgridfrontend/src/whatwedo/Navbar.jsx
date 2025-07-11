@@ -102,7 +102,7 @@ const Navbar = () => {
                                 display: "flex",
                                 justifyContent: "space-between",
                                 alignItems: "center",
-                                px: { xs: 2, sm: 3, md: 6, lg: 9 },
+                                px: { xs: 1, sm: 3, md: 6, lg: 9 },
                             }}
                         >
                             {/* Logo */}
@@ -168,8 +168,8 @@ const Navbar = () => {
                                                 borderRadius: 3,
                                                 boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
                                                 zIndex: 1300,
-                                                width: { xs: "90vw", sm: "1000px", md: "1070px", lg: "1200px", xl: "1290px" },
-                                                maxWidth: "90vw"
+                                                width: { xs: "90vw", sm: "1000px", md: "1030px", lg: "1270px", xl: "1290px" },
+                                                // maxWidth: "90vw"
                                             }}
                                         >
                                             <Grid container spacing={{ xs: 2, sm: 0, md: 0, lg: 1, xl: 4.5 }}>
