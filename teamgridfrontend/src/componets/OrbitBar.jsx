@@ -141,7 +141,7 @@ const OrbitBar = () => {
     if (isSm) return "scale(32) translateY(28px) translateX(22px)";
     if (isMd) return "scale(30) translateY(47px) translateX(38px)";
     if (isLg) return "scale(19) translateY(51px) translateX(41px)";
-    return "scale(20) translateY(52px) translateX(px)"; // fallback for xl and above
+    return "scale(19) translateY(52px) translateX(40px)"; // fallback for xl and above
   }, [centerLogoZoomed, isXs, isSm, isMd, isLg]);
 
   return (

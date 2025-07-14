@@ -40,550 +40,651 @@ const steps = [
 
 const HowWeWork = () => {
     return (
-         <Box
-                    sx={{
-                        maxWidth: "1440px",
-                        mx: "auto",
-                        px: { xs: 2, sm: 4, md: 6, lg: 9.5 },
-                        py: { xs: 0, sm: 0, md: 3, lg: 6 },
-                    }}
-                >
         <Box
             sx={{
-                px: { xs: 2, sm: 4, md: 8,lg:8 },
-                py: { xs: 6,sm:4, md: 10, lg: 6 },
-                backgroundColor: "#0B3C7B",
-                borderRadius: "40px",
-                maxWidth: "1295px",
+                maxWidth: "1440px",
                 mx: "auto",
-                minHeight: "931px"
+                px: { xs: 2, sm: 4, md: 6, lg: 9.5 },
+                py: { xs: 0, sm: 0, md: 3, lg: 6 },
             }}
         >
-            <Typography
-                sx={{
-                    width: '477px', // optional: apply only if needed
-                    height: '40px', // optional: apply only if needed
-                    fontFamily: '"PayPal Open", sans-serif',
-                    fontWeight: 500, // corresponds to "Medium"
-                    fontSize: { xs: "36px", md: "56px" },
-                    lineHeight: "100%",
-                    letterSpacing: "0%",
-                    textAlign: "center",
-                    color: "#FFFFFF",
-                    mb: 4,
-                    mx: "auto", // to center it horizontally if width is set
-                }}
-            >
-                How We Work
-            </Typography>
-
-
-            <Typography
-                sx={{
-                    fontFamily: '"PayPal Open", sans-serif',
-                    fontWeight: 400, // Regular
-                    fontSize: "16px",
-                    lineHeight: "150%",
-                    letterSpacing: "0%",
-                    textAlign: "center",
-                    color: "#B2D2FC", // updated color
-                    width: "458px",   // fixed width as per your spec
-                    height: "55px",   // optional: generally height is handled by content
-                    mx: "auto",       // centers the box horizontally
-                    opacity: 1,
-                    mb: 6,
-                }}
-            >
-                Our front-end development process is built to deliver speed, quality, and collaboration.
-            </Typography>
-
-{/* First row with responsive arrows including the end arrow */}
-{/* First row with arrow between cards */}
             <Box
                 sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    gap: 2,
-                    mb: 4,
-                    flexWrap: 'wrap',
+                    px: { xs: 2, sm: 4, md: 8, lg: 8 },
+                    py: { xs: 6, sm: 4, md: 10, lg: 6 },
+                    backgroundColor: "#0B3C7B",
+                    borderRadius: "40px",
+                    maxWidth: "1295px",
+                    mx: "auto",
+                    minHeight: "931px"
                 }}
             >
-                {steps.slice(0, 2).map((step, index) => (
-                    <React.Fragment key={index}>
-                        <Box sx={{ textAlign: 'left', position: 'relative' }}>
+                <Typography
+                    sx={{
+                        width: '477px', // optional: apply only if needed
+                        height: '40px', // optional: apply only if needed
+                        fontFamily: '"PayPal Open", sans-serif',
+                        fontWeight: 500, // corresponds to "Medium"
+                        fontSize: { xs: "36px", md: "56px" },
+                        lineHeight: "100%",
+                        letterSpacing: "0%",
+                        textAlign: "center",
+                        color: "#FFFFFF",
+                        mb: 4,
+                        mx: "auto", // to center it horizontally if width is set
+                    }}
+                >
+                    How We Work
+                </Typography>
+
+
+                <Typography
+                    sx={{
+                        fontFamily: '"PayPal Open", sans-serif',
+                        fontWeight: 400, // Regular
+                        fontSize: "16px",
+                        lineHeight: "150%",
+                        letterSpacing: "0%",
+                        textAlign: "center",
+                        color: "#B2D2FC", // updated color
+                        width: "458px",   // fixed width as per your spec
+                        height: "55px",   // optional: generally height is handled by content
+                        mx: "auto",       // centers the box horizontally
+                        opacity: 1,
+                        mb: 6,
+                    }}
+                >
+                    Our front-end development process is built to deliver speed, quality, and collaboration.
+                </Typography>
+
+                {/* First row with responsive arrows including the end arrow */}
+                {/* First row with arrow between cards */}
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: { xs: 'column', md: 'row' },
+                        flexWrap: 'wrap',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        gap: 2,
+                        mb: 4,
+                    }}
+                >
+                    {/* Step 1 */}
+                    <Box
+                        sx={{
+                            textAlign: 'left',
+                            position: 'relative',
+                            width: { xs: '90%', sm: '80%', md: '384px' },
+                            mx: 'auto',
+                            mb: { xs: 2, sm: 2, md: 0 },
+                        }}
+                    >
+                        <Box
+                            sx={{
+                                width: '100%',
+                                height: '160px',
+                                backgroundColor: '#005DD5',
+                                borderRadius: '24px',
+                                px: '27px',
+                                py: '27px',
+                                pl: '77px',
+                                color: 'white',
+                                fontFamily: '"PayPal Open", sans-serif',
+                            }}
+                        >
                             <Box
                                 sx={{
-                                    width: '384px',
-                                    height: '160px',
-                                    backgroundColor: '#005DD5',
+                                    position: 'absolute',
+                                    left: '-27px',
+                                    top: '-20px',
+                                    backgroundColor: '#30ECAD',
                                     borderRadius: '24px',
-                                    px: '27px',
-                                    py: '27px',
-                                    pl: '77px',
-                                    color: 'white',
-                                    fontFamily: '"PayPal Open", sans-serif',
+                                    width: '80px',
+                                    height: '80px',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    padding: '20px 11px',
+                                    opacity: 1,
                                 }}
                             >
-                                <Box
-                                    sx={{
-                                        position: 'absolute',
-                                        left: '-27px',
-                                        top: '-20px',
-                                        backgroundColor: '#30ECAD',
-                                        borderRadius: '24px',
-                                        width: '80px',
-                                        height: '80px',
-                                        display: 'flex',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        padding: '20px 11px',
-                                        opacity: 1,
-                                    }}
-                                >
-                                    <Typography
-                                        sx={{
-                                            fontFamily: 'PayPal Open',
-                                            fontWeight: 300,
-                                            fontSize: '40px',
-                                            lineHeight: '100%',
-                                            color: '#089767',
-                                            letterSpacing: '0%',
-                                            textAlign: 'center',
-                                        }}
-                                    >
-                                        {step.step}
-                                    </Typography>
-                                </Box>
-
-                                <Typography
-                                    sx={{
-                                        width: '285px',
-                                        height: '14px',
-                                        fontFamily: 'PayPal Open',
-                                        fontWeight: 500,
-                                        fontSize: '20px',
-                                        lineHeight: '120%',
-                                        letterSpacing: '0%',
-                                        color: '#FFFFFF',
-                                        opacity: 1,
-                                        mb: 3,
-                                    }}
-                                >
-                                    {step.title}
-                                </Typography>
                                 <Typography
                                     sx={{
                                         fontFamily: 'PayPal Open',
-                                        fontWeight: 400,
-                                        fontSize: '16px',
-                                        lineHeight: '150%',
+                                        fontWeight: 300,
+                                        fontSize: '40px',
+                                        lineHeight: '100%',
+                                        color: '#089767',
                                         letterSpacing: '0%',
-                                        color: '#B2D2FC',
-                                        opacity: 1,
+                                        textAlign: 'center',
                                     }}
                                 >
-                                    {step.desc}
+                                    {steps[0].step}
                                 </Typography>
                             </Box>
+                            <Typography
+                                sx={{
+                                    width: '285px',
+                                    height: '14px',
+                                    fontFamily: 'PayPal Open',
+                                    fontWeight: 500,
+                                    fontSize: '20px',
+                                    lineHeight: '120%',
+                                    letterSpacing: '0%',
+                                    color: '#FFFFFF',
+                                    opacity: 1,
+                                    mb: 3,
+                                }}
+                            >
+                                {steps[0].title}
+                            </Typography>
+                            <Typography
+                                sx={{
+                                    fontFamily: 'PayPal Open',
+                                    fontWeight: 400,
+                                    fontSize: '16px',
+                                    lineHeight: '150%',
+                                    letterSpacing: '0%',
+                                    color: '#B2D2FC',
+                                    opacity: 1,
+                                }}
+                            >
+                                {steps[0].desc}
+                            </Typography>
                         </Box>
+                    </Box>
 
-                        {/* First arrow between Step 01 and Step 02 */}
-                        {index === 0 && (
-                            <Box sx={{ mx: 1 }}>
-                                <img
-                                    src={fstArrow}
-                                    alt="First Arrow"
-                                    style={{
-                                        width: '56px',
-                                        height: 'auto',
-                                        marginTop: '20px',
-                                    }}
-                                />
-                            </Box>
-                        )}
+                    {/* Arrow between Step 1 and Step 2, hidden on xs/sm */}
+                    <Box
+                        sx={{
+                            mx: 1,
+                            display: { xs: 'none', sm: 'none', md: 'flex' },
+                        }}
+                    >
+                        <img
+                            src={fstArrow}
+                            alt="First Arrow"
+                            style={{
+                                width: '56px',
+                                height: 'auto',
+                                marginTop: '20px',
+                            }}
+                        />
+                    </Box>
 
-                        {/* Second arrow after Step 02 */}
-                        {index === 1 && (
-                            <Box sx={{ ml: 2, mt: 9 }}>
-                                <Box
+                    {/* Step 2 */}
+                    <Box
+                        sx={{
+                            textAlign: 'left',
+                            position: 'relative',
+                            width: { xs: '90%', sm: '80%', md: '384px' },
+                            mx: 'auto',
+                            mb: { xs: 0, sm: 0, md: 0 },
+                        }}
+                    >
+                        <Box
+                            sx={{
+                                width: '100%',
+                                height: '160px',
+                                backgroundColor: '#005DD5',
+                                borderRadius: '24px',
+                                px: '27px',
+                                py: '27px',
+                                pl: '77px',
+                                color: 'white',
+                                fontFamily: '"PayPal Open", sans-serif',
+                            }}
+                        >
+                            <Box
+                                sx={{
+                                    position: 'absolute',
+                                    left: '-27px',
+                                    top: '-20px',
+                                    backgroundColor: '#30ECAD',
+                                    borderRadius: '24px',
+                                    width: '80px',
+                                    height: '80px',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    padding: '20px 11px',
+                                    opacity: 1,
+                                }}
+                            >
+                                <Typography
                                     sx={{
-                                        width: '56px',
-                                        height: 'auto',
-                                        opacity: 1,
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        borderRadius: '8px', // optional: add rounding
+                                        fontFamily: 'PayPal Open',
+                                        fontWeight: 300,
+                                        fontSize: '40px',
+                                        lineHeight: '100%',
+                                        color: '#089767',
+                                        letterSpacing: '0%',
+                                        textAlign: 'center',
                                     }}
                                 >
-                                    <img
-                                        src={secndArrow}
-                                        alt="Arrow"
-                                        style={{ width: '100%', height: 'auto' }}
-                                    />
-                                </Box>
-
+                                    {steps[1].step}
+                                </Typography>
                             </Box>
-                        )}
-                    </React.Fragment>
-                ))}
-            </Box> 
+                            <Typography
+                                sx={{
+                                    width: '285px',
+                                    height: '14px',
+                                    fontFamily: 'PayPal Open',
+                                    fontWeight: 500,
+                                    fontSize: '20px',
+                                    lineHeight: '120%',
+                                    letterSpacing: '0%',
+                                    color: '#FFFFFF',
+                                    opacity: 1,
+                                    mb: 3,
+                                }}
+                            >
+                                {steps[1].title}
+                            </Typography>
+                            <Typography
+                                sx={{
+                                    fontFamily: 'PayPal Open',
+                                    fontWeight: 400,
+                                    fontSize: '16px',
+                                    lineHeight: '150%',
+                                    letterSpacing: '0%',
+                                    color: '#B2D2FC',
+                                    opacity: 1,
+                                }}
+                            >
+                                {steps[1].desc}
+                            </Typography>
+                        </Box>
+                    </Box>
 
-
-            {/* Remaining rows (2 per row) */}
-            <Box
-                sx={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    justifyContent: 'center',
-                    gap: 4,
-                    alignItems: 'center',
-                }}
-            >
-                {/* Forth arrow at the start of the second row */}
-                <Box sx={{ mx: 1, mt: 12 }}>
-                    <img
-                        src={forthArw}
-                        alt="Forth Arrow"
-                        style={{ width: '56px', height: 'auto', marginBottom: '40px' }}
-                    />
-                </Box>
-                {/* Step 4 */}
-                <Box key={3} sx={{ textAlign: 'left', position: 'relative' }}>
+                    {/* Arrow after Step 2, hidden on xs/sm */}
                     <Box
                         sx={{
-                            width: '384px',
-                            height: '160px',
-                            backgroundColor: '#005DD5',
-                            borderRadius: '24px',
-                            px: '27px',
-                            py: '27px',
-                            pl: '77px',
-                            color: 'white',
-                            fontFamily: '"PayPal Open", sans-serif',
+                            ml: 2,
+                            mt: 9,
+                            display: { xs: 'none', sm: 'none', md: 'flex' },
                         }}
                     >
                         <Box
                             sx={{
-                                position: 'absolute',
-                                left: '-27px',
-                                top: '-20px',
-                                backgroundColor: '#30ECAD',
-                                borderRadius: '24px',
-                                width: '80px',
-                                height: '80px',
+                                width: '56px',
+                                height: 'auto',
+                                opacity: 1,
                                 display: 'flex',
-                                justifyContent: 'center',
                                 alignItems: 'center',
-                                padding: '20px 11px',
-                                opacity: 1,
+                                justifyContent: 'center',
+                                borderRadius: '8px',
                             }}
                         >
-                            <Typography
-                                sx={{
-                                    fontFamily: 'PayPal Open',
-                                    fontWeight: 300,
-                                    fontSize: '40px',
-                                    lineHeight: '100%',
-                                    color: '#089767',
-                                    letterSpacing: '0%',
-                                    textAlign: 'center',
-                                }}
-                            >
-                                {steps[3].step}
-                            </Typography>
+                            <img
+                                src={secndArrow}
+                                alt="Arrow"
+                                style={{ width: '100%', height: 'auto' }}
+                            />
                         </Box>
-                        <Typography
-                            sx={{
-                                width: '285px',
-                                height: '14px',
-                                fontFamily: 'PayPal Open',
-                                fontWeight: 500,
-                                fontSize: '20px',
-                                lineHeight: '120%',
-                                letterSpacing: '0%',
-                                color: '#FFFFFF',
-                                opacity: 1,
-                                mb: 3,
-                            }}
-                        >
-                            {steps[3].title}
-                        </Typography>
-                        <Typography
-                            sx={{
-                                fontFamily: 'PayPal Open',
-                                fontWeight: 400,
-                                fontSize: '16px',
-                                lineHeight: '150%',
-                                letterSpacing: '0%',
-                                color: '#B2D2FC',
-                                opacity: 1,
-                            }}
-                        >
-                            {steps[3].desc}
-                        </Typography>
                     </Box>
                 </Box>
-                {/* Third arrow in the middle of the second row */}
-                <Box sx={{ mx: 1 }}>
-                    <img
-                        src={thirdArw}
-                        alt="Third Arrow"
-                        style={{ width: '56px', height: 'auto', marginBottom: '0px' }}
-                    />
-                </Box>
-                {/* Step 3 */}
-                <Box key={2} sx={{ textAlign: 'left', position: 'relative' }}>
+
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: { xs: 'column', md: 'row', lg: 'row' },
+                        flexWrap: 'wrap',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        gap: 4,
+                        mt: { xs: 4, sm: 2, md: 8, lg: 6 },
+                    }}
+                >
+                    {/* Forth arrow at the start of the second row */}
                     <Box
                         sx={{
-                            width: '384px',
-                            height: '160px',
-                            backgroundColor: '#005DD5',
-                            borderRadius: '24px',
-                            px: '27px',
-                            py: '27px',
-                            pl: '77px',
-                            color: 'white',
-                            fontFamily: '"PayPal Open", sans-serif',
+                            display: { xs: 'none', sm: 'none', md: 'block' },
+                            mx: 1,
+                            mt: { xs: 0, md: 12 },
+                        }}
+                    >
+                        <img
+                            src={forthArw}
+                            alt="Forth Arrow"
+                            style={{ width: '56px', height: 'auto', marginBottom: '40px' }}
+                        />
+                    </Box>
+
+                    {/* Step 4 (order changes by breakpoint) */}
+                    <Box
+                        key={3}
+                        sx={{
+                            textAlign: 'left',
+                            position: 'relative',
+                            width: { xs: '90%', sm: '80%', md: '384px' },
+                            order: { xs: 3, sm: 3, md: 3, lg: 1 },
                         }}
                     >
                         <Box
                             sx={{
-                                position: 'absolute',
-                                left: '-27px',
-                                top: '-20px',
-                                backgroundColor: '#30ECAD',
+                                height: '160px',
+                                backgroundColor: '#005DD5',
                                 borderRadius: '24px',
-                                width: '80px',
-                                height: '80px',
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                padding: '20px 11px',
-                                opacity: 1,
+                                px: '27px',
+                                py: '27px',
+                                pl: '77px',
+                                color: 'white',
+                                fontFamily: '"PayPal Open", sans-serif',
+                                position: 'relative',
                             }}
                         >
-                            <Typography
+                            <Box
                                 sx={{
-                                    fontFamily: 'PayPal Open',
-                                    fontWeight: 300,
-                                    fontSize: '40px',
-                                    lineHeight: '100%',
-                                    color: '#089767',
-                                    letterSpacing: '0%',
-                                    textAlign: 'center',
+                                    position: 'absolute',
+                                    left: '-27px',
+                                    top: '-20px',
+                                    backgroundColor: '#30ECAD',
+                                    borderRadius: '24px',
+                                    width: '80px',
+                                    height: '80px',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    padding: '20px 11px',
                                 }}
                             >
-                                {steps[2].step}
+                                <Typography
+                                    sx={{
+                                        fontWeight: 300,
+                                        fontSize: '40px',
+                                        color: '#089767',
+                                        textAlign: 'center',
+                                    }}
+                                >
+                                    {steps[3].step}
+                                </Typography>
+                            </Box>
+                            <Typography
+                                sx={{
+                                    fontWeight: 500,
+                                    fontSize: '20px',
+                                    color: '#FFFFFF',
+                                    mb: 1,
+                                }}
+                            >
+                                {steps[3].title}
+                            </Typography>
+                            <Typography
+                                sx={{
+                                    fontWeight: 400,
+                                    fontSize: '16px',
+                                    color: '#B2D2FC',
+                                }}
+                            >
+                                {steps[3].desc}
                             </Typography>
                         </Box>
-                        <Typography
+                    </Box>
+
+                    {/* Third arrow in the middle (order changes by breakpoint) */}
+                    <Box
+                        sx={{
+                            display: { xs: 'none', sm: 'none', md: 'block' },
+                            mx: 1,
+                            order: { xs: 2, sm: 2, md: 2, lg: 2 },
+                        }}
+                    >
+                        <img
+                            src={thirdArw}
+                            alt="Third Arrow"
+                            style={{ width: '56px', height: 'auto', marginBottom: '0px' }}
+                        />
+                    </Box>
+
+                    {/* Step 3 (order changes by breakpoint) */}
+                    <Box
+                        key={2}
+                        sx={{
+                            textAlign: 'left',
+                            position: 'relative',
+                            width: { xs: '90%', sm: '80%', md: '384px' },
+                            order: { xs: 1, sm: 1, md: 1, lg: 3 },
+                        }}
+                    >
+                        <Box
                             sx={{
-                                width: '285px',
-                                height: '14px',
-                                fontFamily: 'PayPal Open',
-                                fontWeight: 500,
-                                fontSize: '20px',
-                                lineHeight: '120%',
-                                letterSpacing: '0%',
-                                color: '#FFFFFF',
-                                opacity: 1,
-                                mb: 3,
+                                height: '160px',
+                                backgroundColor: '#005DD5',
+                                borderRadius: '24px',
+                                px: '27px',
+                                py: '27px',
+                                pl: '77px',
+                                color: 'white',
+                                fontFamily: '"PayPal Open", sans-serif',
+                                position: 'relative',
                             }}
                         >
-                            {steps[2].title}
-                        </Typography>
-                        <Typography
-                            sx={{
-                                fontFamily: 'PayPal Open',
-                                fontWeight: 400,
-                                fontSize: '16px',
-                                lineHeight: '150%',
-                                letterSpacing: '0%',
-                                color: '#B2D2FC',
-                                opacity: 1,
-                            }}
-                        >
-                            {steps[2].desc}
-                        </Typography>
+                            <Box
+                                sx={{
+                                    position: 'absolute',
+                                    left: '-27px',
+                                    top: '-20px',
+                                    backgroundColor: '#30ECAD',
+                                    borderRadius: '24px',
+                                    width: '80px',
+                                    height: '80px',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    padding: '20px 11px',
+                                }}
+                            >
+                                <Typography
+                                    sx={{
+                                        fontWeight: 300,
+                                        fontSize: '40px',
+                                        color: '#089767',
+                                        textAlign: 'center',
+                                    }}
+                                >
+                                    {steps[2].step}
+                                </Typography>
+                            </Box>
+                            <Typography
+                                sx={{
+                                    fontWeight: 500,
+                                    fontSize: '20px',
+                                    color: '#FFFFFF',
+                                    mb: 1,
+                                }}
+                            >
+                                {steps[2].title}
+                            </Typography>
+                            <Typography
+                                sx={{
+                                    fontWeight: 400,
+                                    fontSize: '16px',
+                                    color: '#B2D2FC',
+                                }}
+                            >
+                                {steps[2].desc}
+                            </Typography>
+                        </Box>
                     </Box>
                 </Box>
+
+                {/* Last row with responsive arrows between cards (steps 5 and 6) */}
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: { xs: 'column', md: 'row' },
+                        flexWrap: 'wrap',
+                        justifyContent: { xs: 'center', md: 'center', lg: 'flex-end' },
+                        alignItems: 'center',
+                        gap: 2,
+                        mt: { xs: 4, sm: 4, md: 8, lg: 6 },
+
+                        mx: { xs: 0, sm: 0, md: 0, lg: 0 },
+                        mr: { lg: 8 },
+                    }}
+                >
+                    {/* Step 5 */}
+                    <Box
+                        sx={{
+                            textAlign: 'left',
+                            position: 'relative',
+                            width: { xs: '90%', sm: '80%', md: '384px' },
+                            mx: 'auto',
+                            mb: { xs: 2, sm: 2, md: 0 },
+                        }}
+                    >
+                        <Box
+                            sx={{
+                                height: '160px',
+                                backgroundColor: '#005DD5',
+                                borderRadius: '24px',
+                                px: '27px',
+                                py: '27px',
+                                pl: '77px',
+                                color: 'white',
+                                fontFamily: '"PayPal Open", sans-serif',
+                                position: 'relative',
+                            }}
+                        >
+                            <Box
+                                sx={{
+                                    position: 'absolute',
+                                    left: '-27px',
+                                    top: '-20px',
+                                    backgroundColor: '#30ECAD',
+                                    borderRadius: '24px',
+                                    width: '80px',
+                                    height: '80px',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    padding: '20px 11px',
+                                }}
+                            >
+                                <Typography
+                                    sx={{
+                                        fontWeight: 300,
+                                        fontSize: '40px',
+                                        color: '#089767',
+                                        textAlign: 'center',
+                                    }}
+                                >
+                                    {steps[4].step}
+                                </Typography>
+                            </Box>
+                            <Typography
+                                sx={{
+                                    fontWeight: 500,
+                                    fontSize: '20px',
+                                    color: '#FFFFFF',
+                                    mb: 1,
+                                }}
+                            >
+                                {steps[4].title}
+                            </Typography>
+                            <Typography
+                                sx={{
+                                    fontWeight: 400,
+                                    fontSize: '16px',
+                                    color: '#B2D2FC',
+                                }}
+                            >
+                                {steps[4].desc}
+                            </Typography>
+                        </Box>
+                    </Box>
+
+                    {/* Arrow between Step 5 and Step 6, responsive for all sizes */}
+                    <Box
+                        sx={{
+                            display: { xs: 'none', sm: 'none', md: 'flex' },
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            my: { xs: 2, md: 0 },
+                        }}
+                    >
+                        <img
+                            src={fifthArw}
+                            alt="Fifth Arrow"
+                            style={{ width: '56px', height: 'auto' }}
+                        />
+                    </Box>
+
+                    {/* Step 6 */}
+                    <Box
+                        sx={{
+                            textAlign: 'left',
+                            position: 'relative',
+                            width: { xs: '90%', sm: '80%', md: '384px' },
+                            mx: 'auto',
+                            mb: { xs: 2, sm: 2, md: 0 },
+                        }}
+                    >
+                        <Box
+                            sx={{
+                                height: '160px',
+                                backgroundColor: '#005DD5',
+                                borderRadius: '24px',
+                                px: '27px',
+                                py: '27px',
+                                pl: '77px',
+                                color: 'white',
+                                fontFamily: '"PayPal Open", sans-serif',
+                                position: 'relative',
+                            }}
+                        >
+                            <Box
+                                sx={{
+                                    position: 'absolute',
+                                    left: '-27px',
+                                    top: '-20px',
+                                    backgroundColor: '#30ECAD',
+                                    borderRadius: '24px',
+                                    width: '80px',
+                                    height: '80px',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    padding: '20px 11px',
+                                }}
+                            >
+                                <Typography
+                                    sx={{
+                                        fontWeight: 300,
+                                        fontSize: '40px',
+                                        color: '#089767',
+                                        textAlign: 'center',
+                                    }}
+                                >
+                                    {steps[5].step}
+                                </Typography>
+                            </Box>
+                            <Typography
+                                sx={{
+                                    fontWeight: 500,
+                                    fontSize: '20px',
+                                    color: '#FFFFFF',
+                                    mb: 1,
+                                }}
+                            >
+                                {steps[5].title}
+                            </Typography>
+                            <Typography
+                                sx={{
+                                    fontWeight: 400,
+                                    fontSize: '16px',
+                                    color: '#B2D2FC',
+                                }}
+                            >
+                                {steps[5].desc}
+                            </Typography>
+                        </Box>
+                    </Box>
+                </Box>
+
             </Box>
-
-            {/* Third row: steps 5 and 6 with arrow between */}
-            <Box
-                sx={{
-                    display: 'flex',
-                    alignItems: "center",
-                    gap: 3,
-                    mt: 4,
-                    justifyContent: "flex-start",
-                    mx: 13
-                }}
-            >
-                {/* Step 5 */}
-                <Box sx={{ textAlign: 'left', position: 'relative' }}>
-                    <Box
-                        sx={{
-                            width: '384px',
-                            height: '160px',
-                            backgroundColor: '#005DD5',
-                            borderRadius: '24px',
-                            px: '27px',
-                            py: '27px',
-                            pl: '77px',
-                            color: 'white',
-                            fontFamily: '"PayPal Open", sans-serif',
-                        }}
-                    >
-                        <Box
-                            sx={{
-                                position: 'absolute',
-                                left: '-27px',
-                                top: '-20px',
-                                backgroundColor: '#30ECAD',
-                                borderRadius: '24px',
-                                width: '80px',
-                                height: '80px',
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                padding: '20px 11px',
-                                opacity: 1,
-                            }}
-                        >
-                            <Typography
-                                sx={{
-                                    fontFamily: 'PayPal Open',
-                                    fontWeight: 300,
-                                    fontSize: '40px',
-                                    lineHeight: '100%',
-                                    color: '#089767',
-                                    letterSpacing: '0%',
-                                    textAlign: 'center',
-                                }}
-                            >
-                                {steps[4].step}
-                            </Typography>
-                        </Box>
-                        <Typography
-                            sx={{
-                                width: '285px',
-                                height: '14px',
-                                fontFamily: 'PayPal Open',
-                                fontWeight: 500,
-                                fontSize: '20px',
-                                lineHeight: '120%',
-                                letterSpacing: '0%',
-                                color: '#FFFFFF',
-                                opacity: 1,
-                                mb: 3,
-                            }}
-                        >
-                            {steps[4].title}
-                        </Typography>
-                        <Typography
-                            sx={{
-                                fontFamily: 'PayPal Open',
-                                fontWeight: 400,
-                                fontSize: '16px',
-                                lineHeight: '150%',
-                                letterSpacing: '0%',
-                                color: '#B2D2FC',
-                                opacity: 1,
-                            }}
-                        >
-                            {steps[4].desc}
-                        </Typography>
-                    </Box>
-                </Box>
-                {/* Fifth arrow between Step 5 and Step 6 */}
-                <Box sx={{ my: 0 }}>
-                    <img
-                        src={fifthArw}
-                        alt="Fifth Arrow"
-                        style={{ width: '56px', height: 'auto', marginBottom: '0px' }}
-                    />
-                </Box>
-                {/* Step 6 */}
-                <Box sx={{ textAlign: 'left', position: 'relative' }}>
-                    <Box
-                        sx={{
-                            width: '384px',
-                            height: '160px',
-                            backgroundColor: '#005DD5',
-                            borderRadius: '24px',
-                            px: '27px',
-                            py: '27px',
-                            pl: '77px',
-                            color: 'white',
-                            fontFamily: '"PayPal Open", sans-serif',
-                        }}
-                    >
-                        <Box
-                            sx={{
-                                position: 'absolute',
-                                left: '-27px',
-                                top: '-20px',
-                                backgroundColor: '#30ECAD',
-                                borderRadius: '24px',
-                                width: '80px',
-                                height: '80px',
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                padding: '20px 11px',
-                                opacity: 1,
-                            }}
-                        >
-                            <Typography
-                                sx={{
-                                    fontFamily: 'PayPal Open',
-                                    fontWeight: 300,
-                                    fontSize: '40px',
-                                    lineHeight: '100%',
-                                    color: '#089767',
-                                    letterSpacing: '0%',
-                                    textAlign: 'center',
-                                }}
-                            >
-                                {steps[5].step}
-                            </Typography>
-                        </Box>
-                        <Typography
-                            sx={{
-                                width: '285px',
-                                height: '14px',
-                                fontFamily: 'PayPal Open',
-                                fontWeight: 500,
-                                fontSize: '20px',
-                                lineHeight: '120%',
-                                letterSpacing: '0%',
-                                color: '#FFFFFF',
-                                opacity: 1,
-                                mb: 3,
-                            }}
-                        >
-                            {steps[5].title}
-                        </Typography>
-                        <Typography
-                            sx={{
-                                fontFamily: 'PayPal Open',
-                                fontWeight: 400,
-                                fontSize: '16px',
-                                lineHeight: '150%',
-                                letterSpacing: '0%',
-                                color: '#B2D2FC',
-                                opacity: 1,
-                            }}
-                        >
-                            {steps[5].desc}
-                        </Typography>
-                    </Box>
-                </Box>
-            </Box>
-        </Box>
         </Box>
     );
 };

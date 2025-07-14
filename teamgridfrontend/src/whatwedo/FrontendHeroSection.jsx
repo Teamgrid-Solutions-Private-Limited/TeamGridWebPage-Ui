@@ -21,8 +21,8 @@ const FrontendHeroSection = () => {
             direction: "counter",
         },
         {
-            width: 1490,
-            height: 1490,
+            width: 1450,
+            height: 1450,
             icon: wordpressIcon,
             duration: "48s",
             direction: "clockwise",
@@ -105,14 +105,14 @@ const FrontendHeroSection = () => {
                                     color: "#fff",
                                     px: {xs:2,sm:2,md:2,lg:4},
                                     py: 2,
-                                    borderRadius: "16px",
+                                    borderRadius: "36px",
                                     textTransform: "none",
                                     fontFamily: "PayPal Open",
                                     fontWeight: 400,
                                     fontSize: { xs: '1rem', sm: '1.1rem', md: '1.25rem', lg: '18px' },
                                     border: "1px solid #FFFFFF45",
                                     lineHeight: "150%",
-                                    "&:hover": { backgroundColor: "#0070FF" },
+                                  backgroundColor: "#0070FF" ,
                                     height: { xs: 48, md: 59 },
                                     minWidth: { xs: 10, sm:180,md: 200,lg:200 },
                                 }}
@@ -127,7 +127,7 @@ const FrontendHeroSection = () => {
                                     border: "1px solid #FFFFFF45",
                                     px: {sm:2,md:2,lg:4},
                                     py: 2,
-                                    borderRadius: "16px",
+                                    borderRadius: "36px",
                                     textTransform: "none",
                                     fontFamily: "PayPal Open",
                                     fontWeight: 400,
@@ -137,7 +137,7 @@ const FrontendHeroSection = () => {
                                     minWidth: { xs: 140,sm:260,md: 254 },
                                     bgcolor: "#072449",
                                     "&:hover": {
-                                        backgroundColor: "#0070FF",
+                                        // backgroundColor: "#0070FF",
                                         borderColor: "#FFFFFF45",
                                     },
                                     zIndex: 30,
@@ -158,7 +158,7 @@ const FrontendHeroSection = () => {
                     if (i === 0 || i === 1) {
                         angleRad = 65 * Math.PI / 180;
                     } else if (i === 2) {
-                        angleRad = 15 * Math.PI / 180;
+                        angleRad = 13 * Math.PI / 180;
                     } else {
                         angleRad = Math.PI / 4;
                     }
