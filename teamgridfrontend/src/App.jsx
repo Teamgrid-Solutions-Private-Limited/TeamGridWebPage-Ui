@@ -6,7 +6,7 @@ import TeamGridHomePage from "./Home/TeamGridHomePage";
 import theme from './componets/theme';
 import WhatWeDoPage from './whatwedo/WhatWeDoPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import Home from './Home2/Home';
 function App() {
   return (
     <>

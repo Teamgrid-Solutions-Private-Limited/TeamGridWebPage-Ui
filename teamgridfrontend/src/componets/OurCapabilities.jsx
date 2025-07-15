@@ -70,6 +70,7 @@ console.log("Height: " + window.innerHeight + "px");
     <Box sx={{
       width: "100vw", // Full viewport width
       maxWidth: "100%", // Prevent horizontal scrollbar
+      overflowX: "hidden", // Prevents horizontal scroll
       bgcolor: "#0B3C7B",
       color: "white",
       py: { xs: 6, md: 8 },
@@ -153,9 +154,11 @@ console.log("Height: " + window.innerHeight + "px");
           rowSpacing={{ xs: 3, sm: 3 }}
           columnSpacing={{ xs: 2, sm: 5, md: 8 ,lg:7.5,xl:11}}
           // mx={{lg:1,xs:0}}
-          pl={{md:1,lg:1}}
+          // pl={{md:1,lg:1}}
           sx={{
             width: "100%",
+            maxWidth: { lg: '1200px', xl: '1320px' },
+            mx: 'auto',
             justifyContent: "flex-start"
           }}
         >
@@ -165,7 +168,7 @@ console.log("Height: " + window.innerHeight + "px");
               xs={12}
               sm={6}
               md={4}
-              // lg={6}
+              lg={4}
               key={index}
               sx={{
                 display: "flex",
@@ -176,6 +179,7 @@ console.log("Height: " + window.innerHeight + "px");
                 elevation={0}
                 sx={{
                   width: { xs: '90%', sm: '280px', md: '354px', lg: '360px', xl: '370px' },
+                  minWidth: { lg: '360px' },
                   height: { xs: 'auto', sm: '124px' },
                   minHeight: '90px',
                   fontWeight: 500,

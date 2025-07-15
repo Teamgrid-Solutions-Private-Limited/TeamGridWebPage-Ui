@@ -617,7 +617,7 @@ const navBtnStyle = (scrolled = false) => ({
     fontSize: "16px",
     textTransform: "none",
     color: scrolled ? "#072449" : "#FFFFFF",
-    borderRadius: "12px",
+    borderRadius: "35px",
     px: 1.5,
     py: .5,
     transition: "all 0.3s ease",

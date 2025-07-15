@@ -141,7 +141,7 @@ const OrbitBar = () => {
     if (isSm) return "scale(32) translateY(28px) translateX(22px)";
     if (isMd) return "scale(30) translateY(47px) translateX(38px)";
     if (isLg) return "scale(19) translateY(51px) translateX(41px)";
-    return "scale(19) translateY(52px) translateX(40px)"; // fallback for xl and above
+    return "scale(19) translateY(51px) translateX(40px)"; // fallback for xl and above
   }, [centerLogoZoomed, isXs, isSm, isMd, isLg]);
 
   return (
@@ -270,8 +270,8 @@ const OrbitBar = () => {
             <Button
               variant="outlined"
               sx={{
-                backgroundColor: "#072449",
-                borderRadius: "12px",
+                backgroundColor: "#0070FF",
+                borderRadius: "36px",
                 borderColor: "#444",
                 color: "#FFFFFF",
                 padding: "16px 32px",
@@ -281,9 +281,9 @@ const OrbitBar = () => {
                 fontWeight: 500,
                 fontSize: "16px",
                 textTransform: "none",
-                '&:hover': {
-                  backgroundColor: "#0070FF"
-                },
+                // '&:hover': {
+                //   backgroundColor: "#0070FF"
+                // },
                 pointerEvents: 'auto',
                 zIndex: 3
               }}
@@ -296,7 +296,7 @@ const OrbitBar = () => {
               sx={{
                 color: "#FFFFFF",
                 borderColor: "#444",
-                borderRadius: "12px",
+                borderRadius: "36px",
                 padding: "16px 32px",
                 fontWeight: 500,
                 fontSize: "16px",
@@ -304,7 +304,7 @@ const OrbitBar = () => {
                 textTransform: "none",
                 '&:hover': {
                   borderColor: "#666",
-                  backgroundColor: "#0070FF",
+                  // backgroundColor: "#0070FF",
                 },
                 pointerEvents: 'auto',
 
@@ -323,7 +323,7 @@ const OrbitBar = () => {
             width: { xs: 300, sm: 400, md: 550 },
             height: { xs: 300, sm: 400, md: 550 },
             top: "50%",
-            left: { sm: "65%", md: "63%", lg: "70%" },
+            left: { sm: "65%", md: "63%", lg: "71%" },
             transform: "translateY(-50%)",
             borderRadius: "55%",
           }}
@@ -438,7 +438,7 @@ const OrbitBar = () => {
             <Box
               sx={{
                 position: "absolute",
-                top: { xs: -12, sm: 0, md: 20, lg: 23 },
+                top: { xs: -12, sm: 0, md: 20, lg: 30 },
                 left: { xs: 40, sm: 0, md: 60, lg: 60 },
                 width: "100%",
                 height: "100%",

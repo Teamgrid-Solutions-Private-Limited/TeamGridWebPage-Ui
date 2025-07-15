@@ -29,7 +29,7 @@ const NeedExpert = () => {
           color: "#FFFFFF",
           zIndex: 2,
           m: { xs: 2, sm: 4, md: "auto" },
-          ml: { md: 15 },
+          ml: { md: 8,lg:10 },
         }}
       >
         <Typography
