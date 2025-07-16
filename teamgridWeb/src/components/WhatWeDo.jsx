@@ -141,7 +141,7 @@ const WhatWeDo = () => {
           justifyContent: "space-between",
           bgcolor: "#E1ECF9",
           width: "100%",
-          maxWidth: { xs: "100%", md: "100%", lg: "1270px", xl: "1290px" }, // ✅ lock width on large devices
+          maxWidth: { xs: "100%", md: "100%", lg: "1260px", xl: "1280px" }, // ✅ lock width on large devices
           height: { xs: "auto", lg: "585px" }, // ✅ lock height on large devices
           // mx: "auto",
           borderRadius: { xs: 2, md: 4 },
@@ -339,9 +339,9 @@ const WhatWeDo = () => {
             flexDirection: "row",
             overflowX: "auto",
             zIndex: 2,
-            p: { xs: 0.5, md: 1 },
+            py: { xs: 0.5, md:1  },
             px: { xs: 1, sm: 2, md: 2, lg: 1, xl: 2 },
-            gap: { xs: "5px", md: "10px" },
+            gap: { xs: "5px", md: "2px" , lg:"4px" , xl:"8px"},
             scrollbarWidth: "none",
             "&::-webkit-scrollbar": { display: "none" },
           }}

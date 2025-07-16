@@ -56,159 +56,172 @@ const HowWeWork = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "#0B3C7B",
-        px: { xs: 2, md: 10 },
-        py: { xs: 6, md: 10 },
-        mt:{md:7},
-        color: "#fff",
-        borderRadius: "40px",
-        width: "100%",
-        maxWidth: { md: "100%", lg: "1260px", xl: "1285px" }, // responsive max width
-        height: "auto",
-        mx: "auto", // center horizontally
+        px: { xs: 2, sm: 3, md: 10, lg: 8, xl: 12 },
+        // py: { xs: 6, md: 10 },
+        maxWidth: { md: "100%", lg: "1350px", xl: "1455px" },
+        mx: "auto",
       }}
     >
-      <Typography
-        fontWeight={500}
+      <Box
         sx={{
-          fontSize: { xs: 28, md: 56 },
-          mb: 1,
-          textAlign: "center",
-          color: "#FFFFFF",
+          backgroundColor: "#0B3C7B",
+          mt: { md: 7 },
+          color: "#fff",
+          borderRadius: "40px",
+          width: "100%",
+          p:7
+          // responsive max width
+          // height: "auto",
+           // center horizontally
         }}
       >
-        How We Work
-      </Typography>
-      <Typography
-        sx={{
-          mb: 6,
-          color: "#B2D2FC",
-          textAlign: "center",
-          fontSize: "16px",
-          fontWeight: 400,
-        }}
-      >
-        Our front-end development process is built to deliver speed, <br />
-        quality, and collaboration.
-      </Typography>
+        <Typography
+          fontWeight={500}
+          sx={{
+            fontSize: { xs: 28, md: 56 },
+            mb: 1,
+            textAlign: "center",
+            color: "#FFFFFF",
+          }}
+        >
+          How We Work
+        </Typography>
+        <Typography
+          sx={{
+            mb: 6,
+            color: "#B2D2FC",
+            textAlign: "center",
+            fontSize: "16px",
+            fontWeight: 400,
+          }}
+        >
+          Our front-end development process is built to deliver speed, <br />
+          quality, and collaboration.
+        </Typography>
 
-      <Grid
-        container
-        spacing={4}
-        rowSpacing={8}
-        sx={{ maxWidth: "1000px", margin: "0 auto" }}
-      >
-        {steps.map((step, index) => (
-          <React.Fragment key={index}>
-            {index === 2 && <Grid item xs={12} />}
+        <Grid
+          container
+          spacing={4}
+          rowSpacing={8}
+          sx={{ maxWidth: "1000px", margin: "0 auto" }}
+        >
+          {steps.map((step, index) => (
+            <React.Fragment key={index}>
+              {index === 2 && <Grid item xs={12} />}
 
-            <Grid
-              item
-              xs={12}
-              md={2.4}
-              sx={{
-                ...(index === 2 && { ml: { md: 10 } }),
-                ...(index === 3 && { ml: { md: -2 } }),
-                ...(index === 4 && { ml: { md: -14 } }),
-                ...(index === 5 && { ml: { md: -3 } }),
-              }}
-            >
-              <Box
-                sx={{
-                  position: "relative",
-                  width: "100%",
-                  maxWidth: "384px",
-                  height: "auto",
-                  mx: { xs: "auto", md: "0" },
-                }}
-              >
-                {/* Step Number */}
-                <Box
-                  sx={{
-                    position: "absolute",
-                    top: "-20px",
-                    left: "-20px",
-                    width: "80px",
-                    height: "80px",
-                    borderRadius: "24px",
-                    backgroundColor: "#30ECAD",
-                    color: "#089767",
-                    fontWeight: 300,
-                    fontSize: "40px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    zIndex: 2,
-                  }}
-                >
-                  {step.number}
-                </Box>
-
-                {/* Card */}
-                <Card
-                  sx={{
-                    backgroundColor: "#005DD5",
-                    color: "#fff",
-                    borderRadius: "24px",
-                    width: "100%",
-                    height: "100%",
-                    px: 3,
-                    py: 2,
-                  }}
-                >
-                  <CardContent sx={{ p: 0 }}>
-                    <Typography fontWeight={500} fontSize="20px" mb={1} ml={5}>
-                      {step.title}
-                    </Typography>
-                    <Typography
-                      fontSize="16px"
-                      fontWeight={400}
-                      sx={{ color: "#B2D2FC", ml: 5 }}
-                    >
-                      {step.description}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Box>
-            </Grid>
-
-            {/* Arrows – Hidden on xs & sm */}
-            {index < steps.length - 1 && (
               <Grid
                 item
                 xs={12}
-                md={0.6}
+                md={2.4}
                 sx={{
-                  display: {
-                    xs: "none",
-                    sm: "none",
-                    md: "none",
-                    lg: "flex",
-                    xl: "flex",
-                  },
-                  alignItems: "center",
-                  justifyContent: "center",
-                  ...(index === 3 && {
-                    position: "relative",
-                    top: "-180px",
-                    ml: 3,
-                  }),
+                  ...(index === 2 && { ml: { md: 10 } }),
+                  ...(index === 3 && { ml: { md: -2 } }),
+                  ...(index === 4 && { ml: { md: -14 } }),
+                  ...(index === 5 && { ml: { md: -3 } }),
                 }}
               >
                 <Box
-                  component="img"
-                  src={arrowIcons[index % arrowIcons.length]}
-                  alt={`arrow-${index}`}
                   sx={{
-                    width: "54px",
+                    position: "relative",
+                    width: "100%",
+                    maxWidth: "384px",
                     height: "auto",
+                    mx: { xs: "auto", md: "0" },
                   }}
-                />
+                >
+                  {/* Step Number */}
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      top: "-20px",
+                      left: "-20px",
+                      width: "80px",
+                      height: "80px",
+                      borderRadius: "24px",
+                      backgroundColor: "#30ECAD",
+                      color: "#089767",
+                      fontWeight: 300,
+                      fontSize: "40px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      zIndex: 2,
+                    }}
+                  >
+                    {step.number}
+                  </Box>
+
+                  {/* Card */}
+                  <Card
+                    sx={{
+                      backgroundColor: "#005DD5",
+                      color: "#fff",
+                      borderRadius: "24px",
+                      width: "100%",
+                      height: "100%",
+                      px: 3,
+                      py: 2,
+                    }}
+                  >
+                    <CardContent sx={{ p: 0 }}>
+                      <Typography
+                        fontWeight={500}
+                        fontSize="20px"
+                        mb={1}
+                        ml={5}
+                      >
+                        {step.title}
+                      </Typography>
+                      <Typography
+                        fontSize="16px"
+                        fontWeight={400}
+                        sx={{ color: "#B2D2FC", ml: 5 }}
+                      >
+                        {step.description}
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Box>
               </Grid>
-            )}
-          </React.Fragment>
-        ))}
-      </Grid>
+
+              {/* Arrows – Hidden on xs & sm */}
+              {index < steps.length - 1 && (
+                <Grid
+                  item
+                  xs={12}
+                  md={0.6}
+                  sx={{
+                    display: {
+                      xs: "none",
+                      sm: "none",
+                      md: "none",
+                      lg: "flex",
+                      xl: "flex",
+                    },
+                    alignItems: "center",
+                    justifyContent: "center",
+                    ...(index === 3 && {
+                      position: "relative",
+                      top: "-180px",
+                      ml: 3,
+                    }),
+                  }}
+                >
+                  <Box
+                    component="img"
+                    src={arrowIcons[index % arrowIcons.length]}
+                    alt={`arrow-${index}`}
+                    sx={{
+                      width: "54px",
+                      height: "auto",
+                    }}
+                  />
+                </Grid>
+              )}
+            </React.Fragment>
+          ))}
+        </Grid>
+      </Box>
     </Box>
   );
 };

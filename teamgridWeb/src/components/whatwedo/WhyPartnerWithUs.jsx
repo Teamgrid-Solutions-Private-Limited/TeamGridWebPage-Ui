@@ -116,7 +116,7 @@ const WhyPartnerWithUs = () => {
                 borderRadius: "24px",
                 backgroundColor: feature.bgColor,
                 height: { lg: "242px", xl: "252px" },
-                width: { xs:"390px",sm:"390px",lg: "395px", xl: "412px" },
+                width: { xs:"390px",sm:"390px",lg: "398px", xl: "412px" },
                 border:"none",
                 boxShadow:"none"
               }}

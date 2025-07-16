@@ -83,12 +83,12 @@ const WhatWeOffer = () => {
   return (
      <Box
       sx={{
-        maxWidth: '1440px',
+        maxWidth: '1540px',
         width: '100%',
         mx: 'auto',
         display: 'flex',
         flexDirection: { xs: 'column', md: 'row' },
-        pl: { xs: 2, sm: 3, md: 6, lg: 10 },
+        pl: { xs: 2, sm: 3, md: 6, lg: 15 },
         pt: { xs: 4, sm: 6, md: 10 },
         gap: { xs: 4, md: 6 },
         alignItems: 'flex-start',
