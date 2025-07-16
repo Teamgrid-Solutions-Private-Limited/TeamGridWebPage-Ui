@@ -29,7 +29,13 @@ const Footer = () => {
 
   return (
     <Box sx={{ bgcolor: '#072449', color: '#fff', 
-    px: { xs: 3, sm: 4, md: 3, lg: 14 }, py: 6, width: '100%' }}>
+    px: { xs: 3, sm: 4, md: 3, lg: 14 }, py: 6, width: '100%', }}>
+      <Box sx={{
+        maxWidth: '1440px',
+        margin: '0 auto',
+        width: '100%',
+        //  px: { xs: 1, sm: 3, md: 6, lg: 9 }
+      }}>
       {/* Top Row: 4 Columns */}
       <Box
         sx={{
@@ -38,6 +44,7 @@ const Footer = () => {
           justifyContent: 'space-between',
           mb: 4,
           ml: { md: 1 }
+          
         }}
       >
         {/* Blogs */}
@@ -227,7 +234,7 @@ const Footer = () => {
     sx={{
       fontSize: 12,
       color: '#B0C4DE',
-      textAlign: { xs: "left", sm: "center", md: "center" }, // md layout unchanged
+      textAlign: { xs: "left", sm: "left", md: "left" }, // md layout unchanged
     }}
   >
     © 2025 Teamgrid. All rights reserved.
@@ -235,6 +242,7 @@ const Footer = () => {
 </Box>
 
     </Box>
+  </Box>
   );
 };
 

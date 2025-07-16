@@ -74,14 +74,16 @@ console.log("Height: " + window.innerHeight + "px");
       bgcolor: "#0B3C7B",
       color: "white",
       py: { xs: 6, md: 8 },
-      px:{xs:3,sm:6,md:10,lg:14},
+      px:{xs:3,sm:6,md:7,lg:14,xl:14},
       position: "relative",
       overflow: "hidden",
       zIndex: 1
     }}>
       {/* Container with same padding as navbar */}
       <Box sx={{
-        maxWidth: "100%",
+      maxWidth: "1440px",
+                margin: "0 auto",
+                width: "100%"
         // mx: "auto",
         // px: { xs: 2, sm: 6, md: 2, lg: 10} // Match navbar padding
       }}>
@@ -152,13 +154,13 @@ console.log("Height: " + window.innerHeight + "px");
         <Grid
           container
           rowSpacing={{ xs: 3, sm: 3 }}
-          columnSpacing={{ xs: 2, sm: 5, md: 8 ,lg:6,xl:11}}
+          columnSpacing={{ xs: 2, sm: 4, md: 6 ,lg:6,xl:11.5}}
           // mx={{lg:1,xs:0}}
           // pl={{md:1,lg:1}}
           sx={{
             width: "100%",
             maxWidth: { lg: '1200px', xl: '1320px' },
-            mx: 'auto',
+            // mx: 'auto',
             justifyContent: "flex-start"
           }}
         >
@@ -178,8 +180,8 @@ console.log("Height: " + window.innerHeight + "px");
               <Paper
                 elevation={0}
                 sx={{
-                  width: { xs: '90%', sm: '280px', md: '354px', lg: '360px', xl: '370px' },
-                  minWidth: { lg: '360px' },
+                  width: { xs: '90%', sm: '280px', md: '369px', lg: '360px', xl: '370px' },
+                  // minWidth: { lg: '360px' },
                   height: { xs: 'auto', sm: '124px' },
                   minHeight: '90px',
                   fontWeight: 500,

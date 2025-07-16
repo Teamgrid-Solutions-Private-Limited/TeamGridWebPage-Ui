@@ -93,174 +93,181 @@ const TopNavBar = () => {
 
                 <Toolbar disableGutters>
                     <Box sx={{ width: "100%", }}>
-                        <Container
-                            maxWidth="100%"
-                            sx={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center"
-                            }}
-                        >
-                            {/* Logo */}
-                            <Grid item xs={6} md={2}>
-                                <Box sx={{ display: "flex", alignItems: "center", p: 1 }}>
-                                    <img src={scrolled?whiteLogo:logo} alt="logo" style={{ height: "50px", width: "auto", maxWidth: "158px" }} />
-                                </Box>
-                            </Grid>
+                        <Box sx={{
+                            maxWidth: '1440px',
+                            margin: '0 auto',
+                            width: '100%'
+                        }}>
+                            <Container
+                                maxWidth="100%"
+                                sx={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
 
-                            {/* Hamburger Menu - Mobile */}
-                            <IconButton
-                                color="inherit"
-                                aria-label="open drawer"
-                                edge="start"
-                                onClick={handleDrawerToggle}
-                                sx={{ 
-                                    display: { md: "none" },
-                                    backgroundColor: scrolled ? '#05408E' : 'transparent',
-                                    color: scrolled ? '#fff' : 'inherit',
-                                    transition: 'background-color 0.3s',
-                                    '&:hover': {
-                                        backgroundColor: scrolled ? '#0E4FA2' : 'rgba(0,0,0,0.08)',
-                                    },
                                 }}
                             >
-                                <MenuIcon sx={{ color: scrolled ? '#fff' : 'inherit' }} />
-                            </IconButton>
+                                {/* Logo */}
+                                <Grid item xs={6} md={2}>
+                                    <Box sx={{ display: "flex", alignItems: "center", p: 1 }}>
+                                        <img src={scrolled?whiteLogo:logo} alt="logo" style={{ height: "50px", width: "auto", maxWidth: "158px" }} />
+                                    </Box>
+                                </Grid>
 
-                            {/* Navigation - Desktop */}
-                            <Box sx={{ display: { xs: "none", md: "flex" }, gap: 1, alignItems: "center" }}>
-                                <Button sx={navBtnStyle(scrolled)} onClick={() => navigate('/')}>Home</Button>
-                                <Button sx={navBtnStyle(scrolled)}>About Us</Button>
-
-                                {/* Dropdown Trigger */}
-                                <Box
-                                    onMouseEnter={handleMouseEnter}
-                                    onMouseLeave={handleMouseLeave}
-                                    onClick={handleClick}
-                                    sx={{ position: "relative" }}
+                                {/* Hamburger Menu - Mobile */}
+                                <IconButton
+                                    color="inherit"
+                                    aria-label="open drawer"
+                                    edge="start"
+                                    onClick={handleDrawerToggle}
+                                    sx={{ 
+                                        display: { md: "none" },
+                                        backgroundColor: scrolled ? '#05408E' : 'transparent',
+                                        color: scrolled ? '#fff' : 'inherit',
+                                        transition: 'background-color 0.3s',
+                                        '&:hover': {
+                                            backgroundColor: scrolled ? '#0E4FA2' : 'rgba(0,0,0,0.08)',
+                                        },
+                                    }}
                                 >
-                                    <Button
-                                        endIcon={<ArrowDropDownIcon />}
-                                        sx={navBtnStyle(scrolled)}
-                                    >
-                                        What We Do
-                                    </Button>
+                                    <MenuIcon sx={{ color: scrolled ? '#fff' : 'inherit' }} />
+                                </IconButton>
 
-                                    {/* Dropdown Menu */}
-                                    {hoverMenuOpen && (
-                                        <Paper
-                                            elevation={3}
-                                            gap={{ md: 0, lg: 0, xl: 2 }}
-                                            gutterBottom
-                                            onMouseEnter={handleMouseEnter}
-                                            onMouseLeave={handleMouseLeave}
-                                            sx={{
-                                                position: "absolute",
-                                                top: 58,
-                                                left: "53%",
-                                                transform: "translateX(-46.5%)",
-                                                p: 3,
-                                                backgroundColor: "white",
-                                                borderRadius: 3,
-                                                boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
-                                                zIndex: 1300,
-                                                width: { xs: "90vw", sm: "1000px", md: "1070px", lg: "1210px", xl: "1300px" },
-                                                maxWidth: "90vw"
-                                            }}
+                                {/* Navigation - Desktop */}
+                                <Box sx={{ display: { xs: "none", md: "flex" }, gap: 1, alignItems: "center" }}>
+                                    <Button sx={navBtnStyle(scrolled)} onClick={() => navigate('/')}>Home</Button>
+                                    <Button sx={navBtnStyle(scrolled)}>About Us</Button>
+
+                                    {/* Dropdown Trigger */}
+                                    <Box
+                                        onMouseEnter={handleMouseEnter}
+                                        onMouseLeave={handleMouseLeave}
+                                        onClick={handleClick}
+                                        sx={{ position: "relative" }}
+                                    >
+                                        <Button
+                                            endIcon={<ArrowDropDownIcon />}
+                                            sx={navBtnStyle(scrolled)}
                                         >
-                                            <Grid container spacing={{ xs: 2, sm: 0, md: 0, lg: 1, xl: 5 }}>
-                                                {/* Web Dev */}
-                                                <Grid item xs={12} md={3}>
-                                                    <Typography
-                                                        sx={{
-                                                            fontWeight: 400,
+                                            What We Do
+                                        </Button>
+
+                                        {/* Dropdown Menu */}
+                                        {hoverMenuOpen && (
+                                            <Paper
+                                                elevation={3}
+                                                gap={{ md: 0, lg: 0, xl: 2 }}
+                                                gutterBottom
+                                                onMouseEnter={handleMouseEnter}
+                                                onMouseLeave={handleMouseLeave}
+                                                sx={{
+                                                    position: "absolute",
+                                                    top: 58,
+                                                    left: "53%",
+                                                    transform: "translateX(-46.5%)",
+                                                    p: 3,
+                                                    backgroundColor: "white",
+                                                    borderRadius: 3,
+                                                    boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+                                                    zIndex: 1300,
+                                                    width: { xs: "90vw", sm: "1000px", md: "1070px", lg: "1210px", xl: "1300px" },
+                                                    maxWidth: "90vw"
+                                                }}
+                                            >
+                                                <Grid container spacing={{ xs: 2, sm: 0, md: 0, lg: 1, xl: 5 }}>
+                                                    {/* Web Dev */}
+                                                    <Grid item xs={12} md={3}>
+                                                        <Typography
+                                                            sx={{
+                                                                fontWeight: 400,
+                                                                fontSize: "12px",
+                                                                textTransform: "uppercase",
+                                                                letterSpacing: "3%",
+                                                                mb: 3,
+                                                                ml: 1,
+                                                            }}
+                                                        >
+                                                            WEB DEVELOPMENT
+                                                        </Typography>
+
+                                                        {feature(frontendIcon, "Front-End Development", "Fast, responsive, and pixel-perfect user interfaces.", () => navigate('/what-we-do/frontend'))}
+                                                        {feature(backendIcon, "Back-End Development", "Scalable, secure, and efficient architecture.")}
+                                                        {feature(wordpressIcon, "WordPress & CMS", "Custom WordPress sites with Elementor, and more.")}
+                                                    </Grid>
+
+                                                    {/* Mobile Dev */}
+                                                    <Grid item xs={12} md={3}>
+                                                        <Typography variant="subtitle2" gutterBottom sx={{
+                                                            mb: 3, fontWeight: 400,
                                                             fontSize: "12px",
                                                             textTransform: "uppercase",
                                                             letterSpacing: "3%",
-                                                            mb: 3,
-                                                            ml: 1,
-                                                        }}
-                                                    >
-                                                        WEB DEVELOPMENT
-                                                    </Typography>
+                                                        }}>MOBILE APP DEVELOPMENT</Typography>
+                                                        {feature(mobileIcon, "iOS & Android Development", "Native mobile experiences that perform and scale.")}
+                                                        {feature(crossPlatformIcon, "Cross-Platform Apps", "Build and deploy everywhere with React Native or Flutter.")}
+                                                        {feature(pwaIcon, "Progressive Web Apps", "Web apps that work offline and feel native.")}
+                                                    </Grid>
 
-                                                    {feature(frontendIcon, "Front-End Development", "Fast, responsive, and pixel-perfect user interfaces.", () => navigate('/what-we-do/frontend'))}
-                                                    {feature(backendIcon, "Back-End Development", "Scalable, secure, and efficient architecture.")}
-                                                    {feature(wordpressIcon, "WordPress & CMS", "Custom WordPress sites with Elementor, and more.")}
-                                                </Grid>
+                                                    {/* UI/UX */}
+                                                    <Grid item xs={12} md={3}>
+                                                        <Typography variant="subtitle2" gutterBottom sx={{
+                                                            mb: 3, fontWeight: 400,
+                                                            fontSize: "12px",
+                                                            textTransform: "uppercase",
+                                                            letterSpacing: "3%",
+                                                        }}>UI/UX & DESIGN</Typography>
+                                                        {feature(uiUxIcon, "UI/UX Design", "Intuitive, user-focused design for web and mobile.")}
+                                                        {feature(prototypeIcon, "Prototyping & Wireframing", "Visualize fast using tools like Figma and Adobe XD.")}
+                                                        {feature(designSystemIcon, "Design Systems", "Scalable design libraries to maintain brand consistency.")}
+                                                    </Grid>
 
-                                                {/* Mobile Dev */}
-                                                <Grid item xs={12} md={3}>
-                                                    <Typography variant="subtitle2" gutterBottom sx={{
-                                                        mb: 3, fontWeight: 400,
-                                                        fontSize: "12px",
-                                                        textTransform: "uppercase",
-                                                        letterSpacing: "3%",
-                                                    }}>MOBILE APP DEVELOPMENT</Typography>
-                                                    {feature(mobileIcon, "iOS & Android Development", "Native mobile experiences that perform and scale.")}
-                                                    {feature(crossPlatformIcon, "Cross-Platform Apps", "Build and deploy everywhere with React Native or Flutter.")}
-                                                    {feature(pwaIcon, "Progressive Web Apps", "Web apps that work offline and feel native.")}
+                                                    {/* E-Commerce */}
+                                                    <Grid item xs={12} md={3}>
+                                                        <Typography variant="subtitle2" gutterBottom sx={{
+                                                            mb: 3, fontWeight: 400,
+                                                            fontSize: "12px",
+                                                            textTransform: "uppercase",
+                                                            letterSpacing: "3%",
+                                                        }}>E-COMMERCE SOLUTIONS</Typography>
+                                                        {feature(shopifyIcon, "Shopify Development", "Custom stores with fast checkout and optimized UX.")}
+                                                        {feature(wooIcon, "WooCommerce Integration", "Extend WordPress with powerful features.")}
+                                                    </Grid>
                                                 </Grid>
+                                            </Paper>
+                                        )}
+                                    </Box>
 
-                                                {/* UI/UX */}
-                                                <Grid item xs={12} md={3}>
-                                                    <Typography variant="subtitle2" gutterBottom sx={{
-                                                        mb: 3, fontWeight: 400,
-                                                        fontSize: "12px",
-                                                        textTransform: "uppercase",
-                                                        letterSpacing: "3%",
-                                                    }}>UI/UX & DESIGN</Typography>
-                                                    {feature(uiUxIcon, "UI/UX Design", "Intuitive, user-focused design for web and mobile.")}
-                                                    {feature(prototypeIcon, "Prototyping & Wireframing", "Visualize fast using tools like Figma and Adobe XD.")}
-                                                    {feature(designSystemIcon, "Design Systems", "Scalable design libraries to maintain brand consistency.")}
-                                                </Grid>
-
-                                                {/* E-Commerce */}
-                                                <Grid item xs={12} md={3}>
-                                                    <Typography variant="subtitle2" gutterBottom sx={{
-                                                        mb: 3, fontWeight: 400,
-                                                        fontSize: "12px",
-                                                        textTransform: "uppercase",
-                                                        letterSpacing: "3%",
-                                                    }}>E-COMMERCE SOLUTIONS</Typography>
-                                                    {feature(shopifyIcon, "Shopify Development", "Custom stores with fast checkout and optimized UX.")}
-                                                    {feature(wooIcon, "WooCommerce Integration", "Extend WordPress with powerful features.")}
-                                                </Grid>
-                                            </Grid>
-                                        </Paper>
-                                    )}
+                                    <Button sx={navBtnStyle(scrolled)}>Technologies We Use</Button>
+                                    <Button sx={navBtnStyle(scrolled)}>How we work</Button>
+                                    {/* <Button sx={navBtnStyle()}>Let's Talk</Button> */}
                                 </Box>
 
-                                <Button sx={navBtnStyle(scrolled)}>Technologies We Use</Button>
-                                <Button sx={navBtnStyle(scrolled)}>How we work</Button>
-                                {/* <Button sx={navBtnStyle()}>Let's Talk</Button> */}
-                            </Box>
-
-                            {/* CTA */}
-                            <Button
-                                className="cta-desktop"
-                                variant="contained"
-                                sx={{
-                                    backgroundColor: "#05408E",
-                                    fontWeight: 400,
-                                    fontSize: "16px",
-                                    lineHeight: "150%",
-                                    letterSpacing: "0%",
-                                    textTransform: "none",
-                                    color: "#FFFFFF",
-                                    borderRadius: "36px",
-                                    px: 3,
-                                    py: 1.2,
-                                    display: { xs: "none", md: "inline-flex" },
-                                    '&:hover': {
-                                        backgroundColor: "#0E4FA2",
-                                    }
-                                }}
-                                onClick={() => alert("Get a Quote Clicked!")}
-                            >
-                                Let's Talk
-                            </Button>
-                        </Container>
+                                {/* CTA */}
+                                <Button
+                                    className="cta-desktop"
+                                    variant="contained"
+                                    sx={{
+                                        backgroundColor: "#05408E",
+                                        fontWeight: 400,
+                                        fontSize: "16px",
+                                        lineHeight: "150%",
+                                        letterSpacing: "0%",
+                                        textTransform: "none",
+                                        color: "#FFFFFF",
+                                        borderRadius: "36px",
+                                        px: 3,
+                                        py: 1.2,
+                                        display: { xs: "none", md: "inline-flex" },
+                                        '&:hover': {
+                                            backgroundColor: "#0E4FA2",
+                                        }
+                                    }}
+                                    onClick={() => alert("Get a Quote Clicked!")}
+                                >
+                                    Let's Talk
+                                </Button>
+                            </Container>
+                        </Box>
                     </Box>
                 </Toolbar>
             </AppBar>
@@ -545,7 +552,8 @@ const feature = (icon, title, desc, onClick) => (
             cursor: "pointer",
             "&:hover": {
                 backgroundColor: "#F3F3F6",
-                transform: "scale(1.02)",
+                  color:"#140E13",
+                transform :"scale(1.02)",
                 "& .icon-wrapper": {
                     backgroundColor: "#FFFFFF",
                 }
@@ -588,7 +596,15 @@ const feature = (icon, title, desc, onClick) => (
                     fontWeight: 500,
                     fontSize: "14px",
                     lineHeight: "150%",
-                    mb: "2px"
+                    mb: "2px",
+                    color: "#05408E",
+                    // Change color when parent Box is hovered
+                    '&:hover, [data-hovered=true] &': {
+                        color: '#140E13',
+                    },
+                    '.MuiBox-root:hover > &': {
+                        color: '#140E13',
+                    },
                 }}
             >
                 {title}

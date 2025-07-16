@@ -165,16 +165,14 @@ const OrbitBar = () => {
         mb: { xs: 2, sm: 2, md: 4, lg: 4 }
       }}
     >
-
       {/* Content Container */}
       <Box
         sx={{
           width: "100%",
-          maxWidth: "100%",
+          maxWidth: "1440px",
           margin: "0 auto",
           position: "relative",
-          px: { xs: 2, sm: 4, md: 5.5, lg: 10.6, },
-
+          px: { xs: 2, sm: 4, md: 5.5, lg: 11,xl:6},
         }}
       >
         {/* Text Content */}
@@ -303,7 +301,7 @@ const OrbitBar = () => {
                 bgcolor: "#072449",
                 textTransform: "none",
                 '&:hover': {
-                  borderColor: "#666",
+                  // borderColor: "#666",
                   // backgroundColor: "#0070FF",
                 },
                 pointerEvents: 'auto',

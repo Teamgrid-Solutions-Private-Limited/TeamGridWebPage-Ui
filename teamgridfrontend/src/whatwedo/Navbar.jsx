@@ -252,7 +252,7 @@ const Navbar = () => {
                                     letterSpacing: "0%",
                                     textTransform: "none",
                                     color: "#FFFFFF",
-                                    borderRadius: "16px",
+                                    borderRadius: "36px",
                                     px: 3,
                                     py: 1.2,
                                     display: { xs: "none", md: "inline-flex" },
@@ -592,7 +592,15 @@ const feature = (icon, title, desc, onClick) => (
                     fontWeight: 500,
                     fontSize: "14px",
                     lineHeight: "150%",
-                    mb: "2px"
+                    mb: "2px",
+                     color: "#05408E",
+                    // Change color when parent Box is hovered
+                    '&:hover, [data-hovered=true] &': {
+                        color: '#140E13',
+                    },
+                    '.MuiBox-root:hover > &': {
+                        color: '#140E13',
+                    },
                 }}
             >
                 {title}

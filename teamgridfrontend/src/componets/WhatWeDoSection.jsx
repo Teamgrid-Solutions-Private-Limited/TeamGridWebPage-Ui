@@ -38,17 +38,20 @@ const WhatWeDoSection = () => {
     const [activeButton, setActiveButton] = useState(null);
     return (
         <Box sx={{
-            width: "100%",
+             maxWidth: "1440px",
+                margin: "0 auto",
+                width: "100%",
             py: { xs: 4, md: 4, lg: 6 },
-            px: { xs: 1, sm: 4, md: 3, lg: 10 }, // Match navbar padding
+            px: { xs: 3, sm: 4, md: 3, lg: 14,xl:10 },
+             // Match navbar padding
             // maxWidth: "xl",
             // mx: "auto"
         }}>
             {/* Header Text */}
             <Box sx={{
-                maxWidth: "1440px",
+                // maxWidth: "1440px",
                 mb: { xs: 4, md: 6 },
-                ml: { lg: 1 }
+                ml: {sm:0, lg: 1 }
             }}>
                 <Typography
                     sx={{
@@ -323,7 +326,7 @@ const WhatWeDoSection = () => {
                                         px: { xs: 1.5, md: 2 },
                                         py: 2,
                                         textAlign: "left",
-                                        minWidth: { xs: 160, sm: 180, md: 200, lg: 202 },
+                                        minWidth: { xs: 160, sm: 180, md: 200, lg: 199 },
                                         flexShrink: 0,
 
                                         color: isActive ? "#fff" : "#000",

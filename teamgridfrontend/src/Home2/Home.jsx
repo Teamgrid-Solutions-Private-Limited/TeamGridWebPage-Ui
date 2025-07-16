@@ -8,7 +8,7 @@ import womanLaptop from '../assets/Rectangle 41.png';
 import teamDiscussion from '../assets/Rectangle 40.png';
 import groupWork from '../assets/Rectangle 45.png';
 import manWorking from '../assets/Rectangle 46.png';
-import WhatWeDoSection from "../componets/WhatWeDoSection";
+import WhatWeDoSection from "../Home2/WhatWeDoSection";
 import WhyTeamgrid from "../componets/WhyTeamgrid";
 import OurCapabilities from "../componets/OurCapabilities";
 import LetsBuildTogether from "../componets/LetsBuildTogether";
@@ -16,6 +16,8 @@ import Footer from "../componets/Footer";
 import ClientTestimonials from "../componets/ClientTestimonials";
 import WhoWeHelp from "../componets/WhoWeHelp";
 import WhoWeHelpSection from "./WhoWeHelpSection";
+import HowWeWork2 from "./HowWeWork2";
+import WhyTeamgrid2 from "./WhyTeamgrid2";
 function Home() {
   const imageData = [
     { src: womanLaptop, alt: "Woman with laptop", bg: "#FEE2E2" },
@@ -32,12 +34,14 @@ function Home() {
       {/* <Box sx={{ maxWidth: "100%",
          mx: "auto", px: { xs: 2, md: 4 }
           }}> */}
-<WhoWeHelpSection/>
-        {/* <WhoWeHelp />
+      <WhoWeHelpSection />
+      {/* <WhoWeHelp />
         <WhatWeDoSection />
         <WhyTeamgrid /> */}
       {/* </Box> */}
-
+      <WhatWeDoSection />
+      <HowWeWork2 />
+      <WhyTeamgrid2 />
       <OurCapabilities />
       <ClientTestimonials />
       <LetsBuildTogether />

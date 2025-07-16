@@ -17,6 +17,7 @@ const LetsBuildTogether = () => {
         px: { xs: 2, sm: 4, md: 15,lg:15},
         py: { xs: 8, sm: 10, md: 0 },
         position: "relative",
+        
       }}
     >
       <Box
