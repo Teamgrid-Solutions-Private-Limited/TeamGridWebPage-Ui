@@ -160,7 +160,7 @@ const Capabilities = () => {
                     xs: "100%",
                     sm: "84px",
                     md: "120px",
-                    lg: "400px",
+                    lg: "390px",
                     xl: "400px",
                   }, // xs full width
                   bgcolor: "#0B3C7B",

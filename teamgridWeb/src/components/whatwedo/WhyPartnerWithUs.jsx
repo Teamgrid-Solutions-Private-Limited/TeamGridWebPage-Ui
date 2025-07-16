@@ -66,7 +66,7 @@ const WhyPartnerWithUs = () => {
   return (
     <Box
       sx={{
-        py: { xs: 6, md: 10 }, // Top-bottom padding
+        py: { xs: 6, md: 4 }, // Top-bottom padding
         px: { xs: 2, sm: 3, md: 10, lg: 11 , xl:10 }, // Left-right padding (responsive)
         maxWidth: "1440px", // Max width on large screens
         mx: "auto", // Center horizontally
@@ -116,7 +116,9 @@ const WhyPartnerWithUs = () => {
                 borderRadius: "24px",
                 backgroundColor: feature.bgColor,
                 height: { lg: "242px", xl: "252px" },
-                width: { lg: "405px", xl: "412px" },
+                width: { xs:"390px",sm:"390px",lg: "395px", xl: "412px" },
+                border:"none",
+                boxShadow:"none"
               }}
             >
               <CardContent>

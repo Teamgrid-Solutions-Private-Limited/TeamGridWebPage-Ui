@@ -81,17 +81,22 @@ const WhatWeOffer = () => {
   }
 
   return (
-    <Box
+     <Box
       sx={{
-        maxWidth: "1440px", // Limit width on large screens
-        mx: "auto", // Horizontally center the container
-        px: { xs: 2, sm: 3, md: 10 }, // Responsive horizontal padding
-        py: { xs: 6, sm: 8, md: 12 },
-        display: "flex",
-        flexDirection: { xs: "column", md: "row" },
-        gap: { xs: 6, md: 10 },
+        maxWidth: '1440px',
+        width: '100%',
+        mx: 'auto',
+        display: 'flex',
+        flexDirection: { xs: 'column', md: 'row' },
+        pl: { xs: 2, sm: 3, md: 6, lg: 10 },
+        pt: { xs: 4, sm: 6, md: 10 },
+        gap: { xs: 4, md: 6 },
+        alignItems: 'flex-start',
+        flexWrap: 'nowrap',
+        position: 'relative' // Added for positioning arrows
       }}
     >
+ 
       {/* Left Content */}
       <Box
         sx={{
@@ -195,12 +200,8 @@ const WhatWeOffer = () => {
                         height: "242px",
                         width: "292px",
                         p: 2,
-                        boxShadow: isSelected ? 6 : 1,
-                        transition: "0.3s",
-                        "&:hover": {
-                          boxShadow: 4,
-                          transform: "translateY(-2px)",
-                        },
+                        border: "none", // ✅ Removes border
+                        boxShadow: "none",
                       }}
                     >
                       <CardContent>

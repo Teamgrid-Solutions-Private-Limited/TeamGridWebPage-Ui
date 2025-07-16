@@ -721,7 +721,7 @@ const Hero = () => {
               display: "flex",
               gap: { xs: "8px", md: "10px" },
               flexDirection: { xs: "column", sm: "row" },
-              mt: { xs: "16px", md: "0" },
+              mt: { xs: "16px", md: "15px" },
             }}
           >
             <Button

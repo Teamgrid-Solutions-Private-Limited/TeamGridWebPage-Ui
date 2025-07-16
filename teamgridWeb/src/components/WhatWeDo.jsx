@@ -80,14 +80,15 @@ const WhatWeDo = () => {
   };
 
   return (
-    <Box  sx={{
+    <Box
+      sx={{
         position: "relative",
         width: "100%",
         maxWidth: "1440px",
-        height: { xs: "auto", md: "900px" },
+        minHeight: { md: "900px" },
         bgcolor: "#fff",
         overflow: "hidden",
-        px: { xs: 2, md: 6 , lg:7 , xl:6 },
+        px: { xs: 2, md: 6, lg: 7, xl: 6 },
         py: { xs: 8, md: 0 },
         mx: "auto",
       }}
@@ -98,7 +99,7 @@ const WhatWeDo = () => {
           maxWidth: "1440px",
           px: { xs: 2, md: 3 },
           // ml: { xs: 0, sm: 2, md: 8, lg: 6, xl: "90px" },
-          mx:"0",
+          mx: "0",
           mb: { xs: 2, md: 4 },
         }}
       >
@@ -115,21 +116,18 @@ const WhatWeDo = () => {
           What We Do
         </Typography>
         <Typography
-          variant="body1"
-          color="text.secondary"
           sx={{
             textAlign: "left",
             mb: { xs: 2, md: 4 },
             fontSize: { xs: "14px", sm: "18px" },
             lineHeight: { xs: 1.4, md: 1.6 },
             fontWeight: "400",
+            px: 1.5,
           }}
         >
           We build AI-powered web and mobile apps with innovative design and
-          scalable development.
-          <br />
-          Our team delivers seamless UI/UX and solutions to help your business
-          grow smarter and faster.
+          scalable development. Our team delivers seamless UI/UX and solutions
+          to help your business grow smarter and faster.
         </Typography>
       </Box>
 
@@ -143,7 +141,7 @@ const WhatWeDo = () => {
           justifyContent: "space-between",
           bgcolor: "#E1ECF9",
           width: "100%",
-          maxWidth: { xs: "100%", md:"100%",lg: "1270px" , xl:"1290px"}, // ✅ lock width on large devices
+          maxWidth: { xs: "100%", md: "100%", lg: "1270px", xl: "1290px" }, // ✅ lock width on large devices
           height: { xs: "auto", lg: "585px" }, // ✅ lock height on large devices
           // mx: "auto",
           borderRadius: { xs: 2, md: 4 },
@@ -151,7 +149,7 @@ const WhatWeDo = () => {
           pt: { xs: 3, sm: 4, md: 8 },
           pb: { xs: "80px", sm: "100px", md: "120px" },
           mt: { xs: 2, md: 4 },
-          mx:{lg:"22px", xl:"25px"},
+          mx: { lg: "22px", xl: "25px" },
           // ml: { sm: "5px", md: "10px", lg: "75px",xl:"118px" },
 
           overflow: "hidden",
@@ -342,7 +340,7 @@ const WhatWeDo = () => {
             overflowX: "auto",
             zIndex: 2,
             p: { xs: 0.5, md: 1 },
-            px: { xs: 1, sm: 2, md: 2 , lg: 1 ,xl :2 },
+            px: { xs: 1, sm: 2, md: 2, lg: 1, xl: 2 },
             gap: { xs: "5px", md: "10px" },
             scrollbarWidth: "none",
             "&::-webkit-scrollbar": { display: "none" },

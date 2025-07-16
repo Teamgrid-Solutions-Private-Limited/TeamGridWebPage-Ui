@@ -26,7 +26,7 @@ const WhoWeHelp = () => {
           position: { xs: "relative", md: "absolute" },
           top: { md: "253px" },
           left: { md: "%" ,lg:"2.5%"},
-          width: { xs: "100%", sm: "400px", md: "468px" },
+          width: { xs: "100%", sm: "400px", md: "568px" },
           px: { xs: 0, sm: 3, md: 0, lg:6 , xl:5 },
         }}
       >
@@ -44,6 +44,7 @@ const WhoWeHelp = () => {
           sx={{
             fontSize: "18px",
             fontWeight: "400",
+            mb:5
           }}
         >
           A Trusted Partner for Growing Teams
@@ -136,7 +137,7 @@ const WhoWeHelp = () => {
               height: "325px",
               borderRadius: "16px",
               overflow: "hidden",
-              boxShadow: 3,
+              // boxShadow: 3,
             }}
           >
             <img
@@ -156,7 +157,7 @@ const WhoWeHelp = () => {
               height: "325px",
               borderRadius: "16px",
               overflow: "hidden",
-              boxShadow: 3,
+              // boxShadow: 3,
             }}
           >
             <img
@@ -176,7 +177,7 @@ const WhoWeHelp = () => {
               height: "325px",
               borderRadius: "16px",
               overflow: "hidden",
-              boxShadow: 3,
+              // boxShadow: 3,
             }}
           >
             <img
@@ -196,7 +197,7 @@ const WhoWeHelp = () => {
               height: "325px",
               borderRadius: "16px",
               overflow: "hidden",
-              boxShadow: 3,
+              // boxShadow: 3,
             }}
           >
             <img

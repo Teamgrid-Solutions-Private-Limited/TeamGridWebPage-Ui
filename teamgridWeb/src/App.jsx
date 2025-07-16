@@ -9,6 +9,7 @@ import NavBar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
 import LetsBuildTogether from './components/LetsBuildTogether.jsx';
 import WhatWeOffer from './components/whatwedo/Whatweoffer.jsx';
+// import Home from './components/Home/Home.jsx';
 function App() {
 
   return (
@@ -22,6 +23,7 @@ function App() {
       </Routes>
       {/* <LetsBuildTogether/>
       <Footer/> */}
+      {/* <Home/> */}
       </ThemeProvider>
     </>
   )

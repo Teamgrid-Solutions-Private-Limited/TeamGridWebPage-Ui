@@ -45,7 +45,7 @@ const WhyTeamgrid = () => {
         maxWidth: "1440px",
         mx: "auto",
         bgcolor: "#fff",
-        pt: { xs: 2, sm: 4, md: 8 },
+        // pt: { xs: 2, sm: 4, md: 8 },
         pb: { xs: 4, sm: 6, md: 8 },
         px: { xs: 2, sm: 3, md: 8 , lg: 11, xl:10 }, // Add horizontal padding for all sizes
         // ml: { xs: 0, sm: 2, md: 2, lg: 5, xl: "85px" }, // Reduce left margin on mobile
@@ -128,13 +128,8 @@ const WhyTeamgrid = () => {
           src={TeamImage}
           alt="Teamgrid working"
           sx={{
-            width: {
-              xs: "100%",
-              sm: "100%",
-              md: "45%",
-              lg: "40%",
-            },
-            maxWidth: { xs: "100%", sm: "500px", md: "none" },
+            width: "100%",
+            maxWidth: { xs: "100%", sm: "500px", md: "690px" },
             height: "auto",
             objectFit: "cover",
             borderRadius: { xs: 1, sm: 2 },

@@ -839,27 +839,15 @@ const HeroSection = () => {
               variant="contained"
               sx={{
                 pointerEvents: "auto",
-                backgroundColor: "#1A73E8",
-                borderRadius: "40px",
-                width: {
-                  xs: "100%",
-                  sm: "160px",
-                  md: "180px",
-                  lg: "204px",
-                },
-                height: {
-                  xs: "44px",
-                  sm: "48px",
-                  md: "50px",
-                },
-                fontSize: {
-                  xs: "13px",
-                  sm: "15px",
-                  md: "16px",
-                  lg: "18px",
-                },
+                backgroundColor: "#0070FF",
+                borderRadius: "39px",
+                width: "204px",
+                height: "59px",
+                fontSize: "18px",
                 fontWeight: 400,
+                color:"#FFFFFF",
                 textTransform: "none",
+                padding : "16px 32px", 
               }}
             >
               Let's Talk
@@ -868,32 +856,21 @@ const HeroSection = () => {
             <Button
               variant="outlined"
               sx={{
+                backgroundColor:"#072449",
                 pointerEvents: "auto",
-                borderColor: "#ffffff99",
+                border:"1px solid #FFFFFF45",
                 color: "#fff",
-                borderRadius: "40px",
-                width: {
-                  xs: "100%",
-                  sm: "180px",
-                  md: "200px",
-                  lg: "230px",
-                },
-                height: {
-                  xs: "44px",
-                  sm: "48px",
-                  md: "50px",
-                },
-                fontSize: {
-                  xs: "13px",
-                  sm: "15px",
-                  md: "16px",
-                  lg: "18px",
-                },
+                borderRadius: "39px",
+                width: "230px",
+                height:"59px",
+                padding : "14px 32px", 
+                height: "",
+                fontSize:"18px",
                 fontWeight: 400,
                 textTransform: "none",
                 "&:hover": {
-                  borderColor: "#fff",
-                  backgroundColor: "rgba(255, 255, 255, 0.1)",
+                  borderColor: "#FFFFFF98",
+                  // backgroundColor: "rgba(255, 255, 255, 0.1)",
                 },
               }}
             >

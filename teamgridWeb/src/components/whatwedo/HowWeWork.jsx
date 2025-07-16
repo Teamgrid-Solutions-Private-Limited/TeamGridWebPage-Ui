@@ -59,6 +59,7 @@ const HowWeWork = () => {
         backgroundColor: "#0B3C7B",
         px: { xs: 2, md: 10 },
         py: { xs: 6, md: 10 },
+        mt:{md:7},
         color: "#fff",
         borderRadius: "40px",
         width: "100%",

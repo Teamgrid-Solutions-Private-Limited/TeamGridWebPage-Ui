@@ -226,7 +226,7 @@ const NavBar = () => {
               </ListItemButton>
               <Collapse in={mobileMoreOpen} timeout="auto" unmountOnExit>
                 {megaMenuItems.map((section) => (
-                  <Box key={section.title} sx={{ pl: 4, pr: 2 }}>
+                  <Box key={section.title} sx={{ pl: 4, pr: 2, mb: 5 }}>
                     <Typography
                       sx={{
                         color: "#ccc",
@@ -402,16 +402,15 @@ const NavBar = () => {
                           backgroundColor:
                             selected === item
                               ? isScrolled
-                                ? "#E0E7FF"
-                                : "#0E4FA2"
+                                ? "#F3F3F6"
+                                : "#3082EC3B"
                               : "transparent",
                           "&:hover": {
-                            backgroundColor:
-                              selected === item
-                                ? isScrolled
-                                  ? "#CBD5FF"
-                                  : "#0E4FA2"
-                                : "rgba(0,0,0,0.05)",
+                            backgroundColor: selected
+                              ? isScrolled
+                                ? "#F3F3F6"
+                                : "#3082EC3B"
+                              : "rgba(0,0,0,0.05)",
                           },
                         }}
                       >
@@ -436,16 +435,15 @@ const NavBar = () => {
                         backgroundColor:
                           selected === item
                             ? isScrolled
-                              ? "#E0E7FF"
-                              : "#0E4FA2"
+                              ? "#F3F3F6"
+                              : "#3082EC3B"
                             : "transparent",
                         "&:hover": {
-                          backgroundColor:
-                            selected === item
-                              ? isScrolled
-                                ? "#CBD5FF"
-                                : "#0E4FA2"
-                              : "rgba(0,0,0,0.05)",
+                          backgroundColor: selected
+                            ? isScrolled
+                              ? "#F3F3F6"
+                              : "#3082EC3B"
+                            : "rgba(0,0,0,0.05)",
                         },
                       }}
                     >
@@ -460,7 +458,7 @@ const NavBar = () => {
               onClick={() => handleNavItemClick("Let's Talk")}
               sx={{
                 backgroundColor: "#05408E",
-                borderRadius: "12px",
+                borderRadius: "36px",
                 height: "48px",
                 minWidth: "116px",
                 textTransform: "none",
@@ -468,9 +466,8 @@ const NavBar = () => {
                 fontWeight: 400,
                 ml: { md: 2, lg: 2 },
                 "&:hover": { backgroundColor: "#002366" },
-                display:{xs:"none" , md:"block"}
+                display: { xs: "none", md: "block" },
               }}
-
             >
               Let's Talk
             </Button>
@@ -500,21 +497,22 @@ const NavBar = () => {
           elevation={3}
           sx={{
             position: "fixed",
-            top: { xs: "64px", sm: "72px", md: "84px" },
+            top: { xs: "76px", sm: "84px", md: "90px" },
             left: "50%",
             transform: "translateX(-50%)", // center it
-            width: "100%",
-            maxWidth: "1200px", // ⬅️ restrict max width
-            height: {
-              xs: "auto",
-              sm: 320,
-              md: 320,
-              lg: 340,
-              xl: 345,
-            },
+            width: "83vw",
+            maxWidth: "1340px", // ⬅️ restrict max width
+            // height: {
+            //   xs: "auto",
+            //   sm: 320,
+            //   md: 320,
+            //   lg: 340,
+            //   xl: 345,
+            // },
             overflowY: "auto",
-            borderRadius: 3,
-            p: { xs: 1, sm: 2, md: 3 },
+            borderRadius: "16px",
+            px: { xs: 1, sm: 2, md: 3 }, // keep horizontal padding
+            py: { xs: 0.5, sm: 1, md: 1 }, // reduce vertical padding her
             zIndex: 1200,
             backgroundColor: "#fff",
             boxSizing: "border-box",
@@ -524,7 +522,7 @@ const NavBar = () => {
           onMouseEnter={() => setMenuOpen(true)}
           onMouseLeave={() => setMenuOpen(false)}
         >
-          <Grid container spacing={3} wrap="nowrap">
+          <Grid container spacing={2} wrap="nowrap">
             {megaMenuItems.map((column, index) => (
               <Grid
                 item
@@ -539,7 +537,7 @@ const NavBar = () => {
                   sx={{
                     fontWeight: 400,
                     color: "#898989",
-                    mb: 1,
+                    mb: 5,
                     my: 1,
                     display: "block",
                     fontSize: "12px",
@@ -554,22 +552,29 @@ const NavBar = () => {
                     sx={{
                       display: "flex",
                       gap: 2,
-                      mb: 3,
+                      mb: 1.5,
+                      mt: idx === 0 ? 2.5 : 0, 
                       borderRadius: 2,
                       alignItems: "flex-start",
                       cursor: "pointer",
                       transition: "0.3s",
+                      p: 1.25,
                       "&:hover": {
-                        boxShadow: "0 4px 12px rgba(0,0,0,0.06)",
-                        transform: "translateY(-2px)",
+                        // transform: "translateY(-2px)",
+                        backgroundColor: "#F3F3F6",
+                      },
+                      "&:hover .icon-box": {
+                        backgroundColor: "#fff", // Change icon container bg on hover
                       },
                     }}
                     onClick={() => {
+                      setSelected("What We Do");
                       navigate("/whatwedo");
                       setMenuOpen(false);
                     }}
                   >
                     <Box
+                      className="icon-box"
                       sx={{
                         height: 40,
                         width: 40,
@@ -579,6 +584,7 @@ const NavBar = () => {
                         alignItems: "center",
                         justifyContent: "center",
                         flexShrink: 0,
+                        transition: "0.3s", // Smooth bg transition
                       }}
                     >
                       <img

@@ -99,9 +99,11 @@ const EngagementModels = () => {
                 backgroundColor: "#F3F3F6",
                 borderRadius: "24px",
                 height: "322px",
-                width: { lg: "392px", xl: "395px" },
+                width: { xs:"375px", sm:"375px" , md:"375px",lg: "375px", xl: "395px" },
                 py: 2,
                 px: 2,
+                border:"none",
+                boxShadow:"none"
               }}
             >
               <CardContent>
