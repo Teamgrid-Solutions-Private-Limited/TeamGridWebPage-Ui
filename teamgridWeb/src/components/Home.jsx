@@ -7,7 +7,6 @@ import Capabilities from "./Capabilities";
 import TestimonialsSection from "./TestimonialsSection ";
 import LetsBuildTogether from "./LetsBuildTogether";
 import Footer from "./Footer"; // Import the Footer component
-import Navbar from "./Navbar"; // Import the Navbar component
 
 const Home = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -22,7 +21,6 @@ const Home = () => {
 
   return (
     <>
-      <Navbar />
       <HeroSection />
       <WhoWeHelp />
       <WhatWeDo />

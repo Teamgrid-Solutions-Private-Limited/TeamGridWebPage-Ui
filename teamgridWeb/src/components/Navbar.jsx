@@ -243,7 +243,7 @@ const NavBar = () => {
                         sx={{ pl: 2 }}
                         onClick={() => {
                           navigate("/whatwedo");
-                          setDrawerOpen(false);
+                          setDrawerOpen(false); // Ensure drawer closes
                         }}
                       >
                         <ListItemText
@@ -339,36 +339,41 @@ const NavBar = () => {
               px: { xs: 2, sm: 3, md: 10, lg: 8, xl: 12 },
             }}
           >
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                flexShrink: 0,
-              }}
-            >
-              <img
-                src={isScrolled ? darkLogo : whiteLogo}
-                alt="logo"
-                style={{
-                  height: isSmallMobile ? "40px" : "48px",
-                  width: isSmallMobile ? "120px" : "148px",
-                  transition: "0.3s ease-in-out",
-                }}
-              />
-            </Box>
-
-            {isMobile ? (
-              <IconButton
-                color="inherit"
-                onClick={handleDrawerToggle}
-                edge="end"
+            {/* Only show logo and menu icon on mobile if drawer is closed */}
+            {!(isMobile && drawerOpen) && (
+              <Box
                 sx={{
-                  color: isScrolled ? "#0B3C7B" : "white",
-                  ml: "auto",
+                  display: "flex",
+                  alignItems: "center",
+                  flexShrink: 0,
                 }}
               >
-                <MenuIcon />
-              </IconButton>
+                <img
+                  src={isScrolled ? darkLogo : whiteLogo}
+                  alt="logo"
+                  style={{
+                    height: isSmallMobile ? "40px" : "48px",
+                    width: isSmallMobile ? "120px" : "148px",
+                    transition: "0.3s ease-in-out",
+                  }}
+                />
+              </Box>
+            )}
+
+            {isMobile ? (
+              !drawerOpen && (
+                <IconButton
+                  color="inherit"
+                  onClick={handleDrawerToggle}
+                  edge="end"
+                  sx={{
+                    color: isScrolled ? "#0B3C7B" : "white",
+                    ml: "auto",
+                  }}
+                >
+                  <MenuIcon />
+                </IconButton>
+              )
             ) : (
               <Box
                 sx={{
@@ -453,24 +458,27 @@ const NavBar = () => {
                 )}
               </Box>
             )}
-            <Button
-              variant="contained"
-              onClick={() => handleNavItemClick("Let's Talk")}
-              sx={{
-                backgroundColor: "#05408E",
-                borderRadius: "36px",
-                height: "48px",
-                minWidth: "116px",
-                textTransform: "none",
-                fontSize: "16px",
-                fontWeight: 400,
-                ml: { md: 2, lg: 2 },
-                "&:hover": { backgroundColor: "#002366" },
-                display: { xs: "none", md: "block" },
-              }}
-            >
-              Let's Talk
-            </Button>
+            {/* Only show Let's Talk button if not mobile (>=1200px) */}
+            {!isMobile && (
+              <Button
+                variant="contained"
+                onClick={() => handleNavItemClick("Let's Talk")}
+                sx={{
+                  backgroundColor: "#05408E",
+                  borderRadius: "36px",
+                  height: "48px",
+                  minWidth: "116px",
+                  textTransform: "none",
+                  fontSize: "16px",
+                  fontWeight: 400,
+                  ml: { md: 2, lg: 2 },
+                  "&:hover": { backgroundColor: "#002366" },
+                  display: { xs: "none", md: "block" },
+                }}
+              >
+                Let's Talk
+              </Button>
+            )}
           </Container>
         </Toolbar>
       </AppBar>

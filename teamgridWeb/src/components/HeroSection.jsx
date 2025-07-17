@@ -16,15 +16,88 @@ import P44 from "../assets/P44.png";
 import back from "../assets/back.png";
 import smallCircle from "../assets/smallCircle.png";
 
-// Responsive center positions
-const getCenterPosition = () => {
+// Responsive center positions and orbit sizes
+const getResponsiveConfig = () => {
   const width = window.innerWidth;
+  const height = window.innerHeight;
+
   if (width < 600) {
-    return { x: width / 2, y: 300 };
+    // Mobile phones
+    return {
+      center: { x: width * 0.45, y: height * 0.35 - 80 }, // align left
+      orbitSizes: [
+        { width: width * 1.0, height: width * 1.0 }, // reduced from 1.4
+        { width: width * 0.7, height: width * 0.7 }, // reduced from 1.0
+        { width: width * 0.2, height: width * 0.2 }, // reduced from 0.3
+      ],
+      logoSize: { width: width * 0.3125, height: width * 0.3125 }, // increased by 25%
+      planetSize: 35,
+      showOrbits: true,
+      orbitOpacity: 0.3,
+    };
   } else if (width < 900) {
-    return { x: width / 2, y: 350 };
+    // Tablets
+    return {
+      center: { x: width / 2 + width * 0.1 - 5, y: height * 0.4 - 80 },
+      orbitSizes: [
+        { width: width * 1.0, height: width * 1.0 }, // reduced from 1.3
+        { width: width * 0.7, height: width * 0.7 }, // reduced from 0.9
+        { width: width * 0.5, height: width * 0.5 }, // reduced from 0.7
+        { width: width * 0.15, height: width * 0.15 }, // reduced from 0.2
+      ],
+      logoSize: { width: width * 0.1875, height: width * 0.1875 }, // increased by 25%
+      planetSize: 45,
+      showOrbits: true,
+      orbitOpacity: 0.4,
+    };
+  } else if (width < 1200) {
+    // Small desktops (improved for 900-1200px)
+    return {
+      center: { x: width * 0.75 + width * 0.1 - 5, y: height * 0.5 - 220 - 80 },
+      orbitSizes: [
+        { width: 623, height: 623 },
+        { width: 957, height: 957 },
+        { width: 1301, height: 1301 },
+        { width: 1645, height: 1645 }, // was 850
+      ],
+      logoSize: { width: 437, height: 437 }, // increased by 25% from 350
+      planetSize: 55,
+      showOrbits: true,
+      orbitOpacity: 0.6,
+    };
+  } else if (width < 1600) {
+    // Medium desktops
+    return {
+      center: { x: width * 0.75 + width * 0.1 - 5, y: height * 0.5 - 220 - 80 },
+      orbitSizes: [
+        { width: 623, height: 623 },
+        { width: 957, height: 957 },
+        { width: 1301, height: 1301 },
+        { width: 1645, height: 1645 }, // was 850
+      ],
+      logoSize: { width: 437, height: 437 }, // increased by 25% from 350
+      planetSize: 60,
+      showOrbits: true,
+      orbitOpacity: 0.6,
+    };
   } else {
-    return { x: 1350, y: 397 };
+    // Large desktops and ultra-wide
+    return {
+      center: {
+        x: (width > 1800 ? width * 0.7 : width * 0.75) + width * 0.1 - 5,
+        y: height * 0.5 - 220 - 80,
+      },
+      orbitSizes: [
+        { width: 623, height: 623 }, // 1st orbit
+        { width: 957, height: 957 }, // 2nd orbit, reduced gap
+        { width: 1301, height: 1301 }, // 3rd orbit
+        { width: 1645, height: 1645 }, // 4th orbit
+      ],
+      logoSize: { width: 400, height: 400 }, // set to 400x400 for very large devices
+      planetSize: 65,
+      showOrbits: true,
+      orbitOpacity: 0.7,
+    };
   }
 };
 
@@ -88,37 +161,36 @@ const orbitPlanetsData = [
   ],
 ];
 
-const Orbit = ({ index, size, isPaused, setIsPaused, setSelectedPlanet }) => {
-  const [centerPos, setCenterPos] = useState(getCenterPosition());
+const Orbit = ({
+  index,
+  size,
+  isPaused,
+  setIsPaused,
+  setSelectedPlanet,
+  config,
+}) => {
   const duration = 500 + index * 20;
   const planets = orbitPlanetsData[index];
-  const planetSize = window.innerWidth < 600 ? 45 : 65;
 
-  useEffect(() => {
-    const handleResize = () => {
-      setCenterPos(getCenterPosition());
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  if (!planets || !config.showOrbits) return null;
 
-  // 4 white dots
-  const dotCounts = [12, 10, 8, 4];
-  const whiteDots = Array.from({ length: dotCounts[index] });
+  // Responsive dot counts
+  const dotCounts = window.innerWidth < 600 ? [8, 6, 4, 2] : [12, 10, 8, 4];
+  const whiteDots = Array.from({ length: dotCounts[index] || 4 });
+
   return (
     <>
       {/* Orbit Line */}
       <Box
         sx={{
           position: "absolute",
-          top: `${centerPos.y - size.height / 2}px`,
-          left: `${centerPos.x - size.width / 2}px`,
+          top: `${config.center.y - size.height / 2}px`,
+          left: `${config.center.x - size.width / 2}px`,
           width: `${size.width}px`,
           height: `${size.height}px`,
           borderRadius: "50%",
-          border: "1px solid #FFFFFF36",
+          border: `1px solid rgba(255, 255, 255, ${config.orbitOpacity * 0.5})`,
           zIndex: 2,
-          display: { xs: "none", md: "block" },
         }}
       />
 
@@ -132,14 +204,13 @@ const Orbit = ({ index, size, isPaused, setIsPaused, setSelectedPlanet }) => {
         }}
         style={{
           position: "absolute",
-          top: `${centerPos.y - size.height / 2}px`,
-          left: `${centerPos.x - size.width / 2}px`,
+          top: `${config.center.y - size.height / 2}px`,
+          left: `${config.center.x - size.width / 2}px`,
           width: `${size.width}px`,
           height: `${size.height}px`,
           borderRadius: "50%",
           zIndex: 4,
           transformOrigin: "center center",
-          display: window.innerWidth < 900 ? "none" : "block",
         }}
       >
         {/* White Circles on Orbit */}
@@ -149,6 +220,9 @@ const Orbit = ({ index, size, isPaused, setIsPaused, setSelectedPlanet }) => {
           const radius = size.width / 2;
           const x = radius * Math.cos(rad);
           const y = radius * Math.sin(rad);
+
+          const dotSize = window.innerWidth < 600 ? 6 : 8;
+
           return (
             <Box
               key={`dot-${i}`}
@@ -156,9 +230,9 @@ const Orbit = ({ index, size, isPaused, setIsPaused, setSelectedPlanet }) => {
                 position: "absolute",
                 top: "50%",
                 left: "50%",
-                width: 8,
-                height: 8,
-                backgroundColor: "#B2D2FC",
+                width: dotSize,
+                height: dotSize,
+                backgroundColor: `rgba(178, 210, 252, ${config.orbitOpacity})`,
                 borderRadius: "50%",
                 transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
               }}
@@ -174,6 +248,9 @@ const Orbit = ({ index, size, isPaused, setIsPaused, setSelectedPlanet }) => {
           const x = radius * Math.cos(rad);
           const y = radius * Math.sin(rad);
 
+          // Only outermost orbit (index === 0) planets are interactive
+          const interactive = index === (config.orbitSizes.length - 1);
+
           return (
             <Box
               key={`planet-${i}`}
@@ -181,136 +258,37 @@ const Orbit = ({ index, size, isPaused, setIsPaused, setSelectedPlanet }) => {
                 position: "absolute",
                 top: "50%",
                 left: "50%",
-                width: planetSize,
-                height: planetSize,
+                width: config.planetSize,
+                height: config.planetSize,
                 transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
-                cursor: "pointer",
+                cursor: interactive ? "pointer" : "default",
+                transition: "transform 0.2s ease",
+                "&:hover": interactive
+                  ? { transform: `translate(-50%, -50%) translate(${x}px, ${y}px) scale(1.1)` }
+                  : {},
               }}
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
-              onClick={() => setSelectedPlanet(planet)}
-            >
-              <div
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  borderRadius: "50%",
-                  boxShadow: "0 0 8px 2px #fff5",
-                }}
-              >
-                <img
-                  src={planet.img}
-                  alt={planet.name}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    borderRadius: "50%",
-                  }}
-                />
-              </div>
-            </Box>
-          );
-        })}
-      </motion.div>
-    </>
-  );
-};
-
-// Mobile-friendly animated orbit
-const MobileOrbit = ({ setSelectedPlanet, isPaused, setIsPaused }) => {
-  const [centerPos, setCenterPos] = useState(getCenterPosition());
-  const allPlanets = orbitPlanetsData.flat();
-  const radius = window.innerWidth < 600 ? 120 : 150;
-  const planetSize = 40;
-
-  useEffect(() => {
-    const handleResize = () => {
-      setCenterPos(getCenterPosition());
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  return (
-    <Box
-      sx={{
-        display: { xs: "block", md: "none" },
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        zIndex: 4,
-      }}
-    >
-      {/* Mobile Orbit Circle */}
-      <Box
-        sx={{
-          position: "absolute",
-          top: `${centerPos.y - radius}px`,
-          left: `${centerPos.x - radius}px`,
-          width: `${radius * 2}px`,
-          height: `${radius * 2}px`,
-          borderRadius: "50%",
-          border: "1px solid #FFFFFF20",
-          zIndex: 2,
-        }}
-      />
-
-      {/* Animated planets on mobile */}
-      <motion.div
-        animate={{ rotate: isPaused ? 0 : 360 }}
-        transition={{
-          repeat: isPaused ? 0 : Infinity,
-          duration: 60,
-          ease: "linear",
-        }}
-        style={{
-          position: "absolute",
-          top: `${centerPos.y - radius}px`,
-          left: `${centerPos.x - radius}px`,
-          width: `${radius * 2}px`,
-          height: `${radius * 2}px`,
-          borderRadius: "50%",
-          transformOrigin: "center center",
-          zIndex: 4,
-        }}
-      >
-        {allPlanets.map((planet, i) => {
-          const angle = (360 / allPlanets.length) * i;
-          const rad = (angle * Math.PI) / 180;
-          const x = radius * Math.cos(rad);
-          const y = radius * Math.sin(rad);
-
-          return (
-            <Box
-              key={`mobile-planet-${i}`}
-              sx={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                width: planetSize,
-                height: planetSize,
-                transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
-                cursor: "pointer",
-                zIndex: 5,
-              }}
-              onTouchStart={() => setIsPaused(true)}
-              onTouchEnd={() => setIsPaused(false)}
-              onClick={() => setSelectedPlanet(planet)}
+              onMouseEnter={interactive ? () => setIsPaused(true) : undefined}
+              onMouseLeave={interactive ? () => setIsPaused(false) : undefined}
+              onTouchStart={interactive ? () => setIsPaused(true) : undefined}
+              onTouchEnd={interactive ? () => setIsPaused(false) : undefined}
+              onClick={interactive ? () => setSelectedPlanet(planet) : undefined}
             >
               <motion.div
-                animate={{ rotate: isPaused ? 0 : -360 }}
+                animate={{
+                  rotate: isPaused ? 0 : index % 2 === 0 ? -360 : 360,
+                }}
                 transition={{
                   repeat: isPaused ? 0 : Infinity,
-                  duration: 60,
+                  duration,
                   ease: "linear",
                 }}
                 style={{
                   width: "100%",
                   height: "100%",
                   borderRadius: "50%",
-                  boxShadow: "0 0 8px 2px #fff4",
+                  boxShadow: `0 0 ${
+                    window.innerWidth < 600 ? 4 : 8
+                  }px 2px rgba(255, 255, 255, ${config.orbitOpacity * 0.8})`,
                 }}
               >
                 <img
@@ -327,43 +305,17 @@ const MobileOrbit = ({ setSelectedPlanet, isPaused, setIsPaused }) => {
           );
         })}
       </motion.div>
-
-      {/* Mobile Technology Label */}
-      <Box
-        sx={{
-          position: "absolute",
-          bottom: "60px",
-          left: "50%",
-          transform: "translateX(-50%)",
-          zIndex: 10,
-        }}
-      >
-        <Typography
-          sx={{
-            color: "#ffffffcc",
-            fontSize: "12px",
-            textAlign: "center",
-            fontFamily: "PayPalOpen, Sans-serif",
-          }}
-        >
-          Tap any technology to learn more
-        </Typography>
-      </Box>
-    </Box>
+    </>
   );
 };
 
-const CenterPiece = ({ setSelectedPlanet, selectedPlanet, setLogoZoomed }) => {
+const CenterPiece = ({
+  setSelectedPlanet,
+  selectedPlanet,
+  setLogoZoomed,
+  config,
+}) => {
   const [isZoomed, setIsZoomed] = useState(false);
-  const [centerPos, setCenterPos] = useState(getCenterPosition());
-
-  useEffect(() => {
-    const handleResize = () => {
-      setCenterPos(getCenterPosition());
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   useEffect(() => {
     if (selectedPlanet) {
@@ -385,33 +337,24 @@ const CenterPiece = ({ setSelectedPlanet, selectedPlanet, setLogoZoomed }) => {
     }
   };
 
-  const logoSize =
-    window.innerWidth < 600
-      ? { width: "200px", height: "200px" }
-      : window.innerWidth < 900
-      ? { width: "250px", height: "250px" }
-      : { width: "491px", height: "491px" };
+  const logoDisplaySize = {
+    width: config.logoSize.width * 0.25,
+    height: config.logoSize.height * 0.35,
+  };
 
   return (
     <Box
       sx={{
         position: "absolute",
-        top: {
-          xs: `${centerPos.y - 100}px`,
-          sm: `${centerPos.y - 125}px`,
-          md: `${centerPos.y - 245}px`,
-        },
-        left: {
-          xs: `${centerPos.x - 100}px`,
-          sm: `${centerPos.x - 125}px`,
-          md: `${centerPos.x - 245}px`,
-        },
-        width: logoSize.width,
-        height: logoSize.height,
+        top: `${config.center.y - config.logoSize.height / 2}px`,
+        left: `${config.center.x - config.logoSize.width / 2}px`,
+        width: `${config.logoSize.width}px`,
+        height: `${config.logoSize.height}px`,
         zIndex: 5,
         cursor: "pointer",
       }}
     >
+      {/* Background circle */}
       <Box
         sx={{
           position: "absolute",
@@ -424,6 +367,7 @@ const CenterPiece = ({ setSelectedPlanet, selectedPlanet, setLogoZoomed }) => {
           zIndex: 2,
         }}
       />
+
       {/* Ripple effect */}
       {[...Array(3)].map((_, i) => (
         <motion.div
@@ -472,8 +416,8 @@ const CenterPiece = ({ setSelectedPlanet, selectedPlanet, setLogoZoomed }) => {
       >
         <Box
           sx={{
-            width: { xs: "48px", sm: "64px", md: "105.97px" },
-            height: { xs: "68px", sm: "90px", md: "160px" },
+            width: `${logoDisplaySize.width}px`,
+            height: `${logoDisplaySize.height}px`,
           }}
         >
           <img
@@ -575,7 +519,7 @@ const CenterPiece = ({ setSelectedPlanet, selectedPlanet, setLogoZoomed }) => {
                   textTransform: "none",
                   fontSize: { xs: "14px", md: "16px" },
                   fontWeight: 500,
-                  mt: 3,
+                  mb:10,
                   fontFamily: "PayPalOpen, Sans-serif",
                 }}
               >
@@ -593,27 +537,13 @@ const HeroSection = () => {
   const [selectedPlanet, setSelectedPlanet] = useState(null);
   const [isPaused, setIsPaused] = useState(false);
   const [logoZoomed, setLogoZoomed] = useState(false);
-
-  // Responsive orbit sizes
-  const getOrbitSizes = () => {
-    const width = window.innerWidth;
-    if (width < 900) {
-      return []; // No orbits on mobile
-    }
-    return [
-      { width: 1645, height: 1645 },
-      { width: 1301, height: 1301 },
-      { width: 957, height: 957 },
-      { width: 623, height: 623 },
-    ];
-  };
-
-  const [orbitSizes, setOrbitSizes] = useState(getOrbitSizes());
+  const [config, setConfig] = useState(getResponsiveConfig());
 
   useEffect(() => {
     const handleResize = () => {
-      setOrbitSizes(getOrbitSizes());
+      setConfig(getResponsiveConfig());
     };
+
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -634,10 +564,10 @@ const HeroSection = () => {
   useEffect(() => {
     const checkZoom = () => {
       const zoomLevel = window.devicePixelRatio;
-      setIsZoomedOut(zoomLevel <= 0.5); // adjust this threshold if needed
+      setIsZoomedOut(zoomLevel <= 0.5);
     };
 
-    checkZoom(); // initial check
+    checkZoom();
     window.addEventListener("resize", checkZoom);
     return () => window.removeEventListener("resize", checkZoom);
   }, []);
@@ -646,10 +576,9 @@ const HeroSection = () => {
     <Box
       sx={{
         width: "100%",
-        // height: { xs: "100vh", md: "100vh" },
         minHeight: {
-          xs: "700px",
-          sm: "700px",
+          xs: "100vh",
+          sm: "100vh",
           md: "600px",
           lg: "650px",
           xl: "720px",
@@ -659,25 +588,25 @@ const HeroSection = () => {
         overflow: "hidden",
         margin: "0 auto",
         display: "flex",
-        alignItems: { xs: "flex-start", sm: "center" },
-        justifyContent: "center", // optional: center horizontally
+        alignItems: { xs: "flex-start", sm: "flex-start", md: "center" },
+        justifyContent: "center",
         padding: {
-          xs: "80px 16px 40px", // mobile
-          sm: "100px 24px 40px", // tablet
-          md: "0 60px", // medium desktop
-          lg: "0 100px", // large desktop
-          xl: "0 140px", // very large screens
+          xs: "60px 16px 40px",
+          sm: "80px 20px 40px",
+          md: "0 40px",
+          lg: "0 60px",
+          xl: "0 80px",
         },
-        boxSizing: "border-box", // ensure padding doesn’t break layout
+        boxSizing: "border-box",
       }}
     >
       <Box
         sx={{
           width: "100%",
           maxWidth: "1440px",
-          position: "none",
+          position: "relative",
           "@media (min-width: 2000px)": {
-            position: "absolute", // center if screen is zoomed out / ultra wide
+            position: "absolute",
           },
         }}
       >
@@ -685,27 +614,21 @@ const HeroSection = () => {
           setSelectedPlanet={setSelectedPlanet}
           selectedPlanet={selectedPlanet}
           setLogoZoomed={setLogoZoomed}
+          config={config}
         />
 
-        {/* Desktop Orbits */}
-        {orbitSizes.map((orbit, index) => (
-          <Box key={index} sx={{ display: { xs: "none", md: "block" } }}>
-            <Orbit
-              index={index}
-              size={orbit}
-              isPaused={isPaused}
-              setIsPaused={setIsPaused}
-              setSelectedPlanet={handlePlanetClick}
-            />
-          </Box>
+        {/* Responsive Orbits */}
+        {config.orbitSizes.map((orbit, index) => (
+          <Orbit
+            key={index}
+            index={index}
+            size={orbit}
+            isPaused={isPaused}
+            setIsPaused={setIsPaused}
+            setSelectedPlanet={handlePlanetClick}
+            config={config}
+          />
         ))}
-
-        {/* Mobile Animated Orbit */}
-        <MobileOrbit
-          setSelectedPlanet={handlePlanetClick}
-          isPaused={isPaused}
-          setIsPaused={setIsPaused}
-        />
 
         {/* Main Content */}
         <Box
@@ -714,40 +637,41 @@ const HeroSection = () => {
             top: isZoomedOut
               ? "-50px"
               : {
-                  xs: "64px",
-                  sm: "100px",
-                  md: "180px",
-                  lg: "220px",
-                  xl: "245px",
+                  xs: "40px",
+                  sm: "60px",
+                  md: "-120px", // slightly up for better balance
+                  lg: "-170px",
+                  xl: "-130px",
                 },
-
             left: {
-              xs: "16px",
-              sm: "24px",
-              md: "80px",
-              lg: "80px",
-              xl: "115px",
+              xs: "6px",
+              sm: "10px",
+              md: "50px", // move right for better fit
+              lg: "20px",
+              xl: "40px",
             },
             right: {
-              xs: "16px", // Allow padding on both sides on mobile
-              sm: "24px",
-              md: "auto",
+              xs: "16px",
+              sm: "20px",
+              md: "40px",
+              lg: "60px",
+              xl: "80px",
             },
             maxWidth: {
-              xs: "100%", // Full width on phones
+              xs: "100%",
               sm: "100%",
-              md: "720px",
-              lg: "800px",
-              xl: "848px",
+              md: "520px", // reduce for better fit
+              lg: "750px",
+              xl: "800px",
             },
+            textAlign: { xs: "center", sm: "left" },
             zIndex: 10,
-            textAlign: "left",
             display: "flex",
             flexDirection: "column",
             gap: {
-              xs: "12px",
-              sm: "14px",
-              md: "16px",
+              xs: "16px",
+              sm: "18px",
+              md: "20px",
             },
             pointerEvents: "none",
           }}
@@ -756,10 +680,11 @@ const HeroSection = () => {
             sx={{
               color: "#E1E0E0",
               fontSize: {
-                xs: "13px",
-                sm: "15px",
+                xs: "14px",
+                sm: "16px",
                 md: "18px",
                 lg: "20px",
+                xl: "22px",
               },
               fontWeight: 500,
               lineHeight: 1.4,
@@ -773,16 +698,16 @@ const HeroSection = () => {
               color: "white",
               fontWeight: 700,
               fontSize: {
-                xs: "24px",
-                sm: "32px",
-                md: "48px",
+                xs: "28px",
+                sm: "36px",
+                md: "38px",
                 lg: "56px",
                 xl: "64px",
               },
               lineHeight: {
-                xs: "30px",
-                sm: "40px",
-                md: "52px",
+                xs: "34px",
+                sm: "42px",
+                md: "44px",
                 lg: "60px",
                 xl: "68px",
               },
@@ -797,17 +722,26 @@ const HeroSection = () => {
             sx={{
               color: "#E1E0E0",
               fontSize: {
-                xs: "13px",
-                sm: "15px",
-                md: "18px",
+                xs: "15px",
+                sm: "16px",
+                md: "16px",
                 lg: "20px",
+                xl: "22px",
               },
               fontWeight: 300,
               lineHeight: {
-                xs: "20px",
+                xs: "22px",
                 sm: "24px",
-                md: "26px",
+                md: "24px",
                 lg: "28px",
+                xl: "30px",
+              },
+              maxWidth: {
+                xs: "100%",
+                sm: "100%",
+                md: "100%",
+                lg: "85%",
+                xl: "80%",
               },
             }}
           >
@@ -821,17 +755,23 @@ const HeroSection = () => {
               display: "flex",
               flexDirection: {
                 xs: "column",
-                sm: "row",
+                sm: "column",
+                md: "row",
               },
               gap: {
-                xs: "8px",
-                sm: "12px",
+                xs: "12px",
+                sm: "14px",
                 md: "16px",
               },
               mt: {
-                xs: "16px",
-                sm: "20px",
-                md: "24px",
+                xs: "20px",
+                sm: "24px",
+                md: "28px",
+              },
+              width: {
+                xs: "100%",
+                sm: "100%",
+                md: "auto",
               },
             }}
           >
@@ -841,13 +781,32 @@ const HeroSection = () => {
                 pointerEvents: "auto",
                 backgroundColor: "#0070FF",
                 borderRadius: "39px",
-                width: "204px",
-                height: "59px",
-                fontSize: "18px",
+                width: {
+                  xs: "100%",
+                  sm: "100%",
+                  md: "204px",
+                },
+                height: {
+                  xs: "56px",
+                  sm: "58px",
+                  md: "59px",
+                },
+                fontSize: {
+                  xs: "16px",
+                  sm: "17px",
+                  md: "18px",
+                },
                 fontWeight: 400,
-                color:"#FFFFFF",
+                color: "#FFFFFF",
                 textTransform: "none",
-                padding : "16px 32px", 
+                padding: {
+                  xs: "16px 24px",
+                  sm: "16px 28px",
+                  md: "16px 32px",
+                },
+                "&:hover": {
+                  backgroundColor: "#0060E6",
+                },
               }}
             >
               Let's Talk
@@ -856,21 +815,36 @@ const HeroSection = () => {
             <Button
               variant="outlined"
               sx={{
-                backgroundColor:"#072449",
+                backgroundColor: "#072449",
                 pointerEvents: "auto",
-                border:"1px solid #FFFFFF45",
+                border: "1px solid #FFFFFF45",
                 color: "#fff",
                 borderRadius: "39px",
-                width: "230px",
-                height:"59px",
-                padding : "14px 32px", 
-                height: "",
-                fontSize:"18px",
+                width: {
+                  xs: "100%",
+                  sm: "100%",
+                  md: "230px",
+                },
+                height: {
+                  xs: "56px",
+                  sm: "58px",
+                  md: "59px",
+                },
+                padding: {
+                  xs: "14px 24px",
+                  sm: "14px 28px",
+                  md: "14px 32px",
+                },
+                fontSize: {
+                  xs: "16px",
+                  sm: "17px",
+                  md: "18px",
+                },
                 fontWeight: 400,
                 textTransform: "none",
                 "&:hover": {
                   borderColor: "#FFFFFF98",
-                  // backgroundColor: "rgba(255, 255, 255, 0.1)",
+                  backgroundColor: "rgba(255, 255, 255, 0.05)",
                 },
               }}
             >

@@ -1,5 +1,4 @@
 import React from 'react'
-import Navbar from "../Navbar.jsx"
 import HeroSection from "../HeroSection.jsx"
 import Capabilities from "../Capabilities.jsx"
 import TestimonialsSection from "../TestimonialsSection .jsx"
@@ -12,7 +11,6 @@ import How from './How.jsx'
 export default function Home() {
   return (
     <>
-    <Navbar/>
     <HeroSection/>
     <Who/>
     <What/>
