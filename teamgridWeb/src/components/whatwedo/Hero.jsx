@@ -20,11 +20,14 @@ import centerImage from "../../assets/smallCircle.png";
 const getCenterPosition = () => {
   const width = window.innerWidth;
   if (width < 600) {
-    return { x: width / 2, y: 300 };
+    // Move orbit even further right on mobile
+    return { x: width * 0.85, y: 300 };
   } else if (width < 900) {
-    return { x: width / 2, y: 350 };
+    // Move orbit almost to the edge on tablet
+    return { x: width * 0.92, y: 350 };
   } else {
-    return { x: 1450, y: 700 };
+    // Move orbit very close to the right edge on desktop
+    return { x: width * 0.97, y: 700 };
   }
 };
 
@@ -57,7 +60,16 @@ const Orbit = ({ index, size, isPaused, setIsPaused, setSelectedPlanet }) => {
   const [centerPos, setCenterPos] = useState(getCenterPosition());
   const duration = 500 + index * 20;
   const planets = orbitPlanetsData[index];
-  const planetSize = window.innerWidth < 600 ? 45 : 214;
+  let planetSize;
+  if (window.innerWidth < 600) {
+    planetSize = 45;
+  } else if (window.innerWidth < 900) {
+    planetSize = 70;
+  } else if (window.innerWidth < 1200) {
+    planetSize = 120;
+  } else {
+    planetSize = 214;
+  }
 
   useEffect(() => {
     const handleResize = () => {
@@ -551,14 +563,28 @@ const Hero = () => {
   // Responsive orbit sizes
   const getOrbitSizes = () => {
     const width = window.innerWidth;
-    if (width < 900) {
-      return []; // No orbits on mobile
+    if (width < 600) {
+      // Small orbits for mobile
+      return [
+        { width: 320, height: 320 },
+        { width: 220, height: 220 },
+        { width: 120, height: 120 },
+      ];
+    } else if (width < 900) {
+      // Medium orbits for tablet
+      return [
+        { width: 700, height: 700 },
+        { width: 500, height: 500 },
+        { width: 300, height: 300 },
+      ];
+    } else {
+      // Large orbits for desktop
+      return [
+        { width: 1600, height: 1600 },
+        { width: 1100, height: 1100 },
+        { width: 600, height: 600 },
+      ];
     }
-    return [
-      { width: 1600, height: 1600 },
-      { width: 1100, height: 1100 },
-      { width: 600, height: 600 },
-    ];
   };
 
   const [orbitSizes, setOrbitSizes] = useState(getOrbitSizes());
@@ -642,7 +668,7 @@ const Hero = () => {
 
         {/* Desktop Orbits */}
         {orbitSizes.map((orbit, index) => (
-          <Box key={index} sx={{ display: { xs: "none", md: "block" } }}>
+          <Box key={index} sx={{ display: "block" }}>
             <Orbit
               index={index}
               size={orbit}

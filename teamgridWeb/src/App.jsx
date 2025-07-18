@@ -9,6 +9,7 @@ import NavBar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
 import LetsBuildTogether from './components/LetsBuildTogether.jsx';
 import WhatWeOffer from './components/whatwedo/Whatweoffer.jsx';
+import ContactForm from './components/ContactForm.jsx';
 // import Home from './components/Home/Home.jsx';
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
       <Routes>
         <Route path='/' element = {<Home/>}/>
         <Route path='/whatwedo' element = {<Whatwedo/>}/>
+        <Route path='/talk' element = {<ContactForm/>}/>
       </Routes>
       {/* <LetsBuildTogether/>
       <Footer/> */}

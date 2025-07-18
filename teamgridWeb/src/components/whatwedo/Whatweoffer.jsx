@@ -63,6 +63,7 @@ const services = [
 const WhatWeOffer = () => {
   const scrollRef = useRef();
   const [selected, setSelected] = useState(services[0]);
+  const [currentIndex, setCurrentIndex] = useState(0); // For small screens
 
   const scroll = (direction) => {
     const scrollAmount = 300;
@@ -80,6 +81,16 @@ const WhatWeOffer = () => {
     columns.push(services.slice(i, i + 2));
   }
 
+  // Handlers for small device carousel
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev === 0 ? services.length - 1 : prev - 1));
+    setSelected(services[currentIndex === 0 ? services.length - 1 : currentIndex - 1]);
+  };
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev === services.length - 1 ? 0 : prev + 1));
+    setSelected(services[currentIndex === services.length - 1 ? 0 : currentIndex + 1]);
+  };
+
   return (
      <Box
       sx={{
@@ -88,7 +99,7 @@ const WhatWeOffer = () => {
         mx: 'auto',
         display: 'flex',
         flexDirection: { xs: 'column', md: 'row' },
-        pl: { xs: 2, sm: 3, md: 6, lg: 15 },
+        pl: { xs: 2, sm: 3, md: 6, lg: 10 , xl:15 },
         pt: { xs: 4, sm: 6, md: 10 },
         gap: { xs: 4, md: 6 },
         alignItems: 'flex-start',
@@ -165,134 +176,210 @@ const WhatWeOffer = () => {
           mt: { xs: 4, md: 0 },
         }}
       >
-        <Box
-          ref={scrollRef}
-          sx={{
-            display: "flex",
-            overflowX: "auto",
-            gap: 3,
-            pb: 2,
-            pr: { xs: 2, md: 0 },
-            width: "100%",
-            ml: { xs: 0, md: 4 },
-            scrollbarWidth: "none",
-            "&::-webkit-scrollbar": { display: "none" },
-          }}
-        >
-          {columns.map((col, idx) => (
-            <Box
-              key={idx}
-              sx={{ display: "flex", flexDirection: "column", gap: 2 }}
+        {/* Small device: show only one card with nav buttons */}
+        {isSmall ? (
+          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <ButtonBase
+              onClick={() => setSelected(services[currentIndex])}
+              sx={{ borderRadius: "20px", mb: 2 }}
             >
-              {col.map((service, i) => {
-                const isSelected = selected.title === service.title;
-                return (
-                  <ButtonBase
-                    key={i}
-                    onClick={() => setSelected(service)}
-                    sx={{ borderRadius: "20px" }}
+              <Card
+                sx={{
+                  borderRadius: "24px",
+                  backgroundColor: selected.title === services[currentIndex].title ? "#05408E" : "#F3F3F6",
+                  color: selected.title === services[currentIndex].title ? "#fff" : "#000",
+                  height: "242px",
+                  width: "292px",
+                  p: 2,
+                  border: "none",
+                  boxShadow: "none",
+                }}
+              >
+                <CardContent>
+                  <Box
+                    sx={{
+                      width: "64px",
+                      height: "64px",
+                      backgroundColor: selected.title === services[currentIndex].title ? "#1976F2" : "#E5EAF0",
+                      borderRadius: "12px",
+                      mb: 2,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
                   >
-                    <Card
+                    <Box
+                      component="img"
+                      src={team}
+                      alt="Icon"
                       sx={{
-                        borderRadius: "24px",
-                        backgroundColor: isSelected ? "#05408E" : "#F3F3F6",
-                        color: isSelected ? "#fff" : "#000",
-                        height: "242px",
-                        width: "292px",
-                        p: 2,
-                        border: "none", // ✅ Removes border
-                        boxShadow: "none",
+                        height: "32px",
+                        width: "32px",
+                        filter: selected.title === services[currentIndex].title ? "brightness(0) invert(1)" : "none",
                       }}
-                    >
-                      <CardContent>
-                        <Box
+                    />
+                  </Box>
+                  <Typography
+                    fontWeight={500}
+                    fontSize="20px"
+                    align="left"
+                    sx={{ color: selected.title === services[currentIndex].title ? "#FFFFFF" : "#05408E" }}
+                    gutterBottom
+                  >
+                    {services[currentIndex].title}
+                  </Typography>
+                  <Typography
+                    fontWeight={400}
+                    align="left"
+                    fontSize="16px"
+                    sx={{ color: selected.title === services[currentIndex].title ? "#EBF4FF" : "#3E393E" }}
+                  >
+                    {services[currentIndex].shortDescription}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </ButtonBase>
+            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
+              <IconButton onClick={handlePrev} sx={{ width: 40, height: 40, borderRadius: '50%', backgroundColor: '#E3EBF2', color: '#374151' }}>
+                <ArrowBack fontSize="small" />
+              </IconButton>
+              <IconButton onClick={handleNext} sx={{ width: 40, height: 40, borderRadius: '50%', backgroundColor: '#E3EBF2', color: '#374151' }}>
+                <ArrowForward fontSize="small" />
+              </IconButton>
+            </Box>
+          </Box>
+        ) : (
+          <>
+            <Box
+              ref={scrollRef}
+              sx={{
+                display: "flex",
+                overflowX: "auto",
+                gap: 3,
+                pb: 2,
+                pr: { xs: 2, md: 0 },
+                width: "100%",
+                ml: { xs: 0, md: 4 },
+                scrollbarWidth: "none",
+                "&::-webkit-scrollbar": { display: "none" },
+              }}
+            >
+              {columns.map((col, idx) => (
+                <Box
+                  key={idx}
+                  sx={{ display: "flex", flexDirection: "column", gap: 2 }}
+                >
+                  {col.map((service, i) => {
+                    const isSelected = selected.title === service.title;
+                    return (
+                      <ButtonBase
+                        key={i}
+                        onClick={() => setSelected(service)}
+                        sx={{ borderRadius: "20px" }}
+                      >
+                        <Card
                           sx={{
-                            width: "64px",
-                            height: "64px",
-                            backgroundColor: isSelected ? "#1976F2" : "#E5EAF0",
-                            borderRadius: "12px",
-                            mb: 2,
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
+                            borderRadius: "24px",
+                            backgroundColor: isSelected ? "#05408E" : "#F3F3F6",
+                            color: isSelected ? "#fff" : "#000",
+                            height: "242px",
+                            width: "292px",
+                            p: 2,
+                            border: "none", // ✅ Removes border
+                            boxShadow: "none",
                           }}
                         >
-                          <Box
-                            component="img"
-                            src={team}
-                            alt="Icon"
-                            sx={{
-                              height: "32px",
-                              width: "32px",
-                              filter: isSelected
-                                ? "brightness(0) invert(1)"
-                                : "none",
-                            }}
-                          />
-                        </Box>
+                          <CardContent>
+                            <Box
+                              sx={{
+                                width: "64px",
+                                height: "64px",
+                                backgroundColor: isSelected ? "#1976F2" : "#E5EAF0",
+                                borderRadius: "12px",
+                                mb: 2,
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                              }}
+                            >
+                              <Box
+                                component="img"
+                                src={team}
+                                alt="Icon"
+                                sx={{
+                                  height: "32px",
+                                  width: "32px",
+                                  filter: isSelected
+                                    ? "brightness(0) invert(1)"
+                                    : "none",
+                                }}
+                              />
+                            </Box>
 
-                        <Typography
-                          fontWeight={500}
-                          fontSize="20px"
-                          align="left"
-                          sx={{ color: isSelected ? "#FFFFFF" : "#05408E" }}
-                          gutterBottom
-                        >
-                          {service.title}
-                        </Typography>
-                        <Typography
-                          fontWeight={400}
-                          align="left"
-                          fontSize="16px"
-                          sx={{ color: isSelected ? "#EBF4FF" : "#3E393E" }}
-                        >
-                          {service.shortDescription}
-                        </Typography>
-                      </CardContent>
-                    </Card>
-                  </ButtonBase>
-                );
-              })}
+                            <Typography
+                              fontWeight={500}
+                              fontSize="20px"
+                              align="left"
+                              sx={{ color: isSelected ? "#FFFFFF" : "#05408E" }}
+                              gutterBottom
+                            >
+                              {service.title}
+                            </Typography>
+                            <Typography
+                              fontWeight={400}
+                              align="left"
+                              fontSize="16px"
+                              sx={{ color: isSelected ? "#EBF4FF" : "#3E393E" }}
+                            >
+                              {service.shortDescription}
+                            </Typography>
+                          </CardContent>
+                        </Card>
+                      </ButtonBase>
+                    );
+                  })}
+                </Box>
+              ))}
             </Box>
-          ))}
-        </Box>
 
-        {/* Nav Buttons */}
-        {!isSmall && (
-          <Box
-            sx={{
-              mt: 2,
-              display: "flex",
-              justifyContent: "flex-start",
-              gap: 1,
-              ml: 4,
-            }}
-          >
-            <IconButton
-              onClick={() => scroll("left")}
-              sx={{
-                width: 56,
-                height: 56,
-                borderRadius: "50%",
-                backgroundColor: "#E3EBF2",
-                color: "#374151",
-              }}
-            >
-              <ArrowBack fontSize="small" />
-            </IconButton>
-            <IconButton
-              onClick={() => scroll("right")}
-              sx={{
-                width: 56,
-                height: 56,
-                borderRadius: "50%",
-                backgroundColor: "#E3EBF2",
-                color: "#374151",
-              }}
-            >
-              <ArrowForward fontSize="small" />
-            </IconButton>
-          </Box>
+            {/* Nav Buttons */}
+            {!isSmall && (
+              <Box
+                sx={{
+                  mt: 2,
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  gap: 1,
+                  ml: 4,
+                }}
+              >
+                <IconButton
+                  onClick={() => scroll("left")}
+                  sx={{
+                    width: 56,
+                    height: 56,
+                    borderRadius: "50%",
+                    backgroundColor: "#E3EBF2",
+                    color: "#374151",
+                  }}
+                >
+                  <ArrowBack fontSize="small" />
+                </IconButton>
+                <IconButton
+                  onClick={() => scroll("right")}
+                  sx={{
+                    width: 56,
+                    height: 56,
+                    borderRadius: "50%",
+                    backgroundColor: "#E3EBF2",
+                    color: "#374151",
+                  }}
+                >
+                  <ArrowForward fontSize="small" />
+                </IconButton>
+              </Box>
+            )}
+          </>
         )}
       </Box>
     </Box>

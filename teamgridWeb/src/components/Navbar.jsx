@@ -39,6 +39,7 @@ import designIcon from "../assets/design.png";
 import shopifyIcon from "../assets/shopifyy.png";
 import wooIcon from "../assets/wooo(1).png";
 
+
 const megaMenuItems = [
   {
     title: "WEB DEVELOPMENT",
@@ -462,7 +463,7 @@ const NavBar = () => {
             {!isMobile && (
               <Button
                 variant="contained"
-                onClick={() => handleNavItemClick("Let's Talk")}
+                onClick={() => navigate('/talk')}
                 sx={{
                   backgroundColor: "#05408E",
                   borderRadius: "36px",
