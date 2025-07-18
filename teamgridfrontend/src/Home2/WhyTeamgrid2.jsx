@@ -104,24 +104,24 @@ const WhyTeamgrid2 = () => {
         }}
       >
         {/* Left Side - Stylized G with images */}
-        <Box sx={{ width: { xs: '100%', md: '557px' }, height: { xs: 'auto', md: '841.27px' }, opacity: 1, transform: 'rotate(0deg)', mb: { xs: 4, md: 0 } }}>
+        <Box sx={{ width: '557px', height: '841.27px', opacity: 1, transform: 'rotate(0deg)', mb: { xs: 4, md: 0 } }}>
           <img src={leftImg} alt="Stylized G" width="100%" />
         </Box>
 
         {/* Right Side - Text and Cards */}
-        <Box sx={{ flex: { xs: 'none', md: 1 }, width: { xs: '100%', md: '50%' }, py: { xs: 4, md: 10 }, px: { xs: 1, sm: 2, md: 0 } }}>
+        <Box sx={{ flex: { xs: 'none', md: 1 }, width: { xs: '100%', md: '50%' }, py: 10 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
             <Typography
               sx={{
-                width: { xs: '100%', sm: '300px', md: '379px' },
+                width: '379px',
                 opacity: 1,
-                fontFamily: '"PayPal Open", sans-serif',
-                fontWeight: 500,
-                fontSize: { xs: '28px', sm: '36px', md: '56px' },
+                fontFamily: '"PayPal Open", sans-serif', // Fallback to sans-serif
+                fontWeight: 500, // Medium weight
+                fontSize: '56px',
                 lineHeight: '100%',
                 letterSpacing: '0%',
                 color: '#140E13',
-                m: 0
+                m: 0 // Remove margin
               }}
             >
               Why Teamgrid
@@ -155,23 +155,14 @@ const WhyTeamgrid2 = () => {
               </IconButton>
             </Box>
           </Box>
-          <Typography
-            variant="subtitle1"
-            sx={{
-              mb: 4,
-              fontSize: { xs: '14px', sm: '16px', md: '20px' },
-              width: { xs: '100%', sm: '90%', md: '100%' },
-              color: '#140E13',
-              textAlign: { xs: 'left', md: 'left' },
-            }}
-          >
+          <Typography variant="subtitle1" sx={{ mb: 4 }}>
             Flexible Talent. Reliable Delivery. Scalable Results.
           </Typography>
           <Box
             sx={{
               width: '100%',
               overflowX: 'hidden',
-              pb: { xs: 4, sm: 4, md: 2, lg: 1 },
+              pb: { xs: 6, sm: 4, md: 2, lg: 1 },
               userSelect: isDragging.current ? 'none' : 'auto',
             }}
             onMouseMove={handleMouseMove}
@@ -184,9 +175,9 @@ const WhyTeamgrid2 = () => {
               ref={cardRowRef}
               sx={{
                 display: 'grid',
-                gridTemplateRows: { xs: '1fr', sm: 'repeat(2, 1fr)' },
+                gridTemplateRows: 'repeat(2, 1fr)',
                 gridAutoFlow: 'column',
-                gap: { xs: '16px', md: '24px' },
+                gap: '24px',
                 width: 'max-content',
                 minWidth: '100%',
                 overflowY: 'visible',
@@ -206,14 +197,14 @@ const WhyTeamgrid2 = () => {
                   icon: teamLogo
                 },
                 {
-                   title: "Trustworthy and Confidential",
-              
-                     description: "NDA-backed, process-driven, and fully aligned with your brand.",
+                  title: "Trustworthy and Confidential",
+
+                  description: "NDA-backed, process-driven, and fully aligned with your brand.",
                   icon: trust
                 },
                 {
-                     title: "Flexible Engagement Models",
-                                 description: "Work the way you prefer — retainers, hourly, or fixed-cost projects.",
+                  title: "Flexible Engagement Models",
+                  description: "Work the way you prefer — retainers, hourly, or fixed-cost projects.",
 
                   icon: flex
                 },
@@ -226,11 +217,11 @@ const WhyTeamgrid2 = () => {
                 <Card
                   key={index}
                   sx={{
-                    width: { xs: '260px', sm: '320px', md: '384px' },
-                    height: { xs: '160px', sm: '180px', md: '218px' },
-                    gap: { xs: '12px', md: '24px' },
+                    width: '384px',
+                    height: '218px',
+                    gap: '24px',
                     borderRadius: '24px',
-                    p: { xs: 2, md: 3 },
+                    p: 3, // 24px
                     bgcolor: cardBgColors[index],
                     color: '#000',
                     boxShadow: 'none',
@@ -249,15 +240,15 @@ const WhyTeamgrid2 = () => {
                   <CardContent sx={{ p: 0, width: '100%' }}>
                     <Box
                       sx={{
-                        width: { xs: '40px', sm: '48px', md: '64px' },
-                        height: { xs: '40px', sm: '48px', md: '64px' },
+                        width: '64px',
+                        height: '64px',
                         borderRadius: '14px',
-                        padding: { xs: '8px', sm: '12px', md: '16px' },
+                        padding: '16px',
                         backgroundColor: iconBgColors[index],
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        mb: { xs: 2, md: 4 },
+                        mb: 4,
                         gap: '10px',
                         opacity: 1,
                       }}
@@ -266,23 +257,24 @@ const WhyTeamgrid2 = () => {
                       <img
                         src={item.icon}
                         alt="icon"
-                        style={{ width: '100%', height: '100%' }}
+                        style={{ width: "32px", height: "32px" }}
                       />
                     </Box>
                     <Typography
                       sx={{
-                        width: { xs: '180px', sm: '220px', md: '336px' },
+                        width: '336px',
                         fontFamily: '"PayPal Open", sans-serif',
-                        fontWeight: 500,
-                        fontSize: { xs: '14px', sm: '16px', md: '20px' },
+                        fontWeight: 500, // Medium
+                        fontSize: '20px',
                         lineHeight: '120%',
                         letterSpacing: '0%',
                         color: '#05408E',
                         opacity: 1,
                         mb: 1,
+                        // Optional: Add text truncation for long titles
                         whiteSpace: 'nowrap',
                         overflow: 'hidden',
-                        textOverflow: 'ellipsis',
+                        textOverflow: 'ellipsis'
                       }}
                     >
                       {item.title}
@@ -290,11 +282,13 @@ const WhyTeamgrid2 = () => {
                     <Typography
                       sx={{
                         fontFamily: '"PayPal Open", sans-serif',
-                        fontWeight: 400,
-                        fontSize: { xs: '12px', sm: '14px', md: '16px' },
+                        fontWeight: 400, // Regular
+                        fontSize: '16px',
                         lineHeight: '150%',
                         letterSpacing: '0%',
                         color: '#140E13',
+                        // Optional: Add responsive behavior if needed
+                        // fontSize: { xs: '14px', md: '16px' }
                       }}
                     >
                       {item.description}

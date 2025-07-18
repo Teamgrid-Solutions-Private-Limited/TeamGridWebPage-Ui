@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-    AppBar, Toolbar, Typography, Button, Container, Box, Paper, Grid, IconButton, Drawer, List, ListItem, ListItemButton, ListItemText, Divider, Collapse, useMediaQuery, useTheme, Dialog, Snackbar
+    AppBar, Toolbar, Typography, Button, Container, Box, Paper, Grid, IconButton, Drawer, List, ListItem, ListItemButton, ListItemText, Divider, Collapse, useMediaQuery, useTheme, Dialog, Snackbar, 
 } from "@mui/material";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import logo from "../assets/Layer_1 (1).svg";
@@ -26,22 +26,20 @@ import Zoom from '@mui/material/Zoom';
 const Navbar = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-    const [hoverMenuOpen, setHoverMenuOpen] = useState(false);
-    const [mobileOpen, setMobileOpen] = useState(false);
-    const [whatWeDoExpanded, setWhatWeDoExpanded] = useState(false);
+    const [hoverMenuOpen, setHoverMenuOpen] = React.useState(false);
+    const [mobileOpen, setMobileOpen] = React.useState(false);
+    const [whatWeDoExpanded, setWhatWeDoExpanded] = React.useState(false);
     const closeTimeoutRef = React.useRef(null);
-    const [scrolled, setScrolled] = useState(false);
+    const [scrolled, setScrolled] = React.useState(false);
     const navigate = useNavigate();
-    const [contactOpen, setContactOpen] = useState(false);
-    const [snackbarOpen, setSnackbarOpen] = useState(false);
-
+    const [contactOpen, setContactOpen] = React.useState(false);
     const handleContactOpen = () => setContactOpen(true);
     const handleContactClose = () => setContactOpen(false);
-    
+    const [snackbarOpen, setSnackbarOpen] = React.useState(false);
     const handleSnackbarOpen = () => {
+        console.log('Snackbar open triggered from parent');
         setSnackbarOpen(true);
     };
-    
     const handleSnackbarClose = (event, reason) => {
         if (reason === 'clickaway') return;
         setSnackbarOpen(false);
@@ -289,7 +287,7 @@ const Navbar = () => {
             <Drawer
                 anchor="left"
                 open={mobileOpen}
-                onClose={() => setMobileOpen(false)}
+                onClose={handleDrawerToggle}
                 ModalProps={{ keepMounted: true }}
                 sx={{
                     display: { xs: "block", md: "none" },
@@ -301,12 +299,12 @@ const Navbar = () => {
                     },
                 }}
             >
-                <Box onClick={() => setMobileOpen(false)} sx={{ textAlign: "center", pt: 2 }}>
+                <Box onClick={handleDrawerToggle} sx={{ textAlign: "center", pt: 2 }}>
                     <img src={logo} alt="logo" style={{ height: "40px" }} />
                     <Divider sx={{ borderColor: "rgba(255,255,255,0.2)", my: 2 }} />
                     <List>
                         <ListItem disablePadding>
-                            <ListItemButton sx={{ textAlign: "left", px: 3 }} onClick={() => navigate('/') }>
+                            <ListItemButton sx={{ textAlign: "left", px: 3 }} onClick={() => navigate('/')}>
                                 <ListItemText primary="Home" />
                             </ListItemButton>
                         </ListItem>
@@ -546,42 +544,42 @@ const Navbar = () => {
                     </Button>
                 </Box>
             </Drawer>
-            <Dialog 
-  open={contactOpen} 
-  onClose={handleContactClose} 
-  maxWidth="md" 
-  fullWidth
-  TransitionComponent={Zoom}
-  PaperProps={{
-    sx: {
-      background: 'none',
-      boxShadow: 'none',
-      overflowY: 'auto',
-      scrollbarWidth: 'none', // Firefox
-      '&::-webkit-scrollbar': {
-        display: 'none', // Chrome, Safari, Opera
-      },
-    }
-  }}
->
-  <ContactForm onClose={handleContactClose} onSuccess={() => { handleSnackbarOpen(); handleContactClose(); }} />
-</Dialog>
-<Snackbar
-  open={snackbarOpen}
-  autoHideDuration={6000}
-  onClose={handleSnackbarClose}
-  anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
->
-  <Alert 
-    onClose={handleSnackbarClose} 
-    severity="success" 
-    sx={{ width: '100%' }}
-    elevation={6}
-    variant="filled"
-  >
-    Message sent successfully!
-  </Alert>
-</Snackbar>
+            <Dialog
+                open={contactOpen}
+                onClose={handleContactClose}
+                maxWidth="md"
+                fullWidth
+                TransitionComponent={Zoom}
+                PaperProps={{
+                    sx: {
+                        background: 'none',
+                        boxShadow: 'none',
+                        overflowY: 'auto',
+                        scrollbarWidth: 'none', // Firefox
+                        '&::-webkit-scrollbar': {
+                            display: 'none', // Chrome, Safari, Opera
+                        },
+                    }
+                }}
+            >
+                <ContactForm onClose={handleContactClose} onSuccess={() => { console.log('onSuccess called in ContactForm'); handleSnackbarOpen(); }} />
+            </Dialog>
+            <Snackbar
+                open={snackbarOpen}
+                autoHideDuration={1500}
+                onClose={handleSnackbarClose}
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+            >
+                <Alert
+                    onClose={handleSnackbarClose}
+                    severity="success"
+                    sx={{ width: '100%' }}
+                    elevation={6}
+                    variant="filled"
+                >
+                    Message sent successfully!
+                </Alert>
+            </Snackbar>
 
         </>
     );
@@ -646,7 +644,7 @@ const feature = (icon, title, desc, onClick) => (
                     fontSize: "14px",
                     lineHeight: "150%",
                     mb: "2px",
-                     color: "#05408E",
+                    color: "#05408E",
                     // Change color when parent Box is hovered
                     '&:hover, [data-hovered=true] &': {
                         color: '#140E13',

@@ -169,7 +169,7 @@ const HowWeWork = () => {
                                     height: { xs: 'auto', md: '14px' },
                                     fontFamily: 'PayPal Open',
                                     fontWeight: 500,
-                                    fontSize: { xs: '14px', md: '20px' },
+                                    fontSize: { xs: '11px', md: '20px' },
                                     lineHeight: '120%',
                                     letterSpacing: '0%',
                                     color: '#FFFFFF',
@@ -183,13 +183,11 @@ const HowWeWork = () => {
                                 sx={{
                                     fontFamily: 'PayPal Open',
                                     fontWeight: 400,
-                                    fontSize: { xs: '14px', md: '16px' },
+                                    fontSize: '16px',
                                     lineHeight: '150%',
                                     letterSpacing: '0%',
                                     color: '#B2D2FC',
                                     opacity: 1,
-                                    width: '100%',
-                                    wordBreak: 'break-word',
                                 }}
                             >
                                 {steps[0].desc}
@@ -274,7 +272,7 @@ const HowWeWork = () => {
                                     height: { xs: 'auto', md: '14px' },
                                     fontFamily: 'PayPal Open',
                                     fontWeight: 500,
-                                    fontSize: { xs: '14px', md: '20px' },
+                                    fontSize: { xs: '11px', md: '20px' },
                                     lineHeight: '120%',
                                     letterSpacing: '0%',
                                     color: '#FFFFFF',
@@ -288,13 +286,11 @@ const HowWeWork = () => {
                                 sx={{
                                     fontFamily: 'PayPal Open',
                                     fontWeight: 400,
-                                    fontSize: { xs: '14px', md: '16px' },
+                                    fontSize: '16px',
                                     lineHeight: '150%',
                                     letterSpacing: '0%',
                                     color: '#B2D2FC',
                                     opacity: 1,
-                                    width: '100%',
-                                    wordBreak: 'break-word',
                                 }}
                             >
                                 {steps[1].desc}
@@ -411,7 +407,7 @@ const HowWeWork = () => {
                                     height: { xs: 'auto', md: '14px' },
                                     fontFamily: 'PayPal Open',
                                     fontWeight: 500,
-                                    fontSize: { xs: '14px', md: '20px' },
+                                    fontSize: { xs: '11px', md: '20px' },
                                     lineHeight: '120%',
                                     letterSpacing: '0%',
                                     color: '#FFFFFF',
@@ -424,10 +420,8 @@ const HowWeWork = () => {
                             <Typography
                                 sx={{
                                     fontWeight: 400,
-                                    fontSize: { xs: '14px', md: '16px' },
+                                    fontSize: '16px',
                                     color: '#B2D2FC',
-                                    width: '100%',
-                                    wordBreak: 'break-word',
                                 }}
                             >
                                 {steps[3].desc}
@@ -500,28 +494,26 @@ const HowWeWork = () => {
                                 </Typography>
                             </Box>
                             <Typography
-                             sx={{
-  width: { xs: '100%', md: '285px' },
-  height: { xs: 'auto', md: '14px' },
-  fontFamily: 'PayPal Open',
-  fontWeight: 500,
-  fontSize: { xs: '14px', md: '20px' },
-  lineHeight: '120%',
-  letterSpacing: '0%',
-  color: '#FFFFFF',
-  opacity: 1,
-  mb: { xs: 0.5, md: 3 },
-}}
+                                sx={{
+                                    width: { xs: '100%', md: '285px' },
+                                    height: { xs: 'auto', md: '14px' },
+                                    fontFamily: 'PayPal Open',
+                                    fontWeight: 500,
+                                    fontSize: { xs: '11px', md: '20px' },
+                                    lineHeight: '120%',
+                                    letterSpacing: '0%',
+                                    color: '#FFFFFF',
+                                    opacity: 1,
+                                    mb: { xs: 0.5, md: 3 },
+                                }}
                             >
                                 {steps[2].title}
                             </Typography>
                             <Typography
                                 sx={{
                                     fontWeight: 400,
-                                    fontSize: { xs: '14px', md: '16px' },
+                                    fontSize: '16px',
                                     color: '#B2D2FC',
-                                    width: '100%',
-                                    wordBreak: 'break-word',
                                 }}
                             >
                                 {steps[2].desc}
@@ -600,7 +592,7 @@ const HowWeWork = () => {
                                     height: { xs: 'auto', md: '14px' },
                                     fontFamily: 'PayPal Open',
                                     fontWeight: 500,
-                                    fontSize: { xs: '14px', md: '20px' },
+                                    fontSize: { xs: '11px', md: '20px' },
                                     lineHeight: '120%',
                                     letterSpacing: '0%',
                                     color: '#FFFFFF',
@@ -613,10 +605,8 @@ const HowWeWork = () => {
                             <Typography
                                 sx={{
                                     fontWeight: 400,
-                                    fontSize: { xs: '14px', md: '16px' },
+                                    fontSize: '16px',
                                     color: '#B2D2FC',
-                                    width: '100%',
-                                    wordBreak: 'break-word',
                                 }}
                             >
                                 {steps[4].desc}
@@ -695,7 +685,7 @@ const HowWeWork = () => {
                                     height: { xs: 'auto', md: '14px' },
                                     fontFamily: 'PayPal Open',
                                     fontWeight: 500,
-                                    fontSize: { xs: '14px', md: '20px' },
+                                    fontSize: { xs: '11px', md: '20px' },
                                     lineHeight: '120%',
                                     letterSpacing: '0%',
                                     color: '#FFFFFF',
@@ -708,10 +698,8 @@ const HowWeWork = () => {
                             <Typography
                                 sx={{
                                     fontWeight: 400,
-                                    fontSize: { xs: '14px', md: '16px' },
+                                    fontSize: '16px',
                                     color: '#B2D2FC',
-                                    width: '100%',
-                                    wordBreak: 'break-word',
                                 }}
                             >
                                 {steps[5].desc}
