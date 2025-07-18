@@ -39,7 +39,6 @@ import designIcon from "../assets/design.png";
 import shopifyIcon from "../assets/shopifyy.png";
 import wooIcon from "../assets/wooo(1).png";
 
-
 const megaMenuItems = [
   {
     title: "WEB DEVELOPMENT",
@@ -134,7 +133,7 @@ const navRoutes = {
   "How we work": "/how-we-work",
 };
 
-const NavBar = () => {
+const NavBar = ({ onContactClick }) => {
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [selected, setSelected] = React.useState("Home");
   const [drawerOpen, setDrawerOpen] = React.useState(false);
@@ -463,7 +462,7 @@ const NavBar = () => {
             {!isMobile && (
               <Button
                 variant="contained"
-                onClick={() => navigate('/talk')}
+                onClick={onContactClick} // ✅ use this instead of navigate
                 sx={{
                   backgroundColor: "#05408E",
                   borderRadius: "36px",
@@ -562,7 +561,7 @@ const NavBar = () => {
                       display: "flex",
                       gap: 2,
                       mb: 1.5,
-                      mt: idx === 0 ? 2.5 : 0, 
+                      mt: idx === 0 ? 2.5 : 0,
                       borderRadius: 2,
                       alignItems: "flex-start",
                       cursor: "pointer",

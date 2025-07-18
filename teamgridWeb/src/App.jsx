@@ -1,34 +1,48 @@
-import './App.css'
+import "./App.css";
+import { useState } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import { Routes, Route } from "react-router-dom";
+import { Box, Modal } from "@mui/material";
+
 import theme from "./components/theme.js";
-import Home from './components/Home.jsx'
-import { Routes , Route } from 'react-router-dom';
-import Whatwedo from './components/whatwedo/whatwedo.jsx';
-import NavBar from './components/Navbar.jsx';
-import Footer from './components/Footer.jsx';
-import LetsBuildTogether from './components/LetsBuildTogether.jsx';
-import WhatWeOffer from './components/whatwedo/Whatweoffer.jsx';
-import ContactForm from './components/ContactForm.jsx';
-// import Home from './components/Home/Home.jsx';
+import NavBar from "./components/Navbar.jsx";
+import Home from "./components/Home.jsx";
+import Whatwedo from "./components/whatwedo/whatwedo.jsx";
+import ContactForm from "./components/ContactForm.jsx";
+
 function App() {
+  const [openContactModal, setOpenContactModal] = useState(false);
+
+  const handleOpenContact = () => setOpenContactModal(true);
+  const handleCloseContact = () => setOpenContactModal(false);
 
   return (
-    <>
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
-      <NavBar/>
+      <NavBar onContactClick={handleOpenContact} />
+
       <Routes>
-        <Route path='/' element = {<Home/>}/>
-        <Route path='/whatwedo' element = {<Whatwedo/>}/>
-        <Route path='/talk' element = {<ContactForm/>}/>
+        <Route path="/" element={<Home />} />
+        <Route path="/whatwedo" element={<Whatwedo />} />
       </Routes>
-      {/* <LetsBuildTogether/>
-      <Footer/> */}
-      {/* <Home/> */}
-      </ThemeProvider>
-    </>
-  )
+
+      {/* Modal for Contact Form */}
+      <Modal open={openContactModal} onClose={handleCloseContact}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+            p: 2,
+          }}
+        >
+          <ContactForm onClose={handleCloseContact} />
+        </Box>
+      </Modal>
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;
