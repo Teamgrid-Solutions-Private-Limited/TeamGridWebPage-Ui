@@ -8,12 +8,12 @@ const WhoWeHelpSection = () => {
       sx={{
         maxWidth: "1440px",
         mx: "auto",
-        px: { xs: 2, sm: 3, md: 6, lg: 15, xl: 10 },
-        py: { xs: 4, sm: 6, md: 12 },
+        px: { xs: 2, sm: 4, md: 6, lg: 10, xl: 10 },
+        py: { xs: 4, sm: 2, md: 10},
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
         alignItems: "center",
-        gap: { xs: 4, sm: 8, md: 7, lg: 30, xl: 27 },
+        gap: { xs: 4, sm: 8, md: 10, lg: 20, xl: 27 },
         mb: 4
       }}
     >
@@ -23,8 +23,8 @@ const WhoWeHelpSection = () => {
         src={leftImg}
         alt="Who We Help Visual"
         sx={{
-          width: { xs: "100%", sm: "90%", md: "380px", lg: "590px", xl: "597px" },
-          height: { xs: "auto", sm: "auto", md: "500px", lg: "700px", xl: "850.09px" },
+          width: { xs: "100%", sm: "100%", md: "700px", lg: "100%", xl: "597px" },
+          height: { xs: "auto", sm: "auto", md: "750px", lg: "100%", xl: "850.09px" },
           opacity: 1,
           objectFit: "contain",
           mb: { xs: 3, md: 0 },
@@ -35,12 +35,12 @@ const WhoWeHelpSection = () => {
       {/* Right Side - Text Content */}
       <Box
         sx={{
-          width: { xs: "100%", sm: "95%", md: "420px", lg: "467px" },
+          width: { xs: "100%", sm: "100%", md: "420px", lg: "467px" },
           height: { xs: "auto", md: "auto", lg: "630px" },
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          gap: { xs: 2, sm: 3, md: 4, lg: 5 },
+          gap: { xs: 2, sm: 3, md: 1, lg: 5 },
           opacity: 1,
         }}
       >

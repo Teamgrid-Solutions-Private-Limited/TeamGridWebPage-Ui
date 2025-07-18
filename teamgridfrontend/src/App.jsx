@@ -14,7 +14,7 @@ function App() {
         <CssBaseline />
       <Router>
         <Routes>
-          <Route path="/" element={<TeamGridHomePage />} />
+          <Route path="/" element={<Home />} />
           <Route path="/what-we-do/frontend" element={<WhatWeDoPage />} />
         </Routes>
       </Router>

@@ -172,7 +172,8 @@ const OrbitBar = () => {
           maxWidth: "1440px",
           margin: "0 auto",
           position: "relative",
-          px: { xs: 2, sm: 4, md: 5.5, lg: 11,xl:6},
+          px: { xs: 1, sm: 2, md: 3, lg: 6,xl:6},
+          // alignItems:"flex-start"
         }}
       >
         {/* Text Content */}

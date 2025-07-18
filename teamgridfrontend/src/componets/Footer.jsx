@@ -29,7 +29,7 @@ const Footer = () => {
 
   return (
     <Box sx={{ bgcolor: '#072449', color: '#fff', 
-    px: { xs: 3, sm: 4, md: 3, lg: 14 }, py: 6, width: '100%', }}>
+    px: { xs: 3, sm: 4, md: 3, lg: 10,xl:14 }, py: 6, width: '100%', }}>
       <Box sx={{
         maxWidth: '1440px',
         margin: '0 auto',

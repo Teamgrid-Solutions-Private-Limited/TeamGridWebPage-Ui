@@ -48,60 +48,63 @@ const services = [
 
 const WhatWeDoSection = () => {
     return (
-        <Box sx={{ px: { xs: 2, sm: 4, md: 10, lg: 5, xl: 4 }, py: { xs: 6, md: 6 }, textAlign: "center" }}>
+        <Box sx={{ px: { xs: 2, sm: 4, md: 10, lg: 5, xl: 0 }, py: { xs: 6, md: 6 }, textAlign: "center",  maxWidth: "1456px",
+                mx: "auto", }}>
             {/* Title */}
-            <Box
-                sx={{
-                    width: 790,
-                    height: 113,
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "32px",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    opacity: 1,
-                    mx: "auto", // center horizontally
-                    mb: 8
-                }}
-            >
-                <Typography
-                    sx={{
-                        width: 325,
-                        height: 40,
-                        fontFamily: `"PayPal Open", sans-serif`,
-                        fontWeight: 500, // "Medium" weight is typically 500
-                        fontStyle: "normal",
-                        fontSize: "56px",
-                        lineHeight: "100%",
-                        letterSpacing: 0,
-                        color: "#140E13",
-                        opacity: 1,
-                    }}
-                >
-                    What We Do
-                </Typography>
-
-
-              <Typography
+          <Box
   sx={{
-    width: 790,
-    height: 41,
-    fontFamily: `"PayPal Open", sans-serif`,
-    fontWeight: 400,
-    fontStyle: "normal",
-    fontSize: "16px",
-    lineHeight: "170%",
-    letterSpacing: 0,
-    textAlign: "center",
-    color: "#000000",
+    width: { xs: '100%', sm: '90%', md: 790 },
+    height: { xs: 'auto', sm: 113 },
+    display: "flex",
+    flexDirection: "column",
+    gap: { xs: 2, sm: 4, md: "32px" },
+    alignItems: "center",
+    justifyContent: "center",
     opacity: 1,
+    mx: "auto",
+    mb: { xs: 4, sm: 8 },
+    px: { xs: 2, sm: 0 } // Add horizontal padding on small screens
   }}
 >
-  We build AI-powered web and mobile apps with innovative design and scalable development.
-  Our team delivers seamless UI/UX and solutions to help your business grow smarter and faster.
-</Typography>
+  <Typography
+    sx={{
+      width: { xs: '100%', sm: 325 },
+      height: { xs: 'auto', sm: 40 },
+      fontFamily: `"PayPal Open", sans-serif`,
+      fontWeight: 500,
+      fontStyle: "normal",
+      fontSize: { xs: "32px", sm: "40px", md: "56px" },
+      lineHeight: "100%",
+      letterSpacing: 0,
+      color: "#140E13",
+      opacity: 1,
+      textAlign: { xs: 'center', sm: 'left' }
+    }}
+  >
+    What We Do
+  </Typography>
 
-            </Box>
+  <Typography
+    sx={{
+      width: { xs: '100%', sm: '90%', md: 790 },
+      height: { xs: 'auto', sm: 41 },
+      fontFamily: `"PayPal Open", sans-serif`,
+      fontWeight: 400,
+      fontStyle: "normal",
+      fontSize: { xs: "14px", sm: "16px" },
+      lineHeight: "170%",
+      letterSpacing: 0,
+      textAlign: "center",
+      color: "#000000",
+      opacity: 1,
+      px: { xs: 1, sm: 0 } ,// Add some padding on small screens
+      mb:{xs:3}
+    }}
+  >
+    We build AI-powered web and mobile apps with innovative design and scalable development.
+    Our team delivers seamless UI/UX and solutions to help your business grow smarter and faster.
+  </Typography>
+</Box>
 
 
             {/* Grid */}

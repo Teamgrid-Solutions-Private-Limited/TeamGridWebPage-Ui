@@ -18,6 +18,7 @@ import WhoWeHelp from "../componets/WhoWeHelp";
 import WhoWeHelpSection from "./WhoWeHelpSection";
 import HowWeWork2 from "./HowWeWork2";
 import WhyTeamgrid2 from "./WhyTeamgrid2";
+import Navbar from "../whatwedo/Navbar"
 function Home() {
   const imageData = [
     { src: womanLaptop, alt: "Woman with laptop", bg: "#FEE2E2" },
@@ -28,7 +29,7 @@ function Home() {
 
   return (
     <Box>
-      <TopNavBar />
+      <Navbar />
       <OrbitBar />
       {/* <Box sx={{ height: { xs: '100vh', md: '110vh' } }} /> */}
       {/* <Box sx={{ maxWidth: "100%",

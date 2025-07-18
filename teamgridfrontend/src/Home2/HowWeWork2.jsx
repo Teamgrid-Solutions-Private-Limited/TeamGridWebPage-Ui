@@ -61,17 +61,17 @@ const HowWeWork2 = () => {
             >
                 <Typography
                     sx={{
-                        width: '477px', // optional: apply only if needed
-                        height: '40px', // optional: apply only if needed
+                        width: { xs: '100%', md: '477px' },
+                        height: { xs: 'auto', md: '40px' },
                         fontFamily: '"PayPal Open", sans-serif',
-                        fontWeight: 500, // corresponds to "Medium"
-                        fontSize: { xs: "36px", md: "56px" },
-                        lineHeight: "100%",
-                        letterSpacing: "0%",
-                        textAlign: "center",
-                        color: "#000000",
-                        mb: 4,
-                        mx: "auto", // to center it horizontally if width is set
+                        fontWeight: 500,
+                        fontSize: { xs: '28px', md: '56px' },
+                        lineHeight: '100%',
+                        letterSpacing: '0%',
+                        textAlign: 'center',
+                        color: '#000000',
+                        mb: { xs: 2, md: 4 },
+                        mx: 'auto',
                     }}
                 >
                     How We Work
@@ -81,17 +81,17 @@ const HowWeWork2 = () => {
                 <Typography
                     sx={{
                         fontFamily: '"PayPal Open", sans-serif',
-                        fontWeight: 400, // Regular
-                        fontSize: "16px",
-                        lineHeight: "150%",
-                        letterSpacing: "0%",
-                        textAlign: "center",
-                        color: "#140E13", // updated color
-                        width: "458px",   // fixed width as per your spec
-                        height: "55px",   // optional: generally height is handled by content
-                        mx: "auto",       // centers the box horizontally
+                        fontWeight: 400,
+                        fontSize: { xs: '14px', md: '16px' },
+                        lineHeight: '150%',
+                        letterSpacing: '0%',
+                        textAlign: 'center',
+                        color: '#140E13',
+                        width: { xs: '100%', md: '458px' },
+                        height: { xs: 'auto', md: '55px' },
+                        mx: 'auto',
                         opacity: 1,
-                        mb: 6,
+                        mb: { xs: 3, md: 6 },
                     }}
                 >
                     Our front-end development process is built to deliver speed, quality, and collaboration.
@@ -165,16 +165,16 @@ const HowWeWork2 = () => {
                             </Box>
                             <Typography
                                 sx={{
-                                    width: '285px',
-                                    height: '14px',
+                                    width: { xs: '100%', md: '285px' },
+                                    height: { xs: 'auto', md: '14px' },
                                     fontFamily: 'PayPal Open',
                                     fontWeight: 500,
-                                    fontSize: '20px',
+                                    fontSize: { xs: '14px', md: '20px' },
                                     lineHeight: '120%',
                                     letterSpacing: '0%',
-                                    color: '#05408E',
+                                    color: '#05408E', // or #FFFFFF for dark backgrounds
                                     opacity: 1,
-                                    mb: 3,
+                                    mb: { xs: 0.5, md: 3 },
                                 }}
                             >
                                 {steps[0].title}
@@ -183,11 +183,13 @@ const HowWeWork2 = () => {
                                 sx={{
                                     fontFamily: 'PayPal Open',
                                     fontWeight: 400,
-                                    fontSize: '16px',
+                                    fontSize: { xs: '14px', md: '16px' },
                                     lineHeight: '150%',
                                     letterSpacing: '0%',
                                     color: '#363840',
                                     opacity: 1,
+                                    width: '100%',
+                                    wordBreak: 'break-word',
                                 }}
                             >
                                 {steps[0].desc}
@@ -268,16 +270,16 @@ const HowWeWork2 = () => {
                             </Box>
                             <Typography
                                 sx={{
-                                    width: '285px',
-                                    height: '14px',
+                                    width: { xs: '100%', md: '285px' },
+                                    height: { xs: 'auto', md: '14px' },
                                     fontFamily: 'PayPal Open',
                                     fontWeight: 500,
-                                    fontSize: '20px',
+                                    fontSize: { xs: '14px', md: '20px' },
                                     lineHeight: '120%',
                                     letterSpacing: '0%',
-                                    color: '#05408E',
+                                    color: '#05408E', // or #FFFFFF for dark backgrounds
                                     opacity: 1,
-                                    mb: 3,
+                                    mb: { xs: 0.5, md: 3 },
                                 }}
                             >
                                 {steps[1].title}
@@ -286,11 +288,13 @@ const HowWeWork2 = () => {
                                 sx={{
                                     fontFamily: 'PayPal Open',
                                     fontWeight: 400,
-                                    fontSize: '16px',
+                                    fontSize: { xs: '14px', md: '16px' },
                                     lineHeight: '150%',
                                     letterSpacing: '0%',
                                     color: '#363840',
                                     opacity: 1,
+                                    width: '100%',
+                                    wordBreak: 'break-word',
                                 }}
                             >
                                 {steps[1].desc}
@@ -404,7 +408,7 @@ const HowWeWork2 = () => {
                             <Typography
                                 sx={{
                                     fontWeight: 500,
-                                    fontSize: '20px',
+                                    fontSize: { xs: '14px', md: '20px' },
                                     color: '#05408E',
                                     mb: 1,
                                 }}
@@ -414,8 +418,10 @@ const HowWeWork2 = () => {
                             <Typography
                                 sx={{
                                     fontWeight: 400,
-                                    fontSize: '16px',
+                                    fontSize: { xs: '14px', md: '16px' },
                                     color: '#363840',
+                                    width: '100%',
+                                    wordBreak: 'break-word',
                                 }}
                             >
                                 {steps[3].desc}
@@ -490,7 +496,7 @@ const HowWeWork2 = () => {
                             <Typography
                                 sx={{
                                     fontWeight: 500,
-                                    fontSize: '20px',
+                                    fontSize: { xs: '14px', md: '20px' },
                                     color: '#05408E',
                                     mb: 1,
                                 }}
@@ -500,8 +506,10 @@ const HowWeWork2 = () => {
                             <Typography
                                 sx={{
                                     fontWeight: 400,
-                                    fontSize: '16px',
+                                    fontSize: { xs: '14px', md: '16px' },
                                     color: '#363840',
+                                    width: '100%',
+                                    wordBreak: 'break-word',
                                 }}
                             >
                                 {steps[2].desc}
@@ -577,7 +585,7 @@ const HowWeWork2 = () => {
                             <Typography
                                 sx={{
                                     fontWeight: 500,
-                                    fontSize: '20px',
+                                    fontSize: { xs: '14px', md: '20px' },
                                     color: '#05408E',
                                     mb: 1,
                                 }}
@@ -587,8 +595,10 @@ const HowWeWork2 = () => {
                             <Typography
                                 sx={{
                                     fontWeight: 400,
-                                    fontSize: '16px',
+                                    fontSize: { xs: '14px', md: '16px' },
                                     color: '#363840',
+                                    width: '100%',
+                                    wordBreak: 'break-word',
                                 }}
                             >
                                 {steps[4].desc}
@@ -664,7 +674,7 @@ const HowWeWork2 = () => {
                             <Typography
                                 sx={{
                                     fontWeight: 500,
-                                    fontSize: '20px',
+                                    fontSize: { xs: '14px', md: '20px' },
                                     color: '#05408E',
                                     mb: 1,
                                 }}
@@ -674,8 +684,10 @@ const HowWeWork2 = () => {
                             <Typography
                                 sx={{
                                     fontWeight: 400,
-                                    fontSize: '16px',
+                                    fontSize: { xs: '14px', md: '16px' },
                                     color: '#363840',
+                                    width: '100%',
+                                    wordBreak: 'break-word',
                                 }}
                             >
                                 {steps[5].desc}

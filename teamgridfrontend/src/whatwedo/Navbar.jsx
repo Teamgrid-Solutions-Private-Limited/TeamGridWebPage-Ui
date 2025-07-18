@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-    AppBar, Toolbar, Typography, Button, Container, Box, Paper, Grid, IconButton, Drawer, List, ListItem, ListItemButton, ListItemText, Divider, Collapse, useMediaQuery, useTheme
+    AppBar, Toolbar, Typography, Button, Container, Box, Paper, Grid, IconButton, Drawer, List, ListItem, ListItemButton, ListItemText, Divider, Collapse, useMediaQuery, useTheme, Dialog, Snackbar
 } from "@mui/material";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import logo from "../assets/Layer_1 (1).svg";
 import whiteLogo from "../assets/Layer_1.svg"
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
-
+import Alert from '@mui/material/Alert'; // Correct
 // Icons
 import frontendIcon from "../assets/lucide_file-code.svg";
 import backendIcon from "../assets/lucide_database-zap.svg";
@@ -20,16 +20,32 @@ import pwaIcon from "../assets/proicons_apps.svg";
 import uiUxIcon from "../assets/lucide_layout-template.svg";
 import prototypeIcon from "../assets/lucide_pencil-ruler.svg";
 import designSystemIcon from "../assets/lucide_paintbrush-vertical.svg";
+import ContactForm from "../Home2/ContactForm";
+import Zoom from '@mui/material/Zoom';
 
 const Navbar = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-    const [hoverMenuOpen, setHoverMenuOpen] = React.useState(false);
-    const [mobileOpen, setMobileOpen] = React.useState(false);
-    const [whatWeDoExpanded, setWhatWeDoExpanded] = React.useState(false);
+    const [hoverMenuOpen, setHoverMenuOpen] = useState(false);
+    const [mobileOpen, setMobileOpen] = useState(false);
+    const [whatWeDoExpanded, setWhatWeDoExpanded] = useState(false);
     const closeTimeoutRef = React.useRef(null);
-    const [scrolled, setScrolled] = React.useState(false);
+    const [scrolled, setScrolled] = useState(false);
     const navigate = useNavigate();
+    const [contactOpen, setContactOpen] = useState(false);
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+
+    const handleContactOpen = () => setContactOpen(true);
+    const handleContactClose = () => setContactOpen(false);
+    
+    const handleSnackbarOpen = () => {
+        setSnackbarOpen(true);
+    };
+    
+    const handleSnackbarClose = (event, reason) => {
+        if (reason === 'clickaway') return;
+        setSnackbarOpen(false);
+    };
 
     React.useEffect(() => {
         const handleScroll = () => {
@@ -260,7 +276,7 @@ const Navbar = () => {
                                         backgroundColor: "#0E4FA2",
                                     }
                                 }}
-                                onClick={() => alert("Get a Quote Clicked!")}
+                                onClick={handleContactOpen}
                             >
                                 Let's Talk
                             </Button>
@@ -273,7 +289,7 @@ const Navbar = () => {
             <Drawer
                 anchor="left"
                 open={mobileOpen}
-                onClose={handleDrawerToggle}
+                onClose={() => setMobileOpen(false)}
                 ModalProps={{ keepMounted: true }}
                 sx={{
                     display: { xs: "block", md: "none" },
@@ -285,7 +301,7 @@ const Navbar = () => {
                     },
                 }}
             >
-                <Box onClick={handleDrawerToggle} sx={{ textAlign: "center", pt: 2 }}>
+                <Box onClick={() => setMobileOpen(false)} sx={{ textAlign: "center", pt: 2 }}>
                     <img src={logo} alt="logo" style={{ height: "40px" }} />
                     <Divider sx={{ borderColor: "rgba(255,255,255,0.2)", my: 2 }} />
                     <List>
@@ -524,12 +540,49 @@ const Navbar = () => {
                                 backgroundColor: "#0E4FA2",
                             }
                         }}
-                        onClick={() => alert("Get a Quote Clicked!")}
+                        onClick={handleContactOpen}
                     >
                         Get a Quote
                     </Button>
                 </Box>
             </Drawer>
+            <Dialog 
+  open={contactOpen} 
+  onClose={handleContactClose} 
+  maxWidth="md" 
+  fullWidth
+  TransitionComponent={Zoom}
+  PaperProps={{
+    sx: {
+      background: 'none',
+      boxShadow: 'none',
+      overflowY: 'auto',
+      scrollbarWidth: 'none', // Firefox
+      '&::-webkit-scrollbar': {
+        display: 'none', // Chrome, Safari, Opera
+      },
+    }
+  }}
+>
+  <ContactForm onClose={handleContactClose} onSuccess={() => { handleSnackbarOpen(); handleContactClose(); }} />
+</Dialog>
+<Snackbar
+  open={snackbarOpen}
+  autoHideDuration={6000}
+  onClose={handleSnackbarClose}
+  anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+>
+  <Alert 
+    onClose={handleSnackbarClose} 
+    severity="success" 
+    sx={{ width: '100%' }}
+    elevation={6}
+    variant="filled"
+  >
+    Message sent successfully!
+  </Alert>
+</Snackbar>
+
         </>
     );
 };
