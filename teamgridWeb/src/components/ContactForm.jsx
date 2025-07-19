@@ -17,6 +17,11 @@ import LanguageIcon from "@mui/icons-material/Language";
 import rect from "../assets/rect.png";
 const services = ["Web Development", "UI/UX Design", "Mobile App", "Other"];
 import { useState } from "react";
+import axios from "axios";
+// Import your planet images at the top of your component
+import planet1 from "../assets/planet2 (1).png";
+import planet2 from "../assets/planet2 (2).png";
+import planet3 from "../assets/planet3.png";
 
 const StyledButton = styled(Button)(({ theme }) => ({
   textTransform: "none",
@@ -46,21 +51,50 @@ export default function ContactForm({ onClose }) {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // handle the form submission logic (e.g., send to server)
-    console.log("Form Data:", formData);
 
-    // Reset form fields
-    setFormData({
-      name: "",
-      company: "",
-      email: "",
-      service: "",
-      message: "",
-      file: null,
-      requestType: "",
-    });
+    try {
+      const data = new FormData();
+
+      // Append all fields
+      data.append("name", formData.name);
+      data.append("company", formData.company);
+      data.append("email", formData.email);
+      data.append("service", formData.service);
+      data.append("message", formData.message);
+      data.append("requestType", formData.requestType);
+
+      if (formData.file) {
+        data.append("file", formData.file);
+      }
+
+      const response = await axios.post(
+        "http://localhost:5000/api/contact",
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      alert("Thanks for contacting us, we will get back to you soon");
+
+      // Reset form
+      setFormData({
+        name: "",
+        company: "",
+        email: "",
+        service: "",
+        message: "",
+        file: null,
+        requestType: "",
+      });
+    } catch (err) {
+      console.error("Form submit error:", err);
+      alert("Something went wrong!");
+    }
   };
 
   const handleReset = () => {
@@ -119,6 +153,7 @@ export default function ContactForm({ onClose }) {
             px: { xs: 3, md: 6 },
             py: { xs: 6, md: 10 },
             position: "relative",
+            overflow: "hidden",
           }}
         >
           <Typography variant="h4" fontWeight={700}>
@@ -128,15 +163,72 @@ export default function ContactForm({ onClose }) {
               Together
             </Box>
           </Typography>
+
           <Typography mt={2} maxWidth="400px">
             We’re here to answer questions, scope projects, and help you find
             the right talent.
           </Typography>
 
-          {/* Placeholder for Orbit or Team Image */}
+          {/* ORBITS WITH PLANETS + WHITE DOTS */}
+          {[338, 588, 814].map((size, index) => {
+            const positions = [
+              { top: "20%", left: "10%", dotTop: "0%", dotLeft: "50%" },
+              { top: "40%", left: "2%", dotTop: "30%", dotLeft: "4%" },
+              { top: "35%", left: "2%", dotTop: "50%", dotLeft: "0%" },
+            ];
+            const planetImg = [planet1, planet2, planet3][index];
+            const pos = positions[index];
+
+            return (
+              <Box
+                key={index}
+                sx={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "90%",
+                  width: `${size}px`,
+                  height: `${size}px`,
+                  border: "1px dashed rgba(255, 255, 255, 0.2)",
+                  borderRadius: "50%",
+                  transform: "translate(-50%, -50%)",
+                }}
+              >
+                {/* Planet Image */}
+                <Box
+                  component="img"
+                  src={planetImg}
+                  alt={`planet-${index + 1}`}
+                  sx={{
+                    width: "65px",
+                    height: "65px",
+                    position: "absolute",
+                    top: pos.top,
+                    left: pos.left,
+                    transform: "translate(-50%, -50%)",
+                  }}
+                />
+
+                {/* White Dot */}
+                <Box
+                  sx={{
+                    width: "11.55px",
+                    height: "11.55px",
+                    borderRadius: "50%",
+                    backgroundColor: "#fff",
+                    position: "absolute",
+                    top: pos.dotTop,
+                    left: pos.dotLeft,
+                    transform: "translate(-50%, -50%)",
+                  }}
+                />
+              </Box>
+            );
+          })}
+
+          {/* Team image */}
           <Box
             component="img"
-            src={rect} // replace with actual image path
+            src={rect}
             alt="team"
             sx={{
               position: "absolute",
@@ -145,6 +237,7 @@ export default function ContactForm({ onClose }) {
               width: "100%",
               maxHeight: "240px",
               objectFit: "cover",
+              zIndex: 1,
             }}
           />
         </Grid>
