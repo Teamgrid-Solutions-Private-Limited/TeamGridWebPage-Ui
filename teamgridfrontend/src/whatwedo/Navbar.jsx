@@ -22,6 +22,7 @@ import prototypeIcon from "../assets/lucide_pencil-ruler.svg";
 import designSystemIcon from "../assets/lucide_paintbrush-vertical.svg";
 import ContactForm from "../Home2/ContactForm";
 import Zoom from '@mui/material/Zoom';
+import ContactFormPage from '../Home2/ContactFormPage';
 
 const Navbar = () => {
     const theme = useTheme();
@@ -36,10 +37,6 @@ const Navbar = () => {
     const handleContactOpen = () => setContactOpen(true);
     const handleContactClose = () => setContactOpen(false);
     const [snackbarOpen, setSnackbarOpen] = React.useState(false);
-    const handleSnackbarOpen = () => {
-        console.log('Snackbar open triggered from parent');
-        setSnackbarOpen(true);
-    };
     const handleSnackbarClose = (event, reason) => {
         if (reason === 'clickaway') return;
         setSnackbarOpen(false);
@@ -547,7 +544,7 @@ const Navbar = () => {
             <Dialog
                 open={contactOpen}
                 onClose={handleContactClose}
-                maxWidth="md"
+                maxWidth="xl"
                 fullWidth
                 TransitionComponent={Zoom}
                 PaperProps={{
@@ -562,7 +559,7 @@ const Navbar = () => {
                     }
                 }}
             >
-                <ContactForm onClose={handleContactClose} onSuccess={() => { console.log('onSuccess called in ContactForm'); handleSnackbarOpen(); }} />
+                <ContactForm onClose={handleContactClose} onSuccess={() => setSnackbarOpen(true)} />
             </Dialog>
             <Snackbar
                 open={snackbarOpen}

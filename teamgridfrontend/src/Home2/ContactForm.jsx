@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import {
   Box, TextField, Typography, Button, Checkbox,
-  FormControlLabel, FormGroup, InputAdornment, IconButton, Grid
+  FormControlLabel, FormGroup, InputAdornment, IconButton, Grid, LinearProgress
 } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import EmailIcon from '@mui/icons-material/Email';
@@ -21,10 +21,13 @@ const ContactForm = ({ onClose, onSuccess }) => {
     message: '',
     topics: [],
     file: null,
+    googleDriveLink: '',
   });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
+  const [linkAdded, setLinkAdded] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -44,11 +47,34 @@ const ContactForm = ({ onClose, onSuccess }) => {
     setForm({ ...form, file: e.target.files[0] });
   };
 
+  const handleGoogleDriveLink = (e) => {
+    e.preventDefault();
+    const link = window.prompt('Paste your Google Drive link here:');
+    if (link) {
+      // Basic validation for Google Drive link
+      if (link.includes('drive.google.com') || link.includes('docs.google.com')) {
+        setForm((prev) => ({ ...prev, googleDriveLink: link }));
+        setLinkAdded(true);
+        console.log('Google Drive link added:', link); // Debug log
+        
+        // Clear success message after 3 seconds
+        setTimeout(() => setLinkAdded(false), 3000);
+      } else {
+        alert('Please enter a valid Google Drive or Google Docs link');
+      }
+    }
+  };
+
+  const clearGoogleDriveLink = () => {
+    setForm((prev) => ({ ...prev, googleDriveLink: '' }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setSuccess('');
     setError('');
+    setUploadProgress(0);
     try {
       const data = new FormData();
       data.append('name', form.name);
@@ -58,8 +84,25 @@ const ContactForm = ({ onClose, onSuccess }) => {
       data.append('message', form.message);
       data.append('topics', form.topics.join(','));
       if (form.file) data.append('file', form.file);
+      if (form.googleDriveLink) {
+        data.append('googleDriveLink', form.googleDriveLink);
+        console.log('Google Drive Link being sent:', form.googleDriveLink); // Debug log
+      }
 
-      const res = await axios.post('https://formbackend-ewmo.onrender.com/api/contact', data);
+      // Debug: Log all form data being sent
+      console.log('Form data being sent:');
+      for (let [key, value] of data.entries()) {
+        console.log(key, ':', value);
+      }
+
+      const res = await axios.post('https://formbackend-ewmo.onrender.com/api/contact', data, {
+        onUploadProgress: (progressEvent) => {
+          if (progressEvent.total) {
+            const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+            setUploadProgress(percent);
+          }
+        },
+      });
 
       if (res.status === 201) {
         setSuccess('Message sent successfully!');
@@ -71,14 +114,19 @@ const ContactForm = ({ onClose, onSuccess }) => {
           message: '',
           topics: [],
           file: null,
+          googleDriveLink: '',
         });
+        setUploadProgress(0);
         if (onSuccess) onSuccess(); // <-- call parent Snackbar
         if (onClose) onClose(); // Close immediately
       } else {
         setError(res.data.error || 'Failed to send message.');
+        setUploadProgress(0);
       }
     } catch (error) {
+      console.error('Error submitting form:', error);
       setError(error.response?.data?.error || 'Failed to send message.');
+      setUploadProgress(0);
     }
     setLoading(false);
   };
@@ -120,6 +168,20 @@ const ContactForm = ({ onClose, onSuccess }) => {
       </Typography>
       {success && <Typography sx={{ color: '#22c55e', mb: 1, textAlign: 'center' }}>{success}</Typography>}
       {error && <Typography sx={{ color: '#ef4444', mb: 1, textAlign: 'center' }}>{error}</Typography>}
+      {linkAdded && (
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, justifyContent: 'center', mb: 1 }}>
+          <Typography sx={{ color: '#22c55e', fontSize: '14px' }}>✅ Google Drive link added successfully!</Typography>
+          <IconButton size="small" onClick={clearGoogleDriveLink} sx={{ color: '#22c55e' }}>
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        </Box>
+      )}
+      {uploadProgress > 0 && uploadProgress < 100 && (
+        <Box sx={{ width: '100%', mb: 2 }}>
+          <LinearProgress variant="determinate" value={uploadProgress} />
+          <Typography sx={{ color: '#fff', fontSize: 12, textAlign: 'center', mt: 0.5 }}>{uploadProgress}%</Typography>
+        </Box>
+      )}
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <Box display="flex" flexDirection="column" gap={2}>
           {/* Full Name */}
@@ -242,7 +304,7 @@ const ContactForm = ({ onClose, onSuccess }) => {
           </Box>
 
           {/* File Upload */}
-          <Box>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
             <Typography
               sx={{
                 color: '#90ee90',
@@ -255,10 +317,33 @@ const ContactForm = ({ onClose, onSuccess }) => {
             >
               <AttachFileIcon sx={{ fontSize: 18 }} />
               Select Files From Your&nbsp;
-              <a href="#" style={{ color: '#90ee90' }}>Computer</a> or{' '}
-              <a href="#" style={{ color: '#90ee90' }}>Google Docs</a>
+              <label htmlFor="file-upload" style={{ color: '#90ee90', textDecoration: 'underline', cursor: 'pointer' }}>
+                Computer
+              </label>
+              {' '}or{' '}
+              <a href="#" style={{ color: '#90ee90', textDecoration: 'underline', cursor: 'pointer' }} onClick={handleGoogleDriveLink}>Google Docs</a>
             </Typography>
-            <input type="file" onChange={handleFileChange} style={{ color: '#fff' }} />
+            <input
+              id="file-upload"
+              type="file"
+              onChange={handleFileChange}
+              style={{ display: 'none' }}
+            />
+            {form.file && (
+              <Typography sx={{ color: '#fff', fontSize: 13 }}>
+                Selected: {form.file.name}
+              </Typography>
+            )}
+            {form.googleDriveLink && (
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, justifyContent: 'center' }}>
+                <Typography sx={{ color: '#fff', fontSize: 13 }}>
+                  Google Drive Link: <a href={form.googleDriveLink} target="_blank" rel="noopener noreferrer" style={{ color: '#90ee90', wordBreak: 'break-all' }}>{form.googleDriveLink}</a>
+                </Typography>
+                <IconButton size="small" onClick={clearGoogleDriveLink} sx={{ color: '#90ee90' }}>
+                  <CloseIcon fontSize="small" />
+                </IconButton>
+              </Box>
+            )}
           </Box>
 
           {/* Submit Button */}
