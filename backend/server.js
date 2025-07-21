@@ -16,6 +16,11 @@ connectDB();
 
 const app = express();
 
+app.use(cors({
+  origin: "https://teamgridhomeui.netlify.app",
+  credentials: true,
+}));
+
 // Middleware
 app.use(cors());
 app.use(express.json());
