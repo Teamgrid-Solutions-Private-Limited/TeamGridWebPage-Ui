@@ -75,6 +75,7 @@ export default function ContactForm({ onClose }) {
         headers: {
           "Content-Type": "multipart/form-data",
         },
+        withCredentials: true, // ✅ IMPORTANT for CORS to work
       });
 
       alert("Thanks for contacting us, we will get back to you soon");
