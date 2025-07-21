@@ -14,18 +14,24 @@ connectDB();
 
 const app = express();
 
-// ✅ Allow only Netlify frontend to access
+// ✅ CORS configuration
+const allowedOrigins = ["https://teamgridhomeui.netlify.app"];
 app.use(cors({
-  origin: "https://teamgridhomeui.netlify.app", // ✅ frontend URL
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true,
 }));
 
-// ✅ Add this manual header middleware (important for credentials)
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://teamgridhomeui.netlify.app");
-  res.header("Access-Control-Allow-Credentials", "true");
-  next();
-});
+// ✅ Handle preflight requests explicitly
+app.options("*", cors({
+  origin: allowedOrigins,
+  credentials: true,
+}));
 
 // Middleware
 app.use(express.json());
@@ -40,10 +46,8 @@ app.get("/", (req, res) => {
 });
 
 app.get("/test-cors", (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://teamgridhomeui.netlify.app");
   res.json({ msg: "CORS test passed!" });
 });
-
 
 // Start server
 const PORT = process.env.PORT || 5000;
