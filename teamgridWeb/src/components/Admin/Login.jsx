@@ -32,7 +32,7 @@ const Login = () => {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/api/login`,
+        `https://teamgridwebpage-ui.onrender.com/api/login`,
         {
           method: "POST",
           headers: {
