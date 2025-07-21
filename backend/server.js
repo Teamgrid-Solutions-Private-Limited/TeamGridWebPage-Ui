@@ -32,6 +32,12 @@ app.get("/", (req, res) => {
   res.send("✅ Backend is live and working!");
 });
 
+app.get("/test-cors", (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "https://teamgridhomeui.netlify.app");
+  res.json({ msg: "CORS test passed!" });
+});
+
+
 // Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
