@@ -49,6 +49,7 @@ import {
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/LogoDark.png";
+const BASE_URL = "https://teamgridwebpage.onrender.com"; // Live backend URL
 
 const theme = createTheme({
   palette: {
@@ -117,7 +118,7 @@ const Dashboard = () => {
   const fetchContacts = () => {
     setLoading(true);
     axios
-      .get("http://localhost:5000/api/contact")
+      .get(`${BASE_URL}/api/contact`)
       .then((res) => {
         setContacts(res.data.data);
         setFilteredContacts(res.data.data);
@@ -170,7 +171,8 @@ const Dashboard = () => {
   const renderFileCell = (item) => {
     if (!item.filePath) return "No file";
 
-    const fileUrl = `http://localhost:5000${item.filePath}`;
+    const fileUrl = `${BASE_URL}${item.filePath}`;
+
     const fileName = item.filePath.split("/").pop();
 
     return (
@@ -428,7 +430,9 @@ const Dashboard = () => {
                   <MenuItem onClick={handleFilterMenuClose}>
                     Consultations
                   </MenuItem>
-                  <MenuItem onClick={handleFilterMenuClose}>Partnerships</MenuItem>
+                  <MenuItem onClick={handleFilterMenuClose}>
+                    Partnerships
+                  </MenuItem>
                 </Menu>
               </Box>
             </Box>
@@ -602,7 +606,9 @@ const Dashboard = () => {
                     <Typography variant="subtitle2" color="textSecondary">
                       Name
                     </Typography>
-                    <Typography variant="body1">{selectedContact.name}</Typography>
+                    <Typography variant="body1">
+                      {selectedContact.name}
+                    </Typography>
                   </Box>
                   <Box>
                     <Typography variant="subtitle2" color="textSecondary">
@@ -669,7 +675,8 @@ const Dashboard = () => {
                       {selectedContact.fileType?.startsWith("image/") ? (
                         <>
                           <Avatar
-                            src={`http://localhost:5000${selectedContact.filePath}`}
+                            src={`${BASE_URL}${selectedContact.filePath}`
+}
                             alt="Uploaded"
                             sx={{ width: 100, height: 100 }}
                             variant="rounded"
@@ -678,7 +685,8 @@ const Dashboard = () => {
                             <Button
                               variant="contained"
                               startIcon={<Download />}
-                              href={`http://localhost:5000${selectedContact.filePath}`}
+                              href={`${BASE_URL}${selectedContact.filePath}`
+}
                               download
                               sx={{ mr: 2 }}
                             >
@@ -689,10 +697,7 @@ const Dashboard = () => {
                       ) : (
                         <>
                           {selectedContact.fileType === "application/pdf" ? (
-                            <PictureAsPdf
-                              color="error"
-                              sx={{ fontSize: 48 }}
-                            />
+                            <PictureAsPdf color="error" sx={{ fontSize: 48 }} />
                           ) : (
                             <InsertDriveFile
                               color="action"
@@ -703,15 +708,19 @@ const Dashboard = () => {
                             <Button
                               variant="contained"
                               startIcon={<Download />}
-                              href={`http://localhost:5000${selectedContact.filePath}`}
-                              download={selectedContact.originalFileName || "download"}
+                              href={`${BASE_URL}${selectedContact.filePath}`
+}
+                              download={
+                                selectedContact.originalFileName || "download"
+                              }
                               sx={{ mr: 2 }}
                             >
                               Download
                             </Button>
                             <Button
                               variant="outlined"
-                              href={`http://localhost:5000${selectedContact.filePath}`}
+                              href={`${BASE_URL}${selectedContact.filePath}`
+}
                               target="_blank"
                             >
                               View

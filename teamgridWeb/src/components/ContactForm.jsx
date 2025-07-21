@@ -23,6 +23,8 @@ import planet1 from "../assets/planet2 (1).png";
 import planet2 from "../assets/planet2 (2).png";
 import planet3 from "../assets/planet3.png";
 
+const BASE_URL = "https://teamgridwebpage.onrender.com";
+
 const StyledButton = styled(Button)(({ theme }) => ({
   textTransform: "none",
   borderRadius: 20,
@@ -69,15 +71,11 @@ export default function ContactForm({ onClose }) {
         data.append("file", formData.file);
       }
 
-      const response = await axios.post(
-        "http://localhost:5000/api/contact",
-        data,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios.post(`${BASE_URL}/api/contact`, data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       alert("Thanks for contacting us, we will get back to you soon");
 

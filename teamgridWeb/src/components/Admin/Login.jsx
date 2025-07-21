@@ -31,21 +31,21 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/api/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
       const data = await response.json();
 
       if (response.ok && data.success) {
-        // ✅ Set local storage flag after successful login
         localStorage.setItem("isLoggedIn", "true");
-
-        // Navigate to dashboard
         navigate("/dashboard");
       } else {
         alert(data.message || "Login failed");
