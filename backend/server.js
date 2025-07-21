@@ -16,9 +16,16 @@ const app = express();
 
 // ✅ Allow only Netlify frontend to access
 app.use(cors({
-  origin: "https://teamgridhomeui.netlify.app",
+  origin: "https://teamgridhomeui.netlify.app", // ✅ frontend URL
   credentials: true,
 }));
+
+// ✅ Add this manual header middleware (important for credentials)
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://teamgridhomeui.netlify.app");
+  res.header("Access-Control-Allow-Credentials", "true");
+  next();
+});
 
 // Middleware
 app.use(express.json());

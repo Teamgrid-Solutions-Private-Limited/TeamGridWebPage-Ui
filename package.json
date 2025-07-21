@@ -3,6 +3,7 @@
     "@mui/icons-material": "^7.1.2",
     "@mui/material": "^7.1.1",
     "@mui/styled-engine-sc": "^7.1.1",
+    "react-router-dom": "^7.6.3",
     "styled-components": "^6.1.19"
   }
 }
