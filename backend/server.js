@@ -2,11 +2,9 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const connectDB = require('./Database/db');
-const contactRoutes = require('./Route/route')
+const contactRoutes = require('./Route/route');
+const adminRoute = require('./Route/adminRoute');
 const path = require('path');
-const adminRoute = require('./Route/adminRoute')
-
-
 
 // Load environment variables
 dotenv.config();
@@ -16,15 +14,15 @@ connectDB();
 
 const app = express();
 
+// ✅ Allow only Netlify frontend to access
 app.use(cors({
   origin: "https://teamgridhomeui.netlify.app",
   credentials: true,
 }));
 
 // Middleware
-app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true })); // for file uploads (if needed)
+app.use(express.urlencoded({ extended: true }));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use("/api/contact", contactRoutes);
