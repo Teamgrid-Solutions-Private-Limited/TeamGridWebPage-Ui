@@ -14,7 +14,21 @@ connectDB();
 
 const app = express();
 
-app.use(cors())
+const corsOptions = {
+  origin: [
+    'https://teamgridhomeui.netlify.app',
+    'http://localhost:3000' // For local development
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+  credentials: true,
+  optionsSuccessStatus: 200 // For legacy browser support
+};
+
+
+app.options('*', cors(corsOptions))
+// Apply CORS middleware
+app.use(cors(corsOptions))
 
 // Middleware
 app.use(express.json());
