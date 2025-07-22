@@ -14,11 +14,18 @@ connectDB();
 
 const app = express();
 
-app.use(cors({
-  origin: 'https://teamgridhomeui.netlify.app', // allow your frontend origin
-  methods: ['POST', 'GET', 'OPTIONS'],
-  credentials: true
-}));
+// CORS Configuration
+const corsOptions = {
+  origin: 'https://teamgridhomeui.netlify.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
+// Handle preflight requests manually (important for Render!)
+app.options("*", cors(corsOptions));
 
 // Middleware
 app.use(express.json());
@@ -31,7 +38,6 @@ app.use("/api", adminRoute);
 app.get("/", (req, res) => {
   res.send("✅ Backend is live and working!");
 });
-
 
 // Start server
 const PORT = process.env.PORT || 5000;
